@@ -2,8 +2,7 @@ services:
   - type: web
     name: math-thinking-lab
     runtime: node
-    plan: starter
-    numInstances: 1
+    plan: free
     buildCommand: npm ci --omit=dev
     startCommand: npm run start:render
     healthCheckPath: /api/status
@@ -20,6 +19,8 @@ services:
         value: supabase
       - key: SUPABASE_DB_URL
         sync: false
+      - key: GMAIL_TRANSPORT
+        value: api
       - key: GEMINI_MODEL
         value: gemini-2.5-flash
       - key: GEMINI_API_KEY

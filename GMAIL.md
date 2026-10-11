@@ -1,6 +1,31 @@
 # Gửi thông báo phụ huynh bằng Gmail
 
-## Cấu hình
+## Render Free: Gmail API qua HTTPS
+
+Render Free dùng `GMAIL_TRANSPORT=api`. Mật khẩu ứng dụng SMTP không dùng được cho Gmail API.
+
+1. Mở https://console.cloud.google.com/, tạo/chọn project và bật **Gmail API** trong API Library.
+2. Trong **Google Auth Platform**, cấu hình Branding, Audience (External với Gmail cá nhân) và email liên hệ. Trong Data Access thêm scope `https://www.googleapis.com/auth/gmail.send`.
+3. Chuyển Audience sang **In production** trước khi lấy refresh token dài hạn. External ở Testing thường hết hạn refresh token sau 7 ngày với scope Gmail. Production không đồng nghĩa đã được Google xác minh; làm theo yêu cầu Google hiển thị. Chỉ cấp quyền cho đúng project của mình.
+4. Tạo OAuth Client loại **Web application**, thêm Authorized redirect URI: `https://developers.google.com/oauthplayground`.
+5. Mở https://developers.google.com/oauthplayground, bấm bánh răng, bật **Use your own OAuth credentials**, nhập Client ID và Client secret của project mình. Chọn Access type Offline và yêu cầu Consent. Không dùng credentials mặc định của Playground vì token thử nghiệm có thể bị thu hồi sau 24 giờ.
+6. Nhập scope `https://www.googleapis.com/auth/gmail.send`, bấm **Authorize APIs**, đăng nhập đúng Gmail gửi rồi cấp quyền. Bấm **Exchange authorization code for tokens**, lấy Refresh token.
+7. Thêm vào Render → Environment:
+
+```dotenv
+GMAIL_TRANSPORT=api
+GMAIL_USER=dia-chi-gui@gmail.com
+GMAIL_FROM_NAME=Math Lab
+GMAIL_CLIENT_ID=
+GMAIL_CLIENT_SECRET=
+GMAIL_REFRESH_TOKEN=
+```
+
+Gmail được cấp quyền phải khớp `GMAIL_USER`. Không cần `GMAIL_APP_PASSWORD` trên Render Free. Không đưa Client secret hoặc Refresh token lên GitHub. Nếu thử local qua API, thêm cùng biến vào `.env`.
+
+Máy chủ tự lấy access token mới và gửi MIME/PDF qua HTTPS cổng 443. Không tự gửi lại khi mất phản hồi hoặc lỗi server vì Gmail có thể đã nhận thư. OAuth bị thu hồi cần cấp quyền lại. Cần gửi thử từ luồng xác nhận của giáo viên sau deploy để kiểm tra giao thư thực tế.
+
+## Local hoặc máy chủ cho phép SMTP
 
 1. Chọn Gmail dùng chung để gửi thông báo. Bật **Xác minh 2 bước** trong tài khoản Google.
 2. Mở https://myaccount.google.com/apppasswords và tạo mật khẩu ứng dụng cho Math Lab. Nếu Google không cung cấp mục này, kiểm tra chính sách tài khoản Google Workspace hoặc dùng một tài khoản hỗ trợ mật khẩu ứng dụng.
@@ -12,7 +37,7 @@ GMAIL_APP_PASSWORD=mat-khau-ung-dung-16-ky-tu
 GMAIL_FROM_NAME=Math Lab
 ```
 
-Dùng mật khẩu ứng dụng 16 ký tự, không dùng mật khẩu đăng nhập Google. Có thể dán cả khoảng trắng mà Google hiển thị. Không gửi mật khẩu vào chat hoặc đưa vào mã nguồn. Máy chủ kết nối `smtp.gmail.com:465` bằng TLS; môi trường chạy phải cho phép cổng SMTP này. Dự án cấu hình Render Starter; các gói chặn SMTP cần đổi môi trường hoặc phương thức gửi.
+Dùng mật khẩu ứng dụng 16 ký tự, không dùng mật khẩu đăng nhập Google. Có thể dán cả khoảng trắng mà Google hiển thị. Không gửi mật khẩu vào chat hoặc đưa vào mã nguồn. Đặt `GMAIL_TRANSPORT=smtp`; máy chủ kết nối `smtp.gmail.com:465` bằng TLS. Render Free dùng API theo hướng dẫn trên.
 
 ## Sử dụng
 

@@ -67,7 +67,7 @@ Nếu tạo Web Service thủ công:
 | `SUPABASE_DB_URL` | URI bí mật của database |
 | `GEMINI_MODEL` | `gemini-2.5-flash` |
 
-Để Render tự cấp `PORT`. Thêm `SUPABASE_DB_CA` nếu cần, `GEMINI_API_KEY` nếu dùng AI và các biến Gmail trong [GMAIL.md](GMAIL.md) nếu gửi email. Blueprint giữ gói Starter để tương thích cấu hình SMTP hiện có; không còn khai báo ổ Persistent Disk. Xem mức phí Render/Supabase hiển thị trước khi tạo dịch vụ.
+Để Render tự cấp `PORT`. Thêm `SUPABASE_DB_CA` nếu cần, `GEMINI_API_KEY` nếu dùng AI và các biến Gmail trong [GMAIL.md](GMAIL.md) nếu gửi email. Blueprint dùng gói Free và `GMAIL_TRANSPORT=api`; cần cấu hình OAuth Gmail, không dùng mật khẩu ứng dụng SMTP. Không cần Persistent Disk. Free có thể ngủ khi không có truy cập; hàng đợi chờ tiếp tục khi app hoạt động lại, không đảm bảo thời điểm giao thư. Uptime ping không phải cam kết uptime từ nhà cung cấp.
 
 Nếu cập nhật dịch vụ Render cũ đang dùng disk: **giữ disk cũ và bản sao dữ liệu** cho đến khi migrate, đăng nhập và kiểm tra bản mới thành công. Thay đổi YAML không phải là bằng chứng dữ liệu trên disk đã được chuyển. Chỉ gỡ tài nguyên cũ khi đã xác minh.
 
