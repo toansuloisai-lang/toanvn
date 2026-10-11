@@ -6,6 +6,7 @@ import path from 'node:path';
 import { exercises, evaluate, checkAnswer } from '../public/data.js';
 const dir=mkdtempSync(path.join(os.tmpdir(),'math-core-'));
 process.env.MATH_DB_PATH=path.join(dir,'accounts.json');
+process.env.MATH_STORAGE='json';
 process.env.GEMINI_API_KEY='test-key-never-use-for-live-api';
 const { server, fallback } = await import('../server.mjs');
 let base;

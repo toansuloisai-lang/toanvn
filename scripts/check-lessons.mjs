@@ -5,7 +5,7 @@ const app=await createTestApp(),browser=await chromium.launch({channel:'msedge',
 const page=await browser.newPage({viewport:{width:1536,height:1024}}),errors=[];
 page.on('pageerror',e=>errors.push(e.message));
 try{
- await app.login(page,'teacher');await page.goto(app.base+'/#teacher-library');await page.locator('[data-import-lessons]').click();await page.getByText('Đã nạp thêm 20 bài. Tổng 20 bài học, chia đều cho lớp 6–9.').waitFor();
+ await app.login(page,'teacher');await page.goto(app.base+'/#teacher-library/lessons');await page.locator('[data-import-lessons]').click();await page.getByText('Đã nạp thêm 20 bài. Tổng 20 bài học, chia đều cho lớp 6–9.').waitFor();
  assert.equal(await page.locator('.lesson-preview').count(),20);assert.ok(await page.locator('[data-import-lessons]').isDisabled());
  await page.locator('.lesson-preview').first().locator('summary').click();await page.screenshot({path:'artifacts/teacher-lesson-library.png',fullPage:true});
  const again=await page.context().request.post(app.base+'/api/teacher/lessons/import-demo',{data:{}});assert.deepEqual(await again.json(),{added:0,total:20});

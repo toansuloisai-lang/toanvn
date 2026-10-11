@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 const dir=await mkdtemp(path.join(os.tmpdir(),'math-auth-'));
 process.env.MATH_DB_PATH=path.join(dir,'accounts.json');
+process.env.MATH_STORAGE='json';
 const {server,accounts}=await import('../server.mjs');
 let base;
 const password='Test-only-password-123!';

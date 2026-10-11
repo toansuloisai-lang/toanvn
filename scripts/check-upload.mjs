@@ -6,7 +6,7 @@ const app=await createTestApp({grade:9}),browser=await chromium.launch({channel:
 page.on('pageerror',e=>errors.push(e.message));
 const pdf=pdfFixture();
 try{
- await app.login(page,'teacher');await page.goto(app.base+'/#teacher-library');await page.locator('#lesson-upload-form').waitFor();
+ await app.login(page,'teacher');await page.goto(app.base+'/#teacher-library/documents');await page.locator('#lesson-upload-form').waitFor();
  await page.locator('#upload-title').fill('Ôn tập căn bậc hai');await page.locator('#upload-grade').selectOption('9');await page.locator('#upload-description').fill('Tính \\(\\sqrt{25}\\). <img src=x onerror=alert(1)>');await page.locator('#upload-file').setInputFiles({name:'Bài tập lớp 9.pdf',mimeType:'application/pdf',buffer:pdf});await page.locator('#lesson-upload-form button[type=submit]').click();
  assert.equal(await page.locator('#upload-review img').count(),0);assert.equal(await page.locator('#upload-review msqrt').count(),1);await page.locator('#edit-upload').click();assert.equal(await page.locator('#upload-title').inputValue(),'Ôn tập căn bậc hai');await page.locator('#lesson-upload-form button[type=submit]').click();
  await page.locator('#publish-upload').click();await page.locator('[data-uploaded-lesson]').waitFor();await page.reload();await page.locator('[data-uploaded-lesson]').waitFor();await page.screenshot({path:'artifacts/teacher-upload.png',fullPage:true});

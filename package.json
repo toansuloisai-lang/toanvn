@@ -7,18 +7,26 @@
     "start": "node server.mjs",
     "start:render": "node scripts/start-render.mjs",
     "dev": "node --watch server.mjs",
-    "test": "node --test"
+    "test": "node --test",
+    "supabase:prepare": "node scripts/supabase-migrate.mjs prepare",
+    "supabase:migrate": "node scripts/supabase-migrate.mjs import",
+    "supabase:verify": "node scripts/supabase-migrate.mjs verify",
+    "test:supabase": "node scripts/check-supabase.mjs"
   },
   "engines": {
     "node": ">=22"
   },
   "devDependencies": {
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "^1.63.0",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "pdfjs-dist": "^6.4.299"
   },
   "dependencies": {
     "exceljs": "^4.4.0",
     "katex": "^0.18.9",
     "nodemailer": "^10.0.12",
+    "pdfkit": "^0.20.2",
+    "pg": "^8.23.1",
     "three": "^0.186.1"
   },
   "overrides": {

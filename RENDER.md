@@ -1,30 +1,94 @@
-# Deploy lên Render
+# Deploy Render với Supabase
 
-1. Đưa mã nguồn lên GitHub. Không đưa `.env`, `private/`, `artifacts/` hoặc `node_modules/` lên Git; `.gitignore` đã loại các mục này.
-2. Trên Render chọn **New → Blueprint**, kết nối repository rồi dùng `render.yaml`.
-3. Điền các giá trị bí mật được hỏi:
-   - `GEMINI_API_KEY`: khóa thật từ Google AI Studio, dùng cho tạo nội dung và phản hồi bài làm.
-   - `INITIAL_ADMIN_PASSWORD`: mật khẩu quản trị do bạn chọn, ít nhất 12 ký tự.
-4. Deploy rồi mở URL HTTPS Render cấp. Đăng nhập bằng `quantri` và mật khẩu vừa đặt. Trong trang quản trị, tạo học sinh, giáo viên, phụ huynh và liên kết học sinh với giáo viên/phụ huynh.
-5. Đăng nhập giáo viên → Kho bài học → Soạn công thức & bài luyện tập. Nhập yêu cầu, tạo bản nháp AI, kiểm tra và duyệt đăng.
+Ứng dụng chạy trên Render; toàn bộ dữ liệu nghiệp vụ và tài liệu tải lên được lưu trong PostgreSQL của Supabase. Render không cần Persistent Disk cho cấu hình này. Tài khoản, mật khẩu và phân quyền hiện tại được giữ nguyên, không cần tạo lại người dùng trong Supabase Auth.
 
-Blueprint dùng dịch vụ **Starter trả phí** và Persistent Disk 1 GB (có phí lưu trữ). Kiểm tra giá Render hiển thị trước khi tạo. Không dùng ổ đĩa tạm của dịch vụ miễn phí để giữ dữ liệu thật. App dùng một tiến trình/một instance; chưa hỗ trợ chia sẻ cơ sở dữ liệu giữa nhiều instance.
+## 1. Tạo project Supabase
 
-Nếu tạo Web Service thủ công: build `npm ci --omit=dev`, start `npm run start:render`, health check `/api/status`. Thêm disk tại `/var/data`, đặt `MATH_DB_PATH=/var/data/math-lab/accounts.json`, `HOST=0.0.0.0`, `COOKIE_SECURE=true`, `NODE_ENV=production`, `GEMINI_MODEL=gemini-2.5-flash` và hai biến bí mật ở trên. Để Render tự cấp `PORT`.
+1. Tạo project tại https://supabase.com/dashboard. Chọn khu vực gần dịch vụ Render dự định dùng và lưu mật khẩu database riêng.
+2. Đợi database sẵn sàng, mở **Connect**, chọn kết nối **Session pooler** (thường cổng `5432`), định dạng URI PostgreSQL. Pooler dùng được với môi trường chỉ có IPv4; direct connection có thể cần IPv6.
+3. Sao chép URI dạng `postgresql://postgres.PROJECT_REF:PASSWORD@HOST:5432/postgres`. Thay placeholder mật khẩu bằng mật khẩu database đã URL-encode, nhất là khi có `@`, `#`, `/`, `%` hoặc `:`. Không dùng project URL, anon key hay service-role key thay cho URI PostgreSQL.
+4. Thêm URI vào `.env` trên máy đang giữ dữ liệu:
 
-Tài khoản quản trị chỉ được tạo khi cơ sở dữ liệu trống; redeploy không đặt lại mật khẩu hoặc xóa dữ liệu. Sau lần chạy đầu, có thể bỏ `INITIAL_ADMIN_PASSWORD` khỏi Environment. Mỗi lần restart cần đăng nhập lại vì phiên đăng nhập lưu trong bộ nhớ.
+```dotenv
+MATH_STORAGE=json
+MATH_DB_PATH=private/accounts.json
+SUPABASE_DB_URL="postgresql://postgres.PROJECT_REF:URL_ENCODED_PASSWORD@POOLER_HOST:5432/postgres"
+```
 
-## Dữ liệu demo đang ở máy local
+Giữ `MATH_STORAGE=json` trong lúc chuẩn bị để không vô tình trỏ app local vào database sản xuất. Các lệnh migrate dùng `SUPABASE_DB_URL` độc lập với chế độ này.
 
-Repo đã kèm bản khởi tạo `deploy-seed/accounts.json`: 4 tài khoản, 20 bài học đã nạp và 10 lượt làm bài hiện tại. Mật khẩu, salt và hash local đã được loại bỏ. Bản này vẫn chứa hồ sơ và tiến độ học tập; người có quyền đọc repo cũng đọc được dữ liệu đó.
+Kết nối luôn xác thực TLS. Nếu project yêu cầu chứng chỉ CA riêng, lấy chứng chỉ database từ phần cấu hình SSL của Supabase và đặt `SUPABASE_DB_CA` thành nội dung PEM; có thể thay xuống dòng bằng ký tự `\n`. Đặt cùng giá trị trên Render. Không tắt xác thực TLS để xử lý lỗi chứng chỉ.
 
-Lần đầu chạy khi chưa có file cơ sở dữ liệu, app tự nạp bản khởi tạo vào Persistent Disk. ID, liên kết vai trò và tiến độ được giữ nguyên. Mật khẩu quản trị lấy từ `INITIAL_ADMIN_PASSWORD`; các vai trò khác có mật khẩu ngẫu nhiên mới. Trong **Render → Shell**, chạy `cat /var/data/math-lab/initial-credentials.json` để xem thông tin đăng nhập và lưu riêng. Không đưa file này lên Git. Mật khẩu local cũ không dùng trên Render.
+## 2. Xuất và chuyển dữ liệu thật
 
-Nếu cơ sở dữ liệu đã tồn tại, app tuyệt đối không nạp đè bản khởi tạo. Redeploy giữ nguyên dữ liệu đang có trên disk. Các thay đổi local sau bản snapshot này không tự đồng bộ lên Render.
+Dừng ứng dụng local trước lần xuất cuối để dữ liệu không thay đổi trong lúc chuyển. Nếu chuyển từ một Render cũ, dừng ghi ở dịch vụ cũ và lấy **file `accounts.json` cùng thư mục `uploads/` bên cạnh** từ ổ dữ liệu của dịch vụ đó; bản local có thể không chứa các lượt học mới trên Render.
 
-## Kiểm tra sau deploy
+Tại thư mục dự án:
 
-- `/api/status` trả `ai: true` khi đã đặt khóa; đây chỉ là kiểm tra có cấu hình, chưa xác nhận khóa hợp lệ.
-- Tạo một bản nháp từ tài khoản giáo viên để xác nhận Gemini gọi được. Nếu thất bại, kiểm tra khóa, model, hạn mức và quyền API trong Google AI Studio.
-- Đăng một nội dung thử, restart dịch vụ rồi kiểm tra nội dung còn nguyên.
-- Không gửi khóa vào chat hoặc đặt khóa trong JavaScript phía trình duyệt.
+```powershell
+npm ci
+npm run supabase:prepare
+npm run supabase:migrate
+npm run supabase:verify
+```
+
+- `prepare` tạo thư mục riêng `private/supabase-export-THOI_GIAN/`, gồm dữ liệu tài khoản gốc, toàn bộ thư mục uploads và manifest SHA-256. Không sửa nguồn hay ghi đè bản xuất trước đó.
+- `migrate` nhập bản xuất mới nhất. Có thể chỉ định bản khác: `npm run supabase:migrate -- "private/supabase-export-..."`.
+- Để xuất nguồn khác: `npm run supabase:prepare -- "D:\ban-sao-render\accounts.json"`. Công cụ tìm `uploads/` cạnh file nguồn.
+- Lệnh nhập tự tạo schema/bảng, nhập và đối chiếu toàn bộ JSON cùng từng byte tệp trong **một transaction**. Đích có dữ liệu sẽ bị từ chối, không có cờ ghi đè.
+- `verify` so sánh Supabase với bản xuất, nên chạy trước khi mở ứng dụng cho người dùng. Sau khi có lượt học mới, dữ liệu khác bản xuất là bình thường.
+
+Lưu nguyên ID, salt/hash mật khẩu, liên kết tài khoản, hồ sơ, lượt làm bài, lịch ôn, nhiệm vụ, nhận xét, lớp, chẩn đoán lỗi, phân tích AI đã lưu, hoạt động, nội dung giáo viên, lịch sử/hàng đợi email và tài liệu. Công cụ giữ cả các trường dữ liệu chưa được liệt kê ở đây. Thiếu tệp hoặc checksum sai thì dừng nhập. Không dùng `deploy-seed/accounts.json`: bản demo đó đã loại hash mật khẩu cũ.
+
+Gói xuất chứa dữ liệu riêng và hash mật khẩu, chỉ giữ trong `private/` đã bị Git bỏ qua. Không đưa gói này lên GitHub. Mã nguồn/nội dung dựng sẵn trong `public/` được deploy cùng repo; chúng không cần nhập database. `.env`, nhật ký, ảnh kiểm thử và file ghi mật khẩu ban đầu không phải dữ liệu ứng dụng để nhập.
+
+Nếu nguồn có email đã xác nhận còn chờ, hàng đợi đó cũng được giữ. Khi bật Gmail, server mới tiếp tục xử lý theo cơ chế hiện có; không chạy đồng thời server cũ và mới để gửi cùng hàng đợi.
+
+## 3. Deploy Render
+
+1. Đưa mã nguồn và `package-lock.json` lên GitHub; không đưa `.env`, `private/`, `node_modules/`, `artifacts/` lên Git.
+2. Trên Render chọn **New → Blueprint**, kết nối repository, dùng `render.yaml` đã có trong dự án.
+3. Nhập `SUPABASE_DB_URL` giống URI đã dùng để migrate. Nhập `GEMINI_API_KEY` nếu dùng AI thật; nếu không dùng, có thể để trống hoặc bỏ biến này.
+4. Deploy sau khi migrate/verify đã thành công. Đăng nhập bằng **tên đăng nhập và mật khẩu cũ**. Không có bước đặt lại mật khẩu hay nạp demo tự động khi chạy Supabase.
+
+Nếu tạo Web Service thủ công:
+
+| Thiết lập | Giá trị |
+|---|---|
+| Runtime | Node |
+| Build command | `npm ci --omit=dev` |
+| Start command | `npm run start:render` |
+| Health check | `/api/status` |
+| Instances | `1` |
+| `NODE_ENV` | `production` |
+| `HOST` | `0.0.0.0` |
+| `COOKIE_SECURE` | `true` |
+| `MATH_STORAGE` | `supabase` |
+| `SUPABASE_DB_URL` | URI bí mật của database |
+| `GEMINI_MODEL` | `gemini-2.5-flash` |
+
+Để Render tự cấp `PORT`. Thêm `SUPABASE_DB_CA` nếu cần, `GEMINI_API_KEY` nếu dùng AI và các biến Gmail trong [GMAIL.md](GMAIL.md) nếu gửi email. Blueprint giữ gói Starter để tương thích cấu hình SMTP hiện có; không còn khai báo ổ Persistent Disk. Xem mức phí Render/Supabase hiển thị trước khi tạo dịch vụ.
+
+Nếu cập nhật dịch vụ Render cũ đang dùng disk: **giữ disk cũ và bản sao dữ liệu** cho đến khi migrate, đăng nhập và kiểm tra bản mới thành công. Thay đổi YAML không phải là bằng chứng dữ liệu trên disk đã được chuyển. Chỉ gỡ tài nguyên cũ khi đã xác minh.
+
+Database không có bản nhập hợp lệ thì ứng dụng dừng khởi động, không âm thầm tạo file JSON rỗng trên Render. `INITIAL_ADMIN_PASSWORD` không cần khi đã nhập các tài khoản hiện tại. Nếu bản nhập chủ ý không có tài khoản nào, biến này cần ít nhất 12 ký tự để tạo `quantri` lần đầu.
+
+## 4. Kiểm tra sau deploy
+
+1. Mở `/api/status`, kiểm tra trả HTTP 200. Trường `ai` chỉ cho biết có cấu hình khóa, không chứng minh Gemini gọi được.
+2. Đăng nhập từng vai trò, đối chiếu hồ sơ, số lượt làm bài và các liên kết cũ.
+3. Làm một bài, lưu bản sửa; đăng nhập giáo viên để xem kết quả.
+4. Tải một PDF/Word bằng tài khoản giáo viên và kiểm tra học sinh được liên kết tải được.
+5. Restart dịch vụ Render, đăng nhập lại và kiểm tra bài/tài liệu vẫn còn. Phiên đăng nhập vẫn ở bộ nhớ nên restart yêu cầu đăng nhập lại.
+
+## Cấu trúc lưu trữ và vận hành
+
+- `math_lab_private.state`: một bản trạng thái ứng dụng trong cột PostgreSQL `jsonb`, có revision chống ghi đè từ bản cũ. Đây là bước chuyển giữ nguyên cấu trúc hiện tại, chưa tách thành các bảng quan hệ cho từng loại nghiệp vụ.
+- `math_lab_private.files`: tài liệu PDF/Word trong `bytea`. Metadata và tệp mới được commit cùng transaction, không phụ thuộc filesystem Render hay bucket Storage công khai.
+- Schema riêng, bật RLS và không cấp quyền cho `anon`/`authenticated`; frontend chỉ gọi API Render. Không thêm schema này vào danh sách exposed schemas của Supabase. URI database chỉ ở server.
+- Một server hoạt động tại một thời điểm. Các nghiệp vụ hiện tại ghi đồng bộ; worker riêng thực hiện I/O PostgreSQL và chỉ trả thành công sau COMMIT. Mỗi lần lưu ghi toàn bộ trạng thái, phù hợp quy mô hiện tại; chưa thiết kế để autoscale hoặc cho lưu lượng lớn.
+- Không mở app local ở chế độ Supabase cùng lúc với Render sản xuất. Nếu hai server cùng ghi, revision chặn bên giữ bản cũ và trả 503 thay vì ghi mất dữ liệu. Dừng bên không dùng rồi restart bên giữ lại. Với đợt deploy có nhiều người đang ghi, nên chọn thời gian bảo trì để tránh khoảng chồng lấn giữa tiến trình cũ/mới.
+- Lỗi kết nối hoặc ghi không chắc chắn khiến tiến trình ngừng phục vụ dữ liệu; xử lý lỗi kết nối rồi restart để đọc lại trạng thái đã commit. Không fallback xuống JSON. Bật sao lưu phù hợp trong Supabase; bản xuất ban đầu không thay thế sao lưu dữ liệu mới.
+- Có thể tiếp tục dùng local JSON với `MATH_STORAGE=json`; đó là dữ liệu riêng, không tự đồng bộ hai chiều với Supabase.
+
+Kiểm thử: `npm test` và `npm run test:supabase`. Lệnh thứ hai khởi tạo PostgreSQL tạm trên máy, kiểm tra transaction, quyền schema, tài khoản, tệp và restart; không đọc `.env`, không kết nối Supabase thật. Cần các devDependencies của `npm ci` và chạy bằng người dùng thường (PostgreSQL không chạy dưới root).

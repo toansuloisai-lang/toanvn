@@ -37,6 +37,26 @@ test('Server rejects fabricated correction flag and clamps future timestamps',t=
  const {store,student}=setup(t),a={...attempt(),time:Date.now()+86400000,corrected:true,completed:Date.now()+86400000};delete a.working;
  store.saveStudent(student,{attempts:[a],reviews:{}});const saved=store.workspace(student).state.attempts[0];assert.equal(saved.corrected,false);assert.equal(saved.completed,undefined);assert.ok(saved.time<=Date.now());
 });
+test('Typing a correct intermediate draft does not submit or freeze the correction',t=>{
+ const {store,student}=setup(t),a=attempt(),save=value=>store.saveStudent(student,{attempts:[value],reviews:{}});
+ save(a);save({...a,correction:'4',corrected:false});
+ assert.equal(store.workspace(student).state.attempts[0].corrected,false);
+ save({...a,correction:'40',corrected:false});
+ assert.equal(store.workspace(student).state.attempts[0].correction,'40');
+ save({...a,correction:'40',corrected:true});
+ assert.equal(store.workspace(student).state.attempts[0].corrected,false);
+ save({...a,correction:'4',corrected:true});
+ assert.equal(store.workspace(student).state.attempts[0].corrected,true);
+});
+test('A stale tab cannot replace the explanation of an already completed attempt',t=>{
+ const {store,student}=setup(t),a=attempt();
+ store.saveStudent(student,{attempts:[a],reviews:{}});
+ const completed={...a,correction:'4',corrected:true,completed:Date.now(),explanation:'Final explanation checked and submitted.',revisedWorking:'Final corrected steps.'};
+ store.saveStudent(student,{attempts:[completed],reviews:{}});
+ store.saveStudent(student,{attempts:[{...a,explanation:'Old unfinished draft',revisedWorking:'Old steps'}],reviews:{}});
+ const saved=store.workspace(student).state.attempts[0];
+ assert.equal(saved.explanation,completed.explanation);assert.equal(saved.revisedWorking,completed.revisedWorking);assert.equal(saved.completed,completed.completed);
+});
 test('Correct-first explanations and teacher notes reach both student and parent reports',t=>{
  const {store,student,teacher,parent}=setup(t),a={...attempt('sign-1','sign',exercises.find(e=>e.id==='sign-1').answer),explanation:'Em tính theo quy tắc rồi kiểm tra lại kết quả.'};
  store.saveStudent(student,{attempts:[a],reviews:{}});assert.equal(store.learning.report(teacher,student.id).reflections.length,1);

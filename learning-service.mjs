@@ -3,12 +3,14 @@ import {studentCatalog,teacherCatalog,validDue} from './learning-access.mjs';
 import {createActivityService} from './activity-service.mjs';
 import {parentSummary} from './parent-summary.mjs';
 import {skills} from './public/data.js';
+import {createUsageService} from './usage-service.mjs';
 import {errorTypes,personalReport,recommend,resolvedAssignments} from './public/learning-core.js';
 const fail=(status,message)=>{throw Object.assign(new Error(message),{status});};
 const text=(v,max)=>typeof v==='string'&&v.trim().length>0&&v.length<=max;
 export function createLearningService({db,persist,student}){
  db.diagnoses??={};db.classes??=[];db.learningInsights??={};
  const activities=createActivityService({db,persist,student});
+ const usage=createUsageService({db,persist});
  function requireTeacher(user){if(user.role!=='teacher')fail(403,'Chỉ giáo viên được dùng chức năng này.');}
  function catalog(id){return studentCatalog(db,id);}
  function diagnoses(id){return db.diagnoses[id]||{};}
@@ -87,5 +89,5 @@ export function createLearningService({db,persist,student}){
    const list=catalog(target).map(e=>({...e,topic:db.teacherContents.find(c=>c.id===e.id)?.topic||''}));
    return parentSummary({state:db.states[target],catalog:list,report:report(user,target),child,children,days:input.days});
  }
- return {activities,catalog,report,classes,createClass,classReport,assignSet,diagnoseContext,storeDiagnosis,reviewDiagnosis,insightContext,saveInsight,dashboard,parentDashboard};
+ return {usage,activities,catalog,report,classes,createClass,classReport,assignSet,diagnoseContext,storeDiagnosis,reviewDiagnosis,insightContext,saveInsight,dashboard,parentDashboard};
 }

@@ -7,10 +7,6 @@ services:
     buildCommand: npm ci --omit=dev
     startCommand: npm run start:render
     healthCheckPath: /api/status
-    disk:
-      name: math-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: NODE_VERSION
         value: 24.14.0
@@ -20,11 +16,11 @@ services:
         value: 0.0.0.0
       - key: COOKIE_SECURE
         value: "true"
-      - key: MATH_DB_PATH
-        value: /var/data/math-lab/accounts.json
+      - key: MATH_STORAGE
+        value: supabase
+      - key: SUPABASE_DB_URL
+        sync: false
       - key: GEMINI_MODEL
         value: gemini-2.5-flash
       - key: GEMINI_API_KEY
-        sync: false
-      - key: INITIAL_ADMIN_PASSWORD
         sync: false

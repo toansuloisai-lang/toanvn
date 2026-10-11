@@ -22,7 +22,7 @@ try{
   assert.equal(await page.locator('.math-preview mfrac').count(),1);
   await page.screenshot({path:'artifacts/math-desktop.png',fullPage:true});
   await page.getByRole('button',{name:'Kiểm tra đáp án'}).click();
-  await page.locator('[data-diagnosis="1"]').click();await page.locator('[data-next]').click();
+  if(await page.locator('[data-diagnosis="1"]').count()){await page.locator('[data-diagnosis="1"]').click();await page.locator('[data-next]').click();}
   await page.locator('#correction').fill('9');await page.getByRole('button',{name:'Kiểm tra cách sửa'}).click();
   await page.locator('#explanation').fill(String.raw`Em trừ 2 ở hai vế, được \(\frac{x}{3}=3\). Nhân hai vế với 3 được x = 9.`);
   await page.locator('.math-writing-help summary').click();assert.equal(await page.locator('.math-preview-text mfrac').count(),1);

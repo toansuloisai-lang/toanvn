@@ -1,5 +1,9 @@
 # Hồ sơ lỗi và khắc phục
 
+## Báo cáo PDF cho phụ huynh
+
+Giáo viên có thể gửi bảng điểm, toàn bộ lịch sử đã lưu, lỗi có dẫn chứng, bản sửa, kiến thức cần củng cố và so sánh tiến bộ trong PDF tiếng Việt. Báo cáo có nhận xét và xác nhận bằng tài khoản giáo viên, được chốt trước khi gửi. Xem [GMAIL.md](GMAIL.md). Phút hoạt động bắt đầu ghi từ tính năng mới; dữ liệu cũ không được tự quy đổi thành thời gian học.
+
 ## Học sinh
 
 Khi làm bài, nhập cách làm trước khi xem gợi ý. Đáp án đầu và cách làm được lưu cố định. Máy chủ kiểm tra đáp án số/biểu thức bằng bộ kiểm tra toán học; dữ liệu `initialCorrect` do trình duyệt gửi không quyết định điểm lượt mới.
@@ -59,3 +63,19 @@ Chưa có dữ liệu xếp hạng lớp hoặc bài thi thử nên giao diện 
 - `node scripts/check-parent-dashboard.mjs`: tổng quan phụ huynh, chuyển con, biểu đồ, tìm kiếm, các trang chi tiết, trạng thái trống, quyền chỉ xem và bố cục điện thoại.
 
 Không có dữ liệu kiểm thử được ghi vào tài khoản thật hoặc snapshot deploy.
+# Tiếp tục sửa bài sai
+
+Đáp án sai chuyển thẳng sang sửa bài của học sinh, giữ nguyên đáp án và cách làm ban đầu. Bản sửa và lời giải thích được lưu khi nhập; mở lại bài chưa hoàn thành sẽ tiếp tục cùng lượt làm. Các lượt ôn hoặc kiểm chứng được giữ riêng theo chế độ.
+
+Phân tích lỗi sử dụng dẫn chứng từ các bước ban đầu hoặc xác nhận của giáo viên. Khi thiếu các bước làm, hệ thống không khẳng định vị trí sai. Báo cáo hiển thị cách làm trước và sau sửa; kết quả đúng sau gợi ý không thay đổi điểm trả lời đầu. Cần kết nối mạng để lưu bản sửa lên máy chủ.
+
+Kiểm tra: `node scripts/check-resume.mjs` sử dụng cơ sở dữ liệu tạm, kiểm tra tiếp tục bài sau đổi trang/tải lại, lưu bản sửa, giữ nguyên điểm và bằng chứng ban đầu, giáo viên nhận được bản sửa.
+# Giao diện chuẩn bị bài cho giáo viên
+
+Trong **Ngân hàng đề**, giáo viên chọn một trong ba thao tác:
+
+- **Soạn bài tập** (`#teacher-library/create`): nhập nội dung, khối, đáp án và hướng dẫn; xem lại và xác nhận trước khi đăng. Có thể chuyển sang soạn công thức.
+- **Tạo đề & giao bài** (`#teacher-library/assign`): chọn lớp hoặc học sinh, chọn tối đa 30 câu phù hợp khối, đặt hạn, xem lại rồi xác nhận giao.
+- **Tải tài liệu** (`#teacher-library/documents`): chọn hoặc kéo thả PDF/Word (.docx), tối đa 10 MB; kiểm tra trước khi đăng.
+
+Trang tổng quan có tìm kiếm và lọc bài tập/tài liệu theo khối. Bài giảng mẫu nằm tại `#teacher-library/lessons`. Các màn hình này sử dụng API và logic hiện có.

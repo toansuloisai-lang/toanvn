@@ -1,0 +1,36 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {createTestApp} from './browser-fixture.mjs';
+const app=await createTestApp(),browser=await chromium.launch({channel:'msedge',headless:true}),page=await browser.newPage();
+let release;const gate=new Promise(resolve=>release=resolve),errors=[];
+page.on('pageerror',error=>errors.push(error.message));
+try{
+ await app.login(page,'teacher');await page.goto(app.base+'/#teacher-library/create');
+ const fields={title:'Bài kiểm tra lưu chậm',topic:'Phép cộng',prompt:'Tính 1 + 1.',answer:'2',wrong:'1 + 1 = 3',rule:'Cộng hai đơn vị được 2.'};
+ for(const [key,value] of Object.entries(fields))await page.locator('#content-'+key).fill(value);
+ await page.locator('#content-form button[type="submit"]').click();await page.locator('#content-approved').check();
+ let calls=0;
+ await page.route('**/api/teacher/content',async route=>{calls++;await gate;await route.continue();});
+ await page.locator('#content-publish').click();
+ assert.equal(await page.locator('#content-approved').isDisabled(),true,'Approval must stay locked while publishing');
+ assert.equal(await page.locator('#content-edit').isDisabled(),true,'Editing must not race with publishing');
+ assert.equal(await page.locator('#content-kind').isDisabled(),true);
+ await page.route('**/api/workspace*',route=>route.fulfill({status:503,json:{error:'Temporary refresh failure'}}));
+ release();await page.locator('#content-status').getByText(/Đã đăng nội dung/).waitFor();
+ assert.equal(await page.locator('#content-publish').isDisabled(),true,'Refresh failure must not enable a duplicate publish');
+ assert.equal(calls,1);await page.unroute('**/api/workspace*');
+ const workspace=await (await page.request.get(app.base+'/api/workspace')).json();
+ assert.equal(workspace.teacherContents.filter(c=>c.title===fields.title).length,1);
+ await page.unroute('**/api/teacher/content');await page.reload();
+ for(const [key,value] of Object.entries(fields))await page.locator('#content-'+key).fill(value);
+ await page.locator('#content-form button[type="submit"]').click();await page.locator('#content-approved').check();
+ const secondGate=new Promise(resolve=>release=resolve);
+ await page.route('**/api/teacher/content',async route=>{await secondGate;await route.continue();});
+ await page.locator('#content-publish').click();
+ await page.goto(app.base+'/#teacher-library/documents');await page.locator('#upload-title').fill('Tài liệu đang soạn, không được mất');
+ const published=page.waitForResponse(response=>response.url().endsWith('/api/teacher/content')&&response.request().method()==='POST');
+ release();await published;await page.waitForTimeout(300);
+ assert.equal(await page.locator('#upload-title').inputValue(),'Tài liệu đang soạn, không được mất');
+ assert.deepEqual(errors,[]);
+ console.log('PASS: slow publishing locks controls; refresh failure cannot resubmit; late publish response preserves a new document draft.');
+}finally{release();await browser.close();await app.close();}

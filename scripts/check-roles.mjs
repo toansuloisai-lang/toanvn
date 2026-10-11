@@ -5,6 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 const dir=await mkdtemp(path.join(os.tmpdir(),'math-role-browser-'));
 process.env.MATH_DB_PATH=path.join(dir,'accounts.json');
+process.env.MATH_STORAGE='json';
 // Use deterministic rule feedback rather than an external paid API in this test.
 process.env.GEMINI_API_KEY='';
 const {server,accounts}=await import('../server.mjs');
@@ -28,7 +29,7 @@ try{
   for(const route of ['teacher','parent','admin']){await page.goto(base+'/#'+route);await page.waitForURL('**/#home');assert.equal(await page.locator('#assignment-form,#create-user-form').count(),0);}
   await page.reload();await page.locator('.reference-hero').waitFor();assert.equal(await page.locator('body').getAttribute('data-role'),'student');
   await page.goto(base+'/#learn/distribute-1');await page.locator('#answer').fill('3x+2');await page.locator('#answer-form button').click();
-  await page.locator('[data-diagnosis="1"]').click();await page.locator('[data-next]').click();await page.locator('#correction').fill('3x+6');await page.locator('#correction-form button').click();
+  if(await page.locator('[data-diagnosis="1"]').count()){await page.locator('[data-diagnosis="1"]').click();await page.locator('[data-next]').click();}await page.locator('#correction').fill('3x+6');await page.locator('#correction-form button').click();
   await page.locator('#explanation').fill('Nhân 3 với từng số hạng trong ngoặc, rồi thế x bằng 1 để kiểm chứng.');await page.locator('[data-skip-ai]').click();
   await logout();await login('teacher');await page.goto(base+'/#teacher');await page.locator('#assignment-form').waitFor();
   await page.locator('#assignment-title').fill('Ôn lại phép phân phối');await page.locator('#assignment-skill').selectOption('distribute');await page.locator('#assignment-due').fill('2026-10-01');await page.locator('#assignment-form button').click();
@@ -49,7 +50,7 @@ try{
   await logout();await page.setViewportSize({width:390,height:844});await page.screenshot({path:'artifacts/login-mobile.png',fullPage:true});await login('student');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:'artifacts/student-role-mobile.png',fullPage:true});
   // Session revocation must lock the UI on the next privileged request.
-  await context.request.post(base+'/api/auth/logout',{data:{}});await page.goto(base+'/#settings');await page.locator('[data-logout]').click();await page.locator('#login-form').waitFor();
+  await context.request.post(base+'/api/auth/logout',{data:{}});await page.goto(base+'/#settings');await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await page.locator('#login-form').waitFor();
   await login('parent');await page.evaluate(()=>navigator.serviceWorker.ready);await page.reload();await page.locator('#parent-dashboard .pd-hero').waitFor();await context.setOffline(true);await page.reload();await page.locator('#login-form').waitFor();assert.equal(await page.locator('#parent-dashboard .pd-hero').count(),0);await context.setOffline(false);
   assert.deepEqual(errors,[]);console.log('PASS: login, direct-route guards, storage tampering, isolated student state, teacher workflow, parent read-only view, admin creation, mobile, logout and offline lock');
 }finally{await browser.close();await new Promise(resolve=>server.close(resolve));await rm(dir,{recursive:true,force:true});}

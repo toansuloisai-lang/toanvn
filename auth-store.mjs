@@ -13,8 +13,8 @@ export const emptyState=()=>({attempts:[],reviews:{},assignments:[],notes:{}});
 const fail=(status,message)=>{throw Object.assign(new Error(message),{status});};
 const str=(s,max)=>typeof s==='string'&&s.length<=max;
 const publicUser=u=>({id:u.id,username:u.username,name:u.name,role:u.role,studentIds:u.studentIds,...(u.role==='parent'?{email:u.email||''}:{})});
-export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('private/accounts.json')){
-  let db=existsSync(filename)?JSON.parse(readFileSync(filename,'utf8')):{users:[],states:{}};
+export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('private/accounts.json'),{storage}={}){
+  let db=storage?storage.load():existsSync(filename)?JSON.parse(readFileSync(filename,'utf8')):{users:[],states:{}};
   const sessions=new Map(),limits=new Map();
   db.lessonPublications??=[];
   db.uploadedLessons??=[];
@@ -24,7 +24,7 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
   function archivedContents(user){if(user.role!=='student')return [];const ids=historicalContentIds(db,user.id);return db.teacherContents.filter(c=>c.kind==='exercise'&&ids.has(c.id)&&!canReadUpload(user,c));}
   function publishContent(user,input){if(user.role!=='teacher')fail(403,'Only teachers can publish.');const content={...validateContent(input),id:randomUUID(),teacherId:user.id,publishedAt:Date.now()};db.teacherContents.push(content);persist();return {content};}
   function contentExercises(user){return [...teacherContents(user),...archivedContents(user)].filter(c=>c.kind==='exercise').map(asExercise);}
-  function persist(){mkdirSync(path.dirname(filename),{recursive:true});writeFileSync(filename+'.tmp',JSON.stringify(db),{mode:0o600});renameSync(filename+'.tmp',filename);}
+  function persist(){if(storage){storage.save(db);return;}mkdirSync(path.dirname(filename),{recursive:true});writeFileSync(filename+'.tmp',JSON.stringify(db),{mode:0o600});renameSync(filename+'.tmp',filename);}
   function createUser(input){
     const {username,password,name,role,studentIds=[]}=input;
     if(!str(username,60)||!/^[a-z0-9._-]{3,60}$/.test(username)||!str(password,200)||password.length<12||!str(name,80)||!name.trim()||!['student','teacher','parent','admin'].includes(role)||!Array.isArray(studentIds)||studentIds.length>200||studentIds.some(id=>!db.users.some(u=>u.id===id&&u.role==='student'))||(studentIds.length&&!['teacher','parent'].includes(role)))fail(400,'Thông tin tài khoản không hợp lệ; mật khẩu cần ít nhất 12 ký tự.');
@@ -55,7 +55,7 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
     if(user.role==='admin')return{user:publicUser(user),users:db.users.map(publicUser),state:emptyState(),students:[]};
     const students=(user.role==='student'?[user]:db.users.filter(u=>user.studentIds.includes(u.id))).map(publicUser);
     if(!students.length&&!id)return{user:publicUser(user),students,state:emptyState(),studentId:null};
-    const target=student(user,id);return{user:publicUser(user),students,studentId:target,state:db.states[target],archivedContents:archivedContents(user)};
+    const target=student(user,id);return{user:publicUser(user),students,studentId:target,state:{...db.states[target],diagnoses:db.diagnoses?.[target]||{}},archivedContents:archivedContents(user)};
   }
   function saveStudent(user,input){
     if(user.role!=='student')fail(403,'Chỉ học sinh được lưu bài làm của mình.');
@@ -69,9 +69,11 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
       if(a.correction!==undefined&&!str(a.correction,100))fail(400,'Đáp án sửa chưa hợp lệ.');
       const old=existing.get(a.id),ex=exercisesForUser.find(e=>e.id===a.exerciseId);
       if(old&&(old.exerciseId!==a.exerciseId||old.answer!==a.answer||old.skill!==a.skill))fail(409,'Không thể sửa đáp án đầu đã lưu.');
+      if(a.revisedWorking!==undefined&&!str(a.revisedWorking,4000))fail(400,'Các bước sửa tối đa 4.000 ký tự.');
       const modern=!old||a.working!==undefined||old?.working!==undefined;
-      const corrected=!!a.correction&&checkAnswer(a.correction,ex.answer);
-      return{id:a.id,exerciseId:a.exerciseId,skill:a.skill,time:old?.time??Math.min(Date.now(),Math.max(0,a.time)),mode:old?.mode??a.mode,answer:old?.answer??a.answer,initialCorrect:old?.initialCorrect??checkAnswer(a.answer,ex.answer),corrected:old?.corrected||corrected,...(old?.completed?{completed:old.completed}:Number.isFinite(a.completed)&&corrected?{completed:Math.min(Date.now(),Math.max(old?.time??a.time,a.completed))}:{}),...((a.explanation??old?.explanation)?{explanation:a.explanation??old.explanation}:{}),...(modern?{working:old?.working??a.working??'',correction:old?.corrected&&old.correction?old.correction:a.correction||old?.correction||''}:{})};
+      const corrected=a.corrected===true&&!!a.correction&&checkAnswer(a.correction,ex.answer);
+      const explanation=old?.completed?old.explanation:a.explanation??old?.explanation;
+      return{revisedWorking:old?.completed?old.revisedWorking||'':a.revisedWorking??old?.revisedWorking??'',id:a.id,exerciseId:a.exerciseId,skill:a.skill,time:old?.time??Math.min(Date.now(),Math.max(0,a.time)),mode:old?.mode??a.mode,answer:old?.answer??a.answer,initialCorrect:old?.initialCorrect??checkAnswer(a.answer,ex.answer),corrected:old?.corrected||corrected,...(old?.completed?{completed:old.completed}:Number.isFinite(a.completed)&&corrected?{completed:Math.min(Date.now(),Math.max(old?.time??a.time,a.completed))}:{}),...(explanation?{explanation}:{}),...(modern?{working:old?.working??a.working??'',correction:old?.corrected&&old.correction?old.correction:a.correction||old?.correction||''}:{})};
     });
     if(new Set(clean.map(a=>a.id)).size!==clean.length)fail(400,'Bài làm bị trùng.');
     const cleanReviews={};for(const [id,r] of Object.entries(reviews)){if(!exercisesForUser.some(e=>e.id===id)||!r||!Number.isFinite(r.due)||![0,1,2].includes(r.interval))fail(400,'Lịch ôn không hợp lệ.');cleanReviews[id]={due:r.due,interval:r.interval};}
@@ -139,14 +141,15 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
     const duplicate=db.uploadedLessons.find(l=>l.teacherId===user.id&&l.sha256===hash&&l.grade===Number(grade)&&l.title===title.trim()&&l.description===description.trim());
     if(duplicate)return{lesson:publicLesson(duplicate),duplicate:true};
     const id=randomUUID(),fileKey=id+ext;
-    mkdirSync(uploadDir,{recursive:true});writeFileSync(path.join(uploadDir,fileKey),content,{mode:0o600});
+    if(storage)storage.stageFile(fileKey,content);
+    else{mkdirSync(uploadDir,{recursive:true});writeFileSync(path.join(uploadDir,fileKey),content,{mode:0o600});}
     const lesson={id,title:title.trim(),description:description.trim(),grade:Number(grade),filename:originalName,size:content.length,format:ext.slice(1),teacherId:user.id,teacherName:user.name,publishedAt:Date.now(),fileKey,sha256:hash};
     db.uploadedLessons.push(lesson);persist();return{lesson:publicLesson(lesson),duplicate:false};
   }
-  function uploadedFile(user,id){const lesson=db.uploadedLessons.find(l=>l.id===id);if(!lesson||!canReadUpload(user,lesson))fail(404,'Không tìm thấy tài liệu hoặc bạn không có quyền truy cập.');return{lesson:publicLesson(lesson),content:readFileSync(path.join(uploadDir,lesson.fileKey))};}
+  function uploadedFile(user,id){const lesson=db.uploadedLessons.find(l=>l.id===id);if(!lesson||!canReadUpload(user,lesson))fail(404,'Không tìm thấy tài liệu hoặc bạn không có quyền truy cập.');return{lesson:publicLesson(lesson),content:storage?storage.readFile(lesson.fileKey):readFileSync(path.join(uploadDir,lesson.fileKey))};}
   const learning=createLearningService({db,persist,student});
   learning.enableParentMail=mailer=>createParentMailService({db,persist,learning,mailer});
   learning.updateParentEmail=updateParentEmail;learning.resetPassword=resetPassword;
   learning.roster=createRosterService({db,persist});
-  return{learning,teacherContents,publishContent,contentExercises,createUser,login,authenticate,workspace,saveStudent,assign,note,link,importLessons,uploadLesson,uploadedLessons,uploadedFile,lessonPublications:()=>db.lessonPublications.map(({id,publishedAt})=>({id,publishedAt})),logout:token=>sessions.delete(token),users:()=>db.users.map(publicUser)};
+  return{checkHealth:()=>storage?.checkHealth(),close:()=>storage?.close(),learning,teacherContents,publishContent,contentExercises,createUser,login,authenticate,workspace,saveStudent,assign,note,link,importLessons,uploadLesson,uploadedLessons,uploadedFile,lessonPublications:()=>db.lessonPublications.map(({id,publishedAt})=>({id,publishedAt})),logout:token=>sessions.delete(token),users:()=>db.users.map(publicUser)};
 }

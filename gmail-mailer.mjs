@@ -7,9 +7,9 @@ export function createGmailMailer(env=process.env){
   const transport=configured?nodemailer.createTransport({host:'smtp.gmail.com',port:465,secure:true,auth:{user:address,pass:password},connectionTimeout:15000,greetingTimeout:15000,socketTimeout:30000,disableFileAccess:true,disableUrlAccess:true}):null;
   return {
     status:()=>({configured,sender:configured?address:''}),
-    async send({email,subject,text,id}){
+    async send({email,subject,text,id,attachments=[]}){
       if(!transport)throw Object.assign(new Error('Gmail chưa được cấu hình.'),{code:'EAUTH'});
-      const result=await transport.sendMail({from:{name,address},to:{address:email},subject,text,messageId:`<${id}@${address.split('@')[1]}>`,disableFileAccess:true,disableUrlAccess:true});
+      const result=await transport.sendMail({from:{name,address},to:{address:email},subject,text,attachments,messageId:`<${id}@${address.split('@')[1]}>`,disableFileAccess:true,disableUrlAccess:true});
       if(!result.accepted?.length)throw Object.assign(new Error('Recipient rejected'),{code:'EENVELOPE'});
     }
   };

@@ -8,13 +8,13 @@ function fixture({configured=true,send,persist=()=>{},db}={}){
  const sent=[],mailer={status:()=>({configured,sender:'sender@example.com'}),send:async mail=>{sent.push(mail);if(send)await send(mail);}},learning={classes:user=>db.classes.filter(c=>c.teacherId===user.id),report:(user,id)=>({grade:9,total:5,correct:3,assignments:[]})};
  const service=createParentMailService({db,persist,learning,mailer});return {db,teacher:db.users[0],service,sent};
 }
-const input={classId:'c1',subject:'Kết quả tuần',message:'Nhờ gia đình hỗ trợ ôn tập.',includeReport:true};
+const input={classId:'c1',subject:'Kết quả tuần',message:'Nhờ gia đình hỗ trợ ôn tập.',includeReport:false};
 test('Private per-parent messages group siblings, exclude other teacher child, report missing emails and deduplicate confirmation',async()=>{
- const f=fixture(),d=f.service.preview(f.teacher,input);assert.equal(d.recipients.length,1);assert.deepEqual(d.missing,['Học sinh s3']);
+ const f=fixture(),reportInput={...input,includeReport:true,teacherComment:'Gia đình cùng hỗ trợ con ôn tập.'},d=f.service.preview(f.teacher,reportInput);assert.equal(d.recipients.length,1);assert.deepEqual(d.missing,['Học sinh s3']);
  assert.match(d.recipients[0].text,/Học sinh s1/);assert.match(d.recipients[0].text,/Học sinh s2/);assert.doesNotMatch(d.recipients[0].text,/s4/);assert.match(d.recipients[0].text,/3\/5/);
- assert.equal(f.sent.length,0);const b=f.service.send(f.teacher,d.id);assert.equal(f.service.send(f.teacher,d.id).id,b.id);
+ assert.equal(f.sent.length,0);await f.service.approve(f.teacher,d.id,true);const b=f.service.send(f.teacher,d.id);assert.equal(f.service.send(f.teacher,d.id).id,b.id);
  await f.service.flush();assert.equal(f.sent.length,1);assert.equal(b.recipients[0].status,'sent');
- const duplicate=f.service.preview(f.teacher,input);assert.equal(f.service.send(f.teacher,duplicate.id).id,b.id);
+ const duplicate=f.service.preview(f.teacher,reportInput);await f.service.approve(f.teacher,duplicate.id,true);assert.equal(f.service.send(f.teacher,duplicate.id).id,b.id);
  assert.deepEqual(f.service.history(f.db.users[1]),[]);
 });
 test('Only linked students and teacher-owned drafts can send; missing Gmail does not send',()=>{

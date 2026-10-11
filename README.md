@@ -1,5 +1,11 @@
 # Math Lab — Phòng thí nghiệm tư duy Toán
 
+## Deploy Render + Supabase
+
+Cấu hình triển khai dùng PostgreSQL của Supabase để giữ tài khoản, tiến độ và tài liệu; Render không cần Persistent Disk. Xem [RENDER.md](RENDER.md) để tạo project, chuyển dữ liệu local giữ nguyên mật khẩu và deploy. Chuẩn bị bản xuất bằng `npm run supabase:prepare`, thêm `SUPABASE_DB_URL` vào `.env`, rồi chạy `npm run supabase:migrate` và `npm run supabase:verify`. Chế độ local JSON vẫn được giữ cho phát triển/kiểm thử.
+
+Giáo viên có thể gửi **bảng điểm và hồ sơ học tập PDF** qua Gmail, gồm lịch sử bài làm, phút hoạt động mới ghi nhận, lỗi có dẫn chứng, hướng khắc phục và xác nhận giáo viên. Luồng: xem PDF nháp → xác nhận báo cáo → gửi email kèm đúng tệp đã xác nhận. Xem [GMAIL.md](GMAIL.md).
+
 Web/PWA tiếng Việt, xây theo `baocaoduan.docx` và trọng tâm học từ lỗi sai trong `Góp ý STTTN.docx`.
 
 ## Thống kê và cập nhật trang
@@ -88,7 +94,7 @@ Tạo khóa trong Google AI Studio. Model được chọn mặc định là Gemi
 - Sổ lỗi, lịch ôn, bản đồ quan hệ tiên quyết và báo cáo lưu theo tài khoản ở máy chủ. Trang chủ chưa có lượt học hiển thị mẫu giao diện có nhãn riêng như mô tả trên.
 - Giáo viên giao nhiệm vụ và nhận xét học sinh được phân công; phụ huynh chỉ xem báo cáo con được liên kết và in/lưu PDF; quản trị tạo tài khoản và quản lý liên kết.
 - Ba thí nghiệm: phản ví dụ hình chữ nhật, hộp đen hàm bậc nhất, tối ưu vườn với hàng rào.
-- Giao diện responsive, PWA có manifest, icon và service worker. Tài nguyên toán/3D được cache, có thể tiếp tục khám phá trong tab đã xác thực khi mất mạng. Mở lại ứng dụng hoặc tải lại trang cần mạng để xác thực; dữ liệu tài khoản/API không được cache.
+- Giao diện responsive, dùng trên web hoặc cài như ứng dụng từ trình duyệt. Có nút cài, hướng dẫn Android/iPhone/máy tính, biểu tượng riêng, thông báo mất mạng và cập nhật an toàn. Xem [hướng dẫn PWA](PWA.md). Tài nguyên toán/3D được cache; mở lại app cần mạng để xác thực, dữ liệu tài khoản/API không được cache.
 - API có giới hạn kích thước, giới hạn số yêu cầu theo IP, timeout và phản hồi dự phòng. Không thực thi biểu thức do người dùng nhập bằng eval.
 
 ## Cài PWA
