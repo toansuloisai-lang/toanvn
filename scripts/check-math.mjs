@@ -14,7 +14,7 @@ try{
   assert.equal(await page.locator('.atlas-list .formula-item').count(),6);
   assert.equal(await page.locator('.math-fallback, .katex-error').count(),0);
   assert.ok(await page.locator('mfrac').count()>0);assert.ok(await page.locator('msqrt').count()>0);assert.ok(await page.locator('mtable').count()>0);
-  await page.evaluate(()=>document.fonts.ready);
+  await page.evaluate(async()=>{await document.fonts.load('16px KaTeX_Main');await document.fonts.ready;});
   assert.ok(await page.evaluate(()=>document.fonts.check('16px KaTeX_Main')));
   await page.goto(testApp.base+'/#learn/equation-6');
   assert.equal(await page.locator('.problem mfrac').count(),1);

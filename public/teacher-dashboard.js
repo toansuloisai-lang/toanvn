@@ -7,6 +7,8 @@ export function teacherNavigation(){
  const mailItem=['teacher-notifications','Thông báo phụ huynh','bell'];
  const items=[['home','Tổng quan','home'],['label','Quản lý lớp học'],['learning/classes','Lớp học của tôi','people'],['learning/assignments','Giao bài & chấm bài','clipboard'],['teacher-library','Ngân hàng đề','notebook'],['learning/progress','Theo dõi tiến bộ','chart'],['learning/errors','Phân tích lỗi sai','check'],['label','Tài nguyên'],['formulas','Bảng công thức','book'],['teacher-library/documents','Tài liệu học tập','report'],['teacher-library/lessons','Thư viện bài giảng','book'],['label','Cá nhân'],['teacher-profile','Hồ sơ giáo viên','user'],['settings','Cài đặt','settings']];
  items.splice(7,0,mailItem);
+ items.splice(5,0,['exams','Thi trắc nghiệm','clipboard']);
+ items.splice(6,0,['essays','Đề tự luận & chấm ảnh','pencil'],['knowledge','Phân tích kiến thức','chart']);
  items.splice(9,0,['explore','Khám phá 3D','bulb']);
  const hash=location.hash.slice(1)||'home';return items.map(([href,label,symbol])=>href==='label'?`<div class="teacher-nav-label">${label}</div>`:`<a class="nav-item ${hash===href?'active':''}" href="#${href}" ${hash===href?'aria-current="page"':''}>${icon(symbol)}<span>${label}</span></a>`).join('')+`<button class="nav-item teacher-side-logout" type="button" data-teacher-logout>${icon('arrow')}<span>Đăng xuất</span></button>`;
 }

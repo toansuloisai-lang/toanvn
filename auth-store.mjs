@@ -1,4 +1,7 @@
 import {createLearningService} from './learning-service.mjs';
+import {createExamService} from './exam-service.mjs';
+import {createEssayService} from './essay-service.mjs';
+import {createKnowledgeService} from './knowledge-service.mjs';
 import {createParentMailService} from './parent-mail.mjs';
 import {studentCatalog,historicalContentIds,validDue} from './learning-access.mjs';
 import {createRosterService} from './roster-import.mjs';
@@ -148,8 +151,13 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
   }
   function uploadedFile(user,id){const lesson=db.uploadedLessons.find(l=>l.id===id);if(!lesson||!canReadUpload(user,lesson))fail(404,'Không tìm thấy tài liệu hoặc bạn không có quyền truy cập.');return{lesson:publicLesson(lesson),content:storage?storage.readFile(lesson.fileKey):readFileSync(path.join(uploadDir,lesson.fileKey))};}
   const learning=createLearningService({db,persist,student});
+  const exams=createExamService({db,persist});
+  const essays=createEssayService({db,persist,writeImage(key,bytes){if(storage)storage.stageFile(key,bytes);else{mkdirSync(uploadDir,{recursive:true});writeFileSync(path.join(uploadDir,key),bytes,{mode:0o600});}},readImage:key=>storage?storage.readFile(key):readFileSync(path.join(uploadDir,key))});
+  const knowledge=createKnowledgeService({db,persist,learning});
+  learning.knowledge=knowledge;
+  learning.essays=essays;
   learning.enableParentMail=mailer=>createParentMailService({db,persist,learning,mailer});
   learning.updateParentEmail=updateParentEmail;learning.resetPassword=resetPassword;
   learning.roster=createRosterService({db,persist});
-  return{checkHealth:()=>storage?.checkHealth(),close:()=>storage?.close(),learning,teacherContents,publishContent,contentExercises,createUser,login,authenticate,workspace,saveStudent,assign,note,link,importLessons,uploadLesson,uploadedLessons,uploadedFile,lessonPublications:()=>db.lessonPublications.map(({id,publishedAt})=>({id,publishedAt})),logout:token=>sessions.delete(token),users:()=>db.users.map(publicUser)};
+  return{checkHealth:()=>storage?.checkHealth(),close:()=>storage?.close(),exams,essays,knowledge,learning,teacherContents,publishContent,contentExercises,createUser,login,authenticate,workspace,saveStudent,assign,note,link,importLessons,uploadLesson,uploadedLessons,uploadedFile,lessonPublications:()=>db.lessonPublications.map(({id,publishedAt})=>({id,publishedAt})),logout:token=>sessions.delete(token),users:()=>db.users.map(publicUser)};
 }

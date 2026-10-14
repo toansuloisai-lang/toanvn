@@ -1,0 +1,1 @@
+export const REPORT_INVITATION='Kính mời quý phụ huynh xem báo cáo PDF đính kèm để theo dõi kết quả học tập, tiến bộ sửa lỗi và những nội dung con cần ôn luyện. Quý phụ huynh có thể trả lời email này để trao đổi thêm với giáo viên.';

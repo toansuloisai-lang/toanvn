@@ -1,6 +1,10 @@
 import {pwaSettingsHTML} from './pwa.js';
 import {mountTeacherWorkspace} from './teacher-workspace.js';
 import {mountTeacherExam} from './teacher-exam.js';
+import {mountTimedExams} from './timed-exams.js';
+import {mountKnowledge} from './knowledge-view.js';
+import {mountEssays} from './essay-view.js';
+let disposeExams=()=>{};
 import {parentNavigation,parentSidebarHTML,parentDashboardHTML,mountParentDashboard} from './parent-dashboard.js';
 import {trackUsage} from './usage-tracker.js';
 import {teacherNavigation,teacherDashboardHTML,mountTeacherDashboard} from './teacher-dashboard.js';
@@ -136,6 +140,7 @@ function extraPage(page,id) {
 }
 const accountChannel=typeof BroadcastChannel==='function'?new BroadcastChannel('math-lab-auth'):null;
 function lockAccount(message=''){
+  disposeExams();disposeExams=()=>{};
   authReady=false;auth.user=null;auth.students=[];auth.studentId=null;auth.users=[];state=blank();session=null;busy=false;
   disposeExplore();disposeExplore=()=>{};disposeAtlas();disposeAtlas=()=>{};
   delete document.body.dataset.role;
@@ -177,6 +182,7 @@ function render() {
   }
 }
 function renderPage() {
+  disposeExams();disposeExams=()=>{};
   const custom=[...(auth.teacherContents||[]),...(auth.archivedContents||[]).map(c=>({...c,archived:true}))].filter(c=>c.kind==='exercise');
   allExercises=[...baseExercises,...custom.map(c=>({id:c.id,archived:c.archived,skill:'teacher-'+c.id,grades:[c.grade],prompt:c.prompt,wrong:c.wrong,answer:c.answer,rule:c.rule,errorTags:c.errorTags||[],keywords:[],level:'Luyện tập'}))];
   allSkills=[...baseSkills,...custom.map(c=>({id:'teacher-'+c.id,name:esc(c.topic),grades:[c.grade],color:'#68a7ff'}))];
@@ -214,6 +220,9 @@ function renderPage() {
   if(page==='home'&&auth.user.role==='student'&&state.assignments.length) { const box=document.createElement('div'); box.className='card';box.innerHTML='<h2>Nhiệm vụ từ giáo viên</h2>'+state.assignments.map(a=>`<div class="list-row"><div><h3>${esc(a.title)}</h3><p>${skillName(a.skill)} · Hạn ${esc(a.due)}</p></div><a class="btn secondary" href="#learning">Làm bài →</a></div>`).join(''); $('#main').append(box); }
   if(page==='lessons'&&auth.user.role==='student')$('#main').insertAdjacentHTML('afterbegin',uploadedLessonsHTML(auth.uploadedLessons.filter(l=>l.grade===grade)));
   bind();
+  if(page==='exams')disposeExams=mountTimedExams($('#main'),{request:api,role:auth.user.role,id});
+  if(page==='knowledge')mountKnowledge($('#main'),{request:api,role:auth.user.role,studentId:id});
+  if(page==='essays')mountEssays($('#main'),{request:api,role:auth.user.role,id});
   if(auth.user.role==='admin'&&['home','admin'].includes(page))mountAccountMaintenance($('#main'),{auth,request:api});
   if(page==='teacher-notifications')mountParentMail($('#main'),{request:api});
   if(auth.user.role==='parent'&&['home','parent'].includes(page)){let query='';if(page==='home')try{query=decodeURIComponent(id||'');}catch{}mountParentDashboard($('#main'),{request:api,auth,view:page==='parent'?id||'progress':'',query,onChild:async id=>{state=await workspace(id);}});}

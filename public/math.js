@@ -2,7 +2,7 @@ import katex from './vendor/katex/katex.mjs';
 import { exercises } from './data.js';
 
 const escape = s => String(s ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const options = {throwOnError:true,trust:false,strict:'error',output:'htmlAndMathml',maxExpand:200,maxSize:20};
+const options = {throwOnError:true,trust:false,strict:code=>['unicodeTextInMathMode','unknownSymbol'].includes(code)?'ignore':'error',output:'htmlAndMathml',maxExpand:200,maxSize:20};
 export function math(tex, display=false) {
   const source=String(tex);
   try {

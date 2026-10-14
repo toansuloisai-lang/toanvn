@@ -1,0 +1,43 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import sharp from 'sharp';
+import {createTestApp} from './browser-fixture.mjs';
+const actualFetch=globalThis.fetch;let aiCalls=0;
+globalThis.fetch=async(url,options)=>{
+ if(!String(url).includes('generativelanguage.googleapis.com'))return actualFetch(url,options);
+ aiCalls++;const payload=JSON.parse(options.body),input=JSON.parse(payload.contents[0].parts[0].text),fixed=input.working.includes('x=2');
+ const value={readable:true,transcription:input.working||'2x=4; x=4',confidence:0.9,summary:fixed?'Đã chia hai vế đúng.':'Từ 2x=4, học sinh viết x=4; cần chia cho 2.',criteria:input.question.rubric.map((r,i)=>({id:r.id,earned:fixed||i===0?r.points:0,evidence:fixed?'x=2':i===0?'2x=4':'',reason:fixed?'Bước làm phù hợp.':i===0?'Chuyển vế đúng.':'Chưa chia hai vế cho 2.',missingKnowledge:fixed?'':'Quy tắc giải phương trình.',nextStep:fixed?'Kiểm tra một bài mới.':'Chia hai vế cho 2.'}))};
+ return {ok:true,json:async()=>({candidates:[{content:{parts:[{text:JSON.stringify(value)}]}}]})};
+};
+const app=await createTestApp({grade:8}),{accounts}=await import('../server.mjs');
+const teacher=accounts.users().find(u=>u.role==='teacher'),student=accounts.users().find(u=>u.role==='student');
+const group=accounts.learning.createClass(teacher,{name:'8A4',grade:8,studentIds:[student.id]});
+const browser=await chromium.launch({channel:'msedge',headless:true});
+try{
+ const tc=await browser.newContext(),sc=await browser.newContext(),tp=await tc.newPage(),sp=await sc.newPage(),errors=[];
+ for(const page of [tp,sp])page.on('pageerror',e=>errors.push(e.message));
+ await app.login(tp,'teacher');await tp.goto(app.base+'/#essays');await tp.locator('#essay-create').click();
+ const builder=tp.locator('#essay-create-form');await builder.locator('[name=title]').fill('Tự luận phương trình');await builder.locator('details summary').click();
+ await builder.locator('[name=prompt]').fill('Giải phương trình \\(2x+1=5\\).');await builder.locator('[name=topic]').fill('Phương trình bậc nhất');await builder.locator('[name=knowledge]').fill('Chuyển vế, chia hai vế.');await builder.locator('[name=solution]').fill('\\(2x=4\\), nên \\(x=2\\).');
+ for(const [i,text] of ['Chuyển vế','Chia hai vế','Kiểm tra nghiệm'].entries())await builder.locator(`[name=rubric${i}]`).fill(text);
+ await builder.getByRole('button',{name:'Tạo và giao đề',exact:true}).click();await tp.getByRole('heading',{name:'Tự luận phương trình',exact:true}).waitFor();
+ const id=tp.url().split('#essays/')[1];assert.ok(id);assert.equal(await tp.locator('.math-fallback').count(),0);assert.ok(await tp.locator('.katex').count());
+ await app.login(sp);await sp.goto(app.base+'/#knowledge');await sp.getByText('Tự luận phương trình — Phương trình bậc nhất',{exact:false}).first().waitFor();
+ await sp.goto(app.base+'/#essays/'+id);await sp.locator('#essay-start').click();const form=sp.locator('[data-essay-question]');await form.locator('[name=working]').fill('2x=4; x=4');
+ const image=await sharp({create:{width:80,height:80,channels:3,background:'#ffffff'}}).jpeg().toBuffer();await form.locator('[name=photos]').setInputFiles({name:'bai-lam.jpg',mimeType:'image/jpeg',buffer:image});
+ await form.getByRole('button',{name:'Lưu bài và nhờ Gemini chấm'}).click();await sp.locator('.essay-submission').waitFor();await sp.getByText('Nhận xét AI:',{exact:false}).waitFor();assert.equal(aiCalls,1);assert.equal(await sp.locator('.math-fallback').count(),0);
+ assert.ok(await sp.locator('.essay-submission .katex').count());
+ const photoUrl=await sp.locator('.essay-images img').getAttribute('src');assert.equal((await sc.request.get(app.base+photoUrl)).status(),200);
+ await sp.setViewportSize({width:390,height:844});assert.ok(await sp.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await tp.reload();const review=tp.locator('[data-essay-review]').first();await review.locator('[name=score]').fill('5');await review.locator('[name=comment]').fill('Cần chia hai vế cho 2.');await review.locator('[name=missingKnowledge]').fill('Phép chia trong phương trình.');await review.locator('[name=nextStep]').fill('Tính \\(x=4/2\\) và kiểm tra.');await review.getByRole('button',{name:'Lưu kết quả giáo viên'}).click();await tp.getByText('Giáo viên đã duyệt',{exact:true}).first().waitFor();
+ await sp.goto(app.base+'/#knowledge');await sp.getByText('1 câu cần tiếp tục sửa',{exact:true}).waitFor();
+ await sp.goto(app.base+'/#essays/'+id);await sp.locator('[data-essay-question] [name=working]').fill('2x=4 nên x=2. Kiểm tra 2*2+1=5.');await sp.locator('[data-essay-question]').getByRole('button',{name:'Lưu bài và nhờ Gemini chấm'}).click();await sp.waitForFunction(()=>document.querySelectorAll('.essay-submission').length===2);assert.equal(aiCalls,2);
+ await sp.goto(app.base+'/#knowledge');await sp.getByText('1 câu cần tiếp tục sửa',{exact:true}).waitFor();const report=accounts.knowledge.report(teacher,student.id);assert.equal(report.history.find(h=>h.revision===1).score,5);assert.equal(report.history.find(h=>h.revision===2).score,10);
+ const exam=accounts.exams.publish(teacher,{classId:group.id,title:'Quiz sửa lỗi',durationMinutes:30,questions:Array.from({length:10},(_,i)=>({prompt:`Tính \\(${i}+1\\).`,choices:['0','1','2','3'],correctIndex:1,explanation:'Phép cộng.',source:'Fixture',topic:'Số học'}))});let v=accounts.exams.start(student,exam.id);for(let i=0;i<10;i++)v=accounts.exams.answer(student,exam.id,{questionIndex:i,choiceIndex:i<7?1:0,version:v.attempt.version});accounts.exams.submit(student,exam.id);
+ await sp.goto(app.base+'/#exams/'+exam.id);await sp.getByText('3 câu cần tiếp tục sửa',{exact:true}).waitFor();const repair=sp.locator('[data-repair]').first();await repair.locator('[name=answer][value="1"]').check();await repair.locator('[name=working]').fill('Em tính lại bằng phép cộng.');await repair.getByRole('button',{name:'Kiểm tra lần sửa'}).click();await sp.getByText('Chờ giáo viên duyệt',{exact:false}).first().waitFor();assert.equal(accounts.knowledge.leaderboard(student,group.id).top.length,0);
+ await tp.goto(app.base+'/#knowledge/'+student.id);const verify=tp.locator('[data-repair-review]').first();await verify.locator('[name=comment]').fill('Cách cộng và kiểm chứng đúng.');await verify.getByRole('button',{name:'Lưu duyệt cách sửa'}).click();await tp.getByText('Giáo viên: Cách cộng và kiểm chứng đúng.',{exact:true}).waitFor({state:'attached'});
+ await sp.reload();await sp.getByText('2 câu cần tiếp tục sửa',{exact:true}).waitFor();assert.equal(accounts.exams.get(student,exam.id).attempt.score,7);
+ await sp.goto(app.base+'/#knowledge');await sp.getByRole('heading',{name:'🏆 Top 10 sửa lỗi thành công'}).waitFor();await sp.locator('.repair-ranking li').first().waitFor();assert.match(await sp.locator('.repair-ranking').innerText(),/1 câu sửa đúng/);assert.ok(await sp.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ const correctedEssay=report.history.find(h=>h.revision===2);accounts.essays.review(teacher,correctedEssay.id,{score:10,comment:'Đã kiểm tra bản sửa đúng.'});await sp.getByRole('button',{name:'Cập nhật thành tích'}).click();await sp.getByText('2 câu sửa đúng',{exact:true}).waitFor();
+ assert.deepEqual(errors,[]);console.log('PASS: essays, corrections, original grades, MCQ repairs and Top 10 ranking with mobile layout.');
+}finally{await browser.close();await app.close();globalThis.fetch=actualFetch;}

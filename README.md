@@ -1,5 +1,7 @@
 # Math Lab — Phòng thí nghiệm tư duy Toán
 
+Xem [Phân tích kiến thức và chấm tự luận](KNOWLEDGE.md) và [Thi trắc nghiệm có thời gian](EXAMS.md) cho luồng giao bài, lưu lỗi sai, sửa bài và báo cáo phụ huynh.
+
 ## Deploy Render + Supabase
 
 Cấu hình triển khai dùng PostgreSQL của Supabase để giữ tài khoản, tiến độ và tài liệu; Render không cần Persistent Disk. Xem [RENDER.md](RENDER.md) để tạo project, chuyển dữ liệu local giữ nguyên mật khẩu và deploy. Chuẩn bị bản xuất bằng `npm run supabase:prepare`, thêm `SUPABASE_DB_URL` vào `.env`, rồi chạy `npm run supabase:migrate` và `npm run supabase:verify`. Chế độ local JSON vẫn được giữ cho phát triển/kiểm thử.

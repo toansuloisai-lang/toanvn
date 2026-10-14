@@ -1,5 +1,7 @@
 import {randomUUID,createHash} from 'node:crypto';
 import {studentReportSnapshot,reportPdf} from './parent-report.mjs';
+import {parentMailHtml} from './parent-mail-html.mjs';
+import {REPORT_INVITATION} from './parent-letter.mjs';
 const fail=(status,message)=>{throw Object.assign(new Error(message),{status});};
 const validEmail=value=>typeof value==='string'&&value.length<=254&&/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(value);
 const digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
@@ -48,22 +50,17 @@ export function createParentMailService({db,persist,learning,mailer}){
     if(!resolved.recipients.length)fail(400,'Chưa có email phụ huynh hợp lệ. Kiểm tra danh sách phụ huynh được nhập từ Excel.');
     if(resolved.recipients.length>200)fail(400,'Mỗi lần gửi tối đa 200 phụ huynh.');
     const recipients=resolved.recipients.map(r=>{
+      const reports=input.includeReport===true?r.students.map(s=>studentReportSnapshot({db,learning,teacher,studentId:s.id})):null;
       let text=`Kính gửi phụ huynh ${r.parentNames.join(', ')},\n\nHọc sinh: ${r.students.map(s=>s.name).join(', ')}.\n\n${input.message.trim()}`;
-      if(input.includeReport===true){
-        text+='\n\nKẾT QUẢ HỌC TẬP HIỆN TẠI';
-        for(const s of r.students){const report=learning.report(teacher,s.id);text+=`\n\n${s.name} — Khối ${report.grade}\nĐáp án đầu đúng: ${report.correct}/${report.total} lượt đã làm.`;
-          if(!report.total)text+=' Chưa có dữ liệu bài làm.';
-          for(const a of report.assignments.slice(-5))text+=`\n• ${a.title}: ${a.result.score}/10; đã làm ${a.result.answered}/${a.result.total} câu.`;
-        }
-        text+='\n\nĐiểm nhiệm vụ dựa trên đáp án đầu; câu chưa làm tạm tính 0. Đây là dữ liệu tại lúc giáo viên soạn thông báo.';
-      }
-      text+=`\n\nTrân trọng,\n${teacher.name}\nPhòng thí nghiệm Tư duy Toán`;
-      return {...r,id:randomUUID(),text,status:'pending',...(input.includeReport===true?{reports:r.students.map(s=>studentReportSnapshot({db,learning,teacher,studentId:s.id}))}:{})};
+      if(input.includeReport===true)text+='\n\n'+REPORT_INVITATION;
+      text+=`\n\nTrân trọng,\n${teacher.name}\nTrường THCS Lạc Đạo – Hưng Yên`;
+      return {...r,id:randomUUID(),text,html:parentMailHtml({text,reports,createdAt:Date.now(),message:input.message}),status:'pending',...(reports?{reports}:{})};
     });
     for(const [id,d] of drafts)if(d.expires<Date.now())drafts.delete(id);
     if(drafts.size>=100)fail(429,'Có quá nhiều bản xem trước. Vui lòng thử lại sau.');
     const draft={id:randomUUID(),teacherId:teacher.id,teacherName:teacher.name,teacherComment:(input.teacherComment||'').trim(),includeReport:input.includeReport===true,createdAt:Date.now(),subject:input.subject.trim(),recipients,missing:resolved.missing,expires:Date.now()+15*60*1000};
-    draft.fingerprint=digest({teacher:teacher.id,subject:draft.subject,teacherComment:draft.teacherComment,recipients:recipients.map(r=>({email:r.email,text:r.text,reports:r.reports}))});
+    draft.reportFormat=input.reportFormat==='full'?'full':'summary';
+    draft.fingerprint=digest({teacher:teacher.id,format:draft.reportFormat,subject:draft.subject,teacherComment:draft.teacherComment,recipients:recipients.map(r=>({email:r.email,text:r.text,reports:r.reports}))});
     drafts.set(draft.id,draft);return publicDraft(draft);
   }
   function findDraft(user,id){
@@ -83,7 +80,7 @@ export function createParentMailService({db,persist,learning,mailer}){
       const approved=structuredClone(draft);approved.approval={teacherId:teacher.id,name:teacher.name,time:Date.now()};
       let bytes=0;
       for(const r of approved.recipients){
-        const content=await reportPdf({id,createdAt:draft.createdAt,teacher:{name:draft.teacherName},teacherComment:draft.teacherComment,reports:r.reports,approval:approved.approval});
+        const content=await reportPdf({format:draft.reportFormat,id,createdAt:draft.createdAt,teacher:{name:draft.teacherName},teacherComment:draft.teacherComment,reports:r.reports,approval:approved.approval});
         bytes+=content.length;if(bytes>40*1024*1024)fail(413,'Đợt báo cáo quá lớn. Hãy chia nhỏ nhóm học sinh.');
         r.pdf={filename:`bang-diem-${r.id}.pdf`,base64:content.toString('base64'),sha256:createHash('sha256').update(content).digest('hex')};
       }
@@ -96,7 +93,7 @@ export function createParentMailService({db,persist,learning,mailer}){
   async function pdf(user,id,recipientId){
     const {draft}=findDraft(user,id),recipient=draft.recipients.find(r=>r.id===recipientId);
     if(!recipient?.reports||(!draft.approval&&draft.expires<Date.now()))fail(404,'Báo cáo không tồn tại hoặc đã hết hạn.');
-    const content=recipient.pdf?Buffer.from(recipient.pdf.base64,'base64'):await reportPdf({id,createdAt:draft.createdAt,teacher:{name:draft.teacherName},teacherComment:draft.teacherComment,reports:recipient.reports});
+    const content=recipient.pdf?Buffer.from(recipient.pdf.base64,'base64'):await reportPdf({format:draft.reportFormat,id,createdAt:draft.createdAt,teacher:{name:draft.teacherName},teacherComment:draft.teacherComment,reports:recipient.reports});
     findDraft(user,id);
     return {content,filename:recipient.pdf?.filename||`ban-nhap-${recipient.id}.pdf`};
   }
@@ -126,7 +123,7 @@ export function createParentMailService({db,persist,learning,mailer}){
           const archive=batch.reportId?db.parentReports[batch.reportId]:null;
           const attachment=archive?.recipients.find(a=>a.id===r.id)?.pdf;
           if(batch.reportId&&(!archive?.approval||!attachment))throw Object.assign(Error('Missing approved report'),{code:'EREPORT'});
-          await mailer.send({email:r.email,subject:batch.subject,text:r.text,id:r.id,...(attachment?{attachments:[{filename:attachment.filename,content:Buffer.from(attachment.base64,'base64'),contentType:'application/pdf'}]}:{})});r.status='sent';r.error='';
+          await mailer.send({email:r.email,subject:batch.subject,text:r.text,html:r.html,id:r.id,...(attachment?{attachments:[{filename:attachment.filename,content:Buffer.from(attachment.base64,'base64'),contentType:'application/pdf'}]}:{})});r.status='sent';r.error='';
         }
         catch(error){
           const definitive=['EAUTH','EENVELOPE','EREPORT'].includes(error.code)||Number(error.responseCode)>=400;

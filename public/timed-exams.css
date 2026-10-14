@@ -1,0 +1,11 @@
+.exam-clock{position:sticky;top:8px;z-index:5;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border:2px solid #176441;background:#fff;color:#173b29}
+.exam-question{min-width:0;margin:20px 0}.exam-question legend{font-weight:700;padding:0 8px}.exam-question p{font-size:1.1rem;line-height:1.7}
+.exam-choice{display:flex;align-items:flex-start;gap:12px;padding:12px;margin:8px 0;border:1px solid #ccd7d1;border-radius:8px;cursor:pointer;overflow-wrap:anywhere}.exam-choice:has(input:checked){background:#e5f5eb;border-color:#176441}.exam-choice input{margin-top:5px;flex-shrink:0}.exam-choice:has(input:focus-visible){outline:3px solid #2a77c7}
+#timed-exams{max-width:1000px;margin:auto}#timed-exams h1{overflow-wrap:anywhere}#exam-status{min-height:1.5em}#exam-confirm{padding:16px;border:1px solid #ba8100;border-radius:8px}#exam-confirm button{margin:8px}
+.knowledge-hub,.essay-hub{max-width:1050px;margin:auto}.knowledge-hub .card,.essay-hub .card{margin:18px 0}.knowledge-hub summary,.essay-hub summary{cursor:pointer;padding:12px 0;font-weight:600}.knowledge-hub textarea,.essay-hub textarea{width:100%;min-height:95px}.essay-images{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}.essay-images img{max-width:220px;max-height:240px;object-fit:contain;border:1px solid #cad8e0}.essay-submission{border-top:1px solid #cad8e0;padding:12px 0}.essay-bank-question{display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid #cad8e0;padding:16px 0}.essay-bank-question small{display:block;overflow-wrap:anywhere;color:#526779}.knowledge-mistake fieldset{min-width:0}.knowledge-hub .math-expression,.essay-hub .math-expression{max-width:100%;overflow-x:auto}.essay-hub input:not([type=checkbox]):not([type=radio]){max-width:100%}
+@media(max-width:600px){.exam-clock{top:56px}.exam-choice{padding:14px 10px}}
+.repair-ranking{list-style:none;padding:0;margin:1rem 0;display:grid;gap:.65rem}
+.repair-ranking li{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1rem;border:1px solid #dce7ed;border-radius:12px;background:#f5faf9}
+.repair-ranking li:first-child{background:#fff5d8;border-color:#e6c768}
+.repair-honor{padding:1.2rem;margin:1rem 0;border:1px solid #d9b65b;border-radius:16px;background:linear-gradient(120deg,#fff4ce,#fffdf6);color:#604915}
+.repair-honor h3{margin:.5rem 0}.repair-honor p{margin:.5rem 0 0}

@@ -41,6 +41,12 @@ Dùng mật khẩu ứng dụng 16 ký tự, không dùng mật khẩu đăng nh
 
 ## Sử dụng
 
+Email trình bày như thư trao đổi: nền trắng, căn trái, lời chào đích danh, tên học sinh, lời nhắn, lời mời mở PDF và chữ ký giáo viên/trường. Không có banner, logo, bảng điểm, ô số liệu hay nút quảng bá trong thư. Tên người gửi vẫn là **Trường THCS Lạc Đạo – Math Lab**; có bản văn bản thuần đi kèm. Logo `public/assets/logo-truong.jpg` và bố cục trực quan được giữ trong PDF. Phụ huynh có thể trả lời email để trao đổi với giáo viên.
+
+PDF mặc định là **bản tổng hợp**, mục tiêu khoảng 4–6 trang với năm đề: tổng quan, biểu đồ điểm, kiến thức, bảng điểm, lỗi gộp theo chủ đề và bài chưa hoàn thành. Số trang có thể tăng nếu có nhiều chủ đề hoặc nội dung dài. Mỗi nhóm lỗi trình bày một câu đại diện và lời giải tương ứng; toàn bộ câu khác, ảnh và lịch sử vẫn được giữ trong hồ sơ hệ thống. Bản chi tiết đầy đủ vẫn hỗ trợ bằng `reportFormat: "full"` khi tạo bản xem trước qua API. Những mô tả chi tiết từng lượt bên dưới áp dụng cho bản đầy đủ. PDF đã xác nhận và email đã gửi không bị thay thế.
+
+Thông báo thử nghiệm trong lời nhắn email được giữ nguyên dưới dạng văn bản. PDF làm nổi bật cảnh báo khi nhận xét nêu “kiểm tra hệ thống” / “thử nghiệm hệ thống”; không tự gắn nhãn thử nghiệm cho báo cáo học sinh thật. Chỉ số trong PDF gồm đề thi đã nộp, câu tự luận đã nộp và bài luyện tập; đúng/sai tính câu trắc nghiệm và lượt luyện tập, điểm tự luận trình bày riêng.
+
 Giáo viên vào **Thông báo phụ huynh**, chọn lớp hoặc một học sinh, nhập tiêu đề/lời nhắn. Nếu chỉ gửi lời nhắn: **Xem trước → Xác nhận gửi**. Nếu kèm bảng điểm, làm theo luồng PDF dưới đây.
 
 ## Bảng điểm và hồ sơ học tập PDF

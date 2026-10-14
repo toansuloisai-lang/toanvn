@@ -30,7 +30,7 @@ try{
  const response=page.waitForResponse(r=>r.url().endsWith('/api/parent-mail/send'));await page.locator('#parent-mail-confirm').click();const batch=await (await response).json();
  await page.locator('#parent-mail-history').getByText(/Gmail đã nhận thư/).waitFor({state:'attached'});assert.equal(sent.length,1);
  await page.locator('#parent-mail-history > details > summary').click();
- assert.equal(sent[0].to.address,'parent@example.com');assert.ok(!sent[0].cc&&!sent[0].bcc);assert.match(sent[0].text,/Chưa có dữ liệu bài làm/);
+ assert.equal(sent[0].to.address,'parent@example.com');assert.ok(!sent[0].cc&&!sent[0].bcc);assert.ok(sent[0].text.includes("PDF"));
  assert.equal(sent[0].attachments.length,1);assert.equal(sent[0].attachments[0].contentType,'application/pdf');assert.deepEqual(sent[0].attachments[0].content,approvedPdf);
  assert.equal((await page.request.post(app.base+'/api/parent-mail/send',{data:{id:batch.id}})).status(),202);assert.equal(sent.length,1);
  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));

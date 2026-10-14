@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createKnowledgeService} from '../knowledge-service.mjs';
+test('repair ranking deduplicates questions, excludes zero scores, caps top ten and guards class access',()=>{
+ const students=Array.from({length:12},(_,i)=>({id:'s'+i,name:'Student '+String(i).padStart(2,'0'),role:'student'}));
+ const teacher={id:'t',role:'teacher',studentIds:students.map(s=>s.id)};
+ const db={users:[teacher,...students],classes:[{id:'c',name:'8A4',teacherId:'t',studentIds:teacher.studentIds}],states:Object.fromEntries(students.map((s,i)=>[s.id,{profile:{grade:8},attempts:Array.from({length:i+1},(_,j)=>({id:'a'+j,exerciseId:'e'+j,initialCorrect:false,corrected:i>0,time:1}))}]))};
+ db.states.s11.attempts.push({...db.states.s11.attempts[0],id:'repeated'});
+ const catalog=Array.from({length:13},(_,i)=>({id:i===12?'extra':'e'+i,prompt:'Calculate',skill:'Numbers',rule:'Add'}));
+ const service=createKnowledgeService({db,persist:()=>{},learning:{catalog:()=>catalog,report:()=>({assignments:[]})}});
+ assert.equal(service.leaderboard(teacher,'c').top.length,0);
+ for(const st of students)for(const m of service.report(teacher,st.id).mistakes)if(m.repairs.length)service.reviewRepair(teacher,{studentId:st.id,key:m.key,repairId:m.repairs[0].id,approved:true,comment:'Verified working'});
+ let result=service.leaderboard(students[11],'c');assert.equal(result.top.length,10);assert.equal(result.top[0].corrected,12);assert.equal(result.yourResult.rank,1);assert.ok(!result.top.some(r=>r.studentId==='s0'));
+ assert.throws(()=>service.leaderboard({id:'outsider',role:'student'},'c'),{status:403});
+ assert.equal(service.leaderboard({id:'outsider',role:'student'}).top.length,0);
+ assert.throws(()=>service.leaderboard({id:'x',role:'teacher',studentIds:[]},'c'),{status:403});
+ db.states.s10.attempts.push({id:'new',exerciseId:'extra',initialCorrect:false,corrected:true});
+ service.reviewRepair(teacher,{studentId:'s10',key:'practice:new',repairId:'new',approved:true,comment:'Verified working'});
+ result=service.leaderboard(teacher,'c');assert.equal(result.top[0].rank,1);assert.equal(result.top[1].rank,1);assert.equal(result.top[2].rank,3);
+});

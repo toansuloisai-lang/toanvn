@@ -1,0 +1,522 @@
+[
+  {
+    "id": "datatm-8-essay-01",
+    "grade": 8,
+    "topic": "Thu gọn đơn thức",
+    "prompt": "Thu gọn \\(2(-3x^3y)y^2\\) và nêu hệ số, bậc của đơn thức.",
+    "solution": "\\(2(-3x^3y)y^2=-6x^3y^3\\). Hệ số \\(-6\\), bậc \\(3+3=6\\).",
+    "knowledge": "Nhân hệ số, cộng số mũ cùng cơ số, bậc đơn thức.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_1_don_thuc_0.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Nhân đúng hệ số.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Thu gọn đúng phần biến.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Nêu đúng hệ số và bậc.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-02",
+    "grade": 8,
+    "topic": "Nhân đơn thức",
+    "prompt": "Thu gọn \\((3x^2y)(xy^2)\\) rồi tính giá trị tại \\(x=1,y=-2\\).",
+    "solution": "\\(3x^3y^3\\). Thay số được \\(3\\cdot1^3\\cdot(-2)^3=-24\\).",
+    "knowledge": "Quy tắc nhân đơn thức và thay giá trị.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_1_don_thuc_0.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Nhân đúng hệ số và phần biến.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Thay đúng giá trị, xử lý dấu.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Kết quả \\(-24\\) và trình bày nhất quán.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-03",
+    "grade": 8,
+    "topic": "Cộng đa thức",
+    "prompt": "Thu gọn \\((-3x^2y-2xy^2+16)+(-2x^2y+5xy^2-10)\\).",
+    "solution": "\\(-5x^2y+3xy^2+6\\).",
+    "knowledge": "Nhóm và cộng hạng tử đồng dạng.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_3_phep_cong_va_phep_tru_da_thuc_0.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Nhận diện các hạng tử đồng dạng.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Cộng đúng các hệ số theo dấu.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Kết luận đa thức thu gọn đúng.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-04",
+    "grade": 8,
+    "topic": "Nhân và cộng đa thức",
+    "prompt": "Thu gọn \\(3y(x^2-xy)-7x^2(y+xy)\\).",
+    "solution": "\\(3x^2y-3xy^2-7x^2y-7x^3y=-4x^2y-3xy^2-7x^3y\\).",
+    "knowledge": "Tính phân phối và phép cộng đa thức.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_3_phep_cong_va_phep_tru_da_thuc_0.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Khai triển tích thứ nhất.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Khai triển đúng dấu âm của tích thứ hai.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Gộp và kết luận đúng.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-05",
+    "grade": 8,
+    "topic": "Hiệu hai bình phương",
+    "prompt": "Khai triển \\((2x-3)(2x+3)\\) và tính giá trị tại \\(x=2\\).",
+    "solution": "\\(4x^2-9\\); tại \\(x=2\\) được \\(7\\).",
+    "knowledge": "\\(a^2-b^2=(a-b)(a+b)\\).",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_6_hieu_hai_binh_phuong._binh_phuong_cua_mot_tong_hay_mot_hieu.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Nhận ra hai biểu thức liên hợp.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Áp dụng đúng hằng đẳng thức.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Thay số đúng được 7.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-06",
+    "grade": 8,
+    "topic": "Phân tích đa thức",
+    "prompt": "Phân tích \\(x^2-6x+8\\) thành nhân tử và tìm \\(x\\) để đa thức bằng 0.",
+    "solution": "\\(x^2-6x+8=(x-2)(x-4)\\). Suy ra \\(x=2\\) hoặc \\(x=4\\).",
+    "knowledge": "Tách hạng tử, nhóm nhân tử, tích bằng 0.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_9_phan_tich_da_thuc_thanh_nhan_tu.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Tách hạng tử hoặc tìm cặp số phù hợp.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Phân tích đúng hai nhân tử.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Tìm đủ hai nghiệm.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-07",
+    "grade": 8,
+    "topic": "Phân tích đa thức",
+    "prompt": "Phân tích \\(x^2-7x+10\\) thành nhân tử; kiểm tra bằng phép nhân.",
+    "solution": "\\((x-2)(x-5)=x^2-7x+10\\).",
+    "knowledge": "Tách hạng tử và phép nhân kiểm chứng.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_9_phan_tich_da_thuc_thanh_nhan_tu.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Chọn đúng cặp số 2 và 5.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Đặt nhân tử đúng dấu.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Nhân kiểm chứng ra đa thức ban đầu.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-08",
+    "grade": 8,
+    "topic": "Hằng đẳng thức",
+    "prompt": "Phân tích \\(25-a^2+2ab-b^2\\) thành nhân tử.",
+    "solution": "\\(25-(a-b)^2=(5-a+b)(5+a-b)\\).",
+    "knowledge": "Bình phương một hiệu và hiệu hai bình phương.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_9_phan_tich_da_thuc_thanh_nhan_tu.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Nhóm thành \\(25-(a-b)^2\\).",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Áp dụng hiệu hai bình phương.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Mở dấu ngoặc đúng trong hai nhân tử.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-09",
+    "grade": 8,
+    "topic": "Tính nhanh",
+    "prompt": "Tính \\(A=x^2-4y^2+4x+4\\) tại \\(x=62,y=-18\\) bằng hằng đẳng thức.",
+    "solution": "\\(A=(x+2)^2-(2y)^2=64^2-36^2=(64-36)(64+36)=2800\\).",
+    "knowledge": "Hoàn thành bình phương; hiệu hai bình phương.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_9_phan_tich_da_thuc_thanh_nhan_tu.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Biến đổi \\((x+2)^2-4y^2\\).",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Thay số đúng, đặc biệt \\(y=-18\\).",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Tính và kết luận 2800.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-10",
+    "grade": 8,
+    "topic": "Nhóm nhân tử",
+    "prompt": "Tính \\(B=x^3+x^2y-xy^2-y^3\\) tại \\(x=3{,}25,y=6{,}75\\) bằng cách phân tích nhân tử.",
+    "solution": "\\(B=(x+y)(x^2-y^2)=(x-y)(x+y)^2=-3{,}5\\cdot100=-350\\).",
+    "knowledge": "Nhóm hạng tử; hiệu hai bình phương.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_9_phan_tich_da_thuc_thanh_nhan_tu.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Nhóm đúng nhân tử \\(x+y\\).",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Phân tích thành \\((x-y)(x+y)^2\\).",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Thay và tính đúng -350.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-11",
+    "grade": 8,
+    "topic": "Góc tứ giác",
+    "prompt": "Tứ giác lồi \\(ABCD\\) có \\(\\widehat A=60^{\\circ},\\widehat B=135^{\\circ},\\widehat D=29^{\\circ}\\). Tính \\(\\widehat C\\) và giải thích.",
+    "solution": "\\(\\widehat C=360^{\\circ}-60^{\\circ}-135^{\\circ}-29^{\\circ}=136^{\\circ}\\).",
+    "knowledge": "Tổng các góc trong tứ giác.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_10_tu_giac.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Nêu tổng góc tứ giác.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Lập đúng phép tính góc còn lại.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Tính và kết luận \\(136^{\\circ}\\).",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-12",
+    "grade": 8,
+    "topic": "Góc ngoài tứ giác",
+    "prompt": "Tứ giác lồi \\(ABCD\\) có \\(\\widehat A=50^{\\circ},\\widehat B=150^{\\circ},\\widehat D=45^{\\circ}\\). Tính góc ngoài tại \\(C\\) kề bù với góc trong.",
+    "solution": "\\(\\widehat C=360^{\\circ}-245^{\\circ}=115^{\\circ}\\). Góc ngoài bằng \\(180^{\\circ}-115^{\\circ}=65^{\\circ}\\).",
+    "knowledge": "Tổng góc tứ giác; hai góc kề bù.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_10_tu_giac.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Xác định tổng các góc trong.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Tính góc C đúng.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Dùng kề bù tính góc ngoài đúng.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-13",
+    "grade": 8,
+    "topic": "Tỉ lệ góc tứ giác",
+    "prompt": "Các góc \\(A,B,C,D\\) của tứ giác lồi tỉ lệ với \\(4:3:5:6\\). Tính từng góc.",
+    "solution": "\\(4k+3k+5k+6k=360^{\\circ}\\Rightarrow k=20^{\\circ}\\). Các góc lần lượt \\(80^{\\circ},60^{\\circ},100^{\\circ},120^{\\circ}\\).",
+    "knowledge": "Dãy tỉ số bằng nhau và tổng góc.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_10_tu_giac.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Đặt các góc theo cùng một hệ số.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Tìm đúng hệ số 20.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Tính đủ bốn góc và kiểm tra tổng.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-14",
+    "grade": 8,
+    "topic": "Đường trung bình",
+    "prompt": "Tam giác \\(ABC\\) có chu vi \\(32\\,\\mathrm{cm}\\). Gọi \\(E,F,P\\) lần lượt là trung điểm \\(AB,BC,CA\\). Tính chu vi tam giác \\(EFP\\).",
+    "solution": "\\(EF=\\frac12 AC,FP=\\frac12 AB,PE=\\frac12 BC\\). Chu vi bằng \\(\\frac12\\cdot32=16\\,\\mathrm{cm}\\).",
+    "knowledge": "Đường trung bình của tam giác.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\bai_16_duong_trung_binh_cua_tam_giac.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Xác định các đường trung bình.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Viết các độ dài bằng nửa cạnh tương ứng.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Cộng và kết luận 16 cm.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-15",
+    "grade": 8,
+    "topic": "Định lí Pythagore",
+    "prompt": "Tam giác \\(ABC\\) vuông tại \\(B\\), \\(BC=12\\,\\mathrm{cm},AC=13\\,\\mathrm{cm}\\). Tính \\(AB\\).",
+    "solution": "\\(AB^2=AC^2-BC^2=169-144=25\\). Vì độ dài dương, \\(AB=5\\,\\mathrm{cm}\\).",
+    "knowledge": "\\(a^2+b^2=c^2\\) trong tam giác vuông, với \\(c\\) là cạnh huyền.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\c9bai_35_dinh_li_pythagore_va_ung_dung.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Xác định AC là cạnh huyền.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Lập và tính đúng hiệu bình phương.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Lấy căn dương, kết luận 5 cm.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-16",
+    "grade": 8,
+    "topic": "Định lí Pythagore",
+    "prompt": "Tam giác \\(MNP\\) vuông tại \\(M\\), \\(MN=4{,}5\\,\\mathrm{cm},NP=7{,}5\\,\\mathrm{cm}\\). Tính \\(MP\\).",
+    "solution": "\\(MP^2=7{,}5^2-4{,}5^2=56{,}25-20{,}25=36\\), nên \\(MP=6\\,\\mathrm{cm}\\).",
+    "knowledge": "\\(a^2+b^2=c^2\\) trong tam giác vuông, với \\(c\\) là cạnh huyền.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\c9bai_35_dinh_li_pythagore_va_ung_dung.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Xác định NP là cạnh huyền.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Tính đúng hiệu hai bình phương.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Chọn căn dương 6 cm.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-17",
+    "grade": 8,
+    "topic": "Xác suất",
+    "prompt": "Gieo một xúc xắc cân đối một lần. Liệt kê kết quả thuận lợi và tính xác suất xuất hiện số chấm chẵn.",
+    "solution": "\\(\\Omega=\\{1,2,3,4,5,6\\}\\), kết quả thuận lợi \\(\\{2,4,6\\}\\). \\(P=\\frac36=\\frac12\\).",
+    "knowledge": "Xác suất bằng số kết quả thuận lợi chia số kết quả đồng khả năng.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\c8bai_31_cach_tinh_xac_suat_cua_bien_co_bang_ti_so.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Liệt kê sáu kết quả đồng khả năng.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Liệt kê đủ 2,4,6.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Lập tỉ số và rút gọn đúng.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-18",
+    "grade": 8,
+    "topic": "Xác suất hai xúc xắc",
+    "prompt": "Gieo hai xúc xắc cân đối, độc lập. Tính xác suất N chấm bằng \\(11\\); trình bày cách đếm.",
+    "solution": "\\(6\\cdot6=36\\) cặp có thứ tự đồng khả năng. Thuận lợi: \\((5,6),(6,5)\\). \\(P=\\frac2{36}=\\frac1{18}\\).",
+    "knowledge": "Phân biệt cặp kết quả có thứ tự; đếm xác suất.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\c8bai_31_cach_tinh_xac_suat_cua_bien_co_bang_ti_so.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Đếm 36 cặp có thứ tự.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Liệt kê đúng hai cặp thuận lợi.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Tính xác suất 1/18.",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-19",
+    "grade": 8,
+    "topic": "Diện tích hình chóp",
+    "prompt": "Hình chóp tứ giác đều có cạnh đáy \\(2\\,\\mathrm{cm}\\) và đường cao mỗi mặt bên \\(7\\,\\mathrm{cm}\\). Tính diện tích xung quanh và toàn phần.",
+    "solution": "\\(S_{xq}=\\frac12\\cdot(4\\cdot2)\\cdot7=28\\,\\mathrm{cm}^2\\). \\(S_{tp}=28+2^2=32\\,\\mathrm{cm}^2\\).",
+    "knowledge": "Phân biệt trung đoạn và chiều cao khối chóp; cộng diện tích đáy.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\tn_on_tap_chuong_10_phan_1_mot_so_hinh_khoi_trong_thuc_tien.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Xác định chu vi đáy và trung đoạn.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Tính diện tích xung quanh 28 cm².",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Cộng diện tích đáy, được 32 cm².",
+        "points": 3
+      }
+    ]
+  },
+  {
+    "id": "datatm-8-essay-20",
+    "grade": 8,
+    "topic": "Thể tích hình chóp",
+    "prompt": "Hình chóp tứ giác đều có cạnh đáy \\(6\\,\\mathrm{cm}\\) và chiều cao \\(9\\,\\mathrm{cm}\\). Tính thể tích và nêu công thức.",
+    "solution": "\\(S_{\\mathrm{d}}=6^2=36\\,\\mathrm{cm}^2\\). \\(V=\\frac13\\cdot36\\cdot9=108\\,\\mathrm{cm}^3\\).",
+    "knowledge": "\\(V=\\frac13 S_{\\mathrm{d}}h\\), đáy hình chóp tứ giác đều là hình vuông.",
+    "source": "DATATM/giai-nen/8 Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức\\Câu hỏi và bài tập trắc nghiệm toán 8 kết nối tri thức -\\c10bai_39_hinh_chop_tu_giac_deu.docx — chuyển dạng bài sang tự luận, chuẩn hóa dữ kiện và công thức.",
+    "rubric": [
+      {
+        "id": "r0",
+        "description": "Tính diện tích đáy vuông.",
+        "points": 3
+      },
+      {
+        "id": "r1",
+        "description": "Áp dụng hệ số một phần ba đúng.",
+        "points": 4
+      },
+      {
+        "id": "r2",
+        "description": "Tính 108 và đơn vị cm³.",
+        "points": 3
+      }
+    ]
+  }
+]

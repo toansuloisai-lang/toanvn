@@ -7,3 +7,17 @@ private/
 *.doc
 .env.*
 !.env.example
+
+# Generated caches and local test output
+coverage/
+playwright-report/
+test-results/
+.cache/
+*.tmp
+*.tsbuildinfo
+Thumbs.db
+.DS_Store
+
+# Local teaching materials and extracted archives
+/DATATM/
+/datatm/

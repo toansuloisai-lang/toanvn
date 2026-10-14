@@ -1,5 +1,6 @@
 ﻿import nodemailer from 'nodemailer';
 
+import {schoolLogo} from './school-brand.mjs';
 // API uses HTTPS on Render Free; SMTP remains available for local/paid hosts.
 export function createGmailMailer(env=process.env,{fetchImpl=globalThis.fetch}={}){
   const address=(env.GMAIL_USER||'').trim(),password=(env.GMAIL_APP_PASSWORD||'').replace(/\s/g,''),name=(env.GMAIL_FROM_NAME||'Math Lab').trim();
@@ -22,10 +23,11 @@ export function createGmailMailer(env=process.env,{fetchImpl=globalThis.fetch}={
   }
   return {
     status:()=>({configured,sender:configured?address:''}),
-    async send({email,subject,text,id,attachments=[]}){
+    async send({email,subject,text,html,id,attachments=[]}){
       if(!transport)throw Object.assign(new Error('Gmail chưa được cấu hình.'),{code:'EAUTH'});
       const authorization=mode==='api'?await accessToken():null;
-      const result=await transport.sendMail({from:{name,address},to:{address:email},subject,text,attachments,messageId:`<${id}@${address.split('@')[1]}>`,disableFileAccess:true,disableUrlAccess:true});
+      const logo=html?.includes('cid:school-logo')?schoolLogo():null;
+      const result=await transport.sendMail({from:{name:html?'Trường THCS Lạc Đạo – Math Lab':name,address},to:{address:email},subject,text,html,attachments:[...attachments,...(logo?[{...logo,cid:'school-logo'}]:[])],messageId:`<${id}@${address.split('@')[1]}>`,disableFileAccess:true,disableUrlAccess:true});
       if(mode==='api'){
         // Never retry a submission: a lost response may mean Gmail accepted it.
         const response=await fetchImpl(`https://gmail.googleapis.com/gmail/v1/users/${encodeURIComponent(address)}/messages/send`,{method:'POST',headers:{Authorization:`Bearer ${authorization}`,'Content-Type':'application/json'},body:JSON.stringify({raw:result.message.toString('base64url')}),signal:AbortSignal.timeout(30000)});

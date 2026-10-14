@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chính sách bảo mật · Math Lab</title>
+  <meta name="description" content="Cách Math Lab xử lý dữ liệu học tập, ảnh bài làm và quyền gửi báo cáo qua Gmail.">
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f4f7f5;color:#203b34;font:17px/1.75 system-ui,sans-serif}main{max-width:850px;margin:32px auto;padding:32px;background:white;border-radius:16px}code{overflow-wrap:anywhere}a{color:#175e50;overflow-wrap:anywhere}h1{font-size:2rem;line-height:1.3}h2{font-size:1.2rem;margin-top:30px}li{margin-bottom:8px}.muted{color:#56665f}footer{border-top:1px solid #dbe5df;margin-top:32px;padding-top:20px}@media(max-width:600px){main{margin:0;padding:24px 20px;border-radius:0}h1{font-size:1.65rem}}
+  </style>
+</head>
+<body>
+<main>
+  <a href="/">← Math Lab · Phòng thí nghiệm Tư duy Toán</a>
+  <h1>Chính sách bảo mật</h1>
+  <p class="muted">Cập nhật ngày 14/10/2026 · Áp dụng cho ứng dụng Math Lab tại <a href="https://toanvn.onrender.com/">toanvn.onrender.com</a>.</p>
+  <p>Math Lab hỗ trợ học sinh học Toán, làm bài, sửa lỗi và giúp giáo viên trao đổi kết quả học tập với phụ huynh. Trang này giải thích dữ liệu ứng dụng xử lý và cách liên hệ người quản lý.</p>
+
+  <h2>1. Dữ liệu được xử lý</h2>
+  <ul>
+    <li>Thông tin tài khoản do quản trị hoặc giáo viên nhập: tên, tên đăng nhập, vai trò, khối/lớp, liên kết học sinh – giáo viên – phụ huynh và email nhận báo cáo. Mật khẩu tài khoản được lưu dưới dạng băm kèm salt.</li>
+    <li>Dữ liệu học tập: đề được giao, đáp án, cách làm, ảnh bài nộp, điểm, lỗi sai, các lần sửa, nhận xét của giáo viên và phản hồi AI.</li>
+    <li>Thời điểm bắt đầu/nộp bài và ước lượng thời gian hoạt động trong ứng dụng. Ước lượng này không phải phép đo mức độ tập trung; chức năng đo hoạt động không ghi nội dung phím gõ hay chụp màn hình.</li>
+    <li>Báo cáo PDF, lịch sử xác nhận và trạng thái gửi thư. Khi kết nối Gmail, máy chủ lưu thông tin cấp quyền OAuth cần thiết để gửi thư từ tài khoản đã được chủ tài khoản cho phép.</li>
+  </ul>
+
+  <h2>2. Mục đích sử dụng</h2>
+  <p>Dữ liệu được dùng để đăng nhập và phân quyền, giao/chấm bài, lưu tiến độ, phân tích kiến thức cần củng cố, ghi nhận thành tích sửa lỗi và gửi báo cáo theo thao tác của giáo viên. Không sử dụng dữ liệu học sinh để quảng cáo cá nhân hóa hoặc bán cho bên quảng cáo.</p>
+
+  <h2>3. Quyền Gmail và dữ liệu Google</h2>
+  <p>Khi người quản lý kết nối tài khoản gửi thư, Math Lab yêu cầu quyền <code>https://www.googleapis.com/auth/gmail.send</code> để gửi thông báo và PDF tới email phụ huynh đã liên kết. Chức năng này không yêu cầu quyền đọc hộp thư, danh bạ hoặc xóa thư. Phụ huynh nhận báo cáo không cần cấp quyền Gmail cho ứng dụng.</p>
+  <p>Thông tin cấp quyền được xử lý ở máy chủ và không hiển thị cho học sinh, phụ huynh. Nội dung thư và PDF được chuyển tới Google để gửi và tới người nhận do giáo viên xác nhận. Dữ liệu nhận qua Google APIs chỉ được sử dụng cho chức năng đã mô tả, phù hợp với <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, bao gồm các yêu cầu Limited Use.</p>
+  <p>Chủ tài khoản có thể thu hồi quyền tại <a href="https://myaccount.google.com/connections">các kết nối bên thứ ba của Tài khoản Google</a>. Thu hồi quyền ngừng khả năng gửi bằng quyền đó, không xóa các thư đã gửi hoặc báo cáo học tập đang lưu.</p>
+
+  <h2>4. Chấm và phân tích bằng Gemini</h2>
+  <p>Khi sử dụng chức năng AI, nội dung liên quan như đề, thang điểm, câu trả lời, cách làm, ảnh bài nộp hoặc thông tin tổng hợp lỗi được gửi tới Google Gemini để xử lý. Ảnh có thể chứa thông tin cá nhân nếu người nộp viết hoặc chụp kèm thông tin đó; chỉ nên gửi phần bài làm cần chấm.</p>
+  <p>Phản hồi AI có thể sai và được ghi nhận là hỗ trợ/tạm thời; giáo viên duyệt kết quả theo chức năng của ứng dụng. Cách Google xử lý dữ liệu phụ thuộc dịch vụ và cấu hình sử dụng, theo <a href="https://ai.google.dev/gemini-api/terms">điều khoản Gemini API</a>. Không gửi mật khẩu, giấy tờ tùy thân hoặc thông tin không liên quan trong bài làm.</p>
+
+  <h2>5. Lưu trữ và người được truy cập</h2>
+  <p>Bản triển khai sử dụng Render để vận hành máy chủ và Supabase PostgreSQL để lưu dữ liệu ứng dụng, gồm bài làm và tệp đính kèm. Google xử lý yêu cầu Gmail/Gemini khi các chức năng tương ứng được sử dụng. Dữ liệu có thể được xử lý ngoài Việt Nam tùy khu vực của các nhà cung cấp.</p>
+  <p>Học sinh xem hồ sơ của mình; giáo viên và phụ huynh truy cập học sinh được liên kết theo quyền tài khoản. Bảng vinh danh trong lớp hiển thị tên, thứ hạng và số câu sửa thành công. Quản trị viên và người vận hành có thể truy cập dữ liệu cần thiết để quản lý, hỗ trợ và bảo trì.</p>
+  <p>Ứng dụng sử dụng cookie phiên để duy trì đăng nhập và bộ nhớ trình duyệt cho chức năng ứng dụng, bản nháp hoặc tài nguyên ngoại tuyến. Bản PDF đã gửi nằm trong hộp thư người nhận và chịu sự quản lý của người nhận.</p>
+
+  <h2>6. Thời gian lưu và yêu cầu xóa dữ liệu</h2>
+  <p>Hồ sơ và lịch sử được lưu phục vụ quá trình học tập; hiện ứng dụng không tự xóa theo một thời hạn cố định. Việc đăng xuất hoặc thu hồi quyền Gmail không tự xóa hồ sơ. Người dùng hoặc phụ huynh có thể liên hệ người quản lý để yêu cầu xem, sửa, xuất hoặc xóa dữ liệu liên quan. Người quản lý sẽ xác minh quyền yêu cầu và trao đổi phạm vi xử lý, kể cả bản sao lưu hoặc dữ liệu cần giữ theo nghĩa vụ áp dụng. Ứng dụng không có nút tự xóa toàn bộ tài khoản.</p>
+
+  <h2>7. Học sinh và phụ huynh</h2>
+  <p>Tài khoản học sinh do người quản lý cấp để sử dụng trong hoạt động giáo dục. Giáo viên, người quản lý và phụ huynh cần phối hợp về việc cung cấp dữ liệu của học sinh và sử dụng chức năng AI. Nếu thông tin hoặc liên kết phụ huynh không đúng, hãy yêu cầu điều chỉnh trước khi gửi báo cáo.</p>
+
+  <h2>8. Liên hệ và cập nhật</h2>
+  <p>Đầu mối quản lý ứng dụng Math Lab: <a href="mailto:tuannguzen@gmail.com">tuannguzen@gmail.com</a>. Khi liên hệ, nêu tài khoản và nội dung cần hỗ trợ; không gửi mật khẩu hoặc token. Chính sách được cập nhật tại trang này khi cách xử lý dữ liệu thay đổi.</p>
+  <footer><a href="/">Về trang đăng nhập Math Lab</a></footer>
+</main>
+</body>
+</html>

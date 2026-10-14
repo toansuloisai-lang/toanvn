@@ -1,4 +1,5 @@
 import {learningAI} from './learning-ai.mjs';
+import {gradeEssay} from './essay-ai.mjs';
 import {createGmailMailer} from './gmail-mailer.mjs';
 import {generateContentDraft} from './teacher-content.mjs';
 import http from 'node:http';
@@ -27,6 +28,7 @@ const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; cha
 const json = (res, status, body) => { res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(body)); };
 async function body(req) {
   let text = '';
+  if(req.url.startsWith('/api/exams')||req.url.startsWith('/api/essays')||req.url.startsWith('/api/knowledge/repair')){const max=req.url.split('?')[0].endsWith('/submit')?19000000:1500000;for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>max)throw Object.assign(Error('Nội dung quá lớn. Bài nộp tối đa 3 ảnh, mỗi ảnh 4 MB.'),{status:413});}return JSON.parse(text);}
   for await (const chunk of req) { text += chunk; if (Buffer.byteLength(text) > (req.url==='/api/teacher/content'?60000:req.url==='/api/learning/review'?30000:req.url==='/api/parent-mail/preview'?30000:req.url==='/api/roster/preview'?7100000:req.url==='/api/teacher/lessons/upload'?14100000:req.url==='/api/student/state'?5000000:12000)) throw Object.assign(new Error('Yêu cầu vượt quá dung lượng cho phép.'),{status:413}); }
   return JSON.parse(text);
 }
@@ -66,6 +68,39 @@ export const server = http.createServer(async (req, res) => {
     if(url.pathname.startsWith('/api/')&&url.pathname!=='/api/status'&&!user)return json(res,401,{error:'Vui lòng đăng nhập để tiếp tục.'});
     if(url.pathname==='/api/auth/session'&&req.method==='GET')return json(res,200,{user:{id:user.id,name:user.name,username:user.username,role:user.role}});
     if(url.pathname==='/api/workspace'&&req.method==='GET')return json(res,200,{...accounts.workspace(user,url.searchParams.get('studentId')),lessonPublications:accounts.lessonPublications(),uploadedLessons:accounts.uploadedLessons(user),teacherContents:accounts.teacherContents(user)});
+    if(url.pathname==='/api/exams'&&req.method==='GET')return json(res,200,{exams:accounts.exams.list(user)});
+    if(url.pathname==='/api/exams'&&req.method==='POST')return json(res,201,accounts.exams.publish(user,await body(req)));
+    if(url.pathname==='/api/exams/options'&&req.method==='GET')return json(res,200,{classes:accounts.learning.classes(user)});
+    const manageRoute=url.pathname.match(/^\/api\/(exams|essays)\/([a-f0-9-]{36})\/manage$/);
+    if(manageRoute&&req.method==='POST')return json(res,200,accounts[manageRoute[1]].manage(user,manageRoute[2],await body(req)));
+    if(url.pathname==='/api/knowledge/options'&&req.method==='GET')return json(res,200,accounts.knowledge.options(user));
+    if(url.pathname==='/api/knowledge/leaderboard'&&req.method==='GET')return json(res,200,accounts.knowledge.leaderboard(user,url.searchParams.get('classId')));
+    if(url.pathname==='/api/knowledge/report'&&req.method==='GET'){accounts.exams.sweep();return json(res,200,accounts.knowledge.report(user,url.searchParams.get('studentId')));}
+    if(url.pathname==='/api/knowledge/repair'&&req.method==='POST')return json(res,201,accounts.knowledge.repair(user,await body(req)));
+    if(url.pathname==='/api/knowledge/repair/review'&&req.method==='POST')return json(res,200,accounts.knowledge.reviewRepair(user,await body(req)));
+    if(url.pathname==='/api/essays'&&req.method==='GET')return json(res,200,{assignments:accounts.essays.list(user)});
+    if(url.pathname==='/api/essays'&&req.method==='POST')return json(res,201,accounts.essays.publish(user,await body(req)));
+    if(url.pathname==='/api/essays/bank'&&req.method==='GET')return json(res,200,accounts.essays.bank(user));
+    const essayRoute=url.pathname.match(/^\/api\/essays\/([a-f0-9-]{36})(?:\/(start|submit))?$/);
+    if(essayRoute){const [,id,action]=essayRoute;if(!action&&req.method==='GET')return json(res,200,accounts.essays.details(user,id));if(action==='start'&&req.method==='POST')return json(res,200,accounts.essays.start(user,id));if(action==='submit'&&req.method==='POST')return json(res,201,await accounts.essays.submit(user,id,await body(req)));}
+    const submissionRoute=url.pathname.match(/^\/api\/essays\/submissions\/([a-f0-9-]{36})\/(grade|review|images\/([0-2]))$/);
+    if(submissionRoute){const [,id,action,index]=submissionRoute;
+      if(action==='grade'&&req.method==='POST'){
+        const limitId='essay-grade:'+user.id,time=Date.now(),limit=limits.get(limitId)||{start:time,count:0};if(time-limit.start>60000){limit.start=time;limit.count=0;}limits.set(limitId,limit);if(++limit.count>8)return json(res,429,{error:'Chờ một phút trước khi chấm tiếp.'});
+        return json(res,200,await accounts.essays.grade(user,id,input=>gradeEssay({...input,key,model})));
+      }
+      if(action==='review'&&req.method==='POST')return json(res,200,accounts.essays.review(user,id,await body(req)));
+      if(index!==undefined&&req.method==='GET'){const image=accounts.essays.image(user,id,Number(index));res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':image.length,'Cache-Control':'private, no-store','Content-Disposition':'inline'});return res.end(image);}
+    }
+    const examRoute=url.pathname.match(/^\/api\/exams\/([a-f0-9-]{36})(?:\/(start|answer|submit|results))?$/);
+    if(examRoute){
+      const [,id,action]=examRoute;
+      if(!action&&req.method==='GET')return json(res,200,accounts.exams.get(user,id));
+      if(action==='results'&&req.method==='GET')return json(res,200,accounts.exams.results(user,id));
+      if(req.method==='POST'&&['start','submit'].includes(action))return json(res,200,accounts.exams[action](user,id));
+      if(req.method==='PUT'&&action==='answer')return json(res,200,accounts.exams.answer(user,id,await body(req)));
+      return json(res,405,{error:'Phương thức không hỗ trợ.'});
+    }
     if(url.pathname.startsWith('/api/parent-mail/')){
       if(user.role!=='teacher')return json(res,403,{error:'Chỉ giáo viên được gửi thông báo phụ huynh.'});
       if(url.pathname==='/api/parent-mail/options'&&req.method==='GET')return json(res,200,parentMail.options(user));
@@ -184,6 +219,8 @@ export const server = http.createServer(async (req, res) => {
     res.end(req.method === 'HEAD' ? undefined : content);
   } catch (e) { json(res, e.status || (e.code === 'ENOENT' ? 404 : 400), { error: e.status ? e.message : e.code === 'ENOENT' ? 'Không tìm thấy tài nguyên.' : 'Yêu cầu không hợp lệ.' }); }
 });
+const examTimer=setInterval(()=>{try{accounts.exams.sweep();}catch{console.error('Chưa lưu được bài thi hết giờ; sẽ thử lại.');}},1000);
+examTimer.unref();server.on('close',()=>clearInterval(examTimer));
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   server.listen(Number(process.env.PORT) || 3000, process.env.HOST || '127.0.0.1', () => console.log(`Math Lab: http://localhost:${process.env.PORT || 3000}`));
 }

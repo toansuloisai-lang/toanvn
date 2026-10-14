@@ -1,4 +1,4 @@
-import {chromium} from '@playwright/test';
+import {chromium,expect} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {createTestApp} from './browser-fixture.mjs';
 const app=await createTestApp(),browser=await chromium.launch({channel:'msedge',headless:true}),page=await browser.newPage();
@@ -9,11 +9,12 @@ try{
   await page.route('**/api/student/heartbeat',async route=>{beats.push(route.request().postDataJSON());await route.fulfill({json:{ok:true}});});
   await page.clock.install();await app.login(page);await page.goto(app.base);await page.locator('#main').waitFor();
   await page.waitForFunction(()=>!document.body.classList.contains('auth-screen'));
-  await page.clock.runFor(16000);assert.ok(beats.some(b=>b.active===true));
-  const count=beats.length;await page.clock.runFor(130000);assert.ok(beats.length>count);assert.equal(beats.at(-1).active,false);
-  await page.locator('#search-input').click();await page.clock.runFor(16000);assert.equal(beats.at(-1).active,true);
+  await page.bringToFront();await page.waitForFunction(()=>document.hasFocus());
+  await page.clock.runFor(16000);await expect.poll(()=>beats.some(b=>b.active===true)).toBe(true);
+  const count=beats.length;await page.clock.runFor(130000);await expect.poll(()=>beats.length>count&&beats.at(-1).active===false).toBe(true);
+  await page.locator('#search-input').click();await page.clock.runFor(16000);await expect.poll(()=>beats.at(-1).active).toBe(true);
   await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});
-  await page.clock.runFor(16000);assert.equal(beats.at(-1).active,false);
+  await page.clock.runFor(16000);await expect.poll(()=>beats.at(-1).active).toBe(false);
   for(let i=1;i<beats.length;i++)assert.ok(beats[i].sequence>beats[i-1].sequence);
   await page.unroute('**/api/student/heartbeat');
   await app.login(page,'teacher');

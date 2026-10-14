@@ -31,7 +31,7 @@ async function fixture(t){
   const {writeFile}=await import('node:fs/promises');await writeFile(filename,JSON.stringify(db));
   const loaded=createStore(filename),sent=[],mailer={status:()=>({configured:true}),send:async value=>sent.push(value)};
   const service=loaded.learning.enableParentMail(mailer);
-  const input={studentId:student.id,subject:'Bảng điểm học tập',message:'Mời gia đình xem báo cáo đính kèm.',includeReport:true,teacherComment:'Con cần kiểm tra dấu và giải thích từng bước trước khi kết luận.'};
+  const input={studentId:student.id,subject:'Bảng điểm học tập',message:'Mời gia đình xem báo cáo đính kèm.',includeReport:true,reportFormat:'full',teacherComment:'Con cần kiểm tra dấu và giải thích từng bước trước khi kết luận.'};
   return {filename,loaded,service,sent,mailer,input,student,other,teacher,foreign,parent,admin};
 }
 

@@ -26,7 +26,7 @@ const shapes = {
   flask:'<rect x="8" y="1" width="8" height="3" rx="1.5"/><path d="M10 6v6L3 22q-1 2 2 2h14q3 0 2-2l-7-10V6M7 17h10"/>',
 };
 export function icon(name,cls=''){return `<svg class="ui-icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes[name]||shapes.star}</svg>`;}
-export const navigation=[['home','Trang chủ','home'],['learning','Hồ sơ lỗi & khắc phục','report'],['lessons','Học tập','book'],['practice','Luyện tập','pencil'],['explore','Khám phá','bulb'],['challenges','Thử thách','trophy'],['progress','Báo cáo','chart'],['notebook','Sổ tay lỗi sai','notebook'],['formulas','Bảng công thức','formula'],['profile','Hồ sơ','user'],['parent','Báo cáo tiến bộ','report'],['teacher','Quản lý lớp','people'],['settings','Cài đặt','settings']];
+export const navigation=[['home','Trang chủ','home'],['exams','Thi tr\u1eafc nghi\u1ec7m','clipboard'],['knowledge','Ph\u00e2n t\u00edch ki\u1ebfn th\u1ee9c','chart'],['essays','B\u00e0i t\u1ef1 lu\u1eadn','pencil'],['learning','Hồ sơ lỗi & khắc phục','report'],['lessons','Học tập','book'],['practice','Luyện tập','pencil'],['explore','Khám phá','bulb'],['challenges','Thử thách','trophy'],['progress','Báo cáo','chart'],['notebook','Sổ tay lỗi sai','notebook'],['formulas','Bảng công thức','formula'],['profile','Hồ sơ','user'],['parent','Báo cáo tiến bộ','report'],['teacher','Quản lý lớp','people'],['settings','Cài đặt','settings']];
 export function referenceHome({state,skills,stat,due,escape,skillName,grade,exercises}){
   const sample=false;
   const latest=state.attempts.at(-1)||{skill:skills[0].id,time:Date.now()};
