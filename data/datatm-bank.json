@@ -1,0 +1,1866 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "datatm-a7845961e979d8a219c9",
+      "grade": 6,
+      "topic": "Số nguyên tố",
+      "tags": [
+        "số nguyên tố",
+        "hợp số",
+        "ước"
+      ],
+      "level": 1,
+      "prompt": "Số nguyên tố nhỏ nhất là số nào?",
+      "answer": "2",
+      "unit": "",
+      "solution": "Số 2 lớn hơn 1 và chỉ có hai ước là 1 và 2.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_10_so_nguyen_to.docx",
+        "sha256": "51e52af17f5104c9452a0357edfae51c24c684e1fcbd9f9268d0f474fe21ca65",
+        "question": 1,
+        "originalAnswer": "Số 2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-49582deb1ae059233d17",
+      "grade": 6,
+      "topic": "Số nguyên tố",
+      "tags": [
+        "số nguyên tố",
+        "hợp số",
+        "ước"
+      ],
+      "level": 1,
+      "prompt": "Số tự nhiên có 2 chữ số khác nhau nhỏ nhất chia hết cho các số nguyên tố nhỏ hơn hoặc bằng 5 là?",
+      "answer": "30",
+      "unit": "",
+      "solution": "Các số nguyên tố không quá 5 là 2, 3, 5. BCNN của chúng là 30, có hai chữ số khác nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_10_so_nguyen_to.docx",
+        "sha256": "51e52af17f5104c9452a0357edfae51c24c684e1fcbd9f9268d0f474fe21ca65",
+        "question": 4,
+        "originalAnswer": "Số 30"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-eecbfedaab44fd96fa30",
+      "grade": 6,
+      "topic": "Số nguyên tố",
+      "tags": [
+        "số nguyên tố",
+        "hợp số",
+        "ước"
+      ],
+      "level": 1,
+      "prompt": "Trong các số sau: 16; 17; 20; 21; 23; 97. Có bao nhiêu số là hợp số?",
+      "answer": "3",
+      "unit": "",
+      "solution": "Ba hợp số là 16, 20, 21. Các số còn lại là số nguyên tố.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_10_so_nguyen_to.docx",
+        "sha256": "51e52af17f5104c9452a0357edfae51c24c684e1fcbd9f9268d0f474fe21ca65",
+        "question": 5,
+        "originalAnswer": "3 số là hợp số."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-45b0f0a2849fc124f439",
+      "grade": 6,
+      "topic": "Số nguyên tố",
+      "tags": [
+        "số nguyên tố",
+        "hợp số",
+        "ước"
+      ],
+      "level": 1,
+      "prompt": "Số nguyên tố chẵn duy nhất là?",
+      "answer": "2",
+      "unit": "",
+      "solution": "Mọi số chẵn lớn hơn 2 đều có ước 2 khác 1 và chính nó.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_10_so_nguyen_to.docx",
+        "sha256": "51e52af17f5104c9452a0357edfae51c24c684e1fcbd9f9268d0f474fe21ca65",
+        "question": 20,
+        "originalAnswer": "Số 2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-5b584fe3bb8eb1c5ff24",
+      "grade": 6,
+      "topic": "Ước chung lớn nhất",
+      "tags": [
+        "ước chung",
+        "ước chung lớn nhất",
+        "ƯCLN"
+      ],
+      "level": 1,
+      "prompt": "ƯCLN của 8 và 20 là gì?",
+      "answer": "4",
+      "unit": "",
+      "solution": "Các ước chung của 8 và 20 là 1, 2, 4. Lớn nhất là 4.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_11_uoc_chung_uoc_chung_lon_nhat.docx",
+        "sha256": "de98166fe90f3708fceb9419dffe0d5efe8a2df2d0ec4b54a2f63fe2a9f1de16",
+        "question": 3,
+        "originalAnswer": "ƯCLN(8; 20) = 4"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-b635efbeb2978efdee05",
+      "grade": 6,
+      "topic": "Ước chung lớn nhất",
+      "tags": [
+        "ước chung",
+        "ước chung lớn nhất",
+        "ƯCLN"
+      ],
+      "level": 1,
+      "prompt": "Tìm ƯCLN(90; 10)",
+      "answer": "10",
+      "unit": "",
+      "solution": "Cả 90 và 10 đều chia hết cho 10. Ước chung không thể lớn hơn số nhỏ hơn là 10.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_11_uoc_chung_uoc_chung_lon_nhat.docx",
+        "sha256": "de98166fe90f3708fceb9419dffe0d5efe8a2df2d0ec4b54a2f63fe2a9f1de16",
+        "question": 4,
+        "originalAnswer": "ƯCLN(90; 10) = 10"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-8e45cd40efeb5931f031",
+      "grade": 6,
+      "topic": "Ước chung lớn nhất",
+      "tags": [
+        "ước chung",
+        "ước chung lớn nhất",
+        "ƯCLN"
+      ],
+      "level": 1,
+      "prompt": "Tìm ƯCLN(72, 63, 1)",
+      "answer": "1",
+      "unit": "",
+      "solution": "Ước dương duy nhất của 1 là 1.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_11_uoc_chung_uoc_chung_lon_nhat.docx",
+        "sha256": "de98166fe90f3708fceb9419dffe0d5efe8a2df2d0ec4b54a2f63fe2a9f1de16",
+        "question": 5,
+        "originalAnswer": "ƯCLN(72, 63, 1) = 1"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-2e2095ff6f1357952c94",
+      "grade": 6,
+      "topic": "Ước chung lớn nhất",
+      "tags": [
+        "ước chung",
+        "ước chung lớn nhất",
+        "ƯCLN"
+      ],
+      "level": 1,
+      "prompt": "Tìm ƯCLN(36, 84)",
+      "answer": "12",
+      "unit": "",
+      "solution": "36 = 12 × 3, 84 = 12 × 7; 3 và 7 nguyên tố cùng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_11_uoc_chung_uoc_chung_lon_nhat.docx",
+        "sha256": "de98166fe90f3708fceb9419dffe0d5efe8a2df2d0ec4b54a2f63fe2a9f1de16",
+        "question": 6,
+        "originalAnswer": "ƯCLN(36, 84) = 12."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-a8cb41fe3d4828cc47e5",
+      "grade": 6,
+      "topic": "Ước chung lớn nhất",
+      "tags": [
+        "ước chung",
+        "ước chung lớn nhất",
+        "ƯCLN"
+      ],
+      "level": 1,
+      "prompt": "Tìm ƯCLN(56, 140, 168).",
+      "answer": "28",
+      "unit": "",
+      "solution": "56 = 28 × 2, 140 = 28 × 5, 168 = 28 × 6. ƯCLN là 28.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_11_uoc_chung_uoc_chung_lon_nhat.docx",
+        "sha256": "de98166fe90f3708fceb9419dffe0d5efe8a2df2d0ec4b54a2f63fe2a9f1de16",
+        "question": 8,
+        "originalAnswer": "ƯCLN(56, 140, 168) = 28"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-733c7fcdc5a17f0abb86",
+      "grade": 6,
+      "topic": "Ước chung lớn nhất",
+      "tags": [
+        "ước chung",
+        "ước chung lớn nhất",
+        "ƯCLN"
+      ],
+      "level": 1,
+      "prompt": "ƯCLN (18;9) là?",
+      "answer": "9",
+      "unit": "",
+      "solution": "18 chia hết cho 9; ƯCLN(18; 9) = 9.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_11_uoc_chung_uoc_chung_lon_nhat.docx",
+        "sha256": "de98166fe90f3708fceb9419dffe0d5efe8a2df2d0ec4b54a2f63fe2a9f1de16",
+        "question": 19,
+        "originalAnswer": "9"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-654d647214520ba393d6",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "Bội chung nhỏ nhất (BCNN) của 6 và 8 là bao nhiêu?",
+      "answer": "24",
+      "unit": "",
+      "solution": "6 = 2 × 3; 8 = 2³. BCNN = 2³ × 3 = 24.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 1,
+        "originalAnswer": "24."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-16b5f193cde1dd854b9d",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "BCNN của 12 và 15 là bao nhiêu?",
+      "answer": "60",
+      "unit": "",
+      "solution": "12 = 2² × 3; 15 = 3 × 5. BCNN = 60.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 2,
+        "originalAnswer": "60."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-970069fa1f276cf1f8a7",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "Bội chung nhỏ nhất của 5 và 10 là bao nhiêu?",
+      "answer": "10",
+      "unit": "",
+      "solution": "10 là bội của 5, nên BCNN(5;10) = 10.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 3,
+        "originalAnswer": "10."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-4bbd100e1451f989dfb0",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "BCNN của 9 và 12 là bao nhiêu?",
+      "answer": "36",
+      "unit": "",
+      "solution": "9 = 3²; 12 = 2² × 3. BCNN = 2² × 3² = 36.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 4,
+        "originalAnswer": "36."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-d23a946b55d8779f37d5",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "BCNN của 7 và 14 là bao nhiêu?",
+      "answer": "14",
+      "unit": "",
+      "solution": "14 là bội của 7.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 5,
+        "originalAnswer": "14."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-185121d421e48883b674",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "Hai số 24 và 36 có BCNN là bao nhiêu?",
+      "answer": "72",
+      "unit": "",
+      "solution": "24 = 2³ × 3; 36 = 2² × 3². BCNN = 72.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 14,
+        "originalAnswer": "72"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-2a02ba080332710aabdf",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "Tìm BCNN của ba số 4, 6 và 8.",
+      "answer": "24",
+      "unit": "",
+      "solution": "BCNN(4;6;8) = 2³ × 3 = 24.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 15,
+        "originalAnswer": "24"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-a522f8bb44fa1e4886c8",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "Hai số có BCNN là 120 và ước chung lớn nhất là 10. Tích hai số đó là bao nhiêu?",
+      "answer": "1200",
+      "unit": "",
+      "solution": "Tích hai số bằng tích ƯCLN và BCNN: 10 × 120 = 1200.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 17,
+        "originalAnswer": "1200"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-0b5df6446a013290df63",
+      "grade": 6,
+      "topic": "Bội chung nhỏ nhất",
+      "tags": [
+        "bội chung",
+        "bội chung nhỏ nhất",
+        "BCNN"
+      ],
+      "level": 1,
+      "prompt": "Hai số 45 và 75 có BCNN là bao nhiêu?",
+      "answer": "225",
+      "unit": "",
+      "solution": "45 = 3² × 5; 75 = 3 × 5². BCNN = 225.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_12_boi_chung_boi_chung_lon_nhat.docx",
+        "sha256": "c246f8a626ccb3684ea782e5f382be99e52891155c847536a7f312430101167c",
+        "question": 18,
+        "originalAnswer": "225"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-bfc5bb1fc9b8aeb678b7",
+      "grade": 6,
+      "topic": "Cộng trừ phân số",
+      "tags": [
+        "phân số",
+        "cộng phân số",
+        "trừ phân số",
+        "quy đồng"
+      ],
+      "level": 1,
+      "prompt": "Hà dự định làm một cái bánh nhỏ. Bạn ấy cần 3/4 cốc bột mì. Hiện trong túi chỉ còn khoảng 1/8 cốc bột mì. Hỏi cần thêm bao nhiêu phần cốc bột mì để làm cái bánh đó?",
+      "answer": "5/8",
+      "unit": "",
+      "solution": "Lượng bột cần thêm: 3/4 − 1/8 = 6/8 − 1/8 = 5/8.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_25_phep_cong_va_phep_tru_phan_so.docx",
+        "sha256": "cc7d76183f62b04f54b9a7d1fcd88bb4d3c3bf83c175e34f89398758e6bde42e",
+        "question": 2,
+        "originalAnswer": "5/8"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-e6fb6ece1e5f1dddf081",
+      "grade": 6,
+      "topic": "Cộng trừ phân số",
+      "tags": [
+        "phân số",
+        "cộng phân số",
+        "trừ phân số",
+        "quy đồng"
+      ],
+      "level": 1,
+      "prompt": "Ba người cùng làm một công việc. Nếu làm riêng, người thứ nhất mất 6 giờ, người thứ hai mất 5 giờ và người thứ ba mất 7 giờ mới làm xong việc đó. Hỏi nếu ba người cùng làm thì sau một giờ làm được bao nhiêu phần công việc?",
+      "answer": "107/210",
+      "unit": "",
+      "solution": "Mỗi giờ ba người làm được 1/6 + 1/5 + 1/7 = (35 + 42 + 30)/210 = 107/210 công việc.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_25_phep_cong_va_phep_tru_phan_so.docx",
+        "sha256": "cc7d76183f62b04f54b9a7d1fcd88bb4d3c3bf83c175e34f89398758e6bde42e",
+        "question": 5,
+        "originalAnswer": "107/210"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-db63deb4e0920d15afed",
+      "grade": 6,
+      "topic": "Cộng trừ phân số",
+      "tags": [
+        "phân số",
+        "cộng phân số",
+        "trừ phân số",
+        "quy đồng"
+      ],
+      "level": 1,
+      "prompt": "Hai người cùng làm chung một công việc. Nếu làm riêng, người thứ nhất phải mất 4 giờ, người thứ hai phải mất 7 giờ mới xong công việc. Hỏi nếu làm chung thì mỗi giờ cả hai người làm được mấy phần công việc?",
+      "answer": "11/28",
+      "unit": "",
+      "solution": "Mỗi giờ làm được 1/4 + 1/7 = 11/28 công việc.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_25_phep_cong_va_phep_tru_phan_so.docx",
+        "sha256": "cc7d76183f62b04f54b9a7d1fcd88bb4d3c3bf83c175e34f89398758e6bde42e",
+        "question": 11,
+        "originalAnswer": "11/28"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-9ad354f00f577772b923",
+      "grade": 6,
+      "topic": "Cộng trừ phân số",
+      "tags": [
+        "phân số",
+        "cộng phân số",
+        "trừ phân số",
+        "quy đồng"
+      ],
+      "level": 1,
+      "prompt": "Hai người cùng làm chung một công việc. Nếu làm riêng, người thứ nhất phải mất 5 giờ, người thứ hai phải mất 8 giờ mới xong công việc. Hỏi nếu làm chung thì mỗi giờ cả hai người làm được mấy phần công việc?",
+      "answer": "13/40",
+      "unit": "",
+      "solution": "Mỗi giờ làm được 1/5 + 1/8 = 13/40 công việc.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_25_phep_cong_va_phep_tru_phan_so.docx",
+        "sha256": "cc7d76183f62b04f54b9a7d1fcd88bb4d3c3bf83c175e34f89398758e6bde42e",
+        "question": 12,
+        "originalAnswer": "13/40"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-0dc114604c392213800c",
+      "grade": 6,
+      "topic": "Cộng trừ phân số",
+      "tags": [
+        "phân số",
+        "cộng phân số",
+        "trừ phân số",
+        "quy đồng"
+      ],
+      "level": 1,
+      "prompt": "Hai vòi cùng chảy vào1 bể. Nếu vòi thứ nhất chảy thì phải mất 6giờ mới đầy bể. Nếu vòi thứ hai chảy thì phải mất8 giờ mới đầy bể. Hỏi trong 1giờ, hai vòi chảy được bao nhiêu phần bể?",
+      "answer": "7/24",
+      "unit": "",
+      "solution": "Mỗi giờ hai vòi chảy được 1/6 + 1/8 = 7/24 bể.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_25_phep_cong_va_phep_tru_phan_so.docx",
+        "sha256": "cc7d76183f62b04f54b9a7d1fcd88bb4d3c3bf83c175e34f89398758e6bde42e",
+        "question": 14,
+        "originalAnswer": "7/24"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-702c354a6d4d7a645b18",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Nếu x, y, z tỉ lệ với 2, 3, 5 và x + y + z = 50, tìm x.",
+      "answer": "10",
+      "unit": "",
+      "solution": "Tổng số phần là 2 + 3 + 5 = 10. x = 50 × 2/10 = 10.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 1,
+        "originalAnswer": "x = 10"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-4274f2ec4022e3e17c19",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Để pha nước muối sinh lí, người ta cần pha theo đúng tỉ lệ. Biết rằng cứ 3l nước tinh khiết thì pha với 27g muối. Hỏi nếu có 45g muối thì cần pha với bao nhiêu lít nước tinh khiết để được nước muối?",
+      "answer": "5",
+      "unit": "lít",
+      "solution": "Mỗi lít cần 27/3 = 9 g muối; 45 g cần 45/9 = 5 lít.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 6,
+        "originalAnswer": "5 lít"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-2d5f3d229d12b9cc3c9a",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Để cày hết một cánh đồng trong 14 ngày phải sử dụng 18 máy cày. Hỏi muốn cày hết cánh đồng đó trong 12 ngày thì phải sử dụng bao nhiêu máy cày (biết năng suất của các máy cày là như nhau)?",
+      "answer": "21",
+      "unit": "máy",
+      "solution": "Khối lượng không đổi: 18 × 14 = n × 12, suy ra n = 21.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 7,
+        "originalAnswer": "21 máy"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-c47183a320a2ca9b1150",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Người ta pha nhiên liệu cho một loại động cơ bằng cách trộn 2 phần dầu với 7 phần xăng. Hỏi cần bao nhiêu lít xăng để trộn hết 8 lít dầu theo cách pha nhiên liệu như trên?",
+      "answer": "28",
+      "unit": "lít",
+      "solution": "Xăng cần có: 8 × 7/2 = 28 lít.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 9,
+        "originalAnswer": "28 lít"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-3810fcc7f22ac9d2166a",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Hai máy xúc (cùng năng suất) làm xong một công việc trong 4 ngày. Hỏi nếu có 4 máy xúc như thế sẽ làm xong công việc trong bao lâu?",
+      "answer": "2",
+      "unit": "ngày",
+      "solution": "Tổng công là 2 × 4 = 8 máy-ngày. Bốn máy cần 8/4 = 2 ngày.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 10,
+        "originalAnswer": "2 ngày"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-87cf377f424f3ec15b75",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Một cửa hàng bán gạo theo tỉ lệ 3 phần gạo tẻ và 2 phần gạo nếp. Hỏi nếu có 30 kg gạo tẻ thì cần bao nhiêu kg gạo nếp?",
+      "answer": "20",
+      "unit": "kg",
+      "solution": "Gạo nếp cần có: 30 × 2/3 = 20 kg.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 12,
+        "originalAnswer": "20 kg."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-aeec53e93b02166876a0",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Một người cần trộn sơn theo tỉ lệ 2 phần sơn trắng và 3 phần sơn đen. Nếu có 12 lít sơn trắng, cần bao nhiêu lít sơn đen?",
+      "answer": "18",
+      "unit": "lít",
+      "solution": "Sơn đen cần có: 12 × 3/2 = 18 lít.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 14,
+        "originalAnswer": "18 lít."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-992f89b6e62d41fe183f",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Một ô tô đi hết quãng đường trong 6 giờ với vận tốc 60 km/h. Nếu muốn đi hết quãng đường đó trong 4 giờ thì phải đi với vận tốc bao nhiêu?",
+      "answer": "90",
+      "unit": "km/h",
+      "solution": "Quãng đường là 60 × 6 = 360 km; vận tốc mới là 360/4 = 90 km/h.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 15,
+        "originalAnswer": "90 km/h"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-8bb83b926928cbcd6f44",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "tỉ lệ thức",
+        "tỉ số",
+        "tỉ lệ thuận",
+        "tỉ lệ nghịch"
+      ],
+      "level": 1,
+      "prompt": "Tổng ba số tỉ lệ với 2, 3, 4 là 81. Tìm số lớn nhất.",
+      "answer": "36",
+      "unit": "",
+      "solution": "Mỗi phần là 81/(2+3+4) = 9. Số lớn nhất là 4 × 9 = 36.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "question": 16,
+        "originalAnswer": "36."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-614d0f0409fb3d229c6f",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ thuận",
+      "tags": [
+        "tỉ lệ thuận",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Biết y tỉ lệ thuận với x và khi x = 6 thì y = 18. Tìm hệ số tỉ lệ k.",
+      "answer": "3",
+      "unit": "",
+      "solution": "y = kx nên k = 18/6 = 3.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_22_dai_luong_ti_le_thuan.docx",
+        "sha256": "df5cf889c8f051ccc6116e8b5795c3233bec92ae1d80676c35e3307d353d2cd5",
+        "question": 2,
+        "originalAnswer": "k = 3"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-28d6249c33a380334fd2",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ thuận",
+      "tags": [
+        "tỉ lệ thuận",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Nếu y tỉ lệ thuận với x theo hệ số k = 5/2. Tìm y khi x = 8",
+      "answer": "20",
+      "unit": "",
+      "solution": "y = (5/2) × 8 = 20.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_22_dai_luong_ti_le_thuan.docx",
+        "sha256": "df5cf889c8f051ccc6116e8b5795c3233bec92ae1d80676c35e3307d353d2cd5",
+        "question": 3,
+        "originalAnswer": "y = 20"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-f8270f3ec0d9e0d7ba1d",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ thuận",
+      "tags": [
+        "tỉ lệ thuận",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Biết y tỉ lệ thuận với x và khi x = 4 thì y = 10. Tìm y khi x = 12.",
+      "answer": "30",
+      "unit": "",
+      "solution": "k = 10/4 = 2,5; y = 2,5 × 12 = 30.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_22_dai_luong_ti_le_thuan.docx",
+        "sha256": "df5cf889c8f051ccc6116e8b5795c3233bec92ae1d80676c35e3307d353d2cd5",
+        "question": 7,
+        "originalAnswer": "y = 30"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-6093d0ea51a3d77ece58",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ thuận",
+      "tags": [
+        "tỉ lệ thuận",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Một công nhân sản xuất được 50 sản phẩm trong 5 giờ. Nếu làm việc với năng suất như cũ, trong 8 giờ người đó sẽ sản xuất được bao nhiêu sản phẩm?",
+      "answer": "80",
+      "unit": "sản phẩm",
+      "solution": "Năng suất là 50/5 = 10 sản phẩm/giờ. Tám giờ làm 80 sản phẩm.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_22_dai_luong_ti_le_thuan.docx",
+        "sha256": "df5cf889c8f051ccc6116e8b5795c3233bec92ae1d80676c35e3307d353d2cd5",
+        "question": 10,
+        "originalAnswer": "80 sản phẩm."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-3267f9dcd4ec382bbb8a",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ thuận",
+      "tags": [
+        "tỉ lệ thuận",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Một chiếc xe di chuyển với vận tốc không đổi. Biết rằng trong 2 giờ, xe đi được 150 km. Hỏi sau 7 giờ, xe đi được bao nhiêu km?",
+      "answer": "525",
+      "unit": "km",
+      "solution": "Vận tốc là 150/2 = 75 km/h. Sau 7 giờ đi 525 km.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_22_dai_luong_ti_le_thuan.docx",
+        "sha256": "df5cf889c8f051ccc6116e8b5795c3233bec92ae1d80676c35e3307d353d2cd5",
+        "question": 11,
+        "originalAnswer": "525 km."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-ff94ab1f7bf409f4feab",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ thuận",
+      "tags": [
+        "tỉ lệ thuận",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Một xưởng sản xuất có 12 máy hoạt động trong 5 giờ thì sản xuất được 900 sản phẩm. Nếu số máy tăng lên 18 và thời gian làm việc không đổi, xưởng sẽ sản xuất được bao nhiêu sản phẩm?",
+      "answer": "1350",
+      "unit": "sản phẩm",
+      "solution": "Sản lượng tỉ lệ thuận với số máy: 900 × 18/12 = 1350.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_22_dai_luong_ti_le_thuan.docx",
+        "sha256": "df5cf889c8f051ccc6116e8b5795c3233bec92ae1d80676c35e3307d353d2cd5",
+        "question": 12,
+        "originalAnswer": "1350 sản phẩm."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-4a859236aae4d571bba9",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ thuận",
+      "tags": [
+        "tỉ lệ thuận",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Để làm nước mơ, người ta thường ngâm mơ theo công thức 2 kg quả mơ ngâm với 2,5 kg đường. Hỏi cần bao nhiêu kilôgam đường để ngâm 5 kg quả mơ?",
+      "answer": "6.25",
+      "unit": "kg",
+      "solution": "Khối lượng đường là 5 × 2,5/2 = 6,25 kg.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_22_dai_luong_ti_le_thuan.docx",
+        "sha256": "df5cf889c8f051ccc6116e8b5795c3233bec92ae1d80676c35e3307d353d2cd5",
+        "question": 16,
+        "originalAnswer": "6,25 kg."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-0ef4b1eeb5cd211577c0",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ thuận",
+      "tags": [
+        "tỉ lệ thuận",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Học sinh của ba lớp 7 cần phải trồng và chăm sóc 24 cây xanh. Lớp 7A có 32 học sinh, lớp 7B có 28 học sinh, lớp 7C có 36 học sinh. Hỏi lớp 7B phải trồng và chăm sóc bao nhiêu cây xanh, biết rằng số cây tỉ lệ thuận với số học sinh.",
+      "answer": "7",
+      "unit": "cây",
+      "solution": "Tổng số học sinh là 96. Lớp 7B chăm sóc 24 × 28/96 = 7 cây.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_22_dai_luong_ti_le_thuan.docx",
+        "sha256": "df5cf889c8f051ccc6116e8b5795c3233bec92ae1d80676c35e3307d353d2cd5",
+        "question": 20,
+        "originalAnswer": "7 cây"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-6b9d223c20d51303f5b3",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ nghịch",
+      "tags": [
+        "tỉ lệ nghịch",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Xa máy chuyển động với vận tốc tỉ lệ nghịch với thời gian đi hết quãng đường. Khi vận tốc là 60 km/h thì mất 3 giờ. Tìm thời gian nếu vận tốc tăng lên 90 km/h.",
+      "answer": "2",
+      "unit": "giờ",
+      "solution": "Quãng đường là 60 × 3 = 180 km. Thời gian mới: 180/90 = 2 giờ.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_23_dai_luong_ti_le_nghich.docx",
+        "sha256": "6e887794e19ba11cfaa0186d07694917191aa2ca9187eb1433e9674d9fe1a82e",
+        "question": 4,
+        "originalAnswer": "2 giờ."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-22793b228fe7f4433e77",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ nghịch",
+      "tags": [
+        "tỉ lệ nghịch",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Nếu x và y là hai đại lượng tỉ lệ nghịch với nhau, khi x = 4 thì y = 6. Tìm giá trị của y khi x = 8.",
+      "answer": "3",
+      "unit": "",
+      "solution": "Tích xy = 4 × 6 = 24. Khi x = 8 thì y = 24/8 = 3.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_23_dai_luong_ti_le_nghich.docx",
+        "sha256": "6e887794e19ba11cfaa0186d07694917191aa2ca9187eb1433e9674d9fe1a82e",
+        "question": 6,
+        "originalAnswer": "y = 3"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-1bb84caef174f15dd932",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ nghịch",
+      "tags": [
+        "tỉ lệ nghịch",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Hai số a và b tỉ lệ nghịch với 2 và 3. Biết rằng a = 12, tìm giá trị của b.",
+      "answer": "8",
+      "unit": "",
+      "solution": "2a = 3b nên b = 2 × 12/3 = 8.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_23_dai_luong_ti_le_nghich.docx",
+        "sha256": "6e887794e19ba11cfaa0186d07694917191aa2ca9187eb1433e9674d9fe1a82e",
+        "question": 7,
+        "originalAnswer": "b = 8"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-27c2fa55a7e8cd48f7d3",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ nghịch",
+      "tags": [
+        "tỉ lệ nghịch",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Cho x và y là hai đại lượng tỉ lệ nghịch. Biết rằng khi x = 5 thì y = 10. Tìm giá trị của x khi y = 25.",
+      "answer": "2",
+      "unit": "",
+      "solution": "Tích xy = 5 × 10 = 50. Khi y = 25 thì x = 2.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_23_dai_luong_ti_le_nghich.docx",
+        "sha256": "6e887794e19ba11cfaa0186d07694917191aa2ca9187eb1433e9674d9fe1a82e",
+        "question": 8,
+        "originalAnswer": "x = 2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-036a2d5a400ef98f76a0",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ nghịch",
+      "tags": [
+        "tỉ lệ nghịch",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Nếu x và y tỉ lệ nghịch với nhau và x = 7 khi y = 14. Tìm hệ số tỉ lệ k.",
+      "answer": "98",
+      "unit": "",
+      "solution": "Hệ số tỉ lệ nghịch là k = xy = 7 × 14 = 98.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_23_dai_luong_ti_le_nghich.docx",
+        "sha256": "6e887794e19ba11cfaa0186d07694917191aa2ca9187eb1433e9674d9fe1a82e",
+        "question": 9,
+        "originalAnswer": "k = 98"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-ce53a32a6788dab80806",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ nghịch",
+      "tags": [
+        "tỉ lệ nghịch",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Có 7 người làm xong một công việc trong 20 ngày. Hỏi 10 người (năng suất như nhau) làm xong công việc trong bao nhiêu ngày?",
+      "answer": "14",
+      "unit": "ngày",
+      "solution": "Số người × số ngày không đổi: 7 × 20/10 = 14 ngày.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_23_dai_luong_ti_le_nghich.docx",
+        "sha256": "6e887794e19ba11cfaa0186d07694917191aa2ca9187eb1433e9674d9fe1a82e",
+        "question": 15,
+        "originalAnswer": "14 ngày"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-d2b06ddd92e8efec8bdb",
+      "grade": 7,
+      "topic": "Đại lượng tỉ lệ nghịch",
+      "tags": [
+        "tỉ lệ nghịch",
+        "hệ số tỉ lệ",
+        "tỉ lệ thức"
+      ],
+      "level": 1,
+      "prompt": "Ch 3 máy cày làm việc trong 30 giờ thì cày xong một cánh đồng. Hỏi nếu có 5 máy như thế(cùng năng suất) thì trong bao lâu sẽ cày xong cánh đồng?",
+      "answer": "18",
+      "unit": "giờ",
+      "solution": "Thời gian mới là 3 × 30/5 = 18 giờ.",
+      "source": {
+        "file": "DATATM/giai-nen/7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_23_dai_luong_ti_le_nghich.docx",
+        "sha256": "6e887794e19ba11cfaa0186d07694917191aa2ca9187eb1433e9674d9fe1a82e",
+        "question": 18,
+        "originalAnswer": "18 giờ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-47b1d0f259eff03d032f",
+      "grade": 8,
+      "topic": "Hình thang cân",
+      "tags": [
+        "hình thang cân",
+        "tứ giác",
+        "góc"
+      ],
+      "level": 1,
+      "prompt": "Số trục đối xứng của hình thang cân là bao nhiêu?",
+      "answer": "1",
+      "unit": "",
+      "solution": "Hình thang cân có một trục đối xứng qua trung điểm hai đáy.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_11_hinh_thang_can.docx",
+        "sha256": "6b5510601119bb302c678abae8078259379f6dbed32fd2b96086f63eff2764c8",
+        "question": 2,
+        "originalAnswer": "1"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-10e1a495e0a4611731bd",
+      "grade": 8,
+      "topic": "Hình thang cân",
+      "tags": [
+        "hình thang cân",
+        "tứ giác",
+        "góc"
+      ],
+      "level": 1,
+      "prompt": "Cho hình thang cân ABCD có AB // CD và AC = 12 cm, AB = 6 cm. Độ dài BD là bao nhiêu?",
+      "answer": "12",
+      "unit": "cm",
+      "solution": "Hai đường chéo hình thang cân bằng nhau: BD = AC = 12 cm.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_11_hinh_thang_can.docx",
+        "sha256": "6b5510601119bb302c678abae8078259379f6dbed32fd2b96086f63eff2764c8",
+        "question": 4,
+        "originalAnswer": "12 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-cac6849250414f60890c",
+      "grade": 8,
+      "topic": "Hình thang cân",
+      "tags": [
+        "hình thang cân",
+        "tứ giác",
+        "góc"
+      ],
+      "level": 1,
+      "prompt": "Hình thang cân có một góc bằng 50°. Hiệu giữa hai góc kề một cạnh bên là bao nhiêu?",
+      "answer": "80",
+      "unit": "°",
+      "solution": "Hai góc kề cạnh bên bù nhau: góc còn lại là 130°. Hiệu là 130° − 50° = 80°.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_11_hinh_thang_can.docx",
+        "sha256": "6b5510601119bb302c678abae8078259379f6dbed32fd2b96086f63eff2764c8",
+        "question": 10,
+        "originalAnswer": "80°"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-e59566fc8d3bcdcc4aec",
+      "grade": 8,
+      "topic": "Hình bình hành",
+      "tags": [
+        "hình bình hành",
+        "tứ giác",
+        "chu vi"
+      ],
+      "level": 1,
+      "prompt": "Chu vi của hình bình hành ABCD bằng 10 cm, chu vi của tam giác ABD bằng 9 cm. Khi đó độ dài BD là bao nhiêu?",
+      "answer": "4",
+      "unit": "cm",
+      "solution": "Nửa chu vi ABCD là AB + AD = 5 cm. BD = 9 − (AB + AD) = 4 cm.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_12_hinh_binh_hanh.docx",
+        "sha256": "29180413d21c3044b71985b5592813bd7ac8580f1449dc01efa786c81bafedb9",
+        "question": 4,
+        "originalAnswer": "4 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-61b6f6a98fa4a43fc561",
+      "grade": 8,
+      "topic": "Hình thoi và hình vuông",
+      "tags": [
+        "hình thoi",
+        "hình vuông",
+        "Pythagore",
+        "tứ giác"
+      ],
+      "level": 1,
+      "prompt": "Hai đường chéo của hình thoi có độ dài 16cm và 12cm. Tính độ dài cạnh hình thoi",
+      "answer": "10",
+      "unit": "cm",
+      "solution": "Nửa đường chéo là 8 và 6 cm, vuông góc nhau. Cạnh = √(8² + 6²) = 10 cm.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_14_hinh_thoi_va_hinh_vuong.docx",
+        "sha256": "c3e98f230893e86214ffa1fb33c578e250a4a844f96a7d39075675fc92528ce2",
+        "question": 12,
+        "originalAnswer": "10 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-b020341fcc579f2fe15b",
+      "grade": 8,
+      "topic": "Hình thoi và hình vuông",
+      "tags": [
+        "hình thoi",
+        "hình vuông",
+        "Pythagore",
+        "tứ giác"
+      ],
+      "level": 1,
+      "prompt": "Hai đường chéo của hình thoi có độ dài 16cm và 12cm. Tính độ dài đường cao hình thoi",
+      "answer": "9.6",
+      "unit": "cm",
+      "solution": "Diện tích S = 16 × 12/2 = 96 cm². Cạnh = 10 cm, nên chiều cao h = S/10 = 9,6 cm.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_14_hinh_thoi_va_hinh_vuong.docx",
+        "sha256": "c3e98f230893e86214ffa1fb33c578e250a4a844f96a7d39075675fc92528ce2",
+        "question": 14,
+        "originalAnswer": "9,6 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-8722d22f13b9c516226f",
+      "grade": 8,
+      "topic": "Giải bài toán bằng cách lập phương trình",
+      "tags": [
+        "phương trình",
+        "phương trình bậc nhất",
+        "lập phương trình"
+      ],
+      "level": 1,
+      "prompt": "Một ô tô đi từ Hà Nội lúc 8 giờ sáng và dự kiến đến Hải Phòng lúc 10 giờ 30 phút. Nhưng mỗi giờ ô tô đi chậm hơn so với dự kiến là 10km nên đến 11 giờ 20 phút xe mới tới Hải Phòng. Tính quãng đường Hà Nội – Hải Phòng.",
+      "answer": "100",
+      "unit": "km",
+      "solution": "Gọi vận tốc dự kiến là v (km/h). Quãng đường không đổi: 2,5v = (10/3)(v − 10). Suy ra v = 40 và quãng đường là 2,5 × 40 = 100 km.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_26_giai_bai_toan_bang_cach_lap_phuong_trinh.docx",
+        "sha256": "c132ac909c1cd37332e7a4a2f49473a17856048ef03298a3523b0ab97d51ea65",
+        "question": 14,
+        "originalAnswer": "100 km"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-d7dd440f57004bc8fdeb",
+      "grade": 8,
+      "topic": "Giải bài toán bằng cách lập phương trình",
+      "tags": [
+        "phương trình",
+        "phương trình bậc nhất",
+        "lập phương trình"
+      ],
+      "level": 1,
+      "prompt": "Một ca nô xuôi dòng từ bến A đến bến B mất 4 giờ và ngược dòng từ bến B về bến A mất 5 giờ. Tính khoảng cách giữa hai bến A và bến B, biết vận tốc dòng nước là 2km/h.",
+      "answer": "80",
+      "unit": "km",
+      "solution": "Gọi vận tốc ca nô trong nước yên lặng là v. Ta có 4(v + 2) = 5(v − 2), suy ra v = 18. Khoảng cách hai bến là 4 × 20 = 80 km.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_26_giai_bai_toan_bang_cach_lap_phuong_trinh.docx",
+        "sha256": "c132ac909c1cd37332e7a4a2f49473a17856048ef03298a3523b0ab97d51ea65",
+        "question": 16,
+        "originalAnswer": "80 km"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-da62c521d12019486eac",
+      "grade": 8,
+      "topic": "Giải bài toán bằng cách lập phương trình",
+      "tags": [
+        "phương trình",
+        "phương trình bậc nhất",
+        "lập phương trình"
+      ],
+      "level": 1,
+      "prompt": "Một đội thợ mỏ lập kế hoạch khai thác than, theo đó mỗi ngày phải khai thác được 50 tấn than. Khi thực hiện, mỗi ngày đội khai thác được 57 tấn than. Do đó, đội đã hoàn thành kế hoạch trước 1 ngày và còn vượt múc 13 tấn than. Hỏi theo kế hoạch, đội phải khai thác bao nhiêu tấn than?",
+      "answer": "500",
+      "unit": "tấn",
+      "solution": "Gọi số ngày dự kiến là t. Ta có 57(t − 1) = 50t + 13, suy ra t = 10. Kế hoạch là 50 × 10 = 500 tấn.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_26_giai_bai_toan_bang_cach_lap_phuong_trinh.docx",
+        "sha256": "c132ac909c1cd37332e7a4a2f49473a17856048ef03298a3523b0ab97d51ea65",
+        "question": 18,
+        "originalAnswer": "500 tấn than"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-ffa225ff906540f11148",
+      "grade": 8,
+      "topic": "Giải bài toán bằng cách lập phương trình",
+      "tags": [
+        "phương trình",
+        "phương trình bậc nhất",
+        "lập phương trình"
+      ],
+      "level": 1,
+      "prompt": "Một cuộc thi có 20 câu hỏi quy định cho điểm như sau: Với mỗi câu hỏi, nếu trả lời đúng thì được cộng 5 điểm, trả lời sai thì bị trừ 1 điểm, không trả lời thì không được điểm. Bạn Nam được 76 điểm trong cuộc thi đó. Hỏi bạn Nam đã trả lời đúng được bao nhiêu câu? Biết rằng Nam đã trả lời tất cả các câu trong cuộc thi.",
+      "answer": "16",
+      "unit": "câu",
+      "solution": "Gọi x là số câu đúng, số câu sai là 20 − x. Tổng điểm: 5x − (20 − x) = 76, suy ra 6x = 96 và x = 16.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_26_giai_bai_toan_bang_cach_lap_phuong_trinh.docx",
+        "sha256": "c132ac909c1cd37332e7a4a2f49473a17856048ef03298a3523b0ab97d51ea65",
+        "question": 25,
+        "originalAnswer": "16 câu"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-a4bf2aeca5c47c31b957",
+      "grade": 8,
+      "topic": "Hàm số và đồ thị",
+      "tags": [
+        "hàm số",
+        "đồ thị",
+        "tọa độ"
+      ],
+      "level": 1,
+      "prompt": "Quãng đường của một chiếc xe chạy từ A đến B cách nhau 235 km được xác định bởi hàm số s = 50 t + 10, trong đó s (km) là quãng đường của xe chạy được và t (giờ) là thời gian đi của xe. Hỏi sau 3 giờ xuất phát thì xe cách A bao nhiêu km?",
+      "answer": "160",
+      "unit": "km",
+      "solution": "Thay t = 3 vào s = 50t + 10: s = 150 + 10 = 160 km.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_27_khai_niem_ham_so_va_do_thi_cua_ham_so.docx",
+        "sha256": "e6e4a73329ce18ce72359f63e6d486a309b9b9ce0e94a53f0b4ba3ca7f402032",
+        "question": 10,
+        "originalAnswer": "160 (km)"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-b7206065174d6b045938",
+      "grade": 8,
+      "topic": "Hàm số và đồ thị",
+      "tags": [
+        "hàm số",
+        "đồ thị",
+        "tọa độ"
+      ],
+      "level": 1,
+      "prompt": "Ánh sáng đi với vận tốc 300000 km/s. Hàm số d = 300000.t mô tả quan hệ giữa khoảng cách d và thời gian t. Ánh sáng đi được quãng đường dài bao nhiêu kilomet trong 20 giây ?",
+      "answer": "6000000",
+      "unit": "km",
+      "solution": "d = 300000 × 20 = 6000000 km.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_27_khai_niem_ham_so_va_do_thi_cua_ham_so.docx",
+        "sha256": "e6e4a73329ce18ce72359f63e6d486a309b9b9ce0e94a53f0b4ba3ca7f402032",
+        "question": 18,
+        "originalAnswer": "6000 000 (km)"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-4d941cf18193870de893",
+      "grade": 8,
+      "topic": "Hệ số góc của đường thẳng",
+      "tags": [
+        "hệ số góc",
+        "hàm số bậc nhất",
+        "đường thẳng",
+        "đồ thị"
+      ],
+      "level": 1,
+      "prompt": "Hệ số góc của đường thẳng d biết d đi qua gốc tọa độ O và điểm M(2; 6) là bao nhiêu?",
+      "answer": "3",
+      "unit": "",
+      "solution": "Đường thẳng qua O nên y = ax. Thay M(2;6) được a = 6/2 = 3.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_29_he_so_goc_cua_duong_thang.docx",
+        "sha256": "d3b2a2b1b62f5ed89198db3820f2104717fab73f57bf3b512e48579ba95e42ab",
+        "question": 9,
+        "originalAnswer": "3"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-ccc26755d293fd1a569b",
+      "grade": 8,
+      "topic": "Kết quả có thể và kết quả thuận lợi",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "biến cố",
+        "kết quả thuận lợi"
+      ],
+      "level": 1,
+      "prompt": "Xét phép thử tung con xúc xắc 6 mặt hai lần. Xác định số kết quả có thể xảy ra là bao nhiêu?",
+      "answer": "36",
+      "unit": "",
+      "solution": "Hai lần gieo phân biệt, mỗi lần có 6 kết quả: 6 × 6 = 36.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_30_ket_qua_co_the_va_ket_qua_thuan_loi.docx",
+        "sha256": "0738336f12c07ef406c0b4971c476091f8462d3a2aba9a8303934a3f75e6c689",
+        "question": 1,
+        "originalAnswer": "36"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-b15420035b5c0c7354db",
+      "grade": 8,
+      "topic": "Kết quả có thể và kết quả thuận lợi",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "biến cố",
+        "kết quả thuận lợi"
+      ],
+      "level": 1,
+      "prompt": "Khi tung một đồng xu cân đối và quan sát mặt xuất hiện của nó. Có mấy kết quả có thể?",
+      "answer": "2",
+      "unit": "",
+      "solution": "Hai kết quả là mặt sấp và mặt ngửa.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_30_ket_qua_co_the_va_ket_qua_thuan_loi.docx",
+        "sha256": "0738336f12c07ef406c0b4971c476091f8462d3a2aba9a8303934a3f75e6c689",
+        "question": 5,
+        "originalAnswer": "2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-5cc8e7f3f0833ee5d10c",
+      "grade": 8,
+      "topic": "Kết quả có thể và kết quả thuận lợi",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "biến cố",
+        "kết quả thuận lợi"
+      ],
+      "level": 1,
+      "prompt": "Một hộp đựng 5 thẻ, đánh số từ 1 đến 5. Chọn ngẫu nhiên 3 thẻ. Gọi A là biến cố để tổng số của 3 thẻ được chọn bằng 8. Số kết quả thuận lợi của biến cố A là bao nhiêu?",
+      "answer": "2",
+      "unit": "",
+      "solution": "Hai bộ ba khác nhau có tổng 8 là {1;2;5} và {1;3;4}.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_30_ket_qua_co_the_va_ket_qua_thuan_loi.docx",
+        "sha256": "0738336f12c07ef406c0b4971c476091f8462d3a2aba9a8303934a3f75e6c689",
+        "question": 6,
+        "originalAnswer": "2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-74870ee92b2d4b259cdb",
+      "grade": 8,
+      "topic": "Kết quả có thể và kết quả thuận lợi",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "biến cố",
+        "kết quả thuận lợi"
+      ],
+      "level": 1,
+      "prompt": "Một nhóm bạn có 4 bạn gồm 2 bạn nam Mạnh, Dũng và hai nữ là Hoa, Lan được xếp ngẫu nhiên trên một ghế dài. Kí hiệu (MDHL) là cách sắp xếp theo thứ tự: Mạnh, Dũng, Hoa, Lan. Tìm số phần tử của biến cố N:”xếp nam và nữ ngồi xen kẽ nhau”",
+      "answer": "8",
+      "unit": "",
+      "solution": "Có 2 cách chọn mẫu xen kẽ nam-nữ. Mỗi nhóm có 2 cách sắp: 2 × 2 × 2 = 8.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_30_ket_qua_co_the_va_ket_qua_thuan_loi.docx",
+        "sha256": "0738336f12c07ef406c0b4971c476091f8462d3a2aba9a8303934a3f75e6c689",
+        "question": 9,
+        "originalAnswer": "8"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-73363e8245c0695dbb94",
+      "grade": 8,
+      "topic": "Kết quả có thể và kết quả thuận lợi",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "biến cố",
+        "kết quả thuận lợi"
+      ],
+      "level": 1,
+      "prompt": "Gieo đồng tiền hai lần. Có mấy kết quả thuận lợi cho biến cố “Mặt ngửa xuất hiện ít nhất 1 lần” là bao nhiêu?",
+      "answer": "3",
+      "unit": "",
+      "solution": "Không gian mẫu gồm SS, SN, NS, NN. Có ít nhất một mặt ngửa ở SN, NS, NN.",
+      "source": {
+        "file": "DATATM/giai-nen/8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/tln_toan_8_kntt_bai_30_ket_qua_co_the_va_ket_qua_thuan_loi.docx",
+        "sha256": "0738336f12c07ef406c0b4971c476091f8462d3a2aba9a8303934a3f75e6c689",
+        "question": 10,
+        "originalAnswer": "3"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đối chiếu đề gốc và tính lại đáp án"
+      }
+    },
+    {
+      "id": "datatm-bfb19ffc2660860a994f",
+      "grade": 9,
+      "topic": "Phép thử ngẫu nhiên và không gian mẫu",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "phép thử",
+        "biến cố"
+      ],
+      "level": 1,
+      "prompt": "Gieo một con xúc xắc và một đồng tiền . Số phần tử của không gian mẫu là:",
+      "answer": "12",
+      "unit": "",
+      "solution": "Mỗi mặt xúc xắc đi cùng một trong hai mặt đồng tiền: 6 × 2 = 12.",
+      "source": {
+        "file": "DATATM/giai-nen/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHƯƠNG 8/DA.C8.XAC SUAT.docx",
+        "sha256": "7c772c47507f4ac327f76ee65f1dfb3ba481e72770774dc7e7c9fad60927a0a4",
+        "question": 4,
+        "section": "Bài 1 · Phần I",
+        "adaptation": "Giữ nguyên câu dẫn; chuyển lựa chọn trắc nghiệm thành trả lời bằng số."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu dẫn gốc; tính lại số kết quả độc lập với đáp án MathType"
+      }
+    },
+    {
+      "id": "datatm-c1951c10ae6c66464aee",
+      "grade": 9,
+      "topic": "Phép thử ngẫu nhiên và không gian mẫu",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "phép thử",
+        "biến cố"
+      ],
+      "level": 1,
+      "prompt": "Chọn ngẫu nhiên một số nguyên dương có một chữ số. Số phần tử của không gian mẫu là:",
+      "answer": "9",
+      "unit": "",
+      "solution": "Các số nguyên dương một chữ số là 1 đến 9: có 9 kết quả.",
+      "source": {
+        "file": "DATATM/giai-nen/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHƯƠNG 8/DA.C8.XAC SUAT.docx",
+        "sha256": "7c772c47507f4ac327f76ee65f1dfb3ba481e72770774dc7e7c9fad60927a0a4",
+        "question": 6,
+        "section": "Bài 1 · Phần I",
+        "adaptation": "Giữ nguyên câu dẫn; chuyển lựa chọn trắc nghiệm thành trả lời bằng số."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu dẫn gốc; tính lại số kết quả độc lập với đáp án MathType"
+      }
+    },
+    {
+      "id": "datatm-be88a8b5250f82d56401",
+      "grade": 9,
+      "topic": "Phép thử ngẫu nhiên và không gian mẫu",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "phép thử",
+        "biến cố"
+      ],
+      "level": 1,
+      "prompt": "Chọn ngẫu nhiên một số tự nhiên có hai chữ số khác nhau. Số phần tử của không gian mẫu là:",
+      "answer": "81",
+      "unit": "",
+      "solution": "Chữ số hàng chục có 9 cách chọn. Hàng đơn vị khác hàng chục có 9 cách: 9 × 9 = 81.",
+      "source": {
+        "file": "DATATM/giai-nen/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHƯƠNG 8/DA.C8.XAC SUAT.docx",
+        "sha256": "7c772c47507f4ac327f76ee65f1dfb3ba481e72770774dc7e7c9fad60927a0a4",
+        "question": 7,
+        "section": "Bài 1 · Phần I",
+        "adaptation": "Giữ nguyên câu dẫn; chuyển lựa chọn trắc nghiệm thành trả lời bằng số."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu dẫn gốc; tính lại số kết quả độc lập với đáp án MathType"
+      }
+    },
+    {
+      "id": "datatm-64ef099e3714ba31db0d",
+      "grade": 9,
+      "topic": "Phép thử ngẫu nhiên và không gian mẫu",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "phép thử",
+        "biến cố"
+      ],
+      "level": 1,
+      "prompt": "Chọn ngẫu nhiên một số tự nhiên chẵn có hai chữ số. Số phần tử của không gian mẫu là:",
+      "answer": "45",
+      "unit": "",
+      "solution": "Hàng chục có 9 cách, hàng đơn vị có 5 cách (0,2,4,6,8): 9 × 5 = 45.",
+      "source": {
+        "file": "DATATM/giai-nen/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHƯƠNG 8/DA.C8.XAC SUAT.docx",
+        "sha256": "7c772c47507f4ac327f76ee65f1dfb3ba481e72770774dc7e7c9fad60927a0a4",
+        "question": 8,
+        "section": "Bài 1 · Phần I",
+        "adaptation": "Giữ nguyên câu dẫn; chuyển lựa chọn trắc nghiệm thành trả lời bằng số."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu dẫn gốc; tính lại số kết quả độc lập với đáp án MathType"
+      }
+    },
+    {
+      "id": "datatm-8a552b9e7e36e92054d4",
+      "grade": 9,
+      "topic": "Phép thử ngẫu nhiên và không gian mẫu",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "phép thử",
+        "biến cố"
+      ],
+      "level": 1,
+      "prompt": "Chọn ngẫu nhiên một số tự nhiên lẻ có hai chữ số. Số phần tử của không gian mẫu là:",
+      "answer": "45",
+      "unit": "",
+      "solution": "Hàng chục có 9 cách, hàng đơn vị có 5 cách (1,3,5,7,9): 9 × 5 = 45.",
+      "source": {
+        "file": "DATATM/giai-nen/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHƯƠNG 8/DA.C8.XAC SUAT.docx",
+        "sha256": "7c772c47507f4ac327f76ee65f1dfb3ba481e72770774dc7e7c9fad60927a0a4",
+        "question": 9,
+        "section": "Bài 1 · Phần I",
+        "adaptation": "Giữ nguyên câu dẫn; chuyển lựa chọn trắc nghiệm thành trả lời bằng số."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu dẫn gốc; tính lại số kết quả độc lập với đáp án MathType"
+      }
+    },
+    {
+      "id": "datatm-febe98538a5f6d10a870",
+      "grade": 9,
+      "topic": "Phép thử ngẫu nhiên và không gian mẫu",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "phép thử",
+        "biến cố"
+      ],
+      "level": 1,
+      "prompt": "Gieo 3 đồng tiền xu là một phép thử ngẫu nhiên có số phần tử của không gian mẫu là:",
+      "answer": "8",
+      "unit": "",
+      "solution": "Mỗi đồng xu có 2 kết quả: 2 × 2 × 2 = 8.",
+      "source": {
+        "file": "DATATM/giai-nen/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHƯƠNG 8/DA.C8.XAC SUAT.docx",
+        "sha256": "7c772c47507f4ac327f76ee65f1dfb3ba481e72770774dc7e7c9fad60927a0a4",
+        "question": 17,
+        "section": "Bài 1 · Phần I",
+        "adaptation": "Giữ nguyên câu dẫn; chuyển lựa chọn trắc nghiệm thành trả lời bằng số."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu dẫn gốc; tính lại số kết quả độc lập với đáp án MathType"
+      }
+    },
+    {
+      "id": "datatm-d01881f37e343c582c62",
+      "grade": 9,
+      "topic": "Phép thử ngẫu nhiên và không gian mẫu",
+      "tags": [
+        "xác suất",
+        "không gian mẫu",
+        "phép thử",
+        "biến cố"
+      ],
+      "level": 1,
+      "prompt": "Xếp 4 quyển sách khác loại vào một kệ sách. Số phần tử của không gian mẫu là:",
+      "answer": "24",
+      "unit": "",
+      "solution": "Xếp bốn quyển sách khác nhau: 4 × 3 × 2 × 1 = 24.",
+      "source": {
+        "file": "DATATM/giai-nen/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHUYÊN ĐỀ ÔN VÀO 10 CT MỚI/CHƯƠNG 8/DA.C8.XAC SUAT.docx",
+        "sha256": "7c772c47507f4ac327f76ee65f1dfb3ba481e72770774dc7e7c9fad60927a0a4",
+        "question": 18,
+        "section": "Bài 1 · Phần I",
+        "adaptation": "Giữ nguyên câu dẫn; chuyển lựa chọn trắc nghiệm thành trả lời bằng số."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu dẫn gốc; tính lại số kết quả độc lập với đáp án MathType"
+      }
+    }
+  ]
+}

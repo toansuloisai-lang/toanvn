@@ -1,11 +1,24 @@
 import ExcelJS from 'exceljs';
 import {randomUUID,randomBytes,scryptSync} from 'node:crypto';
+import {namedCredentials} from './account-naming.mjs';
 const fail=(message,status=400)=>{throw Object.assign(new Error(message),{status});};
 const headers=['Tên học sinh','Tên phụ huynh','Gmail phụ huynh'];
 export async function workbook(rows,columns=headers){
   const book=new ExcelJS.Workbook(),sheet=book.addWorksheet('Danh sách');
   sheet.addRow(columns);rows.forEach(row=>sheet.addRow(row));
   sheet.columns.forEach(c=>c.width=30);sheet.getRow(1).font={bold:true};
+  return Buffer.from(await book.xlsx.writeBuffer());
+}
+export async function credentialsWorkbook(result){
+  const book=new ExcelJS.Workbook();book.creator='Quản lý lớp học';
+  const sheet=book.addWorksheet('Tài khoản lớp',{views:[{state:'frozen',ySplit:1,xSplit:2}]});
+  sheet.addRow(['Lớp','Khối','Tên học sinh','Tài khoản học sinh','Mật khẩu học sinh','Tên phụ huynh','Email phụ huynh','Tài khoản phụ huynh','Mật khẩu phụ huynh']);
+  for(const row of result.credentials)sheet.addRow([result.className,String(result.grade),...row].map(String));
+  sheet.columns=[18,8,26,26,30,26,34,26,46].map(width=>({width,style:{numFmt:'@',alignment:{vertical:'middle',wrapText:true}}}));
+  sheet.getRow(1).height=34;sheet.getRow(1).eachCell((cell,col)=>{cell.font={bold:true,color:{argb:'FFFFFFFF'}};cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:col<=2?'FF173B67':col<=5?'FF2464AF':'FF167C70'}};});
+  for(let i=2;i<=sheet.rowCount;i++){sheet.getRow(i).height=40;sheet.getRow(i).eachCell(cell=>{cell.fill={type:'pattern',pattern:'solid',fgColor:{argb:i%2?'FFF0F6FF':'FFFFFFFF'}};});}
+  sheet.autoFilter={from:'A1',to:`I${sheet.rowCount}`};
+  sheet.pageSetup={orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:0,printTitlesRow:'1:1'};
   return Buffer.from(await book.xlsx.writeBuffer());
 }
 export function createRosterService({db,persist}){
@@ -54,8 +67,9 @@ export function createRosterService({db,persist}){
     if(p.result)return p.result;
     const rows=validate(user,p.name,p.grade,p.rows);if(rows.some(r=>r.errors.length))fail('Danh sách có lỗi. Hãy xem trước lại.');
     const snapshot=structuredClone(db),teacherIds=[...user.studentIds],credentials=[],members=[];
-    const make=(name,role,email)=>{
-      const username=(role==='student'?'hs':'ph')+randomBytes(8).toString('hex'),password=randomBytes(15).toString('base64url'),salt=randomBytes(16).toString('hex');
+    const used=new Set(db.users.map(u=>u.username));
+    const make=(name,role,email,studentName)=>{
+      const {username,password}=namedCredentials({name,role,studentName,used}),salt=randomBytes(16).toString('hex');
       const u={id:randomUUID(),username,name,role,email,studentIds:[],salt,hash:scryptSync(password,salt,64).toString('hex')};
       if(role==='student')u.studentCode=username;
       db.users.push(u);return {u,password};
@@ -65,13 +79,13 @@ export function createRosterService({db,persist}){
         const {u:student,password}=make(row.studentName,'student');members.push(student.id);user.studentIds.push(student.id);
         db.states[student.id]={attempts:[],reviews:{},assignments:[],notes:{},profile:{name:row.studentName,grade:p.grade}};
         let parent=db.users.find(u=>u.role==='parent'&&u.email===row.email),parentPassword='Đã có tài khoản; dùng mật khẩu hiện tại';
-        if(!parent){const made=make(row.parentName,'parent',row.email);parent=made.u;parentPassword=made.password;}
+        if(!parent){const made=make(row.parentName,'parent',row.email,row.studentName);parent=made.u;parentPassword=made.password;}
         else {const previous=credentials.find(r=>r[4]===row.email);if(previous)parentPassword=previous[6];}
         parent.studentIds.push(student.id);
         credentials.push([row.studentName,student.username,password,row.parentName,row.email,parent.username,parentPassword]);
       }
       const item={id:randomUUID(),teacherId:user.id,name:p.name,grade:p.grade,studentIds:members};db.classes.push(item);persist();
-      p.result={classId:item.id,count:members.length,credentials};return p.result;
+      p.result={classId:item.id,className:item.name,grade:item.grade,count:members.length,credentials};return p.result;
     }catch(error){for(const key of Object.keys(db))delete db[key];Object.assign(db,snapshot);user.studentIds=teacherIds;throw error;}
   }
   return {preview,commit,template:()=>workbook([['Nguyễn Minh An','Nguyễn Văn Bình','binh@example.com']])};

@@ -3,11 +3,12 @@ import './app-shell.js';
 // Detect an updated app even when a tab stays open across deployments.
 async function version(){const response=await fetch('/api/version',{cache:'no-store',signal:AbortSignal.timeout(5000)});if(!response.ok)throw Error('version');return (await response.json()).version;}
 let loadedVersion=null,checking=false;
-try{loadedVersion=await version();}catch{}
+const initialVersion=version().then(value=>{loadedVersion=value;}).catch(()=>{});
 await import('./app.js');
 async function checkUpdate(){
  if(checking||document.hidden||!navigator.onLine||document.getElementById('app-update-banner'))return;
  checking=true;
+ await initialVersion;
  try{const next=await version();if(!loadedVersion){loadedVersion=next;return;}if(next===loadedVersion)return;
    const banner=document.createElement('div');banner.id='app-update-banner';banner.className='app-update-banner';banner.setAttribute('role','status');
    banner.innerHTML='<span>Đã có bản cập nhật. Hãy lưu phần đang làm rồi tải bản mới.</span><button type="button">Tải bản mới</button>';

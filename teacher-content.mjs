@@ -1,3 +1,4 @@
+import {geminiFetch} from './gemini-client.mjs';
 import katex from 'katex';
 import {evaluate} from './public/data.js';
 import {errorTypes} from './public/learning-core.js';
@@ -15,7 +16,7 @@ export function validateContent(input){
   return out;
 }
 export function asExercise(c){return {id:c.id,skill:'teacher-'+c.id,grades:[c.grade],prompt:c.prompt,answer:c.answer,wrong:c.wrong,rule:c.rule,errorTags:c.errorTags||[],keywords:[],level:'Luyện tập'};}
-export async function generateContentDraft({key,model,input,fetcher=fetch}){
+export async function generateContentDraft({key,model,input,fetcher=geminiFetch}){
   if(!key)throw Object.assign(new Error('Chưa cấu hình Gemini API. Bạn vẫn có thể soạn thủ công bằng thanh công thức.'),{status:503});
   if(!input||typeof input.request!=='string'||input.request.trim().length<5||input.request.length>3000||!['formula','exercise'].includes(input.kind)||![6,7,8,9].includes(Number(input.grade)))fail('Nhập mô tả từ 5–3.000 ký tự và chọn lớp.');
   const fields=input.kind==='formula'?['title','topic','tex','condition','example']:['title','topic','prompt','answer','wrong','rule'];

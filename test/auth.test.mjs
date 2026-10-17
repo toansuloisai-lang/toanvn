@@ -50,7 +50,8 @@ test('sessions, role enforcement and student relationships protect server data',
   assert.equal((await request('/api/workspace',studentCookie)).status,401);
   assert.equal((await request('/private/accounts.json',adminCookie)).status,404);
 });
-test('repeated invalid login attempts are rate limited',async()=>{
+test('repeated invalid login attempts are rate limited without blocking another account on the same IP',async()=>{
   for(let i=0;i<20;i++)assert.equal((await request('/api/auth/login','','POST',{username:'missing',password:'wrong'})).status,401);
-  assert.equal((await request('/api/auth/login','','POST',{username:'student.one',password})).status,429);
+  assert.equal((await request('/api/auth/login','','POST',{username:'missing',password:'wrong'})).status,429);
+  assert.equal((await request('/api/auth/login','','POST',{username:'student.one',password})).status,200);
 });

@@ -71,3 +71,19 @@ export async function importSnapshot(client,payload,files){
     await client.query('COMMIT');
   }catch(error){await client.query('ROLLBACK').catch(()=>{});throw error;}
 }
+
+// The caller must first save and verify a backup of this exact revision.
+export async function replaceSnapshot(client,expectedRevision,payload,files){
+ if(!/^\d+$/.test(String(expectedRevision)))throw Error('An expected database revision is required.');
+ await client.query('BEGIN');
+ try{
+  await client.query('LOCK TABLE math_lab_private.state, math_lab_private.files IN EXCLUSIVE MODE');
+  const current=await loadSnapshot(client);
+  if(current.revision!==String(expectedRevision))throw Error('Destination changed after backup. Replacement refused.');
+  await client.query('UPDATE math_lab_private.state SET payload=$1::jsonb,revision=revision+1,updated_at=now() WHERE id=true',[JSON.stringify(payload)]);
+  await client.query('DELETE FROM math_lab_private.files');
+  for(const [key,content] of files)await client.query('INSERT INTO math_lab_private.files(file_key,content) VALUES($1,$2)',[key,Buffer.from(content)]);
+  await verifySnapshot(client,payload,files);
+  await client.query('COMMIT');
+ }catch(error){await client.query('ROLLBACK').catch(()=>{});throw error;}
+}

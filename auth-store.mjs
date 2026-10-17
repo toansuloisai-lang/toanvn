@@ -1,7 +1,10 @@
 import {createLearningService} from './learning-service.mjs';
+import {atomic} from './database/atomic.mjs';
 import {createExamService} from './exam-service.mjs';
 import {createEssayService} from './essay-service.mjs';
 import {createKnowledgeService} from './knowledge-service.mjs';
+import {createDatatmService} from './datatm-service.mjs';
+import {createTutorService} from './tutor-service.mjs';
 import {createParentMailService} from './parent-mail.mjs';
 import {studentCatalog,historicalContentIds,validDue} from './learning-access.mjs';
 import {createRosterService} from './roster-import.mjs';
@@ -19,6 +22,9 @@ const publicUser=u=>({id:u.id,username:u.username,name:u.name,role:u.role,studen
 export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('private/accounts.json'),{storage}={}){
   let db=storage?storage.load():existsSync(filename)?JSON.parse(readFileSync(filename,'utf8')):{users:[],states:{}};
   const sessions=new Map(),limits=new Map();
+  const attachmentKeys=new Set(),pendingAttachmentKeys=new Set();
+  function collectFiles(value){if(!value||typeof value!=='object')return;if(typeof value.fileKey==='string')attachmentKeys.add(value.fileKey);for(const child of Object.values(value))if(child&&typeof child==='object')collectFiles(child);}
+  collectFiles(db);
   db.lessonPublications??=[];
   db.uploadedLessons??=[];
   db.teacherContents??=[];
@@ -27,7 +33,7 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
   function archivedContents(user){if(user.role!=='student')return [];const ids=historicalContentIds(db,user.id);return db.teacherContents.filter(c=>c.kind==='exercise'&&ids.has(c.id)&&!canReadUpload(user,c));}
   function publishContent(user,input){if(user.role!=='teacher')fail(403,'Only teachers can publish.');const content={...validateContent(input),id:randomUUID(),teacherId:user.id,publishedAt:Date.now()};db.teacherContents.push(content);persist();return {content};}
   function contentExercises(user){return [...teacherContents(user),...archivedContents(user)].filter(c=>c.kind==='exercise').map(asExercise);}
-  function persist(){if(storage){storage.save(db);return;}mkdirSync(path.dirname(filename),{recursive:true});writeFileSync(filename+'.tmp',JSON.stringify(db),{mode:0o600});renameSync(filename+'.tmp',filename);}
+  function persist(){try{if(storage)storage.save(db);else{mkdirSync(path.dirname(filename),{recursive:true});writeFileSync(filename+'.tmp',JSON.stringify(db),{mode:0o600});renameSync(filename+'.tmp',filename);}pendingAttachmentKeys.clear();}catch(error){for(const key of pendingAttachmentKeys)attachmentKeys.delete(key);pendingAttachmentKeys.clear();throw error;}}
   function createUser(input){
     const {username,password,name,role,studentIds=[]}=input;
     if(!str(username,60)||!/^[a-z0-9._-]{3,60}$/.test(username)||!str(password,200)||password.length<12||!str(name,80)||!name.trim()||!['student','teacher','parent','admin'].includes(role)||!Array.isArray(studentIds)||studentIds.length>200||studentIds.some(id=>!db.users.some(u=>u.id===id&&u.role==='student'))||(studentIds.length&&!['teacher','parent'].includes(role)))fail(400,'Thông tin tài khoản không hợp lệ; mật khẩu cần ít nhất 12 ký tự.');
@@ -36,14 +42,14 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
     const user={id:randomUUID(),username,name:name.trim(),role,studentIds:[...new Set(studentIds)],salt,hash};
     db.users.push(user);if(role==='student')db.states[user.id]=emptyState();persist();return publicUser(user);
   }
-  function login(username,password,ip){
+  function login(username,password,ip,expectedRole){
     const now=Date.now();for(const [k,v] of limits)if(now-v.start>900000)limits.delete(k);
-    const key=ip,limit=limits.get(key)||{start:now,count:0};limits.set(key,limit);
+    const key=String(ip)+'|'+String(username).trim().toLowerCase(),limit=limits.get(key)||{start:now,count:0};limits.set(key,limit);
     if(++limit.count>20)fail(429,'Đã thử đăng nhập quá nhiều lần. Vui lòng chờ 15 phút.');
     if(!str(username,60)||!str(password,200))fail(401,'Tên đăng nhập hoặc mật khẩu không đúng.');
     const user=db.users.find(u=>u.username===username);
     const hash=scryptSync(password,user?.salt||'invalid-account-salt',64);
-    if(!user||!timingSafeEqual(hash,Buffer.from(user.hash,'hex')))fail(401,'Tên đăng nhập hoặc mật khẩu không đúng.');
+    if(!user||!timingSafeEqual(hash,Buffer.from(user.hash,'hex'))||(expectedRole&&user.role!==expectedRole))fail(401,'Tên đăng nhập hoặc mật khẩu không đúng.');
     limits.delete(key);const token=randomBytes(32).toString('hex');
     for(const [k,v] of sessions)if(v.expires<=now)sessions.delete(k);
     sessions.set(token,{id:user.id,expires:now+8*60*60*1000});return{token,user:publicUser(user)};
@@ -58,7 +64,7 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
     if(user.role==='admin')return{user:publicUser(user),users:db.users.map(publicUser),state:emptyState(),students:[]};
     const students=(user.role==='student'?[user]:db.users.filter(u=>user.studentIds.includes(u.id))).map(publicUser);
     if(!students.length&&!id)return{user:publicUser(user),students,state:emptyState(),studentId:null};
-    const target=student(user,id);return{user:publicUser(user),students,studentId:target,state:{...db.states[target],diagnoses:db.diagnoses?.[target]||{}},archivedContents:archivedContents(user)};
+    const target=student(user,id);return{user:publicUser(user),students,studentId:target,state:{...db.states[target],classGrade:db.classes?.find(c=>c.studentIds.includes(target))?.grade||null,diagnoses:db.diagnoses?.[target]||{}},archivedContents:archivedContents(user)};
   }
   function saveStudent(user,input){
     if(user.role!=='student')fail(403,'Chỉ học sinh được lưu bài làm của mình.');
@@ -81,6 +87,7 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
     if(new Set(clean.map(a=>a.id)).size!==clean.length)fail(400,'Bài làm bị trùng.');
     const cleanReviews={};for(const [id,r] of Object.entries(reviews)){if(!exercisesForUser.some(e=>e.id===id)||!r||!Number.isFinite(r.due)||![0,1,2].includes(r.interval))fail(400,'Lịch ôn không hợp lệ.');cleanReviews[id]={due:r.due,interval:r.interval};}
     if(profile&&(!str(profile.name,80)||!profile.name.trim()||!['6','7','8','9'].includes(String(profile.grade))))fail(400,'Hồ sơ không hợp lệ.');
+    if(profile&&db.classes?.some(c=>c.studentIds.includes(user.id)&&Number(c.grade)!==Number(profile.grade)))fail(409,'Khối học được quản lý theo lớp. Hãy liên hệ giáo viên để chuyển lớp.');
     const state=db.states[user.id];state.attempts=[...clean,...state.attempts.filter(a=>!clean.some(c=>c.id===a.id))];state.reviews={...state.reviews,...cleanReviews};if(profile){state.profile={name:profile.name.trim(),grade:String(profile.grade)};db.users.find(u=>u.id===user.id).name=state.profile.name;}persist();return{ok:true};
   }
   function assign(user,input){
@@ -150,14 +157,18 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
     db.uploadedLessons.push(lesson);persist();return{lesson:publicLesson(lesson),duplicate:false};
   }
   function uploadedFile(user,id){const lesson=db.uploadedLessons.find(l=>l.id===id);if(!lesson||!canReadUpload(user,lesson))fail(404,'Không tìm thấy tài liệu hoặc bạn không có quyền truy cập.');return{lesson:publicLesson(lesson),content:storage?storage.readFile(lesson.fileKey):readFileSync(path.join(uploadDir,lesson.fileKey))};}
+  function writeAttachment(key,bytes){if(attachmentKeys.has(key))return;if(storage)storage.stageFile(key,bytes);else{mkdirSync(uploadDir,{recursive:true});const file=path.join(uploadDir,key);if(!existsSync(file))writeFileSync(file,bytes,{mode:0o600});}attachmentKeys.add(key);pendingAttachmentKeys.add(key);}
+  const readAttachment=key=>storage?storage.readFile(key):readFileSync(path.join(uploadDir,key));
   const learning=createLearningService({db,persist,student});
   const exams=createExamService({db,persist});
   const essays=createEssayService({db,persist,writeImage(key,bytes){if(storage)storage.stageFile(key,bytes);else{mkdirSync(uploadDir,{recursive:true});writeFileSync(path.join(uploadDir,key),bytes,{mode:0o600});}},readImage:key=>storage?storage.readFile(key):readFileSync(path.join(uploadDir,key))});
   const knowledge=createKnowledgeService({db,persist,learning});
+  const datatm=createDatatmService({db,persist,knowledge});
+  const tutor=createTutorService({db,persist,knowledge,learning,writeFile:writeAttachment,readFile:readAttachment});
   learning.knowledge=knowledge;
   learning.essays=essays;
-  learning.enableParentMail=mailer=>createParentMailService({db,persist,learning,mailer});
+  learning.enableParentMail=mailer=>createParentMailService({db,persist,learning,mailer,writeFile:writeAttachment,readFile:readAttachment});
   learning.updateParentEmail=updateParentEmail;learning.resetPassword=resetPassword;
   learning.roster=createRosterService({db,persist});
-  return{checkHealth:()=>storage?.checkHealth(),close:()=>storage?.close(),exams,essays,knowledge,learning,teacherContents,publishContent,contentExercises,createUser,login,authenticate,workspace,saveStudent,assign,note,link,importLessons,uploadLesson,uploadedLessons,uploadedFile,lessonPublications:()=>db.lessonPublications.map(({id,publishedAt})=>({id,publishedAt})),logout:token=>sessions.delete(token),users:()=>db.users.map(publicUser)};
+  return{checkHealth:()=>storage?.checkHealth(),close:()=>storage?.close(),exams,essays,knowledge,datatm,tutor,learning,teacherContents,publishContent:atomic(db,['teacherContents'],publishContent),contentExercises,createUser:atomic(db,['users','states'],createUser),login,authenticate,workspace,saveStudent:atomic(db,['users','states'],saveStudent),assign:atomic(db,['states'],assign),note:atomic(db,['states'],note),link:atomic(db,['users'],link),importLessons:atomic(db,['lessonPublications'],importLessons),uploadLesson:atomic(db,['uploadedLessons'],uploadLesson),uploadedLessons,uploadedFile,lessonPublications:()=>db.lessonPublications.map(({id,publishedAt})=>({id,publishedAt})),logout:token=>sessions.delete(token),users:()=>db.users.map(publicUser)};
 }

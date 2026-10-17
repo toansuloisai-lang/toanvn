@@ -1,4 +1,6 @@
 import {formulaLibrary} from './public/formula-library.js';
+import {discoveryResult} from './public/discovery-data.js';
+import {evaluate} from './public/data.js';
 import {checkAnswer} from './public/data.js';
 import {rectangleMetrics,isCounterexample,gardenMetrics} from './public/explore-core.js';
 const fail=(status,message)=>{throw Object.assign(new Error(message),{status});};
@@ -15,6 +17,12 @@ export function createActivityService({db,persist,student}){
   if(input.type==='formula'){
    const f=formulaLibrary.find(f=>f.id===data.formulaId&&f.grades.includes(grade));if(!f)fail(400,'Công thức không thuộc khối hiện tại.');
    const response=answer();title='Tự kiểm tra: '+f.title;correct=checkAnswer(response,String(f.check[1]));result=`${f.check[0]} Đáp án đã nộp: ${response}.`;detail={formulaId:f.id,answer:response};
+  }else if(input.type==='discovery'){
+   let r;try{r=discoveryResult(data.labId,data.values);}catch(error){fail(400,error.message);}
+   if(r.item.grade!==grade)fail(400,'Hoạt động không thuộc khối hiện tại.');
+   const response=answer(),numeric=evaluate(response);if(!Number.isFinite(numeric))fail(400,'Đáp án phải là số hoặc phân số hợp lệ.');
+   title='Khám phá: '+r.item.title;correct=Math.abs(numeric-r.value)<=.011;
+   result=`${r.label}: ${r.value}. Dự đoán: ${response}.`;detail={labId:r.item.id,values:r.values,answer:response};
   }else if(input.type==='counter'){
    if(!['aw','ah','bw','bh'].every(k=>dimension(data[k])))fail(400,'Kích thước phải từ 0,1 đến 100, tối đa một chữ số thập phân.');
    detail=Object.fromEntries(['aw','ah','bw','bh'].map(k=>[k,data[k]]));const m=rectangleMetrics(detail);title='Khám phá phản ví dụ';correct=isCounterexample(detail);result=`Hình A: chu vi ${m.pa}, diện tích ${m.sa}. Hình B: chu vi ${m.pb}, diện tích ${m.sb}.`;

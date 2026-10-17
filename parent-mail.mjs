@@ -5,11 +5,12 @@ import {REPORT_INVITATION} from './parent-letter.mjs';
 const fail=(status,message)=>{throw Object.assign(new Error(message),{status});};
 const validEmail=value=>typeof value==='string'&&value.length<=254&&/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(value);
 const digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
-export function createParentMailService({db,persist,learning,mailer}){
+export function createParentMailService({db,persist,learning,mailer,writeFile,readFile}){
   db.parentMail??=[];
   db.parentReports??={};
   const approving=new Map();
   const drafts=new Map();let running=false;
+  function pdfBytes(pdf){const content=pdf.fileKey?readFile(pdf.fileKey):Buffer.from(pdf.base64,'base64');if(createHash('sha256').update(content).digest('hex')!==pdf.sha256)throw Object.assign(Error('Approved PDF integrity check failed'),{code:'EREPORT'});return content;}
   for(const batch of db.parentMail)for(const r of batch.recipients)if(r.status==='sending'){r.status='unknown';r.error='Máy chủ khởi động lại khi đang gửi. Kiểm tra thư đã gửi trước khi gửi lại.';}
   const guard=user=>{if(user?.role!=='teacher')fail(403,'Chỉ giáo viên được gửi thông báo phụ huynh.');};
   const current=user=>{guard(user);const teacher=db.users.find(u=>u.id===user.id);guard(teacher);return teacher;};
@@ -82,7 +83,9 @@ export function createParentMailService({db,persist,learning,mailer}){
       for(const r of approved.recipients){
         const content=await reportPdf({format:draft.reportFormat,id,createdAt:draft.createdAt,teacher:{name:draft.teacherName},teacherComment:draft.teacherComment,reports:r.reports,approval:approved.approval});
         bytes+=content.length;if(bytes>40*1024*1024)fail(413,'Đợt báo cáo quá lớn. Hãy chia nhỏ nhóm học sinh.');
-        r.pdf={filename:`bang-diem-${r.id}.pdf`,base64:content.toString('base64'),sha256:createHash('sha256').update(content).digest('hex')};
+        const sha256=createHash('sha256').update(content).digest('hex'),fileKey='report-'+sha256+'.pdf';
+        if(writeFile)writeFile(fileKey,content);
+        r.pdf={filename:`bang-diem-${r.id}.pdf`,...(writeFile?{fileKey,size:content.length}:{base64:content.toString('base64')}),sha256};
       }
       findDraft(user,id);if(draft.expires<Date.now())fail(409,'Bản nháp đã hết hạn. Hãy xem trước lại.');
       db.parentReports[id]=approved;try{persist();}catch(error){delete db.parentReports[id];throw error;}
@@ -93,7 +96,7 @@ export function createParentMailService({db,persist,learning,mailer}){
   async function pdf(user,id,recipientId){
     const {draft}=findDraft(user,id),recipient=draft.recipients.find(r=>r.id===recipientId);
     if(!recipient?.reports||(!draft.approval&&draft.expires<Date.now()))fail(404,'Báo cáo không tồn tại hoặc đã hết hạn.');
-    const content=recipient.pdf?Buffer.from(recipient.pdf.base64,'base64'):await reportPdf({format:draft.reportFormat,id,createdAt:draft.createdAt,teacher:{name:draft.teacherName},teacherComment:draft.teacherComment,reports:recipient.reports});
+    const content=recipient.pdf?pdfBytes(recipient.pdf):await reportPdf({format:draft.reportFormat,id,createdAt:draft.createdAt,teacher:{name:draft.teacherName},teacherComment:draft.teacherComment,reports:recipient.reports});
     findDraft(user,id);
     return {content,filename:recipient.pdf?.filename||`ban-nhap-${recipient.id}.pdf`};
   }
@@ -123,7 +126,7 @@ export function createParentMailService({db,persist,learning,mailer}){
           const archive=batch.reportId?db.parentReports[batch.reportId]:null;
           const attachment=archive?.recipients.find(a=>a.id===r.id)?.pdf;
           if(batch.reportId&&(!archive?.approval||!attachment))throw Object.assign(Error('Missing approved report'),{code:'EREPORT'});
-          await mailer.send({email:r.email,subject:batch.subject,text:r.text,html:r.html,id:r.id,...(attachment?{attachments:[{filename:attachment.filename,content:Buffer.from(attachment.base64,'base64'),contentType:'application/pdf'}]}:{})});r.status='sent';r.error='';
+          await mailer.send({email:r.email,subject:batch.subject,text:r.text,html:r.html,id:r.id,...(attachment?{attachments:[{filename:attachment.filename,content:pdfBytes(attachment),contentType:'application/pdf'}]}:{})});r.status='sent';r.error='';
         }
         catch(error){
           const definitive=['EAUTH','EENVELOPE','EREPORT'].includes(error.code)||Number(error.responseCode)>=400;

@@ -9,7 +9,7 @@ try{
  await form.locator('[name=file]').setInputFiles({name:'class.xlsx',mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',buffer:await workbook([['An','Bình','binh@example.com'],['Lan','Bình','binh@example.com']])});
  await form.locator('button').click();await page.locator('#roster-confirm').waitFor();
  const response=page.waitForResponse(r=>r.url().endsWith('/api/roster/commit'));await page.locator('#roster-confirm').click();const created=await (await response).json();assert.equal(created.count,2);
- const download=page.waitForEvent('download');await page.locator('#roster-download').click();assert.equal((await download).suggestedFilename(),'tai-khoan-lop.csv');
+ const download=page.waitForEvent('download');await page.locator('#roster-download').click();assert.equal((await download).suggestedFilename(),'tai-khoan-lop-9A-Excel.xlsx');
  await page.locator('#roster-open').click();await page.waitForFunction(()=>document.querySelector('#learning-class')?.selectedOptions[0]?.textContent.includes('9A Excel'));
  for(const [username,password,role] of [[created.credentials[0][1],created.credentials[0][2],'student'],[created.credentials[0][5],created.credentials[0][6],'parent']]){
    const login=await page.request.post(app.base+'/api/auth/login',{data:{username,password}});assert.equal((await login.json()).user.role,role);

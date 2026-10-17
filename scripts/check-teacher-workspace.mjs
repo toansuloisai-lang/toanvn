@@ -1,7 +1,7 @@
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {createTestApp} from './browser-fixture.mjs';
-const app=await createTestApp(),browser=await chromium.launch({channel:'msedge',headless:true});
+const app=await createTestApp();const {accounts}=await import('../server.mjs');const teacher=accounts.users().find(u=>u.role==='teacher'),student=accounts.users().find(u=>u.role==='student');accounts.learning.createClass(teacher,{name:'7A1',grade:7,studentIds:[student.id]});const browser=await chromium.launch({channel:'msedge',headless:true});
 const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
 page.on('pageerror',e=>errors.push(e.message));
 try{
@@ -13,7 +13,7 @@ try{
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Mobile overflow: '+route);
   await page.setViewportSize({width:1440,height:1000});
  }
- await page.goto(app.base+'/#teacher-library/assign');await page.locator('#tw-exam-form').waitFor();
+ await page.goto(app.base+'/#teacher-library/assign');await page.locator('.assessment-class-card').first().click();await page.locator('#tw-exam-form').waitFor();
  await page.locator('#tw-exam-title').fill('Ôn tập tuần 3');
  const option=await page.locator('#tw-exam-recipient optgroup[label="Từng học sinh"] option').first().getAttribute('value');
  await page.locator('#tw-exam-recipient').selectOption(option);

@@ -2,6 +2,7 @@ import {createTestApp} from './browser-fixture.mjs';
 const testApp=await createTestApp();
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
+import {formulaLibrary} from '../public/formula-library.js';
 const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL||'msedge',headless:true});
 const context=await browser.newContext({viewport:{width:1536,height:1100}}),page=await context.newPage(),errors=[];
 page.on('pageerror',e=>errors.push(e.message));
@@ -9,8 +10,10 @@ const dimension=async(index,value)=>page.locator(`[data-dimension="${index}"]`).
 try{
   await testApp.login(page,'teacher');
   await page.goto(testApp.base+'/#formulas');await page.locator('.atlas-list').waitFor({state:'attached'});
+  await page.locator('[data-grade]').selectOption('all');
+  await page.locator('[data-layout="table"]').click();
   await page.locator('.atlas-scene .formula-tile').first().waitFor();await page.waitForTimeout(1400);
-  assert.equal(await page.locator('.atlas-scene .formula-tile').count(),18);
+  assert.equal(await page.locator('.atlas-scene .formula-tile').count(),Math.min(6,formulaLibrary.length));
   await page.screenshot({path:'artifacts/formula-atlas-table.png',fullPage:true});
   const before=await page.locator('.atlas-scene .formula-tile').first().getAttribute('style');
   await page.locator('[data-layout="sphere"]').click();await page.waitForTimeout(1400);
@@ -19,7 +22,7 @@ try{
   await page.locator('[data-layout="helix"]').click();await page.waitForTimeout(1300);
   await page.screenshot({path:'artifacts/formula-atlas-helix.png',fullPage:true});
   await page.locator('[data-layout="table"]').click();await page.waitForTimeout(1400);
-  await page.locator('.atlas-scene [data-open-formula="formula-10"]').click();
+  await page.locator('[data-layout="list"]').click();await page.locator('.atlas-list [data-open-formula="formula-10"]').click();
   await page.locator('.formula-dialog[open]').waitFor();
   assert.match(await page.locator('.cannot-use').textContent(),/chưa có căn cứ tam giác vuông/);
   await dimension(0,6);await dimension(1,8);
@@ -30,7 +33,7 @@ try{
   await page.screenshot({path:'artifacts/formula-detail-pythagoras.png'});
   await page.keyboard.press('Escape');assert.equal(await page.locator('.formula-dialog[open]').count(),0);
   await page.locator('[data-layout="list"]').click();
-  await page.locator('[data-group="geometry"]').click();assert.equal(await page.locator('.atlas-list .formula-tile:not([hidden])').count(),7);
+  await page.locator('[data-group="geometry"]').click();assert.equal(await page.locator('.atlas-list .formula-tile:not([hidden])').count(),formulaLibrary.filter(f=>f.group==='geometry').length);
   for(const [id,expected] of [[12,'24'],[13,'12'],[14,'9'],[15,'72'],[16,'70']]){
     await page.locator(`.atlas-list [data-open-formula="formula-${id}"]`).click();
     assert.match(await page.locator('.geometry-result annotation').textContent(),new RegExp(expected));

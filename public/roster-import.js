@@ -16,13 +16,13 @@ export function mountRoster(container,{request,auth,onCreated}){
        const confirm=ev.currentTarget;confirm.disabled=true;status.textContent='Đang tạo tài khoản…';
        try{
          const created=await request('/api/roster/commit','POST',{id:token},120000);
-         form.hidden=true;preview.innerHTML='<button class="btn" id="roster-download">Tải danh sách tài khoản (.csv)</button> <button class="btn secondary" id="roster-open">Mở lớp vừa tạo</button>';
-         status.textContent=`Đã tạo lớp với ${created.count} học sinh. Tải và lưu danh sách tài khoản trước khi rời trang; file chứa mật khẩu, chỉ bàn giao cho đúng gia đình. Chưa gửi email tự động.`;
+         form.hidden=true;preview.innerHTML=`<div class="notice"><strong>Lớp ${esc(created.className)} · ${created.count} học sinh</strong><p>File Excel gồm tài khoản và mật khẩu học sinh, phụ huynh trên cùng một dòng để đối chiếu. Phụ huynh đã có tài khoản tiếp tục dùng mật khẩu hiện tại.</p><button class="btn" id="roster-download">Tải lại file tài khoản (.xlsx)</button> <button class="btn secondary" id="roster-open">Mở lớp vừa tạo</button></div>`;
+         status.textContent=`Đã tạo lớp thành công. File tài khoản đang được tải xuống; nếu chưa thấy, bấm “Tải lại file tài khoản”. Hãy lưu file trước khi rời trang và gửi từng gia đình đúng dòng tài khoản của họ.`;
          preview.querySelector('#roster-download').onclick=()=>{
-           const rows=[['Tên học sinh','Mã học sinh / tên đăng nhập','Mật khẩu học sinh','Tên phụ huynh','Email phụ huynh','Tên đăng nhập phụ huynh','Mật khẩu phụ huynh'],...created.credentials];
-           const csv='\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v).replace(/^[=+@\-\t\r]/,"'$&").replace(/"/g,'""')+'"').join(',')).join('\r\n');
-           const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='tai-khoan-lop.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+           const bytes=Uint8Array.from(atob(created.file.base64),c=>c.charCodeAt(0));
+           const url=URL.createObjectURL(new Blob([bytes],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'})),a=document.createElement('a');a.href=url;a.download=created.file.filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
          };
+         preview.querySelector('#roster-download').click();
          preview.querySelector('#roster-open').onclick=async()=>{try{const data=await request('/api/workspace');Object.assign(auth,{user:data.user,students:data.students,studentId:data.studentId});await onCreated(created.classId);}catch(error){status.textContent=error.message;}};
        }catch(error){status.textContent=error.message;confirm.disabled=false;}
      });

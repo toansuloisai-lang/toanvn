@@ -2,6 +2,7 @@ import {createTestApp} from './browser-fixture.mjs';
 const testApp=await createTestApp({grade:9});
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
+import {formulasForGrade} from '../public/formula-library.js';
 const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL||'msedge',headless:true});
 const context=await browser.newContext({viewport:{width:1366,height:900}});
 const page=await context.newPage();const errors=[];
@@ -11,7 +12,7 @@ try{
   await page.route('**/api/status',route=>route.fulfill({json:{ai:true,model:'mock'}}));
   await page.route('**/api/explain',route=>route.fulfill({json:{source:'gemini',feedback:String.raw`Em đã biết trừ hai vế. Kiểm chứng: \(\frac{9}{3}+2=5\). Căn ví dụ: \(\sqrt{9}=3\). Hệ: \[\begin{cases}x+y=5\\x-y=1\end{cases}\] <img src=x onerror=alert(1)>`,needsTeacher:true}}));
   await page.goto(testApp.base+'/#formulas');await page.locator('.atlas-list').waitFor({state:'attached'});
-  assert.equal(await page.locator('.atlas-list .formula-item').count(),6);
+  assert.equal(await page.locator('.atlas-list .formula-item').count(),formulasForGrade(9).length);
   assert.equal(await page.locator('.math-fallback, .katex-error').count(),0);
   assert.ok(await page.locator('mfrac').count()>0);assert.ok(await page.locator('msqrt').count()>0);assert.ok(await page.locator('mtable').count()>0);
   await page.evaluate(async()=>{await document.fonts.load('16px KaTeX_Main');await document.fonts.ready;});

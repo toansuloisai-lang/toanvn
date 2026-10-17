@@ -1,10 +1,12 @@
+import {mountClassAssessments,assessmentBreadcrumb} from './class-assessments.js';
 import {promptHTML,richMath} from './math.js';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const normalize=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
-export async function mountTeacherExam(root,{request}){
+export async function mountTeacherExam(root,{request,classId}){
   const host=root.querySelector('#teacher-exam-builder');if(!host)return;
   try{
-    const data=await request('/api/learning/class-report');if(!host.isConnected)return;
+    if(!classId){await mountClassAssessments(host,{request,kind:'exams',createIntent:true,createPath:'teacher-library/assign'});return;}
+    const data=await request('/api/learning/class-report?classId='+encodeURIComponent(classId));data.classes=data.classes.filter(c=>c.id===classId);if(!data.classes.length)throw Error('Không tìm thấy lớp học.');if(!host.isConnected)return;
     if(!data.students.length){host.innerHTML='<section class="tw-panel tw-empty"><h2>Chưa có học sinh để giao bài</h2><p>Thêm lớp hoặc nhờ quản trị liên kết học sinh trước khi tạo bộ câu hỏi.</p><a class="btn" href="#learning/classes">Mở lớp học của tôi →</a></section>';return;}
     const due=new Date(Date.now()+7*86400000+7*3600000).toISOString().slice(0,10);
     host.innerHTML=`<ol class="tw-steps" aria-label="Các bước tạo đề"><li aria-current="step"><b>1</b>Chọn lớp & câu hỏi</li><li><b>2</b>Xem lại bộ đề</li><li><b>3</b>Giao cho học sinh</li></ol><p id="tw-exam-status" class="tw-status" role="status"></p>
@@ -40,10 +42,10 @@ export async function mountTeacherExam(root,{request}){
       $('#tw-edit-exam').onclick=()=>{form.hidden=false;review.hidden=true;steps[1].removeAttribute('aria-current');steps[0].setAttribute('aria-current','step');};
       $('#tw-publish-exam').onclick=async e=>{
         e.target.disabled=true;$('#tw-edit-exam').disabled=true;
-        try{const result=await request('/api/learning/assign','POST',payload);if(!host.isConnected)return;delete host.dataset.uploadDirty;host.innerHTML=`<section class="tw-panel tw-empty"><span class="badge">ĐÃ GIAO THÀNH CÔNG</span><h2>${esc(payload.title)}</h2><p>${selected.size} câu hỏi đã được giao cho ${result.students} học sinh.<br>Học sinh có thể mở nhiệm vụ trên ứng dụng để làm bài.</p><div class="button-row"><a class="btn" href="#learning/assignments">Xem bài đã giao</a><button class="btn secondary" id="tw-new-exam">Tạo bộ câu hỏi khác</button></div></section>`;$('#tw-new-exam').onclick=()=>mountTeacherExam(root,{request});}
+        try{const result=await request('/api/learning/assign','POST',payload);if(!host.isConnected)return;delete host.dataset.uploadDirty;host.innerHTML=`<section class="tw-panel tw-empty"><span class="badge">ĐÃ GIAO THÀNH CÔNG</span><h2>${esc(payload.title)}</h2><p>${selected.size} câu hỏi đã được giao cho ${result.students} học sinh.<br>Học sinh có thể mở nhiệm vụ trên ứng dụng để làm bài.</p><div class="button-row"><a class="btn" href="#learning/class/${esc(classId)}">Xem bài đã giao</a><button class="btn secondary" id="tw-new-exam">Tạo bộ câu hỏi khác</button></div></section>`;$('#tw-new-exam').onclick=()=>mountTeacherExam(root,{request,classId});}
         catch(error){if(host.isConnected){status.textContent=error.message;e.target.disabled=false;$('#tw-edit-exam').disabled=false;}}
       };
     });
-    bank();summary();
-  }catch(error){if(host.isConnected){host.innerHTML=`<section class="tw-panel"><p role="alert">${esc(error.message)}</p><button class="btn" id="tw-exam-retry">Tải lại danh sách</button></section>`;host.querySelector('#tw-exam-retry').onclick=()=>mountTeacherExam(root,{request});}}
+    recipient.value='class:'+classId;recipient.onchange();assessmentBreadcrumb(host,{kind:'exams',classId,className:data.classes[0].name,title:'Giao bài luyện tập'});
+  }catch(error){if(host.isConnected){host.innerHTML=`<section class="tw-panel"><p role="alert">${esc(error.message)}</p><button class="btn" id="tw-exam-retry">Tải lại danh sách</button></section>`;host.querySelector('#tw-exam-retry').onclick=()=>mountTeacherExam(root,{request,classId});}}
 }

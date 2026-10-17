@@ -1,11 +1,12 @@
+import {mountClassAssessments,assessmentBreadcrumb,enhanceAssessmentDetail} from './class-assessments.js';
 import {mountExamBuilder,mountAssessmentManagement} from './exam-builder.js';
 import {richMath} from './math.js';
 import {mountKnowledge} from './knowledge-view.js';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const letter=i=>Number.isInteger(i)?'ABCD'[i]:'Chưa chọn';
-export function mountTimedExams(root,{request,role,id}){
+export function mountTimedExams(root,{request,role,id,classId}){
   root.innerHTML='<div id="timed-exams"><section class="card">Đang tải đề thi…</section></div>';
-  const host=root.querySelector('#timed-exams');let stopped=false,busy=false,data=null,timer=null,poll=null,baseTime=0,baseClock=0,finishing=false;
+  const detailState={};const host=root.querySelector('#timed-exams');let stopped=false,busy=false,data=null,timer=null,poll=null,baseTime=0,baseClock=0,finishing=false;
   const alive=()=>!stopped&&host.isConnected;
   const url=()=>'/api/exams/'+encodeURIComponent(id);
   const setData=value=>{data=value;baseTime=value.serverNow;baseClock=performance.now();};
@@ -54,13 +55,14 @@ export function mountTimedExams(root,{request,role,id}){
   function dispose(){if(stopped)return;stopped=true;clearInterval(timer);clearInterval(poll);window.removeEventListener('online',refresh);window.removeEventListener('focus',refresh);window.removeEventListener('beforeunload',unload);}
   async function load(){
     try{
-      if(id==='create'&&role==='teacher'){await mountExamBuilder(host,request);return;}
+      if(role==='teacher'&&(!id||id==='class'||id==='create'&&!classId)){await mountClassAssessments(host,{request,kind:'exams',classId:id==='class'?classId:undefined,createIntent:id==='create'});return;}
+      if(id==='create'&&role==='teacher'){await mountExamBuilder(host,request,{classId});return;}
       if(!id){const response=await request('/api/exams');if(!alive())return;host.innerHTML=`<h1>${role==='teacher'?'Đề thi & kết quả lớp':'Thi trắc nghiệm'}</h1>${role==='teacher'?'<a class="btn" href="#exams/create">Tạo đề trắc nghiệm</a>':''}<p>Mỗi đề có thời gian riêng; điểm thi được theo dõi tại đây.</p>${response.exams.map(e=>`<section class="card"><h2>${esc(e.title)}</h2><p>Lớp ${esc(e.className)} · ${e.questionCount} câu · ${e.durationMinutes} phút</p><a class="btn" href="#exams/${esc(e.id)}">${role==='teacher'?'Xem đề và kết quả':e.attempt?.submittedAt?`Xem kết quả · ${e.attempt.score}/10`:e.attempt?'Tiếp tục làm bài':'Mở đề thi'}</a></section>`).join('')||'<section class="card">Chưa có đề thi được giao.</section>'}`;return;}
       if(role==='teacher'){
         const r=await request(url()+'/results');if(!alive())return;
-        host.innerHTML=`<a href="#exams">← Danh sách đề thi</a><h1>${esc(r.exam.title)}</h1><p>Lớp ${esc(r.exam.className)} · ${r.exam.questionCount} câu · ${r.exam.durationMinutes} phút</p><button class="btn secondary" id="exam-refresh-results">Cập nhật kết quả</button><section class="card table-wrap"><table><thead><tr><th>Học sinh</th><th>Trạng thái</th><th>Đúng</th><th>Điểm /10</th></tr></thead><tbody>${r.students.map(s=>`<tr><td><a href="#knowledge/${esc(s.studentId)}">${esc(s.name)}</a></td><td>${s.attempt?.submittedAt?(s.attempt.reason==='timeout'?'Hết giờ, đã tự nộp':'Đã nộp'):s.attempt?'Đang làm':'Chưa bắt đầu'}</td><td>${s.attempt?.submittedAt?s.attempt.correct+'/'+r.exam.questionCount:'—'}</td><td>${s.attempt?.submittedAt?s.attempt.score:'—'}</td></tr>`).join('')}</tbody></table></section><details class="card"><summary>Xem câu hỏi, đáp án và nguồn</summary>${r.exam.questions.map((q,i)=>`<h3>Câu ${i+1}. ${richMath(q.prompt)}</h3><p>${q.choices.map((c,j)=>`${letter(j)}. ${richMath(c)}`).join('<br>')}</p><p><strong>Đáp án ${letter(q.correctIndex)}.</strong> ${richMath(q.explanation)}</p><p class="hint">${esc(q.source)}</p>`).join('')}</details>`;
+        host.innerHTML=`<a href="#exams">← Danh sách đề thi</a><h1>${esc(r.exam.title)}</h1><p>Lớp ${esc(r.exam.className)} · ${r.exam.questionCount} câu · ${r.exam.durationMinutes} phút</p><button class="btn secondary" id="exam-refresh-results">Cập nhật kết quả</button><section class="card table-wrap"><table><thead><tr><th>Học sinh</th><th>Trạng thái</th><th>Đúng</th><th>Điểm /10</th></tr></thead><tbody>${r.students.map(s=>`<tr><td><a href="#learning/${esc(s.studentId)}/${esc(r.exam.classId)}">${esc(s.name)}</a></td><td>${s.attempt?.submittedAt?(s.attempt.reason==='timeout'?'Hết giờ, đã tự nộp':'Đã nộp'):s.attempt?'Đang làm':'Chưa bắt đầu'}</td><td>${s.attempt?.submittedAt?s.attempt.correct+'/'+r.exam.questionCount:'—'}</td><td>${s.attempt?.submittedAt?s.attempt.score:'—'}</td></tr>`).join('')}</tbody></table></section><details class="card"><summary>Xem câu hỏi, đáp án và nguồn</summary>${r.exam.questions.map((q,i)=>`<h3>Câu ${i+1}. ${richMath(q.prompt)}</h3><p>${q.choices.map((c,j)=>`${letter(j)}. ${richMath(c)}`).join('<br>')}</p><p><strong>Đáp án ${letter(q.correctIndex)}.</strong> ${richMath(q.explanation)}</p><p class="hint">${esc(q.source)}</p>`).join('')}</details>`;
         if(r.testAttempts?.length)host.insertAdjacentHTML('beforeend',`<details class="card"><summary>Lịch sử kiểm tra hệ thống: ${r.testAttempts.length} lượt — không tính vào kết quả học sinh</summary><p>Những lượt dưới đây do hệ thống chạy thử, không phản ánh năng lực học sinh.</p>${r.testAttempts.map(a=>`<p>${esc(a.name)} · ${esc(a.score)}/10 · ${esc(new Date(a.submittedAt).toLocaleString('vi-VN'))}</p>`).join('')}</details>`);
-        mountAssessmentManagement(host,{request,kind:'exams',data:r.exam,reload:load});host.querySelector('#exam-refresh-results').onclick=load;return;
+        host.classList.add('assessment-detail');host.querySelector('a[href="#exams"]')?.remove();assessmentBreadcrumb(host,{kind:'exams',classId:r.exam.classId,className:r.exam.className,title:r.exam.title});mountAssessmentManagement(host,{request,kind:'exams',data:r.exam,reload:load});enhanceAssessmentDetail(host,{kind:'exams',data:r.exam,students:r.students,state:detailState});host.querySelector('#exam-refresh-results').onclick=load;return;
       }
       const d=await request(url());if(!alive())return;setData(d);render();
       timer=setInterval(tick,250);poll=setInterval(refresh,15000);window.addEventListener('online',refresh);window.addEventListener('focus',refresh);window.addEventListener('beforeunload',unload);

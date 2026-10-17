@@ -6,6 +6,7 @@ export async function createTestApp({grade=7}={}){
   process.env.MATH_DB_PATH=path.join(dir,'accounts.json');
   process.env.MATH_STORAGE='json';
   process.env.GEMINI_API_KEY='test-key-never-use-for-live-api';
+  process.env.GEMINI_API_KEYS='test-key-never-use-for-live-api';
   const {server,accounts}=await import('../server.mjs');
   const password='Isolated-test-password-123!';
   const student=accounts.createUser({username:'student',password,name:'Nguyễn Minh',role:'student'});

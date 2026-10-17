@@ -23,7 +23,7 @@ test('all authored questions, wrong solutions, answers and reference formulas re
     assert.doesNotMatch(math(f.tex),/math-fallback|katex-error/,f.title);
     assert.doesNotMatch(math(f.example),/math-fallback|katex-error/,f.title);
     for(const [,tex] of f.steps)assert.doesNotMatch(math(tex),/math-fallback|katex-error/,f.title+' worked example');
-    assert.doesNotMatch(math(f.counter[1]),/math-fallback|katex-error/,f.title+' counterexample');
+    if(f.counter)assert.doesNotMatch(math(f.counter[1]),/math-fallback|katex-error/,f.title+' counterexample');
     assert.ok(f.use.length&&f.avoid.length&&f.check.length===3);
   }
 });

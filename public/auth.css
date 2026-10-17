@@ -20,3 +20,4 @@
 #learning-hub #learning-status { position: sticky; top: 8px; z-index: 5; background: #fff; color: #174b82; }
 #learning-hub #learning-status:not(:empty) { border: 1px solid #aac7e7; padding: 16px; border-radius: 10px; }
 #working { width: 100%; min-height: 120px; }
+.login-password-wrap{position:relative}.auth-screen .login-card .login-password-wrap .input{padding-right:54px}.auth-screen .login-card .login-password-toggle{position:absolute;right:4px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:0;background:transparent;color:#174f3f;cursor:pointer}.auth-screen .login-card .login-password-toggle:hover{background:#12694f14}.auth-screen .login-card .login-password-toggle:focus-visible{outline:2px solid #12694f;outline-offset:-3px}

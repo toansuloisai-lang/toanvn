@@ -17,7 +17,7 @@ export function drawCompactReport(doc,{id,createdAt,teacher,teacherComment,repor
   l.newPage();l.section(2,'Tổng kết kiến thức');
   if(trial)l.note('Các mức màu dưới đây chỉ mô tả kết quả kiểm tra hệ thống, không kết luận điểm mạnh hoặc điểm yếu của học sinh.');
   l.note('Xanh: từ 80% và ít nhất 3 câu; vàng: đang hình thành hoặc chưa đủ mẫu; đỏ: dưới 60% với ít nhất 3 câu. Kết quả sửa câu cũ không thay điểm đúng từ đầu.');
-  l.bars(k.skills.map(s=>({label:s.name,value:s.total?s.correct/s.total*100:0,detail:`${s.correct}/${s.total} câu`,color:s.total<3?'#D9AA36':s.correct/s.total>=.8?'#268160':s.correct/s.total<.6?'#C44343':'#D9AA36'})));
+  l.bars(k.skills.map(s=>({label:s.name,value:s.total?s.correct/s.total*100:0,detail:`${s.correct}/${s.total} câu`,color:s.total<3?'#E6A000':s.correct/s.total>=.8?'#00964F':s.correct/s.total<.6?'#DC293D':'#E6A000'})));
   l.newPage();l.section(3,'Bảng điểm các đề đã nộp');
   l.table(['Đề','Điểm /10','Đúng / tổng','Thời lượng'],m.exams.map(e=>[e.title,e.score,`${e.questions.filter(q=>q.correct).length}/${e.questions.length}`,`${Math.round(e.elapsedMs/6000)/10} phút`]),[.48,.14,.18,.2]);
   if(m.exams.length)l.note(`Điểm trung bình thi trắc nghiệm: ${(m.exams.reduce((n,e)=>n+e.score,0)/m.exams.length).toFixed(1)}/10. Thời lượng là thời gian trôi qua, không phải thời gian tập trung.`);

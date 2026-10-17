@@ -18,7 +18,7 @@ export function validateSnapshot(db){
     if(u.role==='student'&&(!db.states[u.id]||!Array.isArray(db.states[u.id].attempts)))throw Error('Missing student learning state.');
   }
   for(const lesson of db.uploadedLessons||[])if(!safeKey(lesson.fileKey))throw Error('Unsafe attachment filename.');
-  for(const submission of db.essaySubmissions||[])for(const photo of submission.images||[])if(!safeKey(photo.fileKey))throw Error('Unsafe essay image filename.');
+  for(const submission of [...(db.essaySubmissions||[]),...(db.essayAssignments||[]).map(a=>({images:a.examImages}))])for(const photo of submission.images||[])if(!safeKey(photo.fileKey))throw Error('Unsafe essay image filename.');
 }
 
 export function summarize(db,files){
@@ -36,11 +36,13 @@ export async function readSource(filename){
     files.push([entry.name,await readFile(path.join(folder,entry.name))]);
   }
   const byKey=new Map(files);
+  const blobs=[...Object.values(db.parentReports||{}).flatMap(d=>(d.recipients||[]).map(r=>r.pdf).filter(Boolean)),...(db.parentMail||[]).flatMap(d=>(d.recipients||[]).map(r=>r.pdf).filter(Boolean)),...(db.tutorThreads||[]).flatMap(t=>t.messages.flatMap(m=>m.images||[]))];
+  for(const item of blobs)if(item.fileKey){const content=byKey.get(item.fileKey);if(!safeKey(item.fileKey)||!content||item.size!==content.length||item.sha256!==digest(content))throw Error('A report or chat attachment is missing or damaged. Export stopped.');}
   for(const lesson of db.uploadedLessons||[]){
     const content=byKey.get(lesson.fileKey);
     if(!content||content.length!==lesson.size||digest(content)!==lesson.sha256)throw Error('A referenced attachment is missing or damaged. Export stopped.');
   }
-  for(const submission of db.essaySubmissions||[])for(const photo of submission.images||[]){const content=byKey.get(photo.fileKey);if(!content||photo.size!==undefined&&content.length!==photo.size||photo.sha256&&digest(content)!==photo.sha256)throw Error('An essay image is missing or damaged. Export stopped.');}
+  for(const submission of [...(db.essaySubmissions||[]),...(db.essayAssignments||[]).map(a=>({images:a.examImages}))])for(const photo of submission.images||[]){const content=byKey.get(photo.fileKey);if(!content||photo.size!==undefined&&content.length!==photo.size||photo.sha256&&digest(content)!==photo.sha256)throw Error('An essay image is missing or damaged. Export stopped.');}
   if(!(await readFile(filename)).equals(raw))throw Error('Source changed during export. Stop the local server and try again.');
   return {raw,db,files};
 }

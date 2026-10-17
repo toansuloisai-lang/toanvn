@@ -26,7 +26,7 @@ try{
  await page.context().request.put(app.base+'/api/student/state',{data});await page.goto(app.base+'/#home');await page.waitForFunction(()=>document.querySelector('.subject-row small')?.textContent==='3/3');
  // Reproduce an older catalog receiving an exercise it does not know.
  await page.route('**/api/workspace*',async route=>{const response=await route.fetch(),body=await response.json();body.state.attempts.push({id:randomUUID(),exerciseId:'future-lesson-1',skill:'future',time:now,initialCorrect:false,corrected:true,explanation:'Lịch sử bài thuộc phiên bản khác.'});body.state.reviews['future-lesson-1']={due:now,interval:0};await route.fulfill({json:body});});
- await page.goto(app.base+'/#formulas');await page.goto(app.base+'/#notebook');await page.getByText('Lịch sử bài thuộc phiên bản khác.',{exact:false}).waitFor();assert.equal(await page.locator('.formula-atlas').count(),0);
+ await page.goto(app.base+'/#formulas');await page.goto(app.base+'/#notebook');await page.locator('.archived-history summary').click();await page.getByText('Lịch sử bài thuộc phiên bản khác.',{exact:false}).waitFor();assert.equal(await page.locator('.formula-atlas').count(),0);
  await page.screenshot({path:'artifacts/notebook-routing-fixed.png',fullPage:true});await page.unroute('**/api/workspace*');
  await page.goto(app.base+'/#home');await page.screenshot({path:'artifacts/dashboard-stats-fixed.png',fullPage:true});
  // An update is announced without dropping typed input.
@@ -34,6 +34,6 @@ try{
  await page.route('**/api/version',r=>r.fulfill({json:{version:'test-next-build'}}));await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await page.locator('#app-update-banner').waitFor();assert.equal(await page.locator('#profile-name').inputValue(),'Bản nháp chưa lưu');
  await page.unroute('**/api/version');await page.locator('#logout').click();await page.locator('#login-form').waitFor();await app.login(page,'teacher');await page.reload();await page.goto(app.base+'/#teacher');await page.locator('#assignment-form').waitFor();
  await page.locator('#assignment-title').fill('Nhiệm vụ căn bậc hai');await page.locator('#assignment-skill').selectOption('roots9');await page.locator('#assignment-due').fill('2026-10-01');await page.locator('#assignment-form button').click();
- await page.locator('#main a[href^="#learning/"]').first().click();await page.getByRole('heading',{name:'Hồ sơ lỗi và khắc phục',exact:true}).waitFor();await page.getByText('Nhiệm vụ căn bậc hai',{exact:false}).waitFor();assert.equal(await page.locator('.formula-atlas').count(),0);
+ await page.locator('#main a[href^="#learning/"]').first().click();await page.locator('[data-report-tab="scores"]').click();await page.getByText('Nhiệm vụ căn bậc hai',{exact:false}).waitFor();assert.equal(await page.locator('.formula-atlas').count(),0);
  assert.deepEqual(errors,[]);console.log('PASS: stats agree, completion vs accuracy, all navigation, new progress refresh, unknown historic exercise, safe update notice and teacher assignment target');
 }finally{await browser.close();await app.close();}

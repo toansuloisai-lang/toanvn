@@ -7,7 +7,7 @@ import net from 'node:net';
 import EmbeddedPostgres from 'embedded-postgres';
 import {createStore} from '../auth-store.mjs';
 import {readSource,prepareBundle,readBundle} from '../database/migration.mjs';
-import {connectDatabase,importSnapshot,verifySnapshot,loadSnapshot,saveSnapshot} from '../database/postgres.mjs';
+import {connectDatabase,importSnapshot,verifySnapshot,loadSnapshot,saveSnapshot,replaceSnapshot} from '../database/postgres.mjs';
 import {createPostgresStorage} from '../database/storage.mjs';
 import {pdfFixture,docxFixture} from './document-fixtures.mjs';
 
@@ -36,6 +36,11 @@ try{
   assert.deepEqual((await readBundle(bundle)).db,JSON.parse(await readFile(file,'utf8')));
   await importSnapshot(client,source.db,source.files);
   await verifySnapshot(client,source.db,source.files);
+  const revision=(await loadSnapshot(client)).revision;
+  await assert.rejects(replaceSnapshot(client,'0',source.db,source.files),/changed after backup/);
+  await assert.rejects(replaceSnapshot(client,revision,source.db,[...source.files,...source.files]),{code:'23505'});
+  assert.equal((await loadSnapshot(client)).revision,revision);await verifySnapshot(client,source.db,source.files);
+  await replaceSnapshot(client,revision,source.db,source.files);await verifySnapshot(client,source.db,source.files);
   await assert.rejects(importSnapshot(client,source.db,source.files),/already contains data/);
   await verifySnapshot(client,source.db,source.files);
   for(const role of ['anon','authenticated']){

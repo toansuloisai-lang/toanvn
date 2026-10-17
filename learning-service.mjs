@@ -1,3 +1,5 @@
+import {atomic} from './database/atomic.mjs';
+import {studentAnalytics} from './public/student-analytics.js';
 import {assessmentRollup,mergeAssessmentReport,realRow} from './assessment-rollup.mjs';
 import {randomUUID} from 'node:crypto';
 import {studentCatalog,teacherCatalog,validDue} from './learning-access.mjs';
@@ -15,9 +17,10 @@ export function createLearningService({db,persist,student}){
  function requireTeacher(user){if(user.role!=='teacher')fail(403,'Chỉ giáo viên được dùng chức năng này.');}
  function catalog(id){return studentCatalog(db,id);}
  function diagnoses(id){return db.diagnoses[id]||{};}
- function revision(id){const state=db.states[id];return JSON.stringify([assessmentRollup(db,id),state.profile?.grade||7,state.attempts.length,state.assignments.map(a=>[a.id,a.created]),catalog(id).map(e=>e.id),state.attempts.reduce((n,a)=>Math.max(n,a.completed||0),0),Object.values(diagnoses(id)).reduce((n,d)=>Math.max(n,d.updatedAt||0),0)]);}
+ function insightKey(user,id){return user.role+':'+user.id+':'+id;}
+ function revision(id,user){const state=db.states[id];return JSON.stringify([3,user?.role,user?.id,assessmentRollup(db,id,{teacherId:user?.role==='teacher'?user.id:undefined}),state.profile?.grade||7,state.attempts.length,state.assignments.map(a=>[a.id,a.created]),catalog(id).map(e=>e.id),state.attempts.reduce((n,a)=>Math.max(n,a.completed||0),0),Object.values(diagnoses(id)).reduce((n,d)=>Math.max(n,d.updatedAt||0),0)]);}
  function reportingState(id,user){const state=db.states[id];return {...state,attempts:[...state.attempts.filter(realRow),...assessmentRollup(db,id,{teacherId:user?.role==='teacher'?user.id:undefined}).samples]};}
- function report(user,id){const target=student(user,id),state={...db.states[target],attempts:db.states[target].attempts.filter(realRow)},list=catalog(target),grade=Number(state.profile?.grade||7),result=personalReport(user.role==='teacher'?{...state,assignments:state.assignments.filter(a=>a.teacherId===user.id)}:state,list,diagnoses(target));result.bySkill=result.bySkill.map(s=>({...s,name:skills.find(k=>k.id===s.skill)?.name||db.teacherContents.find(c=>'teacher-'+c.id===s.skill)?.topic||'Nội dung đã học'}));mergeAssessmentReport(result,assessmentRollup(db,target,{teacherId:user.role==='teacher'?user.id:undefined}));const insight=db.learningInsights[target];return{studentId:target,grade,...result,activities:activities.list(user,target),recommendations:recommend(state,user.role==='teacher'?teacherCatalog(db,user):list,diagnoses(target),grade),insight:insight?.revision===revision(target)?insight:null};}
+ function report(user,id){const target=student(user,id),state={...db.states[target],attempts:db.states[target].attempts.filter(realRow)},list=catalog(target),grade=Number(state.profile?.grade||7),result=personalReport(user.role==='teacher'?{...state,assignments:state.assignments.filter(a=>a.teacherId===user.id)}:state,list,diagnoses(target));result.bySkill=result.bySkill.map(s=>({...s,name:skills.find(k=>k.id===s.skill)?.name||db.teacherContents.find(c=>'teacher-'+c.id===s.skill)?.topic||'Nội dung đã học'}));const assessment=assessmentRollup(db,target,{teacherId:user.role==='teacher'?user.id:undefined});mergeAssessmentReport(result,assessment);const analytics=studentAnalytics(result,db.usage?.[target],[...state.attempts,...assessment.samples]);const insight=db.learningInsights[insightKey(user,target)];return{studentId:target,grade,...result,analytics,activities:activities.list(user,target),recommendations:recommend(state,user.role==='teacher'?teacherCatalog(db,user):list,diagnoses(target),grade),insight:insight?.revision===revision(target,user)?insight:null};}
  function classes(user){requireTeacher(user);return db.classes.filter(c=>c.teacherId===user.id).map(c=>({...c,studentIds:c.studentIds.filter(id=>user.studentIds.includes(id))}));}
  function createClass(user,input){
    requireTeacher(user);if(!text(input.name,80)||![6,7,8,9].includes(Number(input.grade))||!Array.isArray(input.studentIds)||!input.studentIds.length||input.studentIds.length>200)fail(400,'Nhập tên lớp, khối và chọn học sinh.');
@@ -56,15 +59,24 @@ export function createLearningService({db,persist,student}){
    const item={type:input.type,evidence:input.evidence,reason:input.reason,nextStep:input.nextStep,status:'confirmed',source:'teacher',teacherId:user.id,updatedAt:Date.now()};
    db.diagnoses[context.id]??={};db.diagnoses[context.id][context.attemptId]=item;persist();return item;
  }
+ function insightStudent(user,target,label){
+   const r=report(user,target),assessment=assessmentRollup(db,target,{teacherId:user.role==='teacher'?user.id:undefined});
+   const state=db.states[target],practice=new Map((state.attempts||[]).filter(realRow).map(a=>[a.id,a]));
+   const recent=[...r.evidence].sort((a,b)=>b.time-a.time).slice(0,18).map(a=>({kind:a.kind||'practice',topic:a.topic||a.skill,prompt:a.prompt||a.exercise?.prompt,answer:a.answer,correctAnswer:a.correctAnswer||a.exercise?.answer,solution:a.solution||a.exercise?.rule,working:a.working||practice.get(a.id)?.working||'',corrected:!!a.corrected,diagnosis:a.diagnosis}));
+   return {student:label,grade:r.grade,total:r.total,correct:r.correct,analytics:r.analytics,errors:r.errors.filter(e=>e.count).map(({attemptIds,...e})=>e),skills:r.bySkill.filter(s=>s.attempts>0),assignments:r.assignments.map(a=>({title:a.title,kind:a.kind||'practice',result:a.result,due:a.due})),pendingByKind:Object.fromEntries(['practice','exam','essay'].map(kind=>[kind,r.assignments.filter(a=>(a.kind||'practice')===kind&&!a.result.complete).length])),comparisons:r.comparisons,evidence:recent,assessments:{questions:assessment.samples.length,correct:assessment.samples.filter(a=>a.initialCorrect).length},activity:db.usage?.[target]?{totalMinutes:r.analytics.minutes,days:db.usage[target].days}:null};
+ }
  function insightContext(user,input){
    if(input.scope==='class'){
-     const r=classReport(user,input.classId);
-     return {scope:'class',students:r.students.map((s,i)=>({student:'HS '+(i+1),total:s.total,correct:s.correct,errors:s.errors.map(({attemptIds,...e})=>e),skills:s.bySkill})),candidates:r.catalog.map(e=>({id:e.id,skill:e.skill,prompt:e.prompt})).slice(0,100)};
+     requireTeacher(user);
+     const r=classReport(user,input.classId),group=classes(user).find(c=>c.id===input.classId);
+     return {scope:'class',className:group?.name||'Học sinh được phân công',studentCount:r.total,students:r.students.map((s,i)=>{const value=insightStudent(user,s.id,'HS '+(i+1));return {...value,evidence:value.evidence.slice(0,6)};}),candidates:r.catalog.filter(e=>!group||e.grades.includes(group.grade)).map(e=>({id:e.id,skill:e.skill,prompt:e.prompt})).slice(0,100)};
    }
-   const target=student(user,input.studentId),r=report(user,target);if(user.role==='parent')fail(403,'Phụ huynh chỉ xem báo cáo.');
-   return {scope:'student',studentId:target,revision:revision(target),grade:r.grade,errors:r.errors,skills:r.bySkill,comparisons:r.comparisons,candidates:r.recommendations};
+   const target=student(user,input.studentId);if(user.role==='parent')fail(403,'Phụ huynh chỉ xem báo cáo.');
+   const r=report(user,target);
+   return {scope:'student',studentId:target,revision:revision(target,user),...insightStudent(user,target,'Học sinh đang xem'),candidates:r.recommendations};
  }
- function saveInsight(user,input,result,expectedRevision){const id=student(user,input.studentId);if(expectedRevision!==revision(id))fail(409,'Dữ liệu học tập đã thay đổi trong lúc AI phân tích. Hãy tạo lại gợi ý.');db.learningInsights[id]={...result,revision:expectedRevision,updatedAt:Date.now()};persist();return db.learningInsights[id];}
+
+ function saveInsight(user,input,result,expectedRevision){const id=student(user,input.studentId);if(expectedRevision!==revision(id,user))fail(409,'Dữ liệu học tập đã thay đổi trong lúc AI phân tích. Hãy tạo lại gợi ý.');db.learningInsights[insightKey(user,id)]={...result,revision:expectedRevision,updatedAt:Date.now()};persist();return db.learningInsights[insightKey(user,id)];}
  function dashboard(user,{classId='',days=7}={}){
    requireTeacher(user);days=[7,30].includes(Number(days))?Number(days):7;
    const r=classReport(user,classId),now=Date.now(),selected=classes(user).find(c=>c.id===classId),sameGrade=selected?user.studentIds.filter(id=>Number(db.states[id].profile?.grade||7)===selected.grade):[];
@@ -91,5 +103,5 @@ export function createLearningService({db,persist,student}){
    const list=catalog(target).map(e=>({...e,topic:db.teacherContents.find(c=>c.id===e.id)?.topic||''}));
    return parentSummary({state:reportingState(target,user),catalog:[...list,...assessmentRollup(db,target).samples.map(a=>({id:a.exerciseId,prompt:a.prompt,topic:a.topic}))],report:report(user,target),child,children,days:input.days});
  }
- return {usage,activities,catalog,report,classes,createClass,classReport,assignSet,diagnoseContext,storeDiagnosis,reviewDiagnosis,insightContext,saveInsight,dashboard,parentDashboard};
+ return {usage,activities,catalog,report,classes,createClass:atomic(db,['classes'],createClass),classReport,assignSet:atomic(db,['states'],assignSet),diagnoseContext,storeDiagnosis:atomic(db,['diagnoses'],storeDiagnosis),reviewDiagnosis:atomic(db,['diagnoses'],reviewDiagnosis),insightContext,saveInsight:atomic(db,['learningInsights'],saveInsight),dashboard,parentDashboard};
 }

@@ -18,11 +18,11 @@ export function createEssayService({db,persist,writeImage,readImage,now=Date.now
     const students=teacher?db.users.filter(u=>u.role==='student'&&db.classes.find(c=>c.id===a.classId)?.studentIds.includes(u.id)&&user.studentIds.includes(u.id)).map(u=>({id:u.id,name:u.name})):[{id:user.id,name:user.name}];
     const submissions=db.essaySubmissions.filter(s=>realRow(s)&&s.assignmentId===id&&(teacher?user.studentIds.includes(s.studentId):s.studentId===user.id));
     const totals=students.map(st=>{let sum=0,latest=0,graded=0,submitted=0,reviewed=0,latestGraded=0,latestReviewed=0;for(const q of a.questions){const rows=submissions.filter(s=>s.studentId===st.id&&s.questionId===q.id).sort((x,y)=>x.revision-y.revision),first=rows[0],last=rows.at(-1);if(first)submitted++;const score=first?.review?.score??first?.ai?.score;if(score!=null){sum+=score;graded++;}if(first?.review)reviewed++;if(last?.review)latestReviewed++;if((last?.review?.score??last?.ai?.score)!=null)latestGraded++;latest+=last?.review?.score??last?.ai?.score??0;}return {...st,submitted,graded,reviewed,total:a.questions.length,score:graded===a.questions.length?Math.round(sum/a.questions.length*100)/100:null,latestScore:latestGraded===a.questions.length?Math.round(latest/a.questions.length*100)/100:null,complete:graded===a.questions.length,confirmed:reviewed===a.questions.length,latestConfirmed:latestReviewed===a.questions.length};});
-    return {...structuredClone(a),questions:a.questions.map(q=>teacher?structuredClone(q):{id:q.id,prompt:q.prompt,topic:q.topic,knowledge:q.knowledge,source:q.source,maxPoints:q.maxPoints}),submissions:submissions.map(safeSubmission),students:teacher?students:[],totals,startedAt:db.essayStarts.find(s=>realRow(s)&&s.assignmentId===id&&s.studentId===user.id)?.time||null};
+    return {...structuredClone(a),className:db.classes.find(c=>c.id===a.classId)?.name||'',questions:a.questions.map(q=>teacher?structuredClone(q):{id:q.id,prompt:q.prompt,topic:q.topic,knowledge:q.knowledge,source:q.source,maxPoints:q.maxPoints}),submissions:submissions.map(safeSubmission),students:teacher?students:[],totals,startedAt:db.essayStarts.find(s=>realRow(s)&&s.assignmentId===id&&s.studentId===user.id)?.time||null};
   }
-  function list(user){return db.essayAssignments.filter(a=>user.role==='teacher'?a.teacherId===user.id:user.role==='student'&&linked(user,a)).map(a=>({id:a.id,title:a.title,grade:a.grade,classId:a.classId,className:db.classes.find(c=>c.id===a.classId)?.name||'',due:a.due,withdrawn:!!a.withdrawn,questionCount:a.questions.length,submittedQuestions:new Set(db.essaySubmissions.filter(s=>realRow(s)&&s.assignmentId===a.id&&s.studentId===user.id).map(s=>s.questionId)).size}));}
+  function list(user){return db.essayAssignments.filter(a=>user.role==='teacher'?a.teacherId===user.id:user.role==='student'&&linked(user,a)).map(a=>({id:a.id,title:a.title,grade:a.grade,mode:a.mode||'questions',pageCount:a.examImages?.length||0,classId:a.classId,className:db.classes.find(c=>c.id===a.classId)?.name||'',due:a.due,withdrawn:!!a.withdrawn,questionCount:a.questions.length,submittedQuestions:new Set(db.essaySubmissions.filter(s=>realRow(s)&&s.assignmentId===a.id&&s.studentId===user.id).map(s=>s.questionId)).size}));}
   function bank(user){if(user.role!=='teacher')fail(403,'Chỉ giáo viên được xem ngân hàng tự luận.');return {questions:structuredClone(db.essayBank),classes:db.classes.filter(c=>c.teacherId===user.id).map(c=>({id:c.id,name:c.name,grade:c.grade}))};}
-  function publish(user,input){
+  function publish(user,input,photoExam){
     if(user.role!=='teacher')fail(403,'Chỉ giáo viên được giao tự luận.');
     const c=db.classes.find(c=>c.id===input.classId&&c.teacherId===user.id);
     if(!c||typeof input.title!=='string'||!input.title.trim()||input.title.length>120||!/^\d{4}-\d{2}-\d{2}$/.test(input.due)||!Number.isFinite(Date.parse(input.due))||new Date(input.due).toISOString().slice(0,10)!==input.due)fail(400,'Chọn lớp, tên đề và hạn nộp hợp lệ.');
@@ -38,8 +38,25 @@ export function createEssayService({db,persist,writeImage,readImage,now=Date.now
       q.maxPoints=q.rubric.reduce((s,r)=>s+r.points,0);if(Math.abs(q.maxPoints-10)>0.001)fail(400,'Mỗi câu tự luận dùng thang 10; tổng rubric phải bằng 10.');return q;
     });
     if(!questions.length||questions.length>10)fail(400,'Mỗi đề tự luận gồm 1–10 câu.');
-    return tx(()=>{const a={id:randomUUID(),title:input.title.trim(),classId:c.id,teacherId:user.id,grade:c.grade,due:input.due,createdAt:now(),questions};db.essayAssignments.push(a);return {id:a.id};});
+    return tx(()=>{const a={id:randomUUID(),title:input.title.trim(),classId:c.id,teacherId:user.id,grade:c.grade,due:input.due,createdAt:now(),questions,...(photoExam?{mode:'images',examImages:photoExam.images,allowResubmit:photoExam.allowResubmit}: {})};db.essayAssignments.push(a);return {id:a.id};});
   }
+  async function publishImages(user,input){
+    if(user.role!=='teacher')fail(403,'Chỉ giáo viên được tạo đề.');
+    if(!db.classes.some(c=>c.id===input.classId&&c.teacherId===user.id))fail(403,'Chọn lớp do bạn phụ trách.');
+    if(typeof input.title!=='string'||!input.title.trim()||input.title.length>120||!input.due||!validAssessmentDue(input.due))fail(400,'Nhập tên đề và hạn nộp hợp lệ.');
+    if(!Array.isArray(input.photos)||input.photos.length<1||input.photos.length>3)fail(400,'Tải từ 1 đến 3 ảnh đề, mỗi ảnh tối đa 4 MB.');
+    if(input.allowResubmit!==undefined&&typeof input.allowResubmit!=='boolean')fail(400,'Cài đặt nộp lại không hợp lệ.');
+    const normalized=[];
+    for(const photo of input.photos){
+      if(typeof photo?.base64!=='string'||photo.base64.length>6000000)fail(413,'Mỗi ảnh tối đa 4 MB.');const bytes=Buffer.from(photo.base64,'base64');
+      if(!bytes.length||bytes.length>4*1024*1024||bytes.toString('base64')!==photo.base64)fail(400,'Dữ liệu ảnh không hợp lệ.');
+      try{const image=sharp(bytes,{limitInputPixels:25000000,animated:false}),meta=await image.metadata();if(!['jpeg','png','webp'].includes(meta.format)||meta.pages>1)throw Error();normalized.push(await image.rotate().resize({width:2500,height:3500,fit:'inside',withoutEnlargement:true}).jpeg({quality:92}).toBuffer());}catch{fail(400,'Chọn ảnh JPG, PNG hoặc WebP, không quá 25 megapixel.');}
+    }
+    if(!db.classes.some(c=>c.id===input.classId&&c.teacherId===user.id))fail(403,'Bạn không còn phụ trách lớp này.');
+    const images=normalized.map(bytes=>{const fileKey=randomUUID()+'.jpg';writeImage(fileKey,bytes);return {fileKey,size:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')};});
+    return publish(user,{title:input.title,classId:input.classId,due:input.due,customQuestions:[{prompt:'Đọc đề trong ảnh đính kèm. Làm bài trên giấy, ghi rõ số câu và chụp đầy đủ bài làm để nộp.',topic:'Bài tự luận',knowledge:'Vận dụng kiến thức theo đề của giáo viên.',solution:'Giáo viên trực tiếp xem bài làm và chấm theo nội dung đề.',source:'Đề do giáo viên cung cấp',rubric:[{description:'Giáo viên chấm toàn bộ bài làm theo thang điểm 10.',points:10}]}]},{images,allowResubmit:input.allowResubmit!==false});
+  }
+  function examImage(user,id,index){const a=assignment(user,id),image=a.examImages?.[index];if(!image)fail(404,'Không tìm thấy ảnh đề.');return readImage(image.fileKey);}
   function start(user,id){if(user.role!=='student')fail(403,'Chỉ học sinh được bắt đầu bài.');const current=assignment(user,id);if(current.withdrawn)fail(409,'Giáo viên đã ngừng giao đề này.');if(!db.essayStarts.some(s=>realRow(s)&&s.assignmentId===id&&s.studentId===user.id))tx(()=>db.essayStarts.push({assignmentId:id,studentId:user.id,time:now()}));return details(user,id);}
   async function submit(user,id,input){
     if(user.role!=='student')fail(403,'Chỉ học sinh được nộp bài.');let a=assignment(user,id);if(a.withdrawn)fail(409,'Giáo viên đã ngừng giao đề này.');let q=a.questions.find(q=>q.id===input.questionId);
@@ -54,9 +71,10 @@ export function createEssayService({db,persist,writeImage,readImage,now=Date.now
       if(bytes.length>4*1024*1024||!bytes.length||bytes.toString('base64')!==photo.base64)fail(400,'Dữ liệu ảnh không hợp lệ.');
       try{const image=sharp(bytes,{limitInputPixels:25000000,animated:false});const meta=await image.metadata();if(!['jpeg','png','webp'].includes(meta.format)||meta.pages>1)throw Error();normalized.push(await image.rotate().resize({width:2000,height:2000,fit:'inside',withoutEnlargement:true}).jpeg({quality:88}).toBuffer());}catch{fail(400,'Ảnh phải là JPG, PNG hoặc WebP hợp lệ, không quá 25 megapixel.');}
     }
-    a=assignment(user,id);q=a.questions.find(q=>q.id===input.questionId);
+    a=assignment(user,id);if(a.withdrawn)fail(409,'Giáo viên đã ngừng giao đề này.');q=a.questions.find(q=>q.id===input.questionId);
     const duplicate=db.essaySubmissions.find(s=>s.studentId===user.id&&s.requestId===input.requestId);if(duplicate)return safeSubmission(duplicate);
     const prior=db.essaySubmissions.filter(s=>realRow(s)&&s.assignmentId===id&&s.questionId===q.id&&s.studentId===user.id);
+    if(prior.length&&a.allowResubmit===false)fail(409,'Giáo viên không cho phép nộp lại bài này.');
     if(prior.length>=20)fail(429,'Đã đạt 20 lần nộp câu này; hãy trao đổi với giáo viên.');
     if(prior.at(-1)&&['pending','grading'].includes(prior.at(-1).status))fail(409,'Bài trước đang chờ chấm. Hãy chấm hoặc chờ giáo viên trước khi sửa.');
     const keys=normalized.map(()=>randomUUID()+'.jpg');normalized.forEach((image,i)=>writeImage(keys[i],image));
@@ -65,6 +83,7 @@ export function createEssayService({db,persist,writeImage,readImage,now=Date.now
   }
   async function grade(user,id,grader){
     const {s,a}=authorizedSubmission(user,id);if(user.role==='parent')fail(403,'Phụ huynh chỉ xem.');
+    if(a.mode==='images')fail(409,'Bài từ ảnh đề được gửi cho giáo viên chấm trực tiếp.');
     if(s.ai||s.review)return safeSubmission(s);if(grading.has(id))return grading.get(id);
     const task=(async()=>{try{
       const result=await grader({question:structuredClone(a.questions.find(q=>q.id===s.questionId)),working:s.working,images:s.images.map(image=>readImage(image.fileKey))});
@@ -83,9 +102,9 @@ export function createEssayService({db,persist,writeImage,readImage,now=Date.now
   function image(user,id,index){const {s}=authorizedSubmission(user,id),item=s.images[index];if(!item)fail(404,'Không tìm thấy ảnh.');return readImage(item.fileKey);}
   function manage(user,id,input){
     if(user.role!=='teacher')fail(403,'Chỉ giáo viên được quản lý đề.');const a=assignment(user,id);
-    if(input.action==='clone')return publish(user,{title:input.title,classId:input.classId||a.classId,due:input.due||a.due,customQuestions:a.questions});
+    if(input.action==='clone')return publish(user,{title:input.title,classId:input.classId||a.classId,due:input.due||a.due,customQuestions:a.questions},a.mode==='images'?{images:a.examImages,allowResubmit:a.allowResubmit}:undefined);
     if(!(input.due??a.due)||!validAssessmentDue(input.due??a.due)||input.withdrawn!==undefined&&typeof input.withdrawn!=='boolean')fail(400,'Thông tin quản lý không hợp lệ.');
     return tx(()=>{a.due=input.due??a.due;if(input.withdrawn!==undefined)a.withdrawn=input.withdrawn;return {id:a.id};});
   }
-  return {bank,publish,list,details,start,submit,grade,review,image,manage};
+  return {bank,publish,publishImages,examImage,list,details,start,submit,grade,review,image,manage};
 }

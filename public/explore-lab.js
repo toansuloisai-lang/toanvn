@@ -1,9 +1,20 @@
-import {createExploreScene} from './explore-scene.js';
+// Keep Three.js out of login/home; preserve the latest state during loading.
+function createExploreScene(panel,kind){
+ let scene=null,latest=null,disposed=false;
+ import('./explore-scene.js').then(module=>{
+  if(disposed||!panel.isConnected)return;
+  scene=module.createExploreScene(panel,kind);
+  if(latest)scene.update(latest);
+ }).catch(()=>{if(!disposed)panel.classList.add('scene-unavailable');});
+ return {update(data){latest=data;scene?.update(data);},pulse(){scene?.pulse();},dispose(){disposed=true;scene?.dispose();}};
+}
+import {mountDiscovery} from './discovery-lab.js';
 import {math} from './math.js';
 import {checkAnswer} from './data.js';
 import {rectangleMetrics,isCounterexample,gardenMetrics} from './explore-core.js';
 export {rounded,rectangleMetrics,isCounterexample,gardenMetrics} from './explore-core.js';
 export function mountExplore(root,{onRecord}={}){
+  if(root.querySelector('[data-discovery],[data-discovery-grade]'))return mountDiscovery(root,{onRecord});
   const panel=root.querySelector('[data-explore-kind]');if(!panel)return ()=>{};
   const kind=panel.dataset.exploreKind,scene=createExploreScene(panel,kind),ctrl=new AbortController(),signal=ctrl.signal;
   const $=q=>panel.querySelector(q),on=(node,event,fn)=>node.addEventListener(event,fn,{signal});
