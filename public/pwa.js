@@ -25,22 +25,23 @@ function guide(){host.querySelector('#pwa-instructions').innerHTML=guides[platfo
 function sync(){
  const standalone=isStandalone();document.body.classList.toggle('app-standalone',standalone);document.body.classList.toggle('app-installed',installed);
  host.querySelector('#pwa-install-open').hidden=standalone||installed;
- native.hidden=!installPrompt||standalone||installed;native.disabled=prompting;
+ native.hidden=!installPrompt||standalone||installed;native.disabled=prompting||!navigator.onLine;
 }
-function open(){sync();guide();status.textContent=isStandalone()?'Bạn đang dùng ứng dụng đã cài.':installed?'Đã cài ứng dụng. Mở Tư duy Toán từ biểu tượng trên thiết bị.':!isSecureContext?'Địa chỉ này chưa hỗ trợ cài ứng dụng. Hãy mở bản HTTPS của trang web.':'';if(!dialog.open)dialog.showModal();}
+function installStatus(){return isStandalone()?'Bạn đang dùng ứng dụng đã cài.':installed?'Đã cài ứng dụng. Mở Tư duy Toán từ biểu tượng trên thiết bị.':!isSecureContext?'Địa chỉ này chưa hỗ trợ cài ứng dụng. Hãy mở bản HTTPS của trang web.':!navigator.onLine?'Bạn đang ngoại tuyến. Hãy bật mạng và tải lại trang trước khi cài ứng dụng.':platform==='android'&&!installPrompt?'Chrome chưa cung cấp nút cài trực tiếp. Hãy dùng menu ⋮ → Cài đặt ứng dụng. Nếu chọn Thêm vào màn hình chính, chọn tiếp Cài đặt; Tạo lối tắt có thể chỉ mở lại trình duyệt.':'';}
+function open(){sync();guide();status.textContent=installStatus();if(!dialog.open)dialog.showModal();}
 document.addEventListener('click',event=>{if(event.target.closest('[data-install-app]'))open();});
 host.querySelector('#pwa-close').onclick=()=>dialog.close();
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
-host.querySelectorAll('[data-pwa-platform]').forEach(button=>button.onclick=()=>{platform=button.dataset.pwaPlatform;guide();});
-window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event;sync();});
+host.querySelectorAll('[data-pwa-platform]').forEach(button=>button.onclick=()=>{platform=button.dataset.pwaPlatform;guide();status.textContent=installStatus();});
+window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();installPrompt=event;sync();if(dialog.open)status.textContent=installStatus();});
 native.onclick=async()=>{
- if(!installPrompt||prompting)return;const event=installPrompt;installPrompt=null;prompting=true;native.disabled=true;status.textContent='Hãy xác nhận trong hộp thoại của trình duyệt.';
+ if(!installPrompt||prompting||!navigator.onLine)return;const event=installPrompt;installPrompt=null;prompting=true;native.disabled=true;status.textContent='Hãy xác nhận trong hộp thoại của trình duyệt.';
  try{await event.prompt();const choice=await event.userChoice;status.textContent=installed?'Đã cài ứng dụng. Bạn có thể mở từ biểu tượng trên thiết bị.':choice.outcome==='accepted'?'Đã chấp nhận cài đặt. Trình duyệt sẽ thêm biểu tượng ứng dụng.':'Bạn vẫn có thể dùng web và cài lại từ menu trình duyệt bất cứ lúc nào.';}
  catch{status.textContent='Chưa mở được hộp thoại cài đặt. Hãy làm theo hướng dẫn bên dưới.';}
  finally{prompting=false;sync();}
 };
 window.addEventListener('appinstalled',()=>{installed=true;installPrompt=null;status.textContent='Đã cài ứng dụng. Bạn có thể mở từ biểu tượng trên thiết bị.';sync();});
 displayMode.addEventListener('change',sync);
-function connection(){host.querySelector('#pwa-network').hidden=navigator.onLine;document.body.classList.toggle('app-offline',!navigator.onLine);}
+function connection(){host.querySelector('#pwa-network').hidden=navigator.onLine;document.body.classList.toggle('app-offline',!navigator.onLine);sync();if(dialog.open)status.textContent=installStatus();}
 window.addEventListener('online',connection);window.addEventListener('offline',connection);sync();connection();
 export function pwaSettingsHTML(){return `<section class="card pwa-settings"><h2>Dùng như ứng dụng</h2><p>Cài Tư duy Toán để mở từ màn hình chính. Tài khoản và dữ liệu dùng chung với bản web.</p><p class="pwa-installed-label">Bạn đang mở ứng dụng đã cài.</p><button type="button" class="btn secondary" data-install-app>Cài đặt / xem hướng dẫn</button></section>`;}
