@@ -1,0 +1,16 @@
+.git
+.env*
+node_modules
+private
+artifacts
+coverage
+playwright-report
+test-results
+.cache
+.codegraph
+deploy-seed
+*.log
+*.tmp
+.DS_Store
+__pycache__
+/baocao

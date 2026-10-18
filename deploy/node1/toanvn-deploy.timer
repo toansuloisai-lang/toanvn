@@ -1,0 +1,12 @@
+[Unit]
+Description=Check toanvn main for CI-approved updates every minute
+
+[Timer]
+OnBootSec=60s
+OnUnitInactiveSec=60s
+RandomizedDelaySec=10s
+Persistent=true
+Unit=toanvn-deploy.service
+
+[Install]
+WantedBy=timers.target

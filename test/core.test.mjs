@@ -33,7 +33,9 @@ test('serves PWA, rejects private files and invalid API requests',async()=>{
   const module=await fetch(base+'/vendor/katex/katex.mjs');assert.match(module.headers.get('content-type'),/javascript/);
   const font=await fetch(base+'/vendor/katex/fonts/KaTeX_Main-Regular.woff2');assert.equal(font.headers.get('content-type'),'font/woff2');
   assert.equal((await fetch(base+'/.env')).status,404);
-  assert.equal((await fetch(base+'/..%5cserver.mjs')).status,403);
+  // Backslash is a separator on Windows and a literal filename character on POSIX.
+  const traversal=await fetch(base+'/..%5cserver.mjs');
+  assert.ok([403,404].includes(traversal.status),'Private source must not be served on either platform.');
   const bad=await fetch(base+'/api/explain',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({exerciseId:'fake',explanation:'test'})});assert.equal(bad.status,401);
   const cross=await fetch(base+'/api/explain',{method:'POST',headers:{Origin:'https://evil.example'},body:'{}'});assert.equal(cross.status,403);
   const status=await (await fetch(base+'/api/status')).json();assert.equal(typeof status.ai,'boolean');assert.equal('key' in status,false);

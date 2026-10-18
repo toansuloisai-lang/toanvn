@@ -1,5 +1,5 @@
 node_modules/
-.env
+.env*
 *.log
 artifacts/
 private/
@@ -17,6 +17,7 @@ test-results/
 *.tsbuildinfo
 Thumbs.db
 .DS_Store
+__pycache__/
 
 # Local teaching materials and extracted archives
 /DATATM/

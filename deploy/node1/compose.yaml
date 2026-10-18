@@ -1,0 +1,46 @@
+name: toanvn
+services:
+  app:
+    image: ${TOANVN_IMAGE:-toanvn:9ad0d61}
+    build:
+      context: ../..
+      dockerfile: deploy/node1/Dockerfile
+    container_name: toanvn
+    restart: unless-stopped
+    init: true
+    env_file:
+      - ${TOANVN_ENV_FILE:-/opt/toanvn/.env}
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: "3000"
+      COOKIE_SECURE: "true"
+      MATH_STORAGE: supabase
+      TRUSTED_PROXY_IPS: 172.20.0.14
+    ports:
+      - "127.0.0.1:3060:3000"
+    volumes:
+      - /opt/toanvn/private:/app/private
+    networks:
+      - proxy
+    mem_limit: 768m
+    stop_grace_period: 60s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/status').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 45s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+networks:
+  proxy:
+    external: true
+    name: nginx-manager_default

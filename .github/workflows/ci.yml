@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npm run test:supabase
+      - name: Check deployment controller
+        run: |
+          python3 -m py_compile deploy/node1/deploy.py
+          python3 -m unittest discover -s deploy/node1 -p 'test_deploy.py' -v
+      - name: Validate production container
+        env:
+          TOANVN_ENV_FILE: ${{ github.workspace }}/.env.example
+        run: |
+          docker compose -f deploy/node1/compose.yaml config --quiet
+          docker build -f deploy/node1/Dockerfile -t toanvn:ci .

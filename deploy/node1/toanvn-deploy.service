@@ -1,0 +1,14 @@
+[Unit]
+Description=Deploy the latest CI-approved toanvn main commit
+Wants=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/lib/toanvn/deploy.py
+TimeoutStartSec=1200
+UMask=0077
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
