@@ -1,3 +1,4 @@
+import {seedPractice} from './practice-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,rm} from 'node:fs/promises';
@@ -16,7 +17,7 @@ const student=add('student','student');add('student2','student');add('teacher','
 const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL||'msedge',headless:true});
 const context=await browser.newContext({viewport:{width:1536,height:1024}}),page=await context.newPage(),errors=[];
 page.on('pageerror',e=>errors.push(e.message));
-const login=async username=>{await page.locator('#login-username').fill(username);await page.locator('#login-password').fill(password);await page.locator('#login-form button').click();await page.waitForFunction(()=>!document.body.classList.contains('auth-screen'));};
+const login=async username=>{await page.locator('#login-username').fill(username);await page.locator('#login-password').fill(password);await page.locator('#login-form button[type=submit]').click();await page.waitForFunction(()=>!document.body.classList.contains('auth-screen'));};
 const logout=async()=>{await page.locator('#logout').click();await page.locator('#login-form').waitFor();};
 try{
   await mkdir('artifacts',{recursive:true});
@@ -28,18 +29,16 @@ try{
   await page.evaluate(()=>localStorage.setItem('math-lab-state-v1',JSON.stringify({role:'admin',attempts:[],reviews:{},notes:{},assignments:[]})));
   for(const route of ['teacher','parent','admin']){await page.goto(base+'/#'+route);await page.waitForURL('**/#home');assert.equal(await page.locator('#assignment-form,#create-user-form').count(),0);}
   await page.reload();await page.locator('.reference-hero').waitFor();assert.equal(await page.locator('body').getAttribute('data-role'),'student');
-  await page.goto(base+'/#learn/distribute-1');await page.locator('#answer').fill('3x+2');await page.locator('#answer-form button').click();
-  if(await page.locator('[data-diagnosis="1"]').count()){await page.locator('[data-diagnosis="1"]').click();await page.locator('[data-next]').click();}await page.locator('#correction').fill('3x+6');await page.locator('#correction-form button').click();
-  await page.locator('#explanation').fill('Nhân 3 với từng số hạng trong ngoặc, rồi thế x bằng 1 để kiểm chứng.');await page.locator('[data-skip-ai]').click();
+  await seedPractice(page,base,{exerciseId:'distribute-1',answer:'3x+2',completed:true,explanation:'Nhân 3 với từng số hạng trong ngoặc, rồi thế x bằng 1 để kiểm chứng.'});
   await logout();await login('teacher');await page.goto(base+'/#teacher');await page.locator('#assignment-form').waitFor();
-  await page.locator('#assignment-title').fill('Ôn lại phép phân phối');await page.locator('#assignment-skill').selectOption('distribute');await page.locator('#assignment-due').fill('2026-10-01');await page.locator('#assignment-form button').click();
+  await page.locator('#assignment-title').fill('Ôn lại phép phân phối');await page.locator('#assignment-skill').selectOption('distribute');await page.locator('#assignment-due').fill('2026-12-01');await page.locator('#assignment-form button').click();
   await page.getByRole('heading',{name:'Ôn lại phép phân phối',exact:true}).waitFor();
   await page.locator('.note-form textarea').fill('Đúng quy tắc, có bước kiểm chứng.');await page.locator('.note-form button').click();
   await page.getByText('Đã lưu nhận xét cho học sinh.',{exact:true}).waitFor();
   await page.screenshot({path:'artifacts/teacher-dashboard.png',fullPage:true});
   await logout();await login('student');await page.getByRole('heading',{name:'Nhiệm vụ từ giáo viên'}).waitFor();
-  await page.goto(base+'/#notebook');await page.getByText('Giáo viên: Đúng quy tắc, có bước kiểm chứng.').waitFor();
-  await page.reload();await page.getByText('Giáo viên: Đúng quy tắc, có bước kiểm chứng.').waitFor();
+  await page.goto(base+'/#learning');await page.getByText('Đúng quy tắc, có bước kiểm chứng.',{exact:false}).waitFor();
+  await page.reload();await page.getByText('Đúng quy tắc, có bước kiểm chứng.',{exact:false}).waitFor();
   await page.goto(base+'/#explore/garden');await page.locator('[data-renderer="webgl"] canvas').waitFor();
   await logout();await login('student2');assert.equal(await page.locator('#main').getByText('Ôn lại phép phân phối',{exact:true}).count(),0);
   await logout();await login('parent');await page.locator('#parent-dashboard .pd-hero').waitFor();assert.equal(await page.locator('.note-form,#assignment-form').count(),0);

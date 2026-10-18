@@ -82,12 +82,13 @@ export function drawParentReport(doc,{id,createdAt,teacher,teacherComment,report
       layout.table(['Bài chưa hoàn thành','Trạng thái','Hạn'],k.pending.map(p=>[p.title,p.status+(p.overdue?' · quá hạn':''),p.due||'Chưa đặt hạn']),[.5,.3,.2]);
       for(const h of k.history){
         layout.keyValues([['Bài làm',h.title],['Lần nộp / thời gian',`${h.revision||1} · ${date(h.time)}`],['Khoảng thời gian làm bài',`${minutes(h.elapsedMs)} phút (từ bắt đầu / lần nộp trước; không phải thời gian tập trung)`],['Điểm',h.score===null?'Chưa chấm':`${h.score}/10${h.provisional?' · AI / chưa giáo viên duyệt':' · đã chốt'}`]]);
-        if(h.kind==='exam')for(const q of h.questions)layout.keyValues([['Câu hỏi',q.prompt],['Học sinh chọn',q.answer],['Kết quả',q.correct?'Đúng':'Sai / bỏ trống'],['Đáp án và cách giải',q.correctAnswer+'\n'+q.solution]]);
-        if(h.kind==='essay'){
+        if(['exam','library'].includes(h.kind))for(const q of h.questions)layout.keyValues([['Câu hỏi',q.prompt],['Bài làm / lựa chọn',q.answer],['Kết quả',q.correct===null?'Tự luận: xem bài làm và nhận xét':q.correct?'Đúng':'Sai / bỏ trống'],['Đáp án và cách giải',q.correctAnswer+'\n'+q.solution]]);
+        if(['essay','practice-photo'].includes(h.kind)){
           layout.keyValues([['Đề tự luận',h.prompt],['Cách làm nhập trên app',h.working||'Bài làm trong ảnh'],['Ảnh bài làm',`${h.images.length} ảnh lưu trên hệ thống; xem tại bài nộp ${h.id}`],['Bản đọc ảnh của AI',h.ai?.transcription||'Chưa có'],['Nhận xét AI',h.ai?.summary||'Chưa có'],['Giáo viên',h.review?.comment||'Chưa duyệt']]);
           for(const c of h.ai?.criteria||[])layout.keyValues([['Tiêu chí',c.id],['Điểm AI',String(c.earned)],['Bằng chứng',c.evidence||'Chưa thấy bước tương ứng'],['Phân tích',c.reason],['Kiến thức cần ôn',c.missingKnowledge],['Bước sửa',c.nextStep]]);
           for(const [i,photo] of (h.photoData||[]).entries())layout.image(Buffer.from(photo,'base64'),`Ảnh bài làm ${i+1} · Lần nộp ${h.revision}`);
         }
+        if(h.kind==='library')for(const [i,photo] of (h.photoData||[]).entries())layout.image(Buffer.from(photo,'base64'),`Ảnh bài làm ${i+1}`);
       }
       for(const m of k.mistakes){
         layout.keyValues([['Câu cần khắc phục',m.prompt],['Trạng thái',m.resolved?'Đã sửa đúng câu cũ':'Cần tiếp tục sửa'],['Kiến thức cần bổ sung',m.knowledge],['Phân tích',m.analysis],['Cách giải',m.solution],['Nên làm tiếp',m.nextStep]]);

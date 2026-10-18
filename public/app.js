@@ -1,3 +1,8 @@
+import {mountQuestionLibrary,mountLibraryList,mountLibrarySet} from './question-library-view.js';
+import {mountAssessmentSummary} from './assessment-summary.js';
+let disposeLibrary=()=>{};
+import {practiceChoicesHTML,mountPracticeChoices} from './practice-choices.js';
+import {practicePhotosHTML,mountPracticePhotos} from './practice-photos.js';
 import {archivedHistoryHTML} from './archived-history.js';
 import {pwaSettingsHTML} from './pwa.js';
 import {mountTeacherWorkspace} from './teacher-workspace.js';
@@ -70,29 +75,14 @@ function home() {
   if(auth.user.role!=='student') return rolePage();
   return referenceHome({state:{...state,attempts:state.attempts.filter(a=>exercises.some(e=>e.id===a.exerciseId))},skills,stat,due,escape:esc,skillName,grade,exercises});
 }
-function practice(selected) { if(selected && skills.some(s=>s.id===selected)) filter=selected; const list=exercises.filter(e=>filter==='all'||e.skill===filter); return intro('THỬ · SAI · HIỂU · SỬA','Phòng luyện tập',`${exercises.length} bài khởi đầu · Toán lớp ${grade}. Chọn chủ đề để luyện tập.`) + `<div class="filters">${[{id:'all',name:'Tất cả chủ đề'},...skills].map(s=>`<button class="filter ${filter===s.id?'active':''}" data-filter="${s.id}">${s.name}</button>`).join('')}</div><div class="exercise-grid">${list.map(e=>`<article class="exercise-card"><span class="badge ${e.level==='Vận dụng'?'amber':''}">${e.level}</span><h3>${promptHTML(e)}</h3><p>${skillName(e.skill)} · ${state.attempts.filter(a=>a.exerciseId===e.id).length} lượt học</p><a class="btn secondary" href="#learn/${e.id}">Vào phòng thử →</a></article>`).join('')}</div>`; }
+function practice(selected) { if(selected && skills.some(s=>s.id===selected)) filter=selected; const list=exercises.filter(e=>filter==='all'||e.skill===filter).sort((a,b)=>Number(b.type==='mcq')-Number(a.type==='mcq')); return intro('THỬ · SAI · HIỂU · SỬA','Phòng luyện tập',`${exercises.length} bài khởi đầu · Toán lớp ${grade}. Gồm trắc nghiệm chọn đáp án và tự luận nộp ảnh. Giáo viên chốt điểm chính thức.`) + `<div class="filters">${[{id:'all',name:'Tất cả chủ đề'},...skills].map(s=>`<button class="filter ${filter===s.id?'active':''}" data-filter="${s.id}">${s.name}</button>`).join('')}</div><div class="exercise-grid">${list.map(e=>`<article class="exercise-card"><span class="badge ${e.level==='Vận dụng'?'amber':''}">${e.level}</span><p><span class="badge">${e.type==='mcq'?'Trắc nghiệm':'Tự luận'}</span> · ${e.id.startsWith('mcq-')?'Kho câu hỏi bổ sung':e.teacherAuthored?'Giáo viên soạn':'Bài luyện tập'}</p><h3>${practicePrompt(e)}</h3><p>${skillName(e.skill)}</p><a class="btn secondary" href="#learn/${e.id}">${e.type==='mcq'?'Chọn đáp án →':'Làm bài và nộp ảnh →'}</a></article>`).join('')}</div>`; }
+function practicePrompt(ex) {
+  return promptHTML({...ex,prompt:ex.prompt.replace(/Chỉ nhập[^.!?]*(?:[.!?]|$)/gi,'').trim()});
+}
 function learn(id, mode) {
-  const ex=allExercises.find(e=>e.id===id); if(!ex) return empty('Không tìm thấy bài tập. <a href="#practice">Về phòng luyện tập</a>');
-  const gradeNote=ex.grades.includes(grade)?'':`<p class="notice">Đang ôn bài thuộc lớp ${ex.grades.join(', ')}. Hồ sơ hiện tại: lớp ${grade}.</p>`;
-  if(mode==='review' && (!state.reviews[id] || state.reviews[id].due>Date.now()) && !(session?.id===id&&session?.mode==='review')) mode='practice';
-  if(!session || session.id!==id || session.routeMode!==(mode||'practice')) session={id,routeMode:mode||'practice',mode:mode||'practice',step:0,first:null,correction:'',explanation:'',message:'',feedback:null,diagnosed:false};
-  if(!session.recordId){
-    const pending=state.attempts.filter(a=>a.exerciseId===id&&!a.completed&&(session.routeMode==='practice'||a.mode===session.mode)).at(-1);
-    if(pending)Object.assign(session,{mode:pending.mode,recordId:pending.id,first:{answer:pending.answer,correct:pending.initialCorrect},correction:pending.correction||pending.answer,explanation:pending.explanation||'',step:pending.corrected?3:pending.initialCorrect?1:2});
-  }
-  const s=session;
-  const heading = ['Làm thử trước nhé','Cùng điều tra lời giải','Tự sửa bằng kiến thức của em','Em dạy lại cho máy','Kiểm chứng điều vừa học'][s.step];
-  let content='';
-  if(s.step===0) content=`<p class="muted">${s.mode==='review'?'Đây là lượt ôn lại. Thử tự làm trước khi xem bất kỳ gợi ý nào.':'Hãy tự làm bài trước. Em có thể nhập phép tính hoặc biểu thức.'}</p><form id="answer-form"><label class="field" for="answer">Đáp án của em</label><input class="input" id="answer" autocomplete="off" maxlength="100" required placeholder="Ví dụ: -4, 3x+6 hoặc 1/2"><p class="hint">Chỉ nhập kết quả; không nhập “x =”. Biểu thức dùng x, +, −, * và dấu ngoặc.</p>${workingHTML()}<button class="btn">Kiểm tra đáp án →</button></form>`;
-  if(s.step===1) content=`${s.first.correct?'':diagnosisActionHTML()}<div class="feedback ${s.first.correct?'':'warn'}">${s.first.correct?'Đáp án đầu tiên của em đúng. Bây giờ thử tìm lỗi trong lời giải này.':'Đáp án đầu tiên chưa đúng. Cùng tìm hiểu quy tắc trước khi tự sửa nhé.'}</div><label class="field">Lời giải giả định của gia sư — có lỗi cần tìm</label><div class="wrong">${solutionHTML(ex.wrong)}</div><p>Quy tắc nào giúp phát hiện lỗi này?</p><div class="options">${diagnosisOptions(ex).map((r,i)=>`<button class="option" data-diagnosis="${i}">${richMath(r)}</button>`).join('')}</div>${s.message?`<div class="feedback warn" role="status">${esc(s.message)}</div>`:''}${s.diagnosed?'<button class="btn" data-next>Sang bước tự sửa →</button>':''}`;
-  if(s.step===2) content=`<div class="notice">${richMath(ex.rule)}</div><form id="correction-form"><label class="field" for="revised-working">Tiếp tục sửa các bước làm</label><textarea id="revised-working" maxlength="4000">${esc(state.attempts.find(a=>a.id===s.recordId)?.revisedWorking??state.attempts.find(a=>a.id===s.recordId)?.working??'')}</textarea><label class="field" for="correction">Viết lại kết quả đúng</label><input id="correction" class="input" autocomplete="off" maxlength="100" required value="${esc(s.correction)}"><p class="hint">Em có thể thử một giá trị x để kiểm tra biểu thức, hoặc thế nghiệm vào phương trình.</p>${s.message?`<div class="feedback warn" role="status">${esc(s.message)}</div>`:''}<button class="btn">Kiểm tra cách sửa →</button></form>`;
-  if(s.step===3) content=`<div class="notice">Kết quả em đã sửa: <strong>${formula(s.correction)}</strong>. Bây giờ hãy giải thích cho một bạn khác hiểu.</div><form id="explanation-form"><label class="field" for="explanation">${s.first.correct?'Vì sao lời giải của gia sư sai?':'Bài làm ban đầu của em sai ở đâu?'} Em sửa và kiểm chứng thế nào?</label><textarea id="explanation" minlength="15" maxlength="2000" required placeholder="Bước này sai vì… Quy tắc cần dùng là… Em sửa thành… Em kiểm tra bằng cách…">${esc(s.explanation)}</textarea><p class="hint">${ai?'Gemini sẽ đọc bài tập và lời giải thích khi em bấm gửi. Không nhập tên, số điện thoại hoặc thông tin riêng tư.':'Chế độ không AI: phản hồi bằng quy tắc; phần lập luận cần giáo viên xem lại.'}</p><div class="button-row"><button class="btn" ${busy?'disabled':''}>${busy?'Đang đọc lời giải thích…':ai?'Gửi Gemini phản hồi':'Nhận gợi ý theo quy tắc'}</button><button type="button" class="btn secondary" data-skip-ai>Lưu để giáo viên xem</button></div></form>${s.feedback?`<div class="feedback" role="status"><strong>${s.feedback.source==='gemini'?'Phản hồi Gemini · tham khảo':'Gợi ý theo quy tắc'}</strong><br>${richMath(s.feedback.feedback)}${s.feedback.unavailable?'<br>Gemini hiện chưa phản hồi; ứng dụng đã dùng gợi ý dự phòng.':''}</div><button class="btn" data-finish>Tiếp tục kiểm chứng →</button>`:''}`;
-  if(s.first&&!s.first.correct&&s.step>=2&&s.step<=3){
-    const attempt=state.attempts.find(a=>a.id===s.recordId);
-    content=`<div class="feedback warn">Đáp án ban đầu chưa đúng. Em tiếp tục sửa bài này; các bước làm cũ được giữ lại.</div><p><strong>Đáp án ban đầu:</strong> ${formula(attempt.answer)}</p><div class="notice"><strong>Các bước ban đầu</strong><div>${attempt.working?solutionHTML(attempt.working):'Em chưa ghi các bước làm, nên chưa đủ căn cứ xác định bước sai.'}</div></div>${state.notes[attempt.id]?`<div class="feedback">Giáo viên: ${richMath(state.notes[attempt.id])}</div>`:''}${diagnosisActionHTML()}<div>${state.diagnoses?.[attempt.id]?diagnosisHTML(state.diagnoses[attempt.id]):'<p class="hint">Bấm phân tích để xem lỗi có dẫn chứng từ bài làm. Quy tắc bên dưới là gợi ý chung, chưa xác nhận bước sai của em.</p>'}</div>`+content;
-  }
-  if(s.step===4) { const next=allExercises.filter(e=>e.skill===ex.skill&&e.id!==ex.id); const transfer=next[0]; content=`<div class="feedback">Đã lưu hành trình của em. ${s.first.correct?'Lần trả lời đầu đúng.':'Em đã tự sửa đúng sau khi nhận gợi ý.'} Lập luận đang chờ giáo viên nhận xét.</div><h3>Đúng một lần chưa có nghĩa là nhớ lâu.</h3><p class="muted">Bài này được hẹn ôn vào ${date(state.reviews[ex.id].due)}. Tiếp theo, hãy thử một bài cùng kỹ năng để kiểm chứng độc lập.</p><div class="button-row">${transfer?`<a class="btn" href="#learn/${transfer.id}/transfer">Làm bài tương tự →</a>`:`<a class="btn" href="#practice">Chọn bài luyện khác</a>`}<a class="btn secondary" href="#notebook">Xem sổ tay</a></div>`; }
-  return `<div class="lab-layout">${gradeNote}<a class="btn text" href="#practice">← Phòng luyện tập</a>${intro(skillName(ex.skill),heading,s.mode==='review'?'Ôn tập đến hẹn':s.mode==='transfer'?'Bài kiểm chứng cùng kỹ năng':'Một lần thử, một cơ hội để hiểu')}<div class="steps">${['Làm thử','Điều tra','Tự sửa','Giải thích','Kiểm chứng'].map((t,i)=>`<span class="step ${s.step===i?'current':''}"><b>${i+1}</b>${t}</span>`).join('')}</div><section class="card"><span class="badge">${ex.level}</span><div class="problem">${promptHTML(ex)}</div>${content}</section></div>`;
+  const ex=allExercises.find(e=>e.id===id);if(!ex)return empty('Không tìm thấy bài tập.');
+  session=null;
+  return `<div class="lab-layout"><a class="btn text" href="#practice">← Phòng luyện tập</a>${intro(skillName(ex.skill),ex.type==='mcq'?'Bài luyện tập trắc nghiệm':'Bài luyện tập tự luận',ex.type==='mcq'?'Chọn một trong bốn đáp án. Kết quả đối chiếu đáp án chuẩn, giáo viên chốt điểm chính thức.':'Làm bài trên giấy rồi tải ảnh. AI chấm điểm tạm thời; giáo viên xem bài và chốt điểm chính thức.')}<section class="card"><span class="badge">${ex.level}</span><div class="problem">${practicePrompt(ex)}</div>${ex.type==='mcq'?practiceChoicesHTML(ex):practicePhotosHTML()}</section></div>`;
 }
 function persistAttemptDraft(){
   if(!session?.recordId)return;
@@ -185,9 +175,10 @@ function render() {
   }
 }
 function renderPage() {
+  disposeLibrary();disposeLibrary=()=>{};
   disposeExams();disposeExams=()=>{};
   const custom=[...(auth.teacherContents||[]),...(auth.archivedContents||[]).map(c=>({...c,archived:true}))].filter(c=>c.kind==='exercise');
-  allExercises=[...baseExercises,...custom.map(c=>({id:c.id,archived:c.archived,skill:'teacher-'+c.id,grades:[c.grade],prompt:c.prompt,wrong:c.wrong,answer:c.answer,rule:c.rule,errorTags:c.errorTags||[],keywords:[],level:'Luyện tập'}))];
+  allExercises=[...baseExercises,...custom.map(c=>({id:c.id,teacherAuthored:true,archived:c.archived,skill:'teacher-'+c.id,grades:[c.grade],type:c.type,choices:c.choices,correctIndex:c.correctIndex,prompt:c.prompt,wrong:c.wrong,answer:c.answer,rule:c.rule,errorTags:c.errorTags||[],keywords:[],level:'Luyện tập'}))];
   allSkills=[...baseSkills,...custom.map(c=>({id:'teacher-'+c.id,name:esc(c.topic),grades:[c.grade],color:'#68a7ff'}))];
 
   try{disposeExplore();}catch(error){console.error('Explore cleanup',error);}
@@ -203,7 +194,7 @@ function renderPage() {
   const nextGrade=normalizeGrade(state.profile?.grade);if(nextGrade!==grade){grade=nextGrade;filter='all';}
   exercises=allExercises.filter(e=>!e.archived&&e.grades.includes(grade));skills=allSkills.filter(s=>s.grades.includes(grade)&&exercises.some(e=>e.skill===s.id));activeFormulas=auth.user.role==='teacher'?formulaLibrary:formulasForGrade(grade);
   const published=demoLessons.filter(l=>l.grade===grade&&auth.lessonPublications.some(p=>p.id===l.id));
-  if(published.length){const ids=new Set(published.flatMap(l=>l.exerciseIds));exercises=exercises.filter(e=>ids.has(e.id)||custom.some(c=>c.id===e.id));skills=skills.filter(s=>exercises.some(e=>e.skill===s.id));}
+  if(published.length){const ids=new Set(published.flatMap(l=>l.exerciseIds));exercises=exercises.filter(e=>e.type==='mcq'||ids.has(e.id)||custom.some(c=>c.id===e.id));skills=skills.filter(s=>exercises.some(e=>e.skill===s.id));}
   nav(page==='learn'?'practice':page);
   document.body.classList.toggle('is-dashboard',page==='home'&&auth.user.role==='student');
   const profile=auth.user.role==='student'?(state.profile||{name:auth.user.name,grade:'7'}):{name:auth.user.name};
@@ -223,9 +214,19 @@ function renderPage() {
   if(page==='home'&&auth.user.role==='student'&&state.assignments.length) { const box=document.createElement('div'); box.className='card';box.innerHTML='<h2>Nhiệm vụ từ giáo viên</h2>'+state.assignments.map(a=>`<div class="list-row"><div><h3>${esc(a.title)}</h3><p>${skillName(a.skill)} · Hạn ${esc(a.due)}</p></div><a class="btn secondary" href="#learning">Làm bài →</a></div>`).join(''); $('#main').append(box); }
   if(page==='lessons'&&auth.user.role==='student')$('#main').insertAdjacentHTML('afterbegin',uploadedLessonsHTML(auth.uploadedLessons.filter(l=>l.grade===grade)));
   bind();
+  if(auth.user.role==='student'&&['home','progress'].includes(page)){const host=document.createElement('section');host.className='card';host.dataset.assessmentSummary='true';if(page==='progress')$('#main .intro')?.after(host);else $('#main').append(host);void mountAssessmentSummary(host,{request:api,compact:page==='home'});}
+  if(page==='teacher-library'&&id==='bank'){const host=$('#question-library-host');if(host)void mountQuestionLibrary(host,{request:api,setId:mode});}
+  if(page==='practice'){
+    if(/^[a-f0-9-]{36}$/.test(id||'')){void mountLibrarySet($('#main'),{request:api,role:auth.user.role,id}).then(dispose=>{if(dispose)disposeLibrary=dispose;});}
+    else{const host=document.createElement('section');$('#main').prepend(host);void mountLibraryList(host,{request:api,role:auth.user.role,mode:'practice'});}
+  }
+  if(page==='exams'&&id!=='library')disposeExams=mountTimedExams($('#main'),{request:api,role:auth.user.role,id,classId:mode});
+  if(page==='exams'){
+    if(id==='library'){void mountLibrarySet($('#main'),{request:api,role:auth.user.role,id:mode}).then(dispose=>{if(dispose)disposeLibrary=dispose;});}
+    else if(!id&&auth.user.role==='student'){const host=document.createElement('section');$('#main').prepend(host);void mountLibraryList(host,{request:api,role:auth.user.role,mode:'exam'});}
+  }
   if(page==='chat')mountTutor($('#main'),{request:api,id});
   if(page==='notebook'){const related=$('#notebook-knowledge');saveQueue.then(()=>{if(related?.isConnected){if(saveFailed)related.textContent='Chưa lưu được bản sửa. Kết nối lại rồi thử tiếp.';else mountKnowledge(related,{request:api,role:auth.user.role,compact:true});}});}
-  if(page==='exams')disposeExams=mountTimedExams($('#main'),{request:api,role:auth.user.role,id,classId:mode});
   if(page==='knowledge'){if(auth.user.role==='teacher'){$('#main').innerHTML=learningPageHTML();mountLearning($('#main'),{request:api,auth,studentId:id,view:'errors'});}else mountKnowledge($('#main'),{request:api,role:auth.user.role,studentId:id});}
   if(page==='essays')mountEssays($('#main'),{request:api,role:auth.user.role,id,classId:mode});
   if(auth.user.role==='admin'&&['home','admin'].includes(page))mountAccountMaintenance($('#main'),{auth,request:api});
@@ -234,6 +235,7 @@ function renderPage() {
   if(page==='teacher-library'){mountTeacherWorkspace($('#main'));if(id==='assign')mountTeacherExam($('#main'),{request:api,classId:mode});}
   if(page==='home'&&auth.user.role==='teacher'){let query='';try{query=decodeURIComponent(id||'');}catch{}mountTeacherDashboard($('#main'),{request:api,auth,query});}
   if(page==='learning'){const hub=$('#learning-hub');saveQueue.then(()=>{if(hub?.isConnected){if(saveFailed)hub.textContent='Chưa lưu được bài làm. Kiểm tra kết nối rồi thử lại.';else mountLearning($('#main'),{request:api,auth,studentId:['classes','assignments','progress','errors','class'].includes(id)?undefined:id,view:['classes','assignments','progress','errors'].includes(id)?id:'',classContext:mode});}});}
+  if(page==='learn'){mountPracticePhotos($('#main'),{request:api,exerciseId:id});mountPracticeChoices($('#main'),{request:api,exerciseId:id});}
   attachMathPreviews($('#main'));
   if(page==='formulas') disposeAtlas=mountAtlas($('#main'),activeFormulas,{grade:auth.user.role==='student'?normalizeGrade(state.profile?.grade):undefined,onRecord:activityRecorder(),practiceBase:auth.user.role==='teacher'?'#teacher-library/':'#practice/'});
   if(page==='explore') disposeExplore=mountExplore($('#main'),{onRecord:activityRecorder()});

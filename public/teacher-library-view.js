@@ -11,6 +11,7 @@ export function renderTeacherLibrary(published,view,uploaded,catalog,lessonBody)
     const e=catalog.find(e=>e.id===view.slice(9));
     return teacherWorkspace('','Chi tiết bài luyện','Xem đề bài, đáp án và hướng dẫn trước khi đưa vào bộ câu hỏi.',e?`<section class="tw-panel"><span class="badge">Khối ${e.grades.join(', ')}</span><h2>${promptHTML(e)}</h2><h3>Lời giải sai để phân tích</h3>${richMath(e.wrong)}<h3>Quy tắc và đáp án</h3>${richMath(e.rule)}${formula(e.answer)}<div class="button-row"><a class="btn" href="#teacher-library/assign">Chọn câu hỏi để giao bài →</a><a class="btn secondary" href="#teacher-library">Về ngân hàng đề</a></div></section>`:'<p class="tw-empty">Không tìm thấy bài luyện.</p>');
   }
+  if(view==='bank')return teacherWorkspace(view,'Kho câu hỏi DATATM','Chọn câu theo chủ đề, sửa bản sao và giao luyện tập hoặc kiểm tra.','<div id="question-library-host"></div>');
   if(view==='create')return teacherWorkspace(view,'Soạn bài tập','Chọn khối, nhập nội dung rồi kiểm tra trước khi đăng cho học sinh.',contentEditorHTML());
   if(view==='assign')return teacherWorkspace(view,'Tạo đề & giao bài','Đặt tên bộ câu hỏi, chọn học sinh hoặc lớp và kiểm tra nội dung trước khi giao.','<div id="teacher-exam-builder" aria-live="polite"><section class="tw-panel">Đang tải lớp và ngân hàng câu hỏi…</section></div>');
   if(view==='documents')return teacherWorkspace(view,'Tài liệu học tập','Tải PDF hoặc Word, chọn khối và thêm hướng dẫn cho học sinh.',uploadedLessonsHTML(uploaded,true)+uploadFormHTML());

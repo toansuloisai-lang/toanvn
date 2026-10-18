@@ -1,3 +1,5 @@
+import {createPracticePhotos} from './practice-photos.mjs';
+import {createLibraryService} from './library-service.mjs';
 import {createLearningService} from './learning-service.mjs';
 import {atomic} from './database/atomic.mjs';
 import {createExamService} from './exam-service.mjs';
@@ -64,7 +66,7 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
     if(user.role==='admin')return{user:publicUser(user),users:db.users.map(publicUser),state:emptyState(),students:[]};
     const students=(user.role==='student'?[user]:db.users.filter(u=>user.studentIds.includes(u.id))).map(publicUser);
     if(!students.length&&!id)return{user:publicUser(user),students,state:emptyState(),studentId:null};
-    const target=student(user,id);return{user:publicUser(user),students,studentId:target,state:{...db.states[target],classGrade:db.classes?.find(c=>c.studentIds.includes(target))?.grade||null,diagnoses:db.diagnoses?.[target]||{}},archivedContents:archivedContents(user)};
+    const target=student(user,id);return{user:publicUser(user),students,studentId:target,state:{...db.states[target],practicePhotos:undefined,classGrade:db.classes?.find(c=>c.studentIds.includes(target))?.grade||null,diagnoses:db.diagnoses?.[target]||{}},archivedContents:archivedContents(user)};
   }
   function saveStudent(user,input){
     if(user.role!=='student')fail(403,'Chỉ học sinh được lưu bài làm của mình.');
@@ -159,6 +161,8 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
   function uploadedFile(user,id){const lesson=db.uploadedLessons.find(l=>l.id===id);if(!lesson||!canReadUpload(user,lesson))fail(404,'Không tìm thấy tài liệu hoặc bạn không có quyền truy cập.');return{lesson:publicLesson(lesson),content:storage?storage.readFile(lesson.fileKey):readFileSync(path.join(uploadDir,lesson.fileKey))};}
   function writeAttachment(key,bytes){if(attachmentKeys.has(key))return;if(storage)storage.stageFile(key,bytes);else{mkdirSync(uploadDir,{recursive:true});const file=path.join(uploadDir,key);if(!existsSync(file))writeFileSync(file,bytes,{mode:0o600});}attachmentKeys.add(key);pendingAttachmentKeys.add(key);}
   const readAttachment=key=>storage?storage.readFile(key):readFileSync(path.join(uploadDir,key));
+  const practicePhotos=createPracticePhotos({db,persist,student,writeFile:writeAttachment,readFile:readAttachment});
+  const library=createLibraryService({db,persist,writeFile:writeAttachment,readFile:readAttachment});
   const learning=createLearningService({db,persist,student});
   const exams=createExamService({db,persist});
   const essays=createEssayService({db,persist,writeImage(key,bytes){if(storage)storage.stageFile(key,bytes);else{mkdirSync(uploadDir,{recursive:true});writeFileSync(path.join(uploadDir,key),bytes,{mode:0o600});}},readImage:key=>storage?storage.readFile(key):readFileSync(path.join(uploadDir,key))});
@@ -167,8 +171,10 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
   const tutor=createTutorService({db,persist,knowledge,learning,writeFile:writeAttachment,readFile:readAttachment});
   learning.knowledge=knowledge;
   learning.essays=essays;
+  learning.library=library;
+  learning.practicePhotos=practicePhotos;
   learning.enableParentMail=mailer=>createParentMailService({db,persist,learning,mailer,writeFile:writeAttachment,readFile:readAttachment});
   learning.updateParentEmail=updateParentEmail;learning.resetPassword=resetPassword;
   learning.roster=createRosterService({db,persist});
-  return{checkHealth:()=>storage?.checkHealth(),close:()=>storage?.close(),exams,essays,knowledge,datatm,tutor,learning,teacherContents,publishContent:atomic(db,['teacherContents'],publishContent),contentExercises,createUser:atomic(db,['users','states'],createUser),login,authenticate,workspace,saveStudent:atomic(db,['users','states'],saveStudent),assign:atomic(db,['states'],assign),note:atomic(db,['states'],note),link:atomic(db,['users'],link),importLessons:atomic(db,['lessonPublications'],importLessons),uploadLesson:atomic(db,['uploadedLessons'],uploadLesson),uploadedLessons,uploadedFile,lessonPublications:()=>db.lessonPublications.map(({id,publishedAt})=>({id,publishedAt})),logout:token=>sessions.delete(token),users:()=>db.users.map(publicUser)};
+  return{library,practicePhotos,checkHealth:()=>storage?.checkHealth(),close:()=>storage?.close(),exams,essays,knowledge,datatm,tutor,learning,teacherContents,publishContent:atomic(db,['teacherContents'],publishContent),contentExercises,createUser:atomic(db,['users','states'],createUser),login,authenticate,workspace,saveStudent:atomic(db,['users','states'],saveStudent),assign:atomic(db,['states'],assign),note:atomic(db,['states'],note),link:atomic(db,['users'],link),importLessons:atomic(db,['lessonPublications'],importLessons),uploadLesson:atomic(db,['uploadedLessons'],uploadLesson),uploadedLessons,uploadedFile,lessonPublications:()=>db.lessonPublications.map(({id,publishedAt})=>({id,publishedAt})),logout:token=>sessions.delete(token),users:()=>db.users.map(publicUser)};
 }

@@ -1,4 +1,5 @@
 import {realRow} from './assessment-rollup.mjs';
+import {modernAssessments} from './modern-assessments.mjs';
 import {skills as skillCatalog} from './public/data.js';
 import {decorateDatatm} from './datatm-service.mjs';
 import {randomUUID,createHash} from 'node:crypto';
@@ -40,6 +41,18 @@ export function createKnowledgeService({db,persist,learning,now=Date.now}){
           mistakes.push({key:'essay:'+first.id,kind:'essay',assignmentId:assignment.id,questionId:q.id,title:assignment.title,prompt:q.prompt,topic:q.topic,knowledge:last.review?.missingKnowledge||criteria.map(c=>c.missingKnowledge).filter(Boolean).join('; ')||q.knowledge,analysis:last.review?.comment||last.ai?.summary||'Chờ giáo viên nhận xét.',solution:q.solution,nextStep:last.review?.nextStep||criteria.map(c=>c.nextStep).filter(Boolean).join('; ')||'Trình bày lại từng bước và nộp ảnh rõ nét.',time:first.submittedAt,provisional:!last.review,resolved:!!last.review&&latestScore===q.maxPoints,repairs:attempts.slice(1).map(s=>({time:s.submittedAt,score:s.review?.score??s.ai?.score??null,correct:(s.review?.score??s.ai?.score)===q.maxPoints,provisional:!s.review})),href:'#essays/'+assignment.id});
         }
       }
+    }
+    const modern=modernAssessments(db,studentId,{teacherId:user.role==='teacher'?user.id:undefined,now:now()});
+    pending.push(...modern.pending);
+    const libraryHistory=new Map();
+    for(const r of modern.records){
+      if(typeof r.correct==='boolean')sample(r.topic,r.correct,r.provisional);
+      if(r.kind==='library'){
+        let h=libraryHistory.get(r.attemptId);
+        if(!h){h={kind:r.kind,id:r.attemptId,title:r.title,time:r.time,startedAt:r.startedAt,elapsedMs:r.elapsedMs,score:r.score,provisional:r.provisional,questions:[],images:[],review:r.review};libraryHistory.set(r.attemptId,h);history.push(h);}
+        h.questions.push({prompt:r.prompt,answer:r.answer,correct:r.correct,correctAnswer:r.correctAnswer,solution:r.solution,topic:r.topic});h.images.push(...r.images);
+      }else history.push({...r,working:r.answer});
+      if(r.correct===false||r.correct===null&&r.ai?.readable&&r.ai.score<10)mistakes.push({key:r.kind+':'+r.id,kind:r.kind,title:r.title,prompt:r.prompt,topic:r.topic,knowledge:r.topic,analysis:r.review?.comment||r.ai?.summary||'Đáp án chưa đúng; cần đối chiếu cách làm. Chưa đủ bằng chứng để kết luận nguyên nhân.',solution:r.solution,nextStep:'Xem lại bài làm và lời giải, trao đổi với giáo viên về bước cần sửa.',time:r.time,resolved:false,provisional:r.correct===null||r.provisional,repairs:[],href:r.href});
     }
     const old=learning.report(user,studentId);
     for(const a of old.assignments||[])if(!a.kind&&!a.result.complete)pending.push({kind:'practice',id:a.id,title:a.title,status:a.result.answered?'Chưa làm đủ':'Chưa làm',due:a.due,overdue:now()>Date.parse(a.due+'T23:59:59+07:00'),href:'#learning'});

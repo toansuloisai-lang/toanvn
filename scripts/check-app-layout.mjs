@@ -15,8 +15,8 @@ try{
  await page.screenshot({path:'artifacts/app-left-menu.png'});await page.keyboard.press('Escape');assert.equal(await page.locator('#app-menu-open').getAttribute('aria-expanded'),'false');
  await page.locator('#app-menu-open').click();await page.locator('#navigation a[href="#practice"]').click();await page.locator('.exercise-card').first().waitFor();
  assert.equal(await page.locator('.sidebar').evaluate(el=>el.inert),true);await fits();
- await page.goto(app.base+'/#learn/sign-1');await page.locator('#answer').fill('999');await page.locator('#answer-form button').click();await page.locator('#correction').waitFor();
- assert.ok(await page.locator('#correction').evaluate(el=>parseFloat(getComputedStyle(el).fontSize)>=17));await fits();await page.evaluate(()=>{document.activeElement?.blur();scrollTo(0,0);});await page.screenshot({path:'artifacts/app-learning-mobile.png',fullPage:true});
+ await page.goto(app.base+'/#learn/sign-1');await page.locator('[data-practice-photo-form]').waitFor();assert.equal(await page.locator('#answer-form,#main textarea').count(),0);
+ assert.ok(await page.locator('[data-practice-photo-form] button[type=submit]').evaluate(el=>parseFloat(getComputedStyle(el).fontSize)>=14));await fits();await page.evaluate(()=>{document.activeElement?.blur();scrollTo(0,0);});await page.screenshot({path:'artifacts/app-learning-mobile.png',fullPage:true});
  await page.locator('#app-menu-open').click();await page.waitForFunction(()=>document.activeElement?.id==='app-menu-close');await page.keyboard.press('Shift+Tab');assert.equal(await page.locator('#navigation a').last().evaluate(el=>el===document.activeElement),true);await page.keyboard.press('Escape');
  await page.setViewportSize({width:1200,height:900});await fits();assert.equal(await page.locator('.sidebar').isVisible(),true);assert.equal(await page.locator('.sidebar').evaluate(el=>el.inert),false);assert.equal(await page.locator('#app-menu-open').isVisible(),false);
  await page.evaluate(()=>{document.activeElement?.blur();scrollTo(0,0);});await page.screenshot({path:'artifacts/app-learning-tablet.png',fullPage:true});

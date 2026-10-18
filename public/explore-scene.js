@@ -1,4 +1,5 @@
 import * as THREE from './vendor/three/three.module.js';
+import {buildDiscovery} from './discovery-scene.js';
 const clamp=THREE.MathUtils.clamp;
 export function createExploreScene(root,kind){
   const frame=root.querySelector('.explore-scene'),host=root.querySelector('.scene-canvas-host');
@@ -10,7 +11,7 @@ export function createExploreScene(root,kind){
   function fallbackUI(){root.querySelector('.scene-fallback-note').hidden=false;root.dataset.renderer='fallback';root.querySelector('.scene-live').textContent='Sơ đồ';root.querySelector('.scene-help').hidden=true;root.querySelectorAll('.scene-toolbar button').forEach(b=>b.disabled=true);frame.removeAttribute('tabindex');frame.setAttribute('aria-label','Sơ đồ minh họa');}
   if(!renderer){fallbackUI();return{update(data){host.innerHTML=fallback(kind,data);},pulse(){},dispose(){ctrl.abort();}};}
   root.dataset.renderer='webgl';renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.setClearColor(0xf1f7fd,1);
-  renderer.domElement.setAttribute('role','img');renderer.domElement.setAttribute('aria-label',{counter:'Hai hình chữ nhật A và B cùng tỉ lệ trong không gian ba chiều',garden:'Mô hình khu vườn và hàng rào ba cạnh',blackbox:'Máy hộp đen nhận số và trả kết quả'}[kind]);host.append(renderer.domElement);
+  renderer.domElement.setAttribute('role','img');renderer.domElement.setAttribute('aria-label',{counter:'Hai hình chữ nhật A và B cùng tỉ lệ trong không gian ba chiều',garden:'Mô hình khu vườn và hàng rào ba cạnh',blackbox:'Máy hộp đen nhận số và trả kết quả'}[kind]||'Interactive 3D mathematics model');host.append(renderer.domElement);
   const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.1,200),content=new THREE.Group();scene.add(content);
   scene.add(new THREE.HemisphereLight(0xffffff,0x7894a8,1.8));
   const sun=new THREE.DirectionalLight(0xfff7e9,2.0);sun.position.set(-10,18,10);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-25,right:25,top:25,bottom:-25,near:.5,far:70});sun.shadow.normalBias=.03;scene.add(sun);
@@ -37,6 +38,7 @@ export function createExploreScene(root,kind){
   on(reduced,'change',()=>{if(reduced.matches){animation=null;if(meshToken)meshToken.visible=false;draw();}});
   on(renderer.domElement,'webglcontextlost',e=>{e.preventDefault();lost=true;animation=null;cancelAnimationFrame(raf);raf=0;fallbackUI();renderer.domElement.hidden=true;const fallbackHost=document.createElement('div');fallbackHost.className='context-fallback';fallbackHost.innerHTML=fallback(kind,latest);host.append(fallbackHost);});
   function update(data){latest=data;if(lost){host.querySelector('.context-fallback').innerHTML=fallback(kind,data);return;}animation=null;disposeGroup(content);meshToken=null;pulseRing=null;
+    if(kind==='discovery'){buildDiscovery(content,data,{box,line,text});root.dataset.modelVisual=data.visual;root.dataset.modelRevision=String(Number(root.dataset.modelRevision||0)+1);}
     if(kind==='counter')buildCounter(content,data);
     if(kind==='garden')buildGarden(content,data);
     if(kind==='blackbox'){const machine=buildMachine(content,data);meshToken=machine.token;pulseRing=machine.ring;}
@@ -44,7 +46,7 @@ export function createExploreScene(root,kind){
   }
   return {update,pulse(){if(!meshToken||reduced.matches||lost)return;animation={start:performance.now()};meshToken.visible=true;schedule();},dispose(){alive=false;ctrl.abort();observer.disconnect();cancelAnimationFrame(raf);disposeGroup(content);sun.shadow.map?.dispose();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();}};
 }
-function disposeGroup(group){const geometries=new Set(),materials=new Set(),textures=new Set();group.traverse(o=>{if(o.geometry)geometries.add(o.geometry);for(const material of (Array.isArray(o.material)?o.material:[o.material]))if(material){materials.add(material);if(material.map)textures.add(material.map);}});group.clear();geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());}
+function disposeGroup(group){const geometries=new Set(),materials=new Set(),textures=new Set();group.traverse(o=>{if(o.isInstancedMesh)o.dispose();if(o.geometry)geometries.add(o.geometry);for(const material of (Array.isArray(o.material)?o.material:[o.material]))if(material){materials.add(material);if(material.map)textures.add(material.map);}});group.clear();geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());}
 function box(group,w,h,d,color,x=0,y=0,z=0,options={}){const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color,roughness:.65,...options}));mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;group.add(mesh);return mesh;}
 function line(group,points,color=0x6b91b0){const mesh=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points.map(p=>new THREE.Vector3(...p))),new THREE.LineBasicMaterial({color}));group.add(mesh);return mesh;}
 function text(group,value,x,y,z,{color='#285270',background='#ffffff',height=.65}={}){const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');ctx.font='600 32px Segoe UI, Arial';const width=Math.ceil(ctx.measureText(value).width+34);canvas.width=width;canvas.height=56;ctx.fillStyle=background;ctx.beginPath();ctx.roundRect(1,1,width-2,54,13);ctx.fill();ctx.strokeStyle='#ffffff';ctx.lineWidth=2;ctx.stroke();ctx.font='600 32px Segoe UI, Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=color;ctx.fillText(value,width/2,29);const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,depthTest:false,transparent:true}));sprite.position.set(x,y,z);sprite.scale.set(height*1.5*width/56,height*1.5,1);sprite.renderOrder=3;group.add(sprite);return sprite;}
@@ -90,6 +92,7 @@ function buildMachine(group,{input=null,output=null}){
 }
 function fallback(kind,data){
   if(!data)return '';
+  if(kind==='discovery')return data.fallbackSVG||'';
   const opening='<svg viewBox="0 0 600 330" role="img" aria-label="Sơ đồ thay thế cho mô hình 3D">',close='</svg>';
   if(kind==='counter'){const {aw,ah,bw,bh}=data,k=220/Math.max(aw,ah,bw,bh);return opening+`<rect x="25" y="45" width="${aw*k}" height="${ah*k}" fill="#45bfaf"/><rect x="330" y="45" width="${bw*k}" height="${bh*k}" fill="#edbb65"/><text x="30" y="300">A: ${aw} × ${ah} cm</text><text x="330" y="300">B: ${bw} × ${bh} cm</text>`+close;}
   if(kind==='garden'){const {a,b}=data,k=Math.min(480/b,190/a);return opening+`<path d="M35 55H565" stroke="#8498b2" stroke-width="18"/><rect x="${300-b*k/2}" y="65" width="${b*k}" height="${a*k}" fill="#84c493" stroke="#bf9e69" stroke-width="4"/><text x="160" y="295">a = ${a} m · b = ${b} m</text>`+close;}

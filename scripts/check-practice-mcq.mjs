@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import {chromium} from '@playwright/test';
+import {practiceMCQs} from '../public/practice-mcq-bank.js';
+import {validateContent} from '../teacher-content.mjs';
+import {createTestApp} from './browser-fixture.mjs';
+assert.equal(practiceMCQs.length,48);
+for(const grade of [6,7,8,9])assert.equal(practiceMCQs.filter(q=>q.grades.includes(grade)).length,12);
+for(const q of practiceMCQs){assert.equal(new Set(q.choices).size,4);assert.equal(q.answer,q.choices[q.correctIndex]);}
+assert.throws(()=>validateContent({kind:'exercise',type:'mcq',choices:['a','a','b','c'],correctIndex:0}));
+const app=await createTestApp({grade:8}),browser=await chromium.launch({channel:'msedge',headless:true});
+try{
+ const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await app.login(page);await page.goto(app.base+'/#practice');
+ await page.locator('a[href="#learn/mcq-8-1"]').waitFor();
+ assert.equal(await page.locator('a[href^="#learn/mcq-"]').count(),12);
+ await page.locator('a[href="#learn/mcq-8-1"]').click();await page.locator('[data-practice-choice-form]').waitFor();assert.equal(await page.locator('[data-practice-choice-form] input[type=radio]').count(),4);assert.equal(await page.locator('[data-practice-photo-form]').count(),0);
+ await page.locator('input[name=choice][value="1"]').check();await page.getByRole('button',{name:'Nộp đáp án',exact:true}).click();await page.getByText('Đúng đáp án. Xem giải thích bên dưới.',{exact:true}).waitFor();
+ const workspace=await(await page.request.get(app.base+'/api/workspace')).json();
+ let submissions=(await(await page.request.get(app.base+'/api/practice/photos?exerciseId=mcq-8-1')).json()).submissions;
+ assert.equal(submissions.length,1);assert.equal(submissions[0].provisionalScore,10);assert.equal(submissions[0].finalScore,null);
+ const id=submissions[0].id,requestId=crypto.randomUUID();
+ const wrong={exerciseId:'mcq-8-1',choiceIndex:0,requestId,score:10,correctIndex:0};
+ const send=()=>page.request.post(app.base+'/api/practice/choices/submit',{data:wrong});
+ assert.equal((await(await send()).json()).choiceScore,0);await send();
+ assert.equal((await(await page.request.get(app.base+'/api/practice/photos?exerciseId=mcq-8-1')).json()).submissions.length,2);
+ assert.equal((await page.request.post(app.base+'/api/practice/choices/submit',{data:{...wrong,requestId:crypto.randomUUID(),exerciseId:'mcq-9-1'}})).status(),404);
+ assert.equal((await page.request.post(app.base+'/api/practice/photos/'+id+'/review',{data:{score:10,comment:'fake'}})).status(),403);
+ await page.reload();await page.locator('.practice-photo-result').first().waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await app.login(page,'teacher');await page.goto(app.base+'/?teacher=1#teacher-library/create');
+ await page.locator('#content-editor').waitFor();await page.locator('#content-type').selectOption('mcq');await page.locator('#content-grade').selectOption('8');
+ for(const [field,value] of Object.entries({title:'Trắc nghiệm giáo viên',topic:'Đại số',prompt:'Chọn biểu thức bằng 2x + 2x.',rule:'Cộng hệ số của các đơn thức đồng dạng: 2x + 2x = 4x.'}))await page.locator('#content-'+field).fill(value);
+ for(const [i,value] of ['4x','4x²','2x','4'].entries())await page.locator('[data-choice="'+i+'"]').fill(value);
+ await page.locator('#content-form button[type=submit]').click();await page.locator('#content-approved').check();
+ const published=page.waitForResponse(r=>r.url().endsWith('/api/teacher/content')&&r.request().method()==='POST');await page.locator('#content-publish').click();const response=await published;assert.equal(response.status(),201);const {content}=await response.json();assert.equal(content.type,'mcq');assert.equal(content.choices[0],'4x');
+ await page.request.post(app.base+'/api/practice/photos/'+id+'/review',{data:{score:9,comment:'Giáo viên đã kiểm tra.'}});
+ await app.login(page);await page.goto(app.base+'/?student=1#learn/'+content.id);await page.locator('[data-practice-choice-form]').waitFor();
+ await page.locator('input[name=choice][value="0"]').check();await page.getByRole('button',{name:'Nộp đáp án',exact:true}).click();await page.getByText('Đúng đáp án. Xem giải thích bên dưới.',{exact:true}).waitFor();
+ await page.goto(app.base+'/#learn/mcq-8-1');await page.getByText('Điểm chính thức: 9/10',{exact:true}).waitFor({state:'attached'});
+ assert.deepEqual(errors,[]);console.log('PASS: 48 MCQs, grade filtering, mobile choices, server grading, idempotency, persistence, teacher authoring with text options, student access and teacher final score.');
+}finally{await browser.close();await app.close();}

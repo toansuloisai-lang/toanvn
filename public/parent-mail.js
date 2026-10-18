@@ -1,6 +1,6 @@
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const states={pending:'Đang chờ',sending:'Đang gửi',sent:'Gmail đã nhận thư',failed:'Gửi thất bại',unknown:'Chưa rõ kết quả',skipped:'Không gửi: liên kết thay đổi'};
-const pdfLink=(id,r,label)=>`<a class="btn secondary" href="/api/parent-mail/pdf?id=${encodeURIComponent(id)}&recipientId=${encodeURIComponent(r.id)}" target="_blank" rel="noopener">${label}</a>`;
+const pdfLink=(id,r,label)=>`<a class="btn secondary" data-parent-pdf download href="/api/parent-mail/pdf?id=${encodeURIComponent(id)}&recipientId=${encodeURIComponent(r.id)}">${label}</a>`;
 export const parentMailHTML=()=>'<div id="parent-mail"><h1>Thông báo phụ huynh</h1><p>Đang tải thông tin…</p></div>';
 export async function mountParentMail(root,{request}){
   const host=root.querySelector('#parent-mail');if(!host)return;
@@ -21,6 +21,23 @@ export async function mountParentMail(root,{request}){
       <section class="card"><h2>PDF đã xác nhận</h2><p>Tải lại 30 báo cáo gần nhất, kể cả bản đã xác nhận nhưng chưa gửi email.</p><div id="parent-report-history"></div></section>
       <section class="card"><div class="button-row"><h2>Lịch sử gửi</h2><button class="btn secondary" id="parent-mail-refresh">Cập nhật trạng thái</button></div><p>“Gmail đã nhận thư” chỉ xác nhận máy chủ Gmail chấp nhận gửi. Hiển thị 30 đợt gần nhất; PDF đã xác nhận giữ nguyên nội dung tại lúc chốt.</p><div id="parent-mail-history"></div></section>`;
     const $=q=>host.querySelector(q),form=$('#parent-mail-form'),status=$('#parent-mail-status'),preview=$('#parent-mail-preview');
+    host.onclick=async event=>{
+      const link=event.target.closest('[data-parent-pdf]');if(!link||!host.contains(link))return;
+      event.preventDefault();if(link.getAttribute('aria-busy')==='true')return;
+      link.setAttribute('aria-busy','true');status.textContent='Đang tải PDF…';
+      try{
+        // Fetch instead of navigating: installed PWAs can capture same-origin new-tab links.
+        const response=await fetch(link.href,{credentials:'same-origin',cache:'no-store'});
+        if(!response.ok){const error=await response.json().catch(()=>({}));throw Error(error.error||'Không tải được PDF. Hãy thử lại.');}
+        if(!response.headers.get('Content-Type')?.toLowerCase().startsWith('application/pdf'))throw Error('Máy chủ chưa trả về tệp PDF hợp lệ.');
+        const blob=await response.blob(),url=URL.createObjectURL(blob),download=document.createElement('a');
+        const filename=response.headers.get('Content-Disposition')?.match(/filename="([^"]+)"/i)?.[1]||'bao-cao-hoc-tap.pdf';
+        download.href=url;download.download=filename.replace(/[\\/\x00-\x1f]/g,'_');document.body.append(download);
+        try{download.click();}finally{download.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
+        if(host.isConnected)status.textContent='Đã tải PDF. Mở tệp trong danh sách tải xuống để kiểm tra.';
+      }catch(error){if(host.isConnected)status.textContent=error.message;}
+      finally{link.removeAttribute('aria-busy');}
+    };
     let revision=0,busy=false,historySnapshot='',reportSnapshot='';
     function history(items){
       const snapshot=JSON.stringify(items);if(snapshot===historySnapshot)return;historySnapshot=snapshot;

@@ -34,7 +34,7 @@ try {
   await page.locator('.header-profile strong').filter({hasText:'Minh Anh'}).waitFor();
   assert.equal(await page.locator('.header-profile strong').textContent(),'Minh Anh');
   await page.goto(testApp.base+'/#home');
-  await page.locator('.quick-card').first().click();await page.locator('#answer').waitFor();
+  await page.locator('.quick-card').first().click();await page.locator('[data-practice-photo-form]').waitFor();
   assert.deepEqual(errors,[]);
   console.log('PASS: reference layout bounds, 5 responsive widths, search, all added pages, profile persistence and dashboard navigation.');
 } finally {await browser.close();await testApp.close();}

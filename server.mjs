@@ -35,9 +35,11 @@ const limits = new Map();
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.webp':'image/webp', '.woff2':'font/woff2', '.woff':'font/woff', '.ttf':'font/ttf' };
 const json = (res, status, body) => { res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(body)); };
 async function body(req) {
+  if(/^\/api\/library\/sets\/[a-f0-9-]{36}\/upload$/.test(req.url)){let payload='';for await(const chunk of req){payload+=chunk;if(Buffer.byteLength(payload)>17500000)throw Object.assign(Error('Ảnh bài làm vượt quá dung lượng cho phép.'),{status:413});}return JSON.parse(payload);}
+  if(req.url==='/api/library/sets'){let payload='';for await(const chunk of req){payload+=chunk;if(Buffer.byteLength(payload)>1000000)throw Object.assign(Error('Nội dung đề quá lớn.'),{status:413});}return JSON.parse(payload);}
   let text = '';
   if(req.url.startsWith('/api/exams')||req.url.startsWith('/api/essays')||req.url.startsWith('/api/knowledge/repair')){const max=req.url.split('?')[0]==='/api/exams/draft'?7100000:(req.url.split('?')[0].endsWith('/submit')||req.url.split('?')[0]==='/api/essays/images')?19000000:1500000;for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>max)throw Object.assign(Error('Nội dung quá lớn. Bài nộp tối đa 3 ảnh, mỗi ảnh 4 MB.'),{status:413});}return JSON.parse(text);}
-  for await (const chunk of req) { text += chunk; if (Buffer.byteLength(text) > (req.url==='/api/tutor/chat'?17500000:req.url==='/api/teacher/content'?60000:req.url==='/api/learning/review'?30000:req.url==='/api/parent-mail/preview'?30000:req.url==='/api/roster/preview'?7100000:req.url==='/api/teacher/lessons/upload'?14100000:req.url==='/api/student/state'?5000000:12000)) throw Object.assign(new Error('Yêu cầu vượt quá dung lượng cho phép.'),{status:413}); }
+  for await (const chunk of req) { text += chunk; if (Buffer.byteLength(text) > ((req.url==='/api/tutor/chat'||req.url==='/api/practice/photos/submit')?17500000:req.url==='/api/teacher/content'?60000:req.url==='/api/learning/review'?30000:req.url==='/api/parent-mail/preview'?30000:req.url==='/api/roster/preview'?7100000:req.url==='/api/teacher/lessons/upload'?14100000:req.url==='/api/student/state'?5000000:12000)) throw Object.assign(new Error('Yêu cầu vượt quá dung lượng cho phép.'),{status:413}); }
   return JSON.parse(text);
 }
 export function fallback(ex, explanation) {
@@ -75,6 +77,13 @@ export const server = http.createServer(async (req, res) => {
     if(url.pathname==='/api/auth/logout'&&req.method==='POST'){accounts.logout(token);res.setHeader('Set-Cookie',cookie('',0));return json(res,200,{ok:true});}
     if(url.pathname.startsWith('/api/')&&url.pathname!=='/api/status'&&!user)return json(res,401,{error:'Vui lòng đăng nhập để tiếp tục.'});
     if(url.pathname==='/api/auth/session'&&req.method==='GET')return json(res,200,{user:{id:user.id,name:user.name,username:user.username,role:user.role}});
+    if(url.pathname==='/api/library/catalog'&&req.method==='GET')return json(res,200,accounts.library.catalog(user));
+    if(url.pathname==='/api/library/sets'&&req.method==='GET')return json(res,200,{sets:accounts.library.list(user)});
+    if(url.pathname==='/api/library/sets'&&req.method==='POST')return json(res,201,accounts.library.publish(user,await body(req)));
+    const librarySetRoute=url.pathname.match(/^\/api\/library\/sets\/([a-f0-9-]{36})(?:\/(start|answer|upload|submit|review))?$/);
+    if(librarySetRoute){const [,id,action]=librarySetRoute;if(!action&&req.method==='GET')return json(res,200,accounts.library.detail(user,id));if(req.method==='POST'&&['start','submit'].includes(action))return json(res,200,accounts.library[action](user,id));if(req.method==='POST'&&['answer','upload','review'].includes(action))return json(res,200,await accounts.library[action](user,id,await body(req)));return json(res,405,{error:'Phương thức không hợp lệ.'});}
+    const librarySubmissionRoute=url.pathname.match(/^\/api\/library\/submissions\/([a-f0-9-]{36})\/(grade|images\/([0-2]))$/);
+    if(librarySubmissionRoute){const [,id,action,index]=librarySubmissionRoute;if(action==='grade'&&req.method==='POST'){const limitId='library-grade:'+user.id,time=Date.now(),limit=limits.get(limitId)||{start:time,count:0};if(time-limit.start>60000){limit.start=time;limit.count=0;}limits.set(limitId,limit);if(++limit.count>8)return json(res,429,{error:'Chờ một phút trước khi chấm tiếp.'});return json(res,200,await accounts.library.grade(user,id,input=>gradeEssay({...input,key,model})));}if(index!==undefined&&req.method==='GET'){const bytes=accounts.library.image(user,id,Number(index));res.writeHead(200,{'Content-Type':'image/jpeg','Cache-Control':'private, no-store','Content-Length':bytes.length});return res.end(bytes);}return json(res,405,{error:'Phương thức không hợp lệ.'});}
     if(url.pathname==='/api/workspace'&&req.method==='GET')return json(res,200,{...accounts.workspace(user,url.searchParams.get('studentId')),lessonPublications:accounts.lessonPublications(),uploadedLessons:accounts.uploadedLessons(user),teacherContents:accounts.teacherContents(user)});
     if(url.pathname==='/api/exams'&&req.method==='GET')return json(res,200,{exams:accounts.exams.list(user)});
     if(url.pathname==='/api/exams'&&req.method==='POST')return json(res,201,accounts.exams.publish(user,await body(req)));
@@ -213,6 +222,20 @@ export const server = http.createServer(async (req, res) => {
       return res.end(content);
     }
     if(url.pathname==='/api/teacher/lessons/import-demo'&&req.method==='POST')return json(res,200,accounts.importLessons(user));
+    if(url.pathname==='/api/practice/photos'&&req.method==='GET')return json(res,200,{submissions:accounts.practicePhotos.list(user,Object.fromEntries(url.searchParams))});
+    if(url.pathname==='/api/practice/choices/submit'&&req.method==='POST')return json(res,201,accounts.practicePhotos.submitChoice(user,await body(req)));
+    if(url.pathname==='/api/practice/photos/submit'&&req.method==='POST')return json(res,201,await accounts.practicePhotos.submit(user,await body(req)));
+    const practicePhotoRoute=url.pathname.match(/^\/api\/practice\/photos\/([a-f0-9-]{36})\/(grade|review|images\/([0-2]))$/);
+    if(practicePhotoRoute){
+      const [,id,action,index]=practicePhotoRoute;
+      if(action==='grade'&&req.method==='POST'){
+        const limitId='practice-grade:'+user.id,time=Date.now(),limit=limits.get(limitId)||{start:time,count:0};if(time-limit.start>60000){limit.start=time;limit.count=0;}limits.set(limitId,limit);if(++limit.count>8)return json(res,429,{error:'Chờ một phút trước khi chấm tiếp.'});
+        return json(res,200,await accounts.practicePhotos.grade(user,id,input=>gradeEssay({...input,key,model})));
+      }
+      if(action==='review'&&req.method==='POST')return json(res,200,accounts.practicePhotos.review(user,id,await body(req)));
+      if(index!==undefined&&req.method==='GET'){const bytes=accounts.practicePhotos.image(user,id,Number(index));res.writeHead(200,{'Content-Type':'image/jpeg','Cache-Control':'private, no-store','Content-Length':bytes.length});return res.end(bytes);}
+      return json(res,405,{error:'Phương thức không hỗ trợ.'});
+    }
     if(url.pathname==='/api/student/state'&&req.method==='PUT')return json(res,200,accounts.saveStudent(user,await body(req)));
     if(url.pathname==='/api/student/heartbeat'&&req.method==='POST')return json(res,200,accounts.learning.usage.heartbeat(user,await body(req),token));
     if(url.pathname==='/api/student/activities'&&req.method==='POST')return json(res,201,accounts.learning.activities.record(user,await body(req)));

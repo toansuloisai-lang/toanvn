@@ -13,7 +13,7 @@ let base;
 before(async()=>{ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));base=`http://127.0.0.1:${server.address().port}`; });
 after(async()=>{await new Promise(resolve=>server.close(resolve));rmSync(dir,{recursive:true,force:true});});
 test('all reference answers are accepted, wrong answers rejected',()=>{
-  assert.equal(exercises.length,60);
+  assert.equal(exercises.length,108);
   for(const e of exercises){assert.equal(checkAnswer(e.answer,e.answer),true,e.id);assert.equal(checkAnswer('999',e.answer),false,e.id);}
 });
 test('arithmetic grammar handles signs, precedence, fractions and equivalent affine forms',()=>{

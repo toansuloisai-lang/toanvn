@@ -1,6 +1,8 @@
+import {submitPhoto,mockPhotoAI} from './practice-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {createTestApp} from './browser-fixture.mjs';
+const restoreAI=mockPhotoAI();
 const app=await createTestApp(),browser=await chromium.launch({channel:'msedge',headless:true});
 try{
  const page=await browser.newPage();await app.login(page,'teacher');await page.goto(app.base+'/#teacher-library/create');await page.locator('#content-form').waitFor();await page.locator('#content-kind').selectOption('formula');
@@ -11,8 +13,8 @@ try{
  await page.locator('#content-form > button').click();await page.locator('#content-approved').check();await page.locator('#content-publish').click();await page.locator('#content-title').waitFor();
  const workspace=await (await page.request.get(app.base+'/api/workspace')).json();assert.equal(workspace.teacherContents.length,2);
  await app.login(page);await page.goto(app.base+'/#formulas');await page.reload();await page.getByText('Xác suất đồng xu',{exact:true}).waitFor();
- const exercise=workspace.teacherContents.find(c=>c.kind==='exercise');await page.goto(app.base+'/#learn/'+exercise.id);await page.locator('#answer').fill('1/2');await page.locator('#answer-form button').click();if(await page.locator('[data-diagnosis="1"]').count()){await page.locator('[data-diagnosis="1"]').click();await page.locator('[data-next]').click();}await page.locator('#correction').fill('1/2');await page.locator('#correction-form button').click();await page.locator('#explanation').fill('One favorable outcome out of two equally likely outcomes.');await page.locator('[data-skip-ai]').click();await page.getByText('Chọn bài luyện khác',{exact:true}).waitFor();
- await page.goto(app.base+'/#progress');await page.waitForTimeout(250);const saved=await (await page.request.get(app.base+'/api/workspace')).json();assert.equal(saved.state.attempts[0].exerciseId,exercise.id);assert.ok(saved.state.attempts[0].completed);
+ const exercise=workspace.teacherContents.find(c=>c.kind==='exercise');const submitted=await submitPhoto(page,app.base,exercise.id);assert.equal(submitted.exerciseId,exercise.id);await page.reload();await page.locator('.practice-photo-result').waitFor();
+ await page.goto(app.base+'/#knowledge');await page.locator('.knowledge-hub[data-loaded=true]').waitFor();assert.match(await page.locator('#main').innerText(),/Tung đồng xu/);
  assert.equal((await page.request.post(app.base+'/api/teacher/content/draft',{data:{}})).status(),403);
  console.log('PASS: toolbar, review, publish, student formula, complete exercise and persisted progress.');
-}finally{await browser.close();await app.close();}
+}finally{restoreAI();await browser.close();await app.close();}

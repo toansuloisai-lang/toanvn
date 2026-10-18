@@ -1,3 +1,4 @@
+import {modernAssessments} from './modern-assessments.mjs';
 // Read-only projection shared by dashboards and assignment reports.
 export const realRow=row=>!row.testRun;
 export function assessmentRollup(db,studentId,{teacherId,until=Infinity}={}){
@@ -28,6 +29,9 @@ export function assessmentRollup(db,studentId,{teacherId,until=Infinity}={}){
   const q=a.snapshot,last=(db.datatmAttempts||[]).filter(v=>v.studentId===studentId&&v.questionId===a.questionId&&v.time<=until).at(-1);
   samples.push({id:a.id,kind:'datatm',exerciseId:a.questionId,skill:skillOf(q.topic),topic:q.topic,time:a.time,initialCorrect:a.correct,answer:a.answer,working:a.working,prompt:q.prompt,correctAnswer:q.answer,solution:q.solution,corrected:!a.correct&&!!last?.correct,href:'#knowledge/'+studentId,mode:'datatm'});
  }
+ const modern=modernAssessments(db,studentId,{teacherId,until});
+ assignments.push(...modern.assignments);
+ for(const r of modern.records)if(typeof r.correct==='boolean')samples.push({id:r.id,kind:r.kind,exerciseId:r.id,skill:skillOf(r.topic),topic:r.topic,time:r.time,completed:r.time,initialCorrect:r.correct,answer:r.answer,prompt:r.prompt,correctAnswer:r.correctAnswer,solution:r.solution,href:r.href,mode:r.kind,provisional:r.provisional});
  return {assignments,samples};
 }
 export function mergeAssessmentReport(result,extra){

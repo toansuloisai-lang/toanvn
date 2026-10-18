@@ -1,3 +1,4 @@
+import {seedPractice} from './practice-fixture.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import {createTestApp} from './browser-fixture.mjs';
@@ -19,9 +20,7 @@ try{
  await page.locator('#learning-assignment [name="title"]').fill('Kiểm tra quy tắc dấu');await page.locator('#learning-assignment [name="due"]').fill('2026-12-01');await page.locator('#learning-assignment [name="recipient"]').selectOption('class');
  for(const id of ['sign-1','sign-2'])await page.locator(`#learning-assignment input[value="${id}"]`).check();
  await page.locator('#learning-assignment button').click();await page.getByText('Đã giao bộ câu hỏi. Điểm sẽ cập nhật theo bài làm đầu của học sinh.',{exact:true}).waitFor();
- await app.login(page);await page.goto(app.base);await page.reload();await page.goto(app.base+'/#learn/sign-1');await page.locator('#answer').fill('999');await page.locator('#working').fill('Em cộng hai số rồi giữ dấu âm.');await page.locator('#answer-form button').click();await page.locator('#diagnose-attempt').click();await page.locator('#attempt-diagnosis').getByText('Quy tắc dấu · Chờ giáo viên xác nhận',{exact:true}).waitFor();
- if(await page.locator('[data-diagnosis="1"]').count()){await page.locator('[data-diagnosis="1"]').click();await page.locator('[data-next]').click();}await page.locator('#correction').fill(exercises.find(e=>e.id==='sign-1').answer);await page.locator('#correction-form button').click();await page.locator('#explanation').fill('Em cần xét dấu và so sánh giá trị tuyệt đối trước khi tính.');await page.locator('[data-skip-ai]').click();await page.getByText('Đã lưu hành trình của em.',{exact:false}).waitFor();
- await page.goto(app.base+'/#learn/sign-2');await page.locator('#answer').fill(exercises.find(e=>e.id==='sign-2').answer);await page.locator('#working').fill('Em đã kiểm tra dấu trước khi tính.');await page.locator('#answer-form button').click();
+ await app.login(page);await page.goto(app.base);await page.reload();const first=await seedPractice(page,app.base,{exerciseId:'sign-1',answer:'999',working:'Em cộng hai số rồi giữ dấu âm.',completed:true});assert.equal((await page.request.post(app.base+'/api/learning/diagnose',{data:{attemptId:first.id}})).status(),200);await seedPractice(page,app.base,{exerciseId:'sign-2',answer:exercises.find(e=>e.id==='sign-2').answer,completed:true});
  await page.goto(app.base+'/#learning');await page.getByRole('heading',{name:'Trước – sau khi khắc phục'}).waitFor();await page.getByText('Kiểm tra quy tắc dấu · 5/10 · 2/2 câu · Đã làm đủ',{exact:true}).waitFor();await page.locator('#personal-insight').click();await page.locator('#personal-insight-result .feedback').waitFor();
  await page.screenshot({path:'artifacts/learning-personal.png',fullPage:true});
  const ws=await (await page.request.get(app.base+'/api/workspace')).json();const sid=ws.user.id;

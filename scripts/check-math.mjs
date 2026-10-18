@@ -1,4 +1,6 @@
+import {submitPhoto,mockPhotoAI} from './practice-fixture.mjs';
 import {createTestApp} from './browser-fixture.mjs';
+const restoreAI=mockPhotoAI({summary:String.raw`Phân số \(\frac{1}{2}\); căn \(\sqrt{9}=3\). <img src=x onerror=alert(1)>`});
 const testApp=await createTestApp({grade:9});
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
@@ -19,20 +21,11 @@ try{
   assert.ok(await page.evaluate(()=>document.fonts.check('16px KaTeX_Main')));
   await page.goto(testApp.base+'/#learn/equation-6');
   assert.equal(await page.locator('.problem mfrac').count(),1);
-  await page.locator('#answer').fill('1/2');
-  assert.equal(await page.locator('.math-preview mfrac').count(),1);
+  await submitPhoto(page,testApp.base,'equation-6');
+  assert.ok(await page.locator('.practice-photo-result mfrac').count()>0);assert.ok(await page.locator('.practice-photo-result msqrt').count()>0);
+  assert.equal(await page.locator('.practice-photo-result img[src=x]').count(),0);assert.equal(await page.locator('.math-fallback,.katex-error').count(),0);
   await page.screenshot({path:'artifacts/math-desktop.png',fullPage:true});
-  await page.getByRole('button',{name:'Kiểm tra đáp án'}).click();
-  if(await page.locator('[data-diagnosis="1"]').count()){await page.locator('[data-diagnosis="1"]').click();await page.locator('[data-next]').click();}
-  await page.locator('#correction').fill('9');await page.getByRole('button',{name:'Kiểm tra cách sửa'}).click();
-  await page.locator('#explanation').fill(String.raw`Em trừ 2 ở hai vế, được \(\frac{x}{3}=3\). Nhân hai vế với 3 được x = 9.`);
-  await page.locator('.math-writing-help summary').click();assert.equal(await page.locator('.math-preview-text mfrac').count(),1);
-  await page.locator('#explanation-form button:not([type])').click();await page.locator('[data-finish]').waitFor();
-  assert.ok(await page.locator('.feedback mfrac').count()>0);assert.ok(await page.locator('.feedback msqrt').count()>0);
-  assert.equal(await page.locator('.feedback img').count(),0);
-  assert.equal(await page.locator('.feedback .math-fallback').count(),0);
-  await page.locator('[data-finish]').click();
-  await page.goto(testApp.base+'/#notebook');assert.ok(await page.locator('.list-row mfrac').count()>0);
+  await page.goto(testApp.base+'/#notebook');await page.locator('.knowledge-hub[data-loaded=true]').waitFor();assert.ok(await page.locator('.knowledge-mistake mfrac').count()>0);
   await page.setViewportSize({width:390,height:844});
   await page.goto(testApp.base+'/#formulas');await page.locator('.atlas-list').waitFor({state:'attached'});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
@@ -45,4 +38,4 @@ try{
   assert.ok(await page.locator('mfrac').count()>0);
   assert.deepEqual(errors,[]);
   console.log('PASS: fractions, roots, systems, input previews, mocked Gemini LaTeX, escaped HTML, saved notebook, mobile and offline fonts.');
-}finally{await browser.close();await testApp.close();}
+}finally{restoreAI();await browser.close();await testApp.close();}

@@ -1,0 +1,1769 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "datatm-2eeffd973c2e5c5528a1",
+      "grade": 6,
+      "topic": "Tính toán với số thập phân",
+      "tags": [
+        "Tính toán với số thập phân"
+      ],
+      "level": 1,
+      "prompt": "Thực hiện phép tính: 34,25 – 78,43;",
+      "answer": "-2209/50",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((\\frac{137}{4}) - (\\frac{7843}{100}) = -\\frac{2209}{50}\\).\nVậy \\(34.25-78.43=-\\frac{2209}{50}\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_29_tinh_toan_voi_so_thap_phan.docx",
+        "sha256": "c8a8d66fc955e7d092c9a6b6ec057830bd3c2fccff9c92e3a7e85cf2d5482c07",
+        "question": 1,
+        "originalAnswer": "–44,18"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "34,25 – 78,43",
+          "recomputed": "-2209/50"
+        }
+      }
+    },
+    {
+      "id": "datatm-06e41f1411d230782ec7",
+      "grade": 6,
+      "topic": "Tính toán với số thập phân",
+      "tags": [
+        "Tính toán với số thập phân"
+      ],
+      "level": 1,
+      "prompt": "Thực hiện phép tính: (–35,3) . 4,1;",
+      "answer": "-14473/100",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-\\frac{353}{10}) \\cdot (\\frac{41}{10}) = -\\frac{14473}{100}\\).\nVậy \\(\\left(-35.3\\right)\\cdot 4.1=-\\frac{14473}{100}\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_29_tinh_toan_voi_so_thap_phan.docx",
+        "sha256": "c8a8d66fc955e7d092c9a6b6ec057830bd3c2fccff9c92e3a7e85cf2d5482c07",
+        "question": 2,
+        "originalAnswer": "–144,73"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(–35,3) . 4,1",
+          "recomputed": "-14473/100"
+        }
+      }
+    },
+    {
+      "id": "datatm-50e446035109fec49999",
+      "grade": 6,
+      "topic": "Tính toán với số thập phân",
+      "tags": [
+        "Tính toán với số thập phân"
+      ],
+      "level": 1,
+      "prompt": "Tính nhẩm (–32,5) . 0,01;",
+      "answer": "-13/40",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-\\frac{65}{2}) \\cdot (\\frac{1}{100}) = -\\frac{13}{40}\\).\nVậy \\(\\left(-32.5\\right)\\cdot 0.01=-\\frac{13}{40}\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_29_tinh_toan_voi_so_thap_phan.docx",
+        "sha256": "c8a8d66fc955e7d092c9a6b6ec057830bd3c2fccff9c92e3a7e85cf2d5482c07",
+        "question": 3,
+        "originalAnswer": "–0,325"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(–32,5) . 0,01",
+          "recomputed": "-13/40"
+        }
+      }
+    },
+    {
+      "id": "datatm-ad572c9e5e487c7ef80d",
+      "grade": 6,
+      "topic": "Tính toán với số thập phân",
+      "tags": [
+        "Tính toán với số thập phân"
+      ],
+      "level": 1,
+      "prompt": "Sử dụng quy tắc dấu ngoặc tính các tổng sau: (–8,5) + 16,35+ (–4,5) – (–2,25);",
+      "answer": "28/5",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-\\frac{17}{2}) + (\\frac{327}{20}) = \\frac{157}{20}\\).\nBước 2: \\((\\frac{157}{20}) + (-\\frac{9}{2}) = \\frac{67}{20}\\).\nBước 3: \\((\\frac{67}{20}) - (-\\frac{9}{4}) = \\frac{28}{5}\\).\nVậy \\(\\left(-8.5\\right)+16.35+\\left(-4.5\\right)-\\left(-2.25\\right)=\\frac{28}{5}\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_29_tinh_toan_voi_so_thap_phan.docx",
+        "sha256": "c8a8d66fc955e7d092c9a6b6ec057830bd3c2fccff9c92e3a7e85cf2d5482c07",
+        "question": 4,
+        "originalAnswer": "5,6"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(–8,5) + 16,35+ (–4,5) – (–2,25)",
+          "recomputed": "28/5"
+        }
+      }
+    },
+    {
+      "id": "datatm-add6ddfa7f2e2ec155f3",
+      "grade": 6,
+      "topic": "Tính toán với số thập phân",
+      "tags": [
+        "Tính toán với số thập phân"
+      ],
+      "level": 1,
+      "prompt": "Tính một cách hợp lí: 18,65 + 281,35 – 26,75 – 13,25;",
+      "answer": "260",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((\\frac{373}{20}) + (\\frac{5627}{20}) = 300\\).\nBước 2: \\((300) - (\\frac{107}{4}) = \\frac{1093}{4}\\).\nBước 3: \\((\\frac{1093}{4}) - (\\frac{53}{4}) = 260\\).\nVậy \\(18.65+281.35-26.75-13.25=260\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_29_tinh_toan_voi_so_thap_phan.docx",
+        "sha256": "c8a8d66fc955e7d092c9a6b6ec057830bd3c2fccff9c92e3a7e85cf2d5482c07",
+        "question": 12,
+        "originalAnswer": "260"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "18,65 + 281,35 – 26,75 – 13,25",
+          "recomputed": "260"
+        }
+      }
+    },
+    {
+      "id": "datatm-aaa3d6a2e5574b56c7d7",
+      "grade": 6,
+      "topic": "Cộng và trừ số nguyên",
+      "tags": [
+        "Cộng và trừ số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính -8 + 5.",
+      "answer": "-3",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-8) + (5) = -3\\).\nVậy \\(-8+5=-3\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_14_phep_cong_va_phep_tru_so_nguyen.docx",
+        "sha256": "e86cebd4baed56e915cc5fc003d4cf9f3bb4bb9e75336649723f0748c96074ea",
+        "question": 1,
+        "originalAnswer": "-8 + 5 = -3."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "-8 + 5",
+          "recomputed": "-3"
+        }
+      }
+    },
+    {
+      "id": "datatm-b8c6bf72c91df49d0c48",
+      "grade": 6,
+      "topic": "Cộng và trừ số nguyên",
+      "tags": [
+        "Cộng và trừ số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính -12 - 7.",
+      "answer": "-19",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-12) - (7) = -19\\).\nVậy \\(-12-7=-19\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_14_phep_cong_va_phep_tru_so_nguyen.docx",
+        "sha256": "e86cebd4baed56e915cc5fc003d4cf9f3bb4bb9e75336649723f0748c96074ea",
+        "question": 2,
+        "originalAnswer": "-12 - 7 = -19."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "-12 - 7",
+          "recomputed": "-19"
+        }
+      }
+    },
+    {
+      "id": "datatm-a8140be0447f90ee2d01",
+      "grade": 6,
+      "topic": "Cộng và trừ số nguyên",
+      "tags": [
+        "Cộng và trừ số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính 15 - (-6).",
+      "answer": "21",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((15) - (-6) = 21\\).\nVậy \\(15-\\left(-6\\right)=21\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_14_phep_cong_va_phep_tru_so_nguyen.docx",
+        "sha256": "e86cebd4baed56e915cc5fc003d4cf9f3bb4bb9e75336649723f0748c96074ea",
+        "question": 3,
+        "originalAnswer": "15 - (-6) = 15 + 6 = 21."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "15 - (-6)",
+          "recomputed": "21"
+        }
+      }
+    },
+    {
+      "id": "datatm-3420a44de0f82e12283b",
+      "grade": 6,
+      "topic": "Cộng và trừ số nguyên",
+      "tags": [
+        "Cộng và trừ số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính -9 + (-4).",
+      "answer": "-13",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-9) + (-4) = -13\\).\nVậy \\(-9+\\left(-4\\right)=-13\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_14_phep_cong_va_phep_tru_so_nguyen.docx",
+        "sha256": "e86cebd4baed56e915cc5fc003d4cf9f3bb4bb9e75336649723f0748c96074ea",
+        "question": 4,
+        "originalAnswer": "-9 + (-4) = -13."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "-9 + (-4)",
+          "recomputed": "-13"
+        }
+      }
+    },
+    {
+      "id": "datatm-f43832bcb00c73db3f89",
+      "grade": 6,
+      "topic": "Cộng và trừ số nguyên",
+      "tags": [
+        "Cộng và trừ số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính 6 + (-10).",
+      "answer": "-4",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((6) + (-10) = -4\\).\nVậy \\(6+\\left(-10\\right)=-4\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_14_phep_cong_va_phep_tru_so_nguyen.docx",
+        "sha256": "e86cebd4baed56e915cc5fc003d4cf9f3bb4bb9e75336649723f0748c96074ea",
+        "question": 5,
+        "originalAnswer": "6 + (-10) = -4."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "6 + (-10)",
+          "recomputed": "-4"
+        }
+      }
+    },
+    {
+      "id": "datatm-ca21fd1a87948c59dbc5",
+      "grade": 6,
+      "topic": "Cộng và trừ số nguyên",
+      "tags": [
+        "Cộng và trừ số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính -18 - (-5).",
+      "answer": "-13",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-18) - (-5) = -13\\).\nVậy \\(-18-\\left(-5\\right)=-13\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_14_phep_cong_va_phep_tru_so_nguyen.docx",
+        "sha256": "e86cebd4baed56e915cc5fc003d4cf9f3bb4bb9e75336649723f0748c96074ea",
+        "question": 6,
+        "originalAnswer": "-18 - (-5) = -18 + 5 = -13."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "-18 - (-5)",
+          "recomputed": "-13"
+        }
+      }
+    },
+    {
+      "id": "datatm-866e1a761706631ca953",
+      "grade": 6,
+      "topic": "Cộng và trừ số nguyên",
+      "tags": [
+        "Cộng và trừ số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính 0 - (-7).",
+      "answer": "7",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((0) - (-7) = 7\\).\nVậy \\(0-\\left(-7\\right)=7\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_14_phep_cong_va_phep_tru_so_nguyen.docx",
+        "sha256": "e86cebd4baed56e915cc5fc003d4cf9f3bb4bb9e75336649723f0748c96074ea",
+        "question": 7,
+        "originalAnswer": "0 - (-7) = 0 + 7 = 7."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "0 - (-7)",
+          "recomputed": "7"
+        }
+      }
+    },
+    {
+      "id": "datatm-95742ef04e01715ebe49",
+      "grade": 6,
+      "topic": "Cộng và trừ số nguyên",
+      "tags": [
+        "Cộng và trừ số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính -4 - (-9).",
+      "answer": "5",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-4) - (-9) = 5\\).\nVậy \\(-4-\\left(-9\\right)=5\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_14_phep_cong_va_phep_tru_so_nguyen.docx",
+        "sha256": "e86cebd4baed56e915cc5fc003d4cf9f3bb4bb9e75336649723f0748c96074ea",
+        "question": 8,
+        "originalAnswer": "-4 - (-9) = -4 + 9 = 5."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "-4 - (-9)",
+          "recomputed": "5"
+        }
+      }
+    },
+    {
+      "id": "datatm-5288858ff9712e41a153",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tìm số nguyên x biết: x – 345 = 69",
+      "answer": "414",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(1x=414\\).\nChia hai vế cho \\(1\\), được \\(x=414\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 1,
+        "originalAnswer": "x=414"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x – 345 = 69",
+          "recomputed": "414"
+        }
+      }
+    },
+    {
+      "id": "datatm-764c881eefb5a90b6910",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính (9−21)−(−91+10)",
+      "answer": "69",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((9) - (21) = -12\\).\nBước 2: \\((-91) + (10) = -81\\).\nBước 3: \\((-12) - (-81) = 69\\).\nVậy \\(\\left(9-21\\right)-\\left(-91+10\\right)=69\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 2,
+        "originalAnswer": "69"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(9−21)−(−91+10)",
+          "recomputed": "69"
+        }
+      }
+    },
+    {
+      "id": "datatm-cfd231dd1f1a11d33ed8",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tìm số nguyên y biết: y – 345 – 69 = -12",
+      "answer": "402",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa y về một vế, các hằng số về vế còn lại; rút gọn được \\(1y=402\\).\nChia hai vế cho \\(1\\), được \\(y=402\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 3,
+        "originalAnswer": "y= 402"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x – 345 – 69 = -12",
+          "recomputed": "402"
+        }
+      }
+    },
+    {
+      "id": "datatm-d568ae8b6dccaee00f04",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính (55+23)−(−45−77)",
+      "answer": "200",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((55) + (23) = 78\\).\nBước 2: \\((-45) - (77) = -122\\).\nBước 3: \\((78) - (-122) = 200\\).\nVậy \\(\\left(55+23\\right)-\\left(-45-77\\right)=200\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 4,
+        "originalAnswer": "200"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(55+23)−(−45−77)",
+          "recomputed": "200"
+        }
+      }
+    },
+    {
+      "id": "datatm-e8c900a4f2dc4feff014",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính Giá trị của biểu thức (23+19)+(−13+11).",
+      "answer": "40",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((23) + (19) = 42\\).\nBước 2: \\((-13) + (11) = -2\\).\nBước 3: \\((42) + (-2) = 40\\).\nVậy \\(\\left(23+19\\right)+\\left(-13+11\\right)=40\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 5,
+        "originalAnswer": "40"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(23+19)+(−13+11)",
+          "recomputed": "40"
+        }
+      }
+    },
+    {
+      "id": "datatm-e4e27bfab6a6c6981327",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính −(32+14)−(−14+68)",
+      "answer": "-100",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((32) + (14) = 46\\).\nBước 2: \\((-14) + (68) = 54\\).\nBước 3: \\((-46) - (54) = -100\\).\nVậy \\(-\\left(32+14\\right)-\\left(-14+68\\right)=-100\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 8,
+        "originalAnswer": "- 100"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "−(32+14)−(−14+68)",
+          "recomputed": "-100"
+        }
+      }
+    },
+    {
+      "id": "datatm-f4d29833ec053bb198db",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính 30 + 12 + (–20) + (–12)?",
+      "answer": "10",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((30) + (12) = 42\\).\nBước 2: \\((42) + (-20) = 22\\).\nBước 3: \\((22) + (-12) = 10\\).\nVậy \\(30+12+\\left(-20\\right)+\\left(-12\\right)=10\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 10,
+        "originalAnswer": "10"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "30 + 12 + (–20) + (–12)",
+          "recomputed": "10"
+        }
+      }
+    },
+    {
+      "id": "datatm-c5922a91b276ab380258",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính 54−(−23−46)",
+      "answer": "123",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-23) - (46) = -69\\).\nBước 2: \\((54) - (-69) = 123\\).\nVậy \\(54-\\left(-23-46\\right)=123\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 12,
+        "originalAnswer": "123"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "54−(−23−46)",
+          "recomputed": "123"
+        }
+      }
+    },
+    {
+      "id": "datatm-c2079e07176f05bc4c17",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính Giá trị của biểu thức −(76+139)−(24−39)",
+      "answer": "-200",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((76) + (139) = 215\\).\nBước 2: \\((24) - (39) = -15\\).\nBước 3: \\((-215) - (-15) = -200\\).\nVậy \\(-\\left(76+139\\right)-\\left(24-39\\right)=-200\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 16,
+        "originalAnswer": "- 200"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "−(76+139)−(24−39)",
+          "recomputed": "-200"
+        }
+      }
+    },
+    {
+      "id": "datatm-aa8d9df6fc4a44dd46ef",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính 333 – [(-14 657) + 57] – 78.",
+      "answer": "14855",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-14657) + (57) = -14600\\).\nBước 2: \\((333) - (-14600) = 14933\\).\nBước 3: \\((14933) - (78) = 14855\\).\nVậy \\(333-\\left(\\left(-14657\\right)+57\\right)-78=14855\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 17,
+        "originalAnswer": "14 855"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "333 – [(-14 657) + 57] – 78",
+          "recomputed": "14855"
+        }
+      }
+    },
+    {
+      "id": "datatm-fc4164ccea919498a4ec",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tính nhanh (39 – 2 689) + 2 689;",
+      "answer": "39",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((39) - (2689) = -2650\\).\nBước 2: \\((-2650) + (2689) = 39\\).\nVậy \\(\\left(39-2689\\right)+2689=39\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 18,
+        "originalAnswer": "39"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(39 – 2 689) + 2 689",
+          "recomputed": "39"
+        }
+      }
+    },
+    {
+      "id": "datatm-44463056fa9b72b2baad",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: 89 – (x + 252) = -181",
+      "answer": "18",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-1x=-18\\).\nChia hai vế cho \\(-1\\), được \\(x=18\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 19,
+        "originalAnswer": "x = 18"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "89 – (x + 252) = -181",
+          "recomputed": "18"
+        }
+      }
+    },
+    {
+      "id": "datatm-a29abb6458e809f80253",
+      "grade": 6,
+      "topic": "Quy tắc dấu ngoặc",
+      "tags": [
+        "Quy tắc dấu ngoặc"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: x – (24+25) + (14 – 21) = -46",
+      "answer": "10",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(1x=10\\).\nChia hai vế cho \\(1\\), được \\(x=10\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_15_quy_tac_dau_ngoac.docx",
+        "sha256": "04413418a36798a59e41c59841f3a57d0d07edea1776244f28d99b9b9cae22d6",
+        "question": 20,
+        "originalAnswer": "x = 10"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x – (24+25) + (14 – 21) = -46",
+          "recomputed": "10"
+        }
+      }
+    },
+    {
+      "id": "datatm-f20b2eee98ba339ecc37",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của (-4) · 5.",
+      "answer": "-20",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-4) \\cdot (5) = -20\\).\nVậy \\(\\left(-4\\right)\\cdot 5=-20\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 1,
+        "originalAnswer": "(-4) · 5 = -20."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(-4) · 5",
+          "recomputed": "-20"
+        }
+      }
+    },
+    {
+      "id": "datatm-2e43fd75681d35e273f4",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của 7 · (-3).",
+      "answer": "-21",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((7) \\cdot (-3) = -21\\).\nVậy \\(7\\cdot \\left(-3\\right)=-21\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 2,
+        "originalAnswer": "7 · (-3) = -21."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "7 · (-3)",
+          "recomputed": "-21"
+        }
+      }
+    },
+    {
+      "id": "datatm-d1fa9b488af0fca54955",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của (-6) · (-8).",
+      "answer": "48",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-6) \\cdot (-8) = 48\\).\nVậy \\(\\left(-6\\right)\\cdot \\left(-8\\right)=48\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 3,
+        "originalAnswer": "(-6) · (-8) = 48."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(-6) · (-8)",
+          "recomputed": "48"
+        }
+      }
+    },
+    {
+      "id": "datatm-2ec49318ba1f29a158ae",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của 9 · (-2).",
+      "answer": "-18",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((9) \\cdot (-2) = -18\\).\nVậy \\(9\\cdot \\left(-2\\right)=-18\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 4,
+        "originalAnswer": "9 · (-2) = -18."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "9 · (-2)",
+          "recomputed": "-18"
+        }
+      }
+    },
+    {
+      "id": "datatm-d9399307dda3bbf30312",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của (-3) · (-4).",
+      "answer": "12",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-3) \\cdot (-4) = 12\\).\nVậy \\(\\left(-3\\right)\\cdot \\left(-4\\right)=12\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 5,
+        "originalAnswer": "(-3) · (-4) = 12."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(-3) · (-4)",
+          "recomputed": "12"
+        }
+      }
+    },
+    {
+      "id": "datatm-a18167dc83ef646d83b0",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của 5 · (-6).",
+      "answer": "-30",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((5) \\cdot (-6) = -30\\).\nVậy \\(5\\cdot \\left(-6\\right)=-30\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 6,
+        "originalAnswer": "5 · (-6) = -30."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "5 · (-6)",
+          "recomputed": "-30"
+        }
+      }
+    },
+    {
+      "id": "datatm-84f1de5c0577270c3a9a",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của (-12) · 2.",
+      "answer": "-24",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-12) \\cdot (2) = -24\\).\nVậy \\(\\left(-12\\right)\\cdot 2=-24\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 7,
+        "originalAnswer": "(-12) · 2 = -24."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(-12) · 2",
+          "recomputed": "-24"
+        }
+      }
+    },
+    {
+      "id": "datatm-3d2fc03944a3bcf5ffbf",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của 11 · (-9).",
+      "answer": "-99",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((11) \\cdot (-9) = -99\\).\nVậy \\(11\\cdot \\left(-9\\right)=-99\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 8,
+        "originalAnswer": "11 · (-9) = -99."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "11 · (-9)",
+          "recomputed": "-99"
+        }
+      }
+    },
+    {
+      "id": "datatm-1721050dfa17cbf9a8de",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của (-5) · (-5).",
+      "answer": "25",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-5) \\cdot (-5) = 25\\).\nVậy \\(\\left(-5\\right)\\cdot \\left(-5\\right)=25\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 9,
+        "originalAnswer": "(-5) · (-5) = 25."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(-5) · (-5)",
+          "recomputed": "25"
+        }
+      }
+    },
+    {
+      "id": "datatm-75257cee00c395820283",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính giá trị của 0 · 8.",
+      "answer": "0",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((0) \\cdot (8) = 0\\).\nVậy \\(0\\cdot 8=0\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 10,
+        "originalAnswer": "0 · 8 = 0."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "0 · 8",
+          "recomputed": "0"
+        }
+      }
+    },
+    {
+      "id": "datatm-0df69e94d610ab7f60ea",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: x · 7 = -21.",
+      "answer": "-3",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(7x=-21\\).\nChia hai vế cho \\(7\\), được \\(x=-3\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 11,
+        "originalAnswer": "x = -21 ÷ 7 = -3."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x · 7 = -21",
+          "recomputed": "-3"
+        }
+      }
+    },
+    {
+      "id": "datatm-274cb21d63ee9a3aa2d8",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: -4 · x = 16.",
+      "answer": "-4",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-4x=16\\).\nChia hai vế cho \\(-4\\), được \\(x=-4\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 12,
+        "originalAnswer": "x = 16 ÷ (-4) = -4."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "-4 · x = 16",
+          "recomputed": "-4"
+        }
+      }
+    },
+    {
+      "id": "datatm-92418bce2f5272c06043",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: 8 · x = -56.",
+      "answer": "-7",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(8x=-56\\).\nChia hai vế cho \\(8\\), được \\(x=-7\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 13,
+        "originalAnswer": "x = -56 ÷ 8 = -7."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "8 · x = -56",
+          "recomputed": "-7"
+        }
+      }
+    },
+    {
+      "id": "datatm-fbf3dfa1936442b18c35",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: (-3) · x = 12.",
+      "answer": "-4",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-3x=12\\).\nChia hai vế cho \\(-3\\), được \\(x=-4\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 14,
+        "originalAnswer": "x = 12 ÷ (-3) = -4."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "(-3) · x = 12",
+          "recomputed": "-4"
+        }
+      }
+    },
+    {
+      "id": "datatm-e735e5a8aabd174226b2",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: (-6) · x = -36.",
+      "answer": "6",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-6x=-36\\).\nChia hai vế cho \\(-6\\), được \\(x=6\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 15,
+        "originalAnswer": "x = -36 ÷ (-6) = 6."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "(-6) · x = -36",
+          "recomputed": "6"
+        }
+      }
+    },
+    {
+      "id": "datatm-3a2c7dee1e7394106ab7",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: x · (-5) = 25.",
+      "answer": "-5",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-5x=25\\).\nChia hai vế cho \\(-5\\), được \\(x=-5\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 16,
+        "originalAnswer": "x = 25 ÷ (-5) = -5."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x · (-5) = 25",
+          "recomputed": "-5"
+        }
+      }
+    },
+    {
+      "id": "datatm-6f33cdd270be38f32b74",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: 12 · x = -48.",
+      "answer": "-4",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(12x=-48\\).\nChia hai vế cho \\(12\\), được \\(x=-4\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 17,
+        "originalAnswer": "x = -48 ÷ 12 = -4."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "12 · x = -48",
+          "recomputed": "-4"
+        }
+      }
+    },
+    {
+      "id": "datatm-9e3aa9c4c93642ddeedf",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: (-2) · x = 18.",
+      "answer": "-9",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-2x=18\\).\nChia hai vế cho \\(-2\\), được \\(x=-9\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 18,
+        "originalAnswer": "x = 18 ÷ (-2) = -9."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "(-2) · x = 18",
+          "recomputed": "-9"
+        }
+      }
+    },
+    {
+      "id": "datatm-275808b6c82b09544898",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: x · (-3) = -15.",
+      "answer": "5",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-3x=-15\\).\nChia hai vế cho \\(-3\\), được \\(x=5\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 19,
+        "originalAnswer": "x = -15 ÷ (-3) = 5."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x · (-3) = -15",
+          "recomputed": "5"
+        }
+      }
+    },
+    {
+      "id": "datatm-f24cfd9717edeac62356",
+      "grade": 6,
+      "topic": "Nhân số nguyên",
+      "tags": [
+        "Nhân số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: x · 9 = -72.",
+      "answer": "-8",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(9x=-72\\).\nChia hai vế cho \\(9\\), được \\(x=-8\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_16_phep_nhan_so_nguyen.docx",
+        "sha256": "c0337dacb07b0cc8f90fde7b7fe1c7fa1d62152cec66ef0139a7394e6bae4008",
+        "question": 20,
+        "originalAnswer": "x = -72 ÷ 9 = -8."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x · 9 = -72",
+          "recomputed": "-8"
+        }
+      }
+    },
+    {
+      "id": "datatm-f495f2e51a64bc8ec0be",
+      "grade": 6,
+      "topic": "Chia số nguyên",
+      "tags": [
+        "Chia số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính 64: (-8)",
+      "answer": "-8",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((64) \\div (-8) = -8\\).\nVậy \\(\\frac{64}{-8}=-8\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_17_phep_chia_het_uoc_va_boi_cua_mot_so_nguyen.docx",
+        "sha256": "581732e475c15da1c90f6fed91e328c74cc238f7129fa8478d3507131c150279",
+        "question": 9,
+        "originalAnswer": "-8"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "64: (-8)",
+          "recomputed": "-8"
+        }
+      }
+    },
+    {
+      "id": "datatm-0a8485f82073d7a36680",
+      "grade": 6,
+      "topic": "Chia số nguyên",
+      "tags": [
+        "Chia số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm số nguyên x, biết 25x =100",
+      "answer": "4",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(25x=100\\).\nChia hai vế cho \\(25\\), được \\(x=4\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_17_phep_chia_het_uoc_va_boi_cua_mot_so_nguyen.docx",
+        "sha256": "581732e475c15da1c90f6fed91e328c74cc238f7129fa8478d3507131c150279",
+        "question": 10,
+        "originalAnswer": "4"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "25x =100",
+          "recomputed": "4"
+        }
+      }
+    },
+    {
+      "id": "datatm-aae57dc4b80ac8b711db",
+      "grade": 6,
+      "topic": "Chia số nguyên",
+      "tags": [
+        "Chia số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm số nguyên x, biết: (- 24).x = - 120",
+      "answer": "5",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-24x=-120\\).\nChia hai vế cho \\(-24\\), được \\(x=5\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_17_phep_chia_het_uoc_va_boi_cua_mot_so_nguyen.docx",
+        "sha256": "581732e475c15da1c90f6fed91e328c74cc238f7129fa8478d3507131c150279",
+        "question": 11,
+        "originalAnswer": "x = 5"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "(- 24).x = - 120",
+          "recomputed": "5"
+        }
+      }
+    },
+    {
+      "id": "datatm-435c476ae3dc1347aab2",
+      "grade": 6,
+      "topic": "Chia số nguyên",
+      "tags": [
+        "Chia số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính (-132).(-98):11",
+      "answer": "1176",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-132) \\cdot (-98) = 12936\\).\nBước 2: \\((12936) \\div (11) = 1176\\).\nVậy \\(\\frac{\\left(-132\\right)\\cdot \\left(-98\\right)}{11}=1176\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_17_phep_chia_het_uoc_va_boi_cua_mot_so_nguyen.docx",
+        "sha256": "581732e475c15da1c90f6fed91e328c74cc238f7129fa8478d3507131c150279",
+        "question": 15,
+        "originalAnswer": "1 176"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(-132).(-98):11",
+          "recomputed": "1176"
+        }
+      }
+    },
+    {
+      "id": "datatm-95102ef051789bed98a1",
+      "grade": 6,
+      "topic": "Chia số nguyên",
+      "tags": [
+        "Chia số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tính (-81) : (-9) : (-3)",
+      "answer": "-3",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((-81) \\div (-9) = 9\\).\nBước 2: \\((9) \\div (-3) = -3\\).\nVậy \\(\\frac{\\frac{-81}{-9}}{-3}=-3\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_17_phep_chia_het_uoc_va_boi_cua_mot_so_nguyen.docx",
+        "sha256": "581732e475c15da1c90f6fed91e328c74cc238f7129fa8478d3507131c150279",
+        "question": 17,
+        "originalAnswer": "-3"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(-81) : (-9) : (-3)",
+          "recomputed": "-3"
+        }
+      }
+    },
+    {
+      "id": "datatm-52659c7e39983675380e",
+      "grade": 6,
+      "topic": "Chia số nguyên",
+      "tags": [
+        "Chia số nguyên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: (x – 10) : (-3) = 5",
+      "answer": "-5",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-\\frac{1}{3}x=\\frac{5}{3}\\).\nChia hai vế cho \\(-\\frac{1}{3}\\), được \\(x=-5\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_17_phep_chia_het_uoc_va_boi_cua_mot_so_nguyen.docx",
+        "sha256": "581732e475c15da1c90f6fed91e328c74cc238f7129fa8478d3507131c150279",
+        "question": 18,
+        "originalAnswer": "x=-5"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "(x – 10) : (-3) = 5",
+          "recomputed": "-5"
+        }
+      }
+    },
+    {
+      "id": "datatm-26bbd8b303c0f0a34c42",
+      "grade": 6,
+      "topic": "Cộng trừ số tự nhiên",
+      "tags": [
+        "Cộng trừ số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tính 13402 + 2715 – 8618",
+      "answer": "7499",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((13402) + (2715) = 16117\\).\nBước 2: \\((16117) - (8618) = 7499\\).\nVậy \\(13402+2715-8618=7499\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_4_phep_cong_va_phep_tru_so_tu_nhien.docx",
+        "sha256": "30e0d5c07483546e305dbd7467ce0e3ba6cab5048e4159aa40d93c54cc0709af",
+        "question": 3,
+        "originalAnswer": "7499"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "13402 + 2715 – 8618",
+          "recomputed": "7499"
+        }
+      }
+    },
+    {
+      "id": "datatm-363e4cdd4f01a2f80c32",
+      "grade": 6,
+      "topic": "Cộng trừ số tự nhiên",
+      "tags": [
+        "Cộng trừ số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tính 29 377 + 2 862",
+      "answer": "32239",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((29377) + (2862) = 32239\\).\nVậy \\(29377+2862=32239\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_4_phep_cong_va_phep_tru_so_tu_nhien.docx",
+        "sha256": "30e0d5c07483546e305dbd7467ce0e3ba6cab5048e4159aa40d93c54cc0709af",
+        "question": 4,
+        "originalAnswer": "32 239"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "29 377 + 2 862",
+          "recomputed": "32239"
+        }
+      }
+    },
+    {
+      "id": "datatm-8fac54670f06ddb71771",
+      "grade": 6,
+      "topic": "Cộng trừ số tự nhiên",
+      "tags": [
+        "Cộng trừ số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tính 332 + 244 – 32",
+      "answer": "544",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((332) + (244) = 576\\).\nBước 2: \\((576) - (32) = 544\\).\nVậy \\(332+244-32=544\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_4_phep_cong_va_phep_tru_so_tu_nhien.docx",
+        "sha256": "30e0d5c07483546e305dbd7467ce0e3ba6cab5048e4159aa40d93c54cc0709af",
+        "question": 5,
+        "originalAnswer": "544"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "332 + 244 – 32",
+          "recomputed": "544"
+        }
+      }
+    },
+    {
+      "id": "datatm-207da8b35b2a7627097c",
+      "grade": 6,
+      "topic": "Cộng trừ số tự nhiên",
+      "tags": [
+        "Cộng trừ số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: x + 12 = 244",
+      "answer": "232",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(1x=232\\).\nChia hai vế cho \\(1\\), được \\(x=232\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_4_phep_cong_va_phep_tru_so_tu_nhien.docx",
+        "sha256": "30e0d5c07483546e305dbd7467ce0e3ba6cab5048e4159aa40d93c54cc0709af",
+        "question": 7,
+        "originalAnswer": "x = 232"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x + 12 = 244",
+          "recomputed": "232"
+        }
+      }
+    },
+    {
+      "id": "datatm-5f1aef86811c5c00a7ea",
+      "grade": 6,
+      "topic": "Cộng trừ số tự nhiên",
+      "tags": [
+        "Cộng trừ số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: 134 – x = 100",
+      "answer": "34",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(-1x=-34\\).\nChia hai vế cho \\(-1\\), được \\(x=34\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_4_phep_cong_va_phep_tru_so_tu_nhien.docx",
+        "sha256": "30e0d5c07483546e305dbd7467ce0e3ba6cab5048e4159aa40d93c54cc0709af",
+        "question": 8,
+        "originalAnswer": "34"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "134 – x = 100",
+          "recomputed": "34"
+        }
+      }
+    },
+    {
+      "id": "datatm-7960e81bd412370b4e6e",
+      "grade": 6,
+      "topic": "Cộng trừ số tự nhiên",
+      "tags": [
+        "Cộng trừ số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x:  x – 234 = 555",
+      "answer": "789",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(1x=789\\).\nChia hai vế cho \\(1\\), được \\(x=789\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_4_phep_cong_va_phep_tru_so_tu_nhien.docx",
+        "sha256": "30e0d5c07483546e305dbd7467ce0e3ba6cab5048e4159aa40d93c54cc0709af",
+        "question": 9,
+        "originalAnswer": "789"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x – 234 = 555",
+          "recomputed": "789"
+        }
+      }
+    },
+    {
+      "id": "datatm-8cea2b878f1dccec4283",
+      "grade": 6,
+      "topic": "Cộng trừ số tự nhiên",
+      "tags": [
+        "Cộng trừ số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x: 12 + x – 6 = 31",
+      "answer": "25",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(1x=25\\).\nChia hai vế cho \\(1\\), được \\(x=25\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_4_phep_cong_va_phep_tru_so_tu_nhien.docx",
+        "sha256": "30e0d5c07483546e305dbd7467ce0e3ba6cab5048e4159aa40d93c54cc0709af",
+        "question": 10,
+        "originalAnswer": "x = 25"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "12 + x – 6 = 31",
+          "recomputed": "25"
+        }
+      }
+    },
+    {
+      "id": "datatm-33235e84324c865d2204",
+      "grade": 6,
+      "topic": "Nhân chia số tự nhiên",
+      "tags": [
+        "Nhân chia số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tính (24 + 32 – 25) . 26",
+      "answer": "806",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((24) + (32) = 56\\).\nBước 2: \\((56) - (25) = 31\\).\nBước 3: \\((31) \\cdot (26) = 806\\).\nVậy \\(\\left(24+32-25\\right)\\cdot 26=806\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_5_phep_nhan_va_phep_chia_so_tu_nhien.docx",
+        "sha256": "367bb22c072a41956af08033936ae2e547b764ea87bdf1ee2f4832cd505ff284",
+        "question": 4,
+        "originalAnswer": "806"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "(24 + 32 – 25) . 26",
+          "recomputed": "806"
+        }
+      }
+    },
+    {
+      "id": "datatm-8d56c918260999202be0",
+      "grade": 6,
+      "topic": "Nhân chia số tự nhiên",
+      "tags": [
+        "Nhân chia số tự nhiên"
+      ],
+      "level": 1,
+      "prompt": "Tìm x biết (x + 14) . 15 = 390",
+      "answer": "12",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(15x=180\\).\nChia hai vế cho \\(15\\), được \\(x=12\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_5_phep_nhan_va_phep_chia_so_tu_nhien.docx",
+        "sha256": "367bb22c072a41956af08033936ae2e547b764ea87bdf1ee2f4832cd505ff284",
+        "question": 10,
+        "originalAnswer": "x = 12"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "(x + 14) . 15 = 390",
+          "recomputed": "12"
+        }
+      }
+    },
+    {
+      "id": "datatm-385ab1e61c1a0f113236",
+      "grade": 6,
+      "topic": "Thứ tự thực hiện phép tính",
+      "tags": [
+        "Thứ tự thực hiện phép tính"
+      ],
+      "level": 1,
+      "prompt": "Thực hiện phép tính [(8 +7) . 13] : 5",
+      "answer": "39",
+      "unit": "",
+      "solution": "Thực hiện trong ngoặc trước; lũy thừa trước nhân chia, rồi cộng trừ.\nBước 1: \\((8) + (7) = 15\\).\nBước 2: \\((15) \\cdot (13) = 195\\).\nBước 3: \\((195) \\div (5) = 39\\).\nVậy \\(\\frac{\\left(8+7\\right)\\cdot 13}{5}=39\\).",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_7_thu_tu_thuc_hien_cac_phep_tinh.docx",
+        "sha256": "662ffa8ddf18cbea4af9acb90e0c378bd631666cf700ac13baee95dbc415ad54",
+        "question": 1,
+        "originalAnswer": "39"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "arithmetic",
+          "expression": "[(8 +7) . 13] : 5",
+          "recomputed": "39"
+        }
+      }
+    },
+    {
+      "id": "datatm-3a1e9e56b2e4d7482375",
+      "grade": 6,
+      "topic": "Thứ tự thực hiện phép tính",
+      "tags": [
+        "Thứ tự thực hiện phép tính"
+      ],
+      "level": 1,
+      "prompt": "Tìm x biết : x - 160 : 40 = 45",
+      "answer": "49",
+      "unit": "",
+      "solution": "Chuyển các số hạng chứa x về một vế, các hằng số về vế còn lại; rút gọn được \\(1x=49\\).\nChia hai vế cho \\(1\\), được \\(x=49\\).\nThay giá trị vừa tìm vào phương trình ban đầu, hai vế bằng nhau.",
+      "source": {
+        "file": "DATATM/giai-nen/6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/toan_6_bai_7_thu_tu_thuc_hien_cac_phep_tinh.docx",
+        "sha256": "662ffa8ddf18cbea4af9acb90e0c378bd631666cf700ac13baee95dbc415ad54",
+        "question": 24,
+        "originalAnswer": "x= 49"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng số hữu tỉ chính xác; đối chiếu đáp án nguồn",
+        "audit": {
+          "kind": "linear-equation",
+          "expression": "x - 160 : 40 = 45",
+          "recomputed": "49"
+        }
+      }
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import {gradeSkills,gradeExercises} from './grade-content.js';
+import {practiceMCQs} from './practice-mcq-bank.js';
 export const skills = [
   { id: 'sign', name: 'Số âm & dấu', short: 'Số âm', color: '#6e71db', prerequisite: null },
   { id: 'distribute', name: 'Phép phân phối', short: 'Phân phối', color: '#338b76', prerequisite: 'sign' },
@@ -41,7 +42,7 @@ const groups = {
 };
 const legacyGrades={sign:[6,7],distribute:[7,8],combine:[7,8],equation:[8]};
 skills.forEach(s=>s.grades=legacyGrades[s.id]);skills.push(...gradeSkills);
-export const exercises = [...Object.entries(groups).flatMap(([skill, rows]) => rows.map((r, i) => ({ id: `${skill}-${i+1}`, skill, grades:legacyGrades[skill], prompt: r[0], wrong: r[1], answer: r[2], rule: r[3], keywords: r[4], level: i < 2 ? 'Khởi động' : i < 4 ? 'Luyện tập' : 'Vận dụng' }))),...gradeExercises];
+export const exercises = [...Object.entries(groups).flatMap(([skill, rows]) => rows.map((r, i) => ({ id: `${skill}-${i+1}`, skill, grades:legacyGrades[skill], prompt: r[0], wrong: r[1], answer: r[2], rule: r[3], keywords: r[4], level: i < 2 ? 'Khởi động' : i < 4 ? 'Luyện tập' : 'Vận dụng' }))),...gradeExercises,...practiceMCQs];
 
 // Parse only a small arithmetic grammar. Never execute learner input as code.
 export function evaluate(input, x = 0) {

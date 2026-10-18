@@ -1,10 +1,10 @@
-export function mountAttachments(form,{changed,status}){
+export function mountAttachments(form,{changed,status,requireTextWithoutPhotos=true}){
  let photos=[],loading=false,revision=0;
  const box=document.createElement('div');box.className='tutor-attachments';
  box.innerHTML='<div class="tutor-photo-preview"></div><label class="tutor-attach-button">＋ Thêm ảnh<input type="file" accept="image/jpeg,image/png,image/webp" multiple hidden></label><span class="tutor-photo-hint">Tối đa 3 ảnh · JPG, PNG, WebP</span>';
  form.prepend(box);const picker=box.querySelector('input'),preview=box.querySelector('.tutor-photo-preview');
  const trigger=box.querySelector('.tutor-attach-button');trigger.tabIndex=0;trigger.setAttribute('role','button');trigger.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();if(!picker.disabled)picker.click();}};
- const render=()=>{preview.replaceChildren();photos.forEach((p,index)=>{const item=document.createElement('div'),img=document.createElement('img'),remove=document.createElement('button');img.src='data:image/jpeg;base64,'+p.base64;img.alt='Ảnh bài toán '+(index+1);remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Xóa ảnh '+(index+1));remove.disabled=picker.disabled;remove.onclick=()=>{photos.splice(index,1);changed();render();};item.append(img,remove);preview.append(item);});form.querySelector('textarea').required=!photos.length;};
+ const render=()=>{preview.replaceChildren();photos.forEach((p,index)=>{const item=document.createElement('div'),img=document.createElement('img'),remove=document.createElement('button');img.src='data:image/jpeg;base64,'+p.base64;img.alt='Ảnh bài toán '+(index+1);remove.type='button';remove.textContent='×';remove.setAttribute('aria-label','Xóa ảnh '+(index+1));remove.disabled=picker.disabled;remove.onclick=()=>{photos.splice(index,1);changed();render();};item.append(img,remove);preview.append(item);});const text=form.querySelector('textarea');if(text)text.required=requireTextWithoutPhotos&&!photos.length;};
  picker.onchange=async()=>{
   if(loading)return;loading=true;const current=revision;changed();status.textContent='Đang xử lý ảnh…';
   try{

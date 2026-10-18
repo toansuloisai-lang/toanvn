@@ -26,10 +26,10 @@ try{
  await page.locator('[name="question-0"][value="1"]').check();await page.waitForFunction(()=>document.querySelector('#exam-status')?.textContent.includes('Đã lưu'));
  const second=await context.newPage();await second.goto(app.base+'/#exams/'+timed.id);await second.locator('#exam-time').waitFor();
  await second.locator('[name="question-1"][value="1"]').check();await second.waitForFunction(()=>document.querySelector('#exam-status')?.textContent.includes('Đã lưu'));
- await page.locator('[name="question-2"][value="1"]').check();await page.waitForFunction(()=>document.querySelector('#exam-status')?.textContent.includes('Hãy chọn lại'));
+ await page.locator('[name="question-2"][value="1"]').click();await page.waitForFunction(()=>document.querySelector('#exam-status')?.textContent.includes('Hãy chọn lại'));
  assert.equal(await page.locator('[name="question-1"][value="1"]').isChecked(),true);
  await second.close();await context.setOffline(true);
- await page.locator('[name="question-2"][value="1"]').check();await page.waitForFunction(()=>document.querySelector('#exam-status')?.textContent.includes('Chưa lưu'));
+ await page.locator('[name="question-2"][value="1"]').click();await page.waitForFunction(()=>document.querySelector('#exam-status')?.textContent.includes('Chưa lưu'));
  assert.equal(await page.locator('[name="question-2"][value="1"]').isChecked(),false);
  console.log('Start/resume, 15 choices, no answer leakage, manual score, mobile, stale tab and offline save checks passed. Waiting for server timeout.');
  await page.waitForTimeout(61000);

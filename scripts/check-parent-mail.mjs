@@ -24,6 +24,12 @@ try{
  assert.equal(await page.locator('#parent-mail-confirm').isDisabled(),true);
  const pdfURL=await page.locator('#parent-mail-preview a[href*="/pdf?"]').getAttribute('href');
  const draftPdf=await page.request.get(app.base+pdfURL);assert.equal(draftPdf.status(),200);assert.equal((await draftPdf.body()).subarray(0,5).toString(),'%PDF-');
+ const originalURL=page.url(),originalPages=page.context().pages().filter(p=>p.url().startsWith('http')).length;
+ const downloadEvent=page.waitForEvent('download');await page.locator('#parent-mail-preview [data-parent-pdf]').click();const download=await downloadEvent;
+ assert.match(download.suggestedFilename(),/\.pdf$/);assert.equal(await download.failure(),null);assert.equal(page.url(),originalURL);assert.equal(page.context().pages().filter(p=>p.url().startsWith('http')||p.url().startsWith('blob:')).length,originalPages);
+ await page.route('**/api/parent-mail/pdf?**',route=>route.fulfill({status:403,json:{error:'PDF access denied.'}}));
+ await page.locator('#parent-mail-preview [data-parent-pdf]').click();await page.locator('#parent-mail-status').getByText('PDF access denied.').waitFor();
+ assert.equal(page.url(),originalURL);assert.equal(page.context().pages().filter(p=>p.url().startsWith('http')||p.url().startsWith('blob:')).length,originalPages);await page.unroute('**/api/parent-mail/pdf?**');
  await page.locator('#parent-report-ack').check();await page.locator('#parent-report-approve').click();await page.locator('#parent-mail-confirm:not([disabled])').waitFor();
  const approvedPdf=await(await page.request.get(app.base+pdfURL)).body();assert.equal(sent.length,0);
  await page.screenshot({path:'artifacts/parent-mail-preview.png',fullPage:true});

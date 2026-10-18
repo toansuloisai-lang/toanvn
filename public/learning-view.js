@@ -1,3 +1,4 @@
+import {mountPracticePhotoHistory} from './practice-photos.js';
 import {classCards,rosterHTML,studentOverview} from './student-report.js';
 import {mountKnowledge} from './knowledge-view.js';
 import {teacherClassSelection} from './teacher-dashboard.js';
@@ -23,6 +24,7 @@ export async function mountLearning(root,{request,auth,studentId,view,classConte
  async function loadPersonal(id){const n=++ticket;if(teacher&&!classesForReport.length){const groups=await request('/api/learning/class-report');classesForReport=groups.classes;if(!classId)classId=groups.classes.find(c=>c.studentIds.includes(id))?.id||'';}const r=await request('/api/learning/report'+(id?'?studentId='+encodeURIComponent(id):''));if(!alive()||n!==ticket)return;selectedId=r.studentId;report=r;host.innerHTML=`<div class="intro"><div><h1>Hồ sơ lỗi và khắc phục</h1></div>${teacher?'<button class="btn secondary" id="back-class">← Bản đồ lớp</button>':''}</div><p id="learning-status" role="status"></p>${parent?`<label class="field">Chọn con<select id="report-student">${auth.students.map(s=>`<option value="${s.id}" ${s.id===selectedId?'selected':''}>${esc(s.name)}</option>`).join('')}</select></label>`:''}${personalHTML(r,teacher,parent)}`;
    host.insertAdjacentHTML('beforeend',reflectionsHTML(r,teacher));
    host.insertAdjacentHTML('beforeend',activitiesHTML(r,teacher,auth.user.id));
+   const photoHistory=document.createElement('section');photoHistory.className='card';host.append(photoHistory);mountPracticePhotoHistory(photoHistory,{request,studentId:r.studentId,teacher,readOnly:parent});
    if(teacher){
      const student=auth.students.find(s=>s.id===r.studentId),group=classesForReport.find(c=>c.id===classId);
      const heading=host.querySelector('h1');heading.textContent=student?.name||'Báo cáo học sinh';
@@ -36,7 +38,7 @@ export async function mountLearning(root,{request,auth,studentId,view,classConte
      nav.innerHTML=[['overview','Tổng quan & sơ đồ'],['scores','Bảng điểm'],['errors','Phân tích lỗi & sửa bài'],['knowledge','Chi tiết kiến thức'],['notes','Nhận xét & hoạt động']].map(([id,label])=>`<button role="tab" type="button" data-report-tab="${id}" aria-selected="${id==='overview'}">${label}</button>`).join('');
      get('#learning-status').after(nav,overview);
      const knowledge=document.createElement('div');knowledge.hidden=true;host.append(knowledge);let knowledgeLoaded=false;
-     const panels={overview:[3],scores:[1],errors:[0,2,4,5],notes:[6,7],knowledge:[]};
+     const panels={overview:[3],scores:[1,8],errors:[0,2,4,5],notes:[6,7],knowledge:[]};
      function tab(id){sections.forEach((s,i)=>s.hidden=!panels[id].includes(i));overview.hidden=id!=='overview';knowledge.hidden=id!=='knowledge';nav.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.reportTab===id)));if(id==='knowledge'&&!knowledgeLoaded){knowledgeLoaded=true;mountKnowledge(knowledge,{request,role:'teacher',studentId:r.studentId,compact:true});}}
      nav.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.reportTab)));tab('overview');
      if(personalTab!=='overview')tab(personalTab);nav.addEventListener('click',e=>{const b=e.target.closest('[data-report-tab]');if(b)personalTab=b.dataset.reportTab;});
