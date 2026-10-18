@@ -1,6 +1,6 @@
 const sidebar=document.querySelector('.sidebar'),shell=document.querySelector('.shell');
 const bar=document.createElement('header');bar.id='app-topbar';
-bar.innerHTML='<a class="school-app-brand school-brand" href="#home"><img src="/assets/logo-truong.jpg" alt="Logo Trường THCS Lạc Đạo" width="56" height="56"><span>TRƯỜNG THCS<strong>LẠC ĐẠO</strong><small>HƯNG YÊN</small></span></a><button type="button" id="app-menu-open" aria-controls="app-side-menu" aria-expanded="false"><span aria-hidden="true">☰</span> Menu</button><strong id="app-page-title">Tư duy Toán</strong><a href="#settings" aria-label="Cài đặt tài khoản">Tài khoản</a>';
+bar.innerHTML='<a class="school-app-brand school-brand" href="#home"><img src="/assets/logo-truong.jpg" alt="Logo Trường THCS Lạc Đạo" width="56" height="56"><span><strong>TRƯỜNG THCS LẠC ĐẠO</strong><small>HƯNG YÊN</small></span></a><button type="button" id="app-menu-open" aria-controls="app-side-menu" aria-expanded="false"><span aria-hidden="true">☰</span> Menu</button><strong id="app-page-title">Tư duy Toán</strong><a href="#settings" aria-label="Cài đặt tài khoản">Tài khoản</a>';
 shell.before(bar);sidebar.id='app-side-menu';
 const close=document.createElement('button');close.type='button';close.id='app-menu-close';close.textContent='Đóng menu ×';sidebar.prepend(close);
 const backdrop=document.createElement('button');backdrop.id='app-menu-backdrop';backdrop.type='button';backdrop.tabIndex=-1;backdrop.setAttribute('aria-label','Đóng menu');sidebar.after(backdrop);

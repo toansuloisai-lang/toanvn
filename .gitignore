@@ -21,3 +21,6 @@ Thumbs.db
 # Local teaching materials and extracted archives
 /DATATM/
 /datatm/
+
+# Local handover documents containing account credentials
+/baocao/
