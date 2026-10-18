@@ -4,9 +4,10 @@ import {skills as skillCatalog} from './public/data.js';
 import {decorateDatatm} from './datatm-service.mjs';
 import {randomUUID,createHash} from 'node:crypto';
 import {validateMath} from './math-validation.mjs';
+import {normalizeTutorImages} from './tutor-images.mjs';
 const practiceEvidence=a=>createHash('sha256').update(JSON.stringify([a.id,a.corrected,a.correction,a.revisedWorking,a.explanation])).digest('hex');
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
-export function createKnowledgeService({db,persist,learning,now=Date.now}){
+export function createKnowledgeService({db,persist,learning,writeFile,readFile,now=Date.now}){
   db.knowledgeRepairs??=[];
   db.datatmAttempts??=[];
   function guard(user,id){const target=id||(user.role==='student'?user.id:user.studentIds?.[0]);if(!target||!(user.role==='student'?target===user.id:['teacher','parent'].includes(user.role)&&user.studentIds.includes(target))||!db.states[target])fail(403,'Bạn không được xem hồ sơ học sinh này.');return target;}
@@ -52,7 +53,10 @@ export function createKnowledgeService({db,persist,learning,now=Date.now}){
         if(!h){h={kind:r.kind,id:r.attemptId,title:r.title,time:r.time,startedAt:r.startedAt,elapsedMs:r.elapsedMs,score:r.score,provisional:r.provisional,questions:[],images:[],review:r.review};libraryHistory.set(r.attemptId,h);history.push(h);}
         h.questions.push({prompt:r.prompt,answer:r.answer,correct:r.correct,correctAnswer:r.correctAnswer,solution:r.solution,topic:r.topic});h.images.push(...r.images);
       }else history.push({...r,working:r.answer});
-      if(r.correct===false||r.correct===null&&r.ai?.readable&&r.ai.score<10)mistakes.push({key:r.kind+':'+r.id,kind:r.kind,title:r.title,prompt:r.prompt,topic:r.topic,knowledge:r.topic,analysis:r.review?.comment||r.ai?.summary||'Đáp án chưa đúng; cần đối chiếu cách làm. Chưa đủ bằng chứng để kết luận nguyên nhân.',solution:r.solution,nextStep:'Xem lại bài làm và lời giải, trao đổi với giáo viên về bước cần sửa.',time:r.time,resolved:false,provisional:r.correct===null||r.provisional,repairs:[],href:r.href});
+      if(r.correct===false||r.correct===null&&r.ai?.readable&&r.ai.score<10){
+        const key=r.kind+':'+r.id,repairs=db.knowledgeRepairs.filter(v=>v.studentId===studentId&&v.key===key).map(v=>({...structuredClone(v),photos:undefined,images:(v.photos||[]).map((_,i)=>`/api/knowledge/repairs/${v.id}/images/${i}`)})),last=repairs.at(-1);
+        mistakes.push({key,kind:r.kind,setId:r.setId,exerciseId:r.exerciseId,title:r.title,prompt:r.prompt,topic:r.topic,knowledge:r.topic,analysis:r.review?.comment||r.ai?.summary||'Đáp án chưa đúng; cần đối chiếu cách làm. Chưa đủ bằng chứng để kết luận nguyên nhân.',solution:r.solution,nextStep:'Nộp ảnh bài sửa bên dưới để giáo viên xem và xác nhận. Điểm bài ban đầu được giữ nguyên.',time:r.time,resolved:!!last?.review?.approved,provisional:!!last&&!last.review,repairs,href:r.href});
+      }
     }
     const old=learning.report(user,studentId);
     for(const a of old.assignments||[])if(!a.kind&&!a.result.complete)pending.push({kind:'practice',id:a.id,title:a.title,status:a.result.answered?'Chưa làm đủ':'Chưa làm',due:a.due,overdue:now()>Date.parse(a.due+'T23:59:59+07:00'),href:'#learning'});
@@ -70,6 +74,7 @@ export function createKnowledgeService({db,persist,learning,now=Date.now}){
   }
   function repair(user,input){
     if(user.role!=='student')fail(403,'Chỉ học sinh được sửa bài của mình.');
+    if(input?.key?.startsWith('library:')||input?.key?.startsWith('practice-photo:'))return repairPhoto(user,input);
     const reportData=report(user,user.id),item=reportData.mistakes.find(m=>m.key===input.key&&m.kind==='exam');
     if(!item)fail(404,'Không tìm thấy câu sai cần sửa.');
     if(!Number.isInteger(input.choiceIndex)||input.choiceIndex<0||input.choiceIndex>3)fail(400,'Chọn một đáp án.');
@@ -78,23 +83,40 @@ export function createKnowledgeService({db,persist,learning,now=Date.now}){
     const row={id:randomUUID(),studentId:user.id,key:input.key,time:now(),choiceIndex:input.choiceIndex,working,correct:input.choiceIndex===item.correctIndex};
     db.knowledgeRepairs.push(row);try{persist();}catch(e){db.knowledgeRepairs.pop();throw e;}return structuredClone(row);
   }
+  async function repairPhoto(user,input){
+    const find=()=>report(user,user.id).mistakes.find(m=>m.key===input.key&&['library','practice-photo'].includes(m.kind));
+    const item=find();if(!item)fail(404,'Không tìm thấy câu cần sửa hoặc kết quả chưa được mở.');
+    if(item.repairs.length>=50)fail(429,'Đã đạt 50 lượt sửa; hãy hỏi giáo viên.');
+    if(!Array.isArray(input.photos)||!input.photos.length)fail(400,'Tải ảnh bài sửa để giáo viên kiểm tra.');
+    const photos=await normalizeTutorImages(input.photos);
+    const current=find();if(!current||current.repairs.length>=50)fail(409,'Bài đã thay đổi. Hãy tải lại.');
+    const row={id:randomUUID(),studentId:user.id,key:item.key,kind:item.kind,time:now(),correct:null,working:'Bài sửa trong ảnh',photos:photos.map(p=>{const bytes=Buffer.from(p.base64,'base64'),fileKey='repair-'+createHash('sha256').update(bytes).digest('hex')+'.jpg';writeFile(fileKey,bytes);return{fileKey};})};
+    db.knowledgeRepairs.push(row);try{persist();}catch(e){db.knowledgeRepairs.pop();throw e;}
+    return {id:row.id,correct:null};
+  }
+  function repairImage(user,id,index){
+    const row=db.knowledgeRepairs.find(r=>r.id===id);if(!row)fail(404,'Không tìm thấy ảnh bài sửa.');
+    guard(user,row.studentId);if(!report(user,row.studentId).mistakes.some(m=>m.key===row.key))fail(404,'Không được xem bài sửa này.');
+    if(!row.photos?.[index])fail(404,'Không tìm thấy ảnh bài sửa.');return readFile(row.photos[index].fileKey);
+  }
   function reviewRepair(user,input){
     if(user.role!=='teacher')fail(403,'Chỉ giáo viên được duyệt cách sửa.');
-    const studentId=guard(user,input.studentId),item=report(user,studentId).mistakes.find(m=>m.key===input.key&&['exam','practice'].includes(m.kind));
+    const studentId=guard(user,input.studentId),item=report(user,studentId).mistakes.find(m=>m.key===input.key&&['exam','practice','library','practice-photo'].includes(m.kind));
     const repair=item?.repairs.find(r=>r.id===input.repairId);
     if(!repair)fail(404,'Không tìm thấy bản sửa của học sinh được liên kết.');
-    if(typeof input.approved!=='boolean'||input.approved&&!repair.correct)fail(400,'Chỉ xác nhận bản sửa có đáp án đúng.');
+    if(typeof input.approved!=='boolean'||input.approved&&!repair.correct&&!['library','practice-photo'].includes(item.kind))fail(400,'Chỉ xác nhận bản sửa có đáp án đúng.');
     const comment=validateMath(input.comment||'',3000);if(comment.length<5)fail(400,'Ghi nhận xét về cách sửa, tối thiểu 5 ký tự.');
     const snapshot=structuredClone(db.knowledgeRepairs);
     try{
       let row;
-      if(item.kind==='exam')row=db.knowledgeRepairs.find(r=>r.id===repair.id&&r.studentId===studentId);
+      if(item.kind!=='practice')row=db.knowledgeRepairs.find(r=>r.id===repair.id&&r.studentId===studentId);
       else{
         const attempt=db.states[studentId].attempts.find(a=>'practice:'+a.id===item.key),evidence=practiceEvidence(attempt);
         row=db.knowledgeRepairs.find(r=>r.key===item.key&&r.studentId===studentId&&r.evidence===evidence);
         if(!row){row={id:randomUUID(),kind:'practice',studentId,key:item.key,evidence};db.knowledgeRepairs.push(row);}
       }
       row.reviewHistory??=[];if(row.review)row.reviewHistory.push(row.review);
+      if(['library','practice-photo'].includes(item.kind))row.correct=input.approved;
       row.review={approved:input.approved,comment,teacherId:user.id,time:now()};persist();return structuredClone(row.review);
     }catch(e){db.knowledgeRepairs=snapshot;throw e;}
   }
@@ -110,12 +132,14 @@ export function createKnowledgeService({db,persist,learning,now=Date.now}){
       for(const m of k.mistakes){
         if(m.kind==='exam'&&m.resolved&&db.exams.find(e=>e.id===m.examId)?.classId===group.id)keys.add('exam:'+m.examId+':'+m.questionIndex);
         if(m.kind==='essay'&&db.essayAssignments.find(a=>a.id===m.assignmentId)?.classId===group.id&&m.resolved&&!m.provisional&&m.repairs.some(r=>r.correct&&!r.provisional))keys.add(m.key);
-        if(m.kind==='practice'&&m.resolved)keys.add('practice:'+m.href);
+        if(m.kind==='practice'&&m.resolved)keys.add('practice:'+m.href.replace('#learn/',''));
+        if(m.kind==='library'&&m.resolved&&db.librarySets.find(s=>s.id===m.setId)?.classId===group.id)keys.add(m.key);
+        if(m.kind==='practice-photo'&&m.resolved)keys.add('practice:'+m.exerciseId);
       }
       return keys.size?[{studentId:id,name:student.name,corrected:keys.size,isYou:id===user.id}]:[];
     }).sort((a,b)=>b.corrected-a.corrected||a.name.localeCompare(b.name,'vi')||a.studentId.localeCompare(b.studentId));
     let rank=0;rows.forEach((r,i)=>{if(!i||r.corrected!==rows[i-1].corrected)rank=i+1;r.rank=rank;});
     return {classes:classes.map(c=>({id:c.id,name:c.name})),classId:group?.id||null,top:rows.slice(0,10),yourResult:rows.find(r=>r.isYou)||null,note:'Mỗi câu sửa đúng được giáo viên xác nhận cách làm chỉ tính một lần. Tự luận chỉ tính sau khi giáo viên duyệt bản sửa đạt điểm tối đa. Cùng số câu được đồng hạng; danh sách tối đa 10 học sinh, sắp tên khi bằng điểm. Thành tích tích lũy toàn thời gian.'};
   }
-  return {report,repair,reviewRepair,options,leaderboard};
+  return {report,repair,reviewRepair,repairImage,options,leaderboard};
 }

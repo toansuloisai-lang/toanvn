@@ -166,7 +166,7 @@ export function createStore(filename=process.env.MATH_DB_PATH||path.resolve('pri
   const learning=createLearningService({db,persist,student});
   const exams=createExamService({db,persist});
   const essays=createEssayService({db,persist,writeImage(key,bytes){if(storage)storage.stageFile(key,bytes);else{mkdirSync(uploadDir,{recursive:true});writeFileSync(path.join(uploadDir,key),bytes,{mode:0o600});}},readImage:key=>storage?storage.readFile(key):readFileSync(path.join(uploadDir,key))});
-  const knowledge=createKnowledgeService({db,persist,learning});
+  const knowledge=createKnowledgeService({db,persist,learning,writeFile:writeAttachment,readFile:readAttachment});
   const datatm=createDatatmService({db,persist,knowledge});
   const tutor=createTutorService({db,persist,knowledge,learning,writeFile:writeAttachment,readFile:readAttachment});
   learning.knowledge=knowledge;

@@ -38,7 +38,7 @@ async function body(req) {
   if(/^\/api\/library\/sets\/[a-f0-9-]{36}\/upload$/.test(req.url)){let payload='';for await(const chunk of req){payload+=chunk;if(Buffer.byteLength(payload)>17500000)throw Object.assign(Error('Ảnh bài làm vượt quá dung lượng cho phép.'),{status:413});}return JSON.parse(payload);}
   if(req.url==='/api/library/sets'){let payload='';for await(const chunk of req){payload+=chunk;if(Buffer.byteLength(payload)>1000000)throw Object.assign(Error('Nội dung đề quá lớn.'),{status:413});}return JSON.parse(payload);}
   let text = '';
-  if(req.url.startsWith('/api/exams')||req.url.startsWith('/api/essays')||req.url.startsWith('/api/knowledge/repair')){const max=req.url.split('?')[0]==='/api/exams/draft'?7100000:(req.url.split('?')[0].endsWith('/submit')||req.url.split('?')[0]==='/api/essays/images')?19000000:1500000;for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>max)throw Object.assign(Error('Nội dung quá lớn. Bài nộp tối đa 3 ảnh, mỗi ảnh 4 MB.'),{status:413});}return JSON.parse(text);}
+  if(req.url.startsWith('/api/exams')||req.url.startsWith('/api/essays')||req.url.startsWith('/api/knowledge/repair')){const max=req.url.split('?')[0]==='/api/exams/draft'?7100000:(req.url.split('?')[0].endsWith('/submit')||req.url.split('?')[0]==='/api/essays/images'||req.url.split('?')[0]==='/api/knowledge/repair')?19000000:1500000;for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>max)throw Object.assign(Error('Nội dung quá lớn. Bài nộp tối đa 3 ảnh, mỗi ảnh 4 MB.'),{status:413});}return JSON.parse(text);}
   for await (const chunk of req) { text += chunk; if (Buffer.byteLength(text) > ((req.url==='/api/tutor/chat'||req.url==='/api/practice/photos/submit')?17500000:req.url==='/api/teacher/content'?60000:req.url==='/api/learning/review'?30000:req.url==='/api/parent-mail/preview'?30000:req.url==='/api/roster/preview'?7100000:req.url==='/api/teacher/lessons/upload'?14100000:req.url==='/api/student/state'?5000000:12000)) throw Object.assign(new Error('Yêu cầu vượt quá dung lượng cho phép.'),{status:413}); }
   return JSON.parse(text);
 }
@@ -124,7 +124,9 @@ export const server = http.createServer(async (req, res) => {
     if(url.pathname==='/api/knowledge/options'&&req.method==='GET')return json(res,200,accounts.knowledge.options(user));
     if(url.pathname==='/api/knowledge/leaderboard'&&req.method==='GET')return json(res,200,accounts.knowledge.leaderboard(user,url.searchParams.get('classId')));
     if(url.pathname==='/api/knowledge/report'&&req.method==='GET'){accounts.exams.sweep();return json(res,200,accounts.knowledge.report(user,url.searchParams.get('studentId')));}
-    if(url.pathname==='/api/knowledge/repair'&&req.method==='POST')return json(res,201,accounts.knowledge.repair(user,await body(req)));
+    if(url.pathname==='/api/knowledge/repair'&&req.method==='POST')return json(res,201,await accounts.knowledge.repair(user,await body(req)));
+    const repairImageRoute=url.pathname.match(/^\/api\/knowledge\/repairs\/([a-f0-9-]+)\/images\/(\d+)$/);
+    if(repairImageRoute&&req.method==='GET'){const bytes=accounts.knowledge.repairImage(user,repairImageRoute[1],Number(repairImageRoute[2]));res.writeHead(200,{'Content-Type':'image/jpeg','Cache-Control':'private, no-store','Content-Length':bytes.length});return res.end(bytes);}
     if(url.pathname==='/api/knowledge/repair/review'&&req.method==='POST')return json(res,200,accounts.knowledge.reviewRepair(user,await body(req)));
     if(url.pathname==='/api/essays'&&req.method==='GET')return json(res,200,{assignments:accounts.essays.list(user)});
     if(url.pathname==='/api/essays'&&req.method==='POST')return json(res,201,accounts.essays.publish(user,await body(req)));

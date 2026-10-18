@@ -40,7 +40,7 @@ export function createPracticePhotos({db,persist,student,writeFile,readFile}){
   if(concurrent){if(concurrent.digest!==digest)fail(409,'Bài đã thay đổi.');return publicRow(concurrent);}
   if(rows(user.id).length>=1000)fail(400,'Đã đạt giới hạn bài ảnh; liên hệ giáo viên để được hỗ trợ.');
   const photos=normalized.map(image=>{const bytes=Buffer.from(image.base64,'base64'),sha=createHash('sha256').update(bytes).digest('hex'),fileKey='practice-'+sha+'.jpg';writeFile(fileKey,bytes);return {fileKey,size:bytes.length};});
-  const item={id:randomUUID(),requestId:input.requestId,digest,exerciseId:ex.id,prompt:ex.prompt,rule:ex.rule,answer:ex.answer,working:input.working,time:Date.now(),photos,ai:null,review:null};
+  const item={id:randomUUID(),requestId:input.requestId,digest,exerciseId:ex.id,prompt:ex.prompt,rule:ex.rule,answer:ex.answer,working:'',time:Date.now(),photos,ai:null,review:null};
   change(user.id,()=>{db.states[user.id].practicePhotos??=[];db.states[user.id].practicePhotos.push(item);});return publicRow(item);
  }
  async function grade(user,id,grader){

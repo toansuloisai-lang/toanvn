@@ -17,21 +17,24 @@ function fixture(){const dir=fs.mkdtempSync(path.join(os.tmpdir(),'essay-knowled
  const c=store.learning.createClass(t,{name:'8A4',grade:8,studentIds:[s.id]});
  const a=store.essays.publish(t,{title:'Tự luận',classId:c.id,due:'2026-12-31',customQuestions:[question]});
  const q=store.essays.details(t,a.id).questions[0];return {dir,file,store,s,t,p,o,c,a,q,close:()=>fs.rmSync(dir,{recursive:true,force:true})};}
+const essayPhoto=(await sharp({create:{width:32,height:32,channels:3,background:'#ffffff'}}).png().toBuffer()).toString('base64');
 const mockGrade=({working})=>({readable:true,transcription:working,confidence:0.8,summary:'Sai ở phép chia cuối.',criteria:[{id:'r0',earned:5,evidence:'2x=4',reason:'Chuyển vế đúng.',missingKnowledge:'',nextStep:''},{id:'r1',earned:0,evidence:'x=4',reason:'Chưa chia cho hệ số 2.',missingKnowledge:'Chia hai vế cho hệ số.',nextStep:'Tính \\(4/2\\) rồi kiểm chứng.'}],score:5,source:'gemini',status:'pending_review'});
 test('essay image storage, access boundaries, AI failure/retry and teacher review preserve submission history',async()=>{
  const f=fixture();try{const {store,s,t,p,o,a,q}=f;
  assert.equal(store.essays.details(s,a.id).questions[0].solution,undefined);
  assert.throws(()=>store.essays.details(o,a.id),e=>e.status===404);
  store.essays.start(s,a.id);const png=await sharp({create:{width:32,height:32,channels:3,background:'#ffffff'}}).png().toBuffer();
+ await assert.rejects(store.essays.submit(s,a.id,{questionId:q.id,working:'Bài làm chỉ có chữ',photos:[],requestId:crypto.randomUUID()}),e=>e.status===400);
  const payload={questionId:q.id,working:'2x=4; x=4',photos:[{base64:png.toString('base64')}],requestId:crypto.randomUUID()};
  const sub=await store.essays.submit(s,a.id,payload);assert.equal((await store.essays.submit(s,a.id,payload)).id,sub.id);
+ assert.equal(sub.working,'');
  assert.equal((await sharp(store.essays.image(p,sub.id,0)).metadata()).format,'jpeg');
  assert.throws(()=>store.essays.image(o,sub.id,0),e=>e.status===404);assert.throws(()=>store.essays.review(p,sub.id,{score:10,comment:'x'}),e=>e.status===403);
  const failed=await store.essays.grade(s,sub.id,async()=>{throw Object.assign(Error('Temporary failure'),{status:502});});assert.equal(failed.status,'ai_failed');assert.equal(failed.images.length,1);
  let calls=0;const grader=async input=>{calls++;await new Promise(r=>setTimeout(r,10));return mockGrade(input);};await Promise.all([store.essays.grade(s,sub.id,grader),store.essays.grade(s,sub.id,grader)]);assert.equal(calls,1);
  assert.equal(store.knowledge.report(p,s.id).mistakes[0].provisional,true);
  store.essays.review(t,sub.id,{score:5,comment:'Chưa chia hai vế cho 2.',missingKnowledge:'Phương trình bậc nhất',nextStep:'Chia hai vế cho 2 và thay nghiệm kiểm tra.'});
- const correction=await store.essays.submit(s,a.id,{questionId:q.id,working:'2x=4 nên x=2; kiểm tra 2*2+1=5.',photos:[],requestId:crypto.randomUUID()});
+ const correction=await store.essays.submit(s,a.id,{questionId:q.id,working:'2x=4 nên x=2; kiểm tra 2*2+1=5.',photos:[{base64:essayPhoto}],requestId:crypto.randomUUID()});
  await store.essays.grade(s,correction.id,async()=>({...mockGrade({working:'x=2'}),score:10}));
  assert.equal(store.knowledge.report(s).mistakes[0].resolved,false);
  assert.equal(store.knowledge.leaderboard(s,f.c.id).top.length,0);
@@ -40,7 +43,7 @@ test('essay image storage, access boundaries, AI failure/retry and teacher revie
  const k=store.knowledge.report(t,s.id);assert.equal(k.mistakes[0].resolved,true);assert.equal(k.history.find(h=>h.id===sub.id).score,5);assert.equal(k.history.find(h=>h.id===correction.id).score,10);
  const reopened=createStore(f.file);assert.equal(reopened.knowledge.report(p,s.id).history.length,2);assert.equal(reopened.essays.image(s,sub.id,0).length,store.essays.image(s,sub.id,0).length);
  const snapshot=studentReportSnapshot({db:JSON.parse(fs.readFileSync(f.file,'utf8')),learning:store.learning,teacher:t,studentId:s.id});assert.equal(snapshot.knowledge.history.length,2);const pdf=await reportPdf({id:'report',createdAt:Date.now(),teacher:t,reports:[snapshot]});assert.ok(pdf.length>15000);
- assert.equal((await readSource(f.file)).files.length,1);const imagePath=path.join(f.dir,'uploads',sub.images[0].fileKey);fs.writeFileSync(imagePath,'corrupt');await assert.rejects(readSource(f.file),/essay image is missing or damaged/);
+ assert.equal((await readSource(f.file)).files.length,2);const imagePath=path.join(f.dir,'uploads',sub.images[0].fileKey);fs.writeFileSync(imagePath,'corrupt');await assert.rejects(readSource(f.file),/essay image is missing or damaged/);
  }finally{f.close();}
 });
 test('math formatting preserves explicit LaTeX and dates, formats AI arithmetic, and supports Vietnamese labels',()=>{
@@ -56,7 +59,7 @@ test('essay management preserves reviewed work, excludes withdrawn missing work 
  store.essays.manage(t,a.id,{withdrawn:true});assert.throws(()=>store.essays.start(s,a.id),{status:409});
  assert.equal(store.knowledge.report(s).pending.length,0);assert.equal(store.learning.report(t,s.id).assignments.length,0);
  store.essays.manage(t,a.id,{withdrawn:false,due:'2026-12-30'});store.essays.start(s,a.id);
- const sub=await store.essays.submit(s,a.id,{questionId:q.id,working:'2x=4; x=2',photos:[],requestId:crypto.randomUUID()});
+ const sub=await store.essays.submit(s,a.id,{questionId:q.id,working:'2x=4; x=2',photos:[{base64:essayPhoto}],requestId:crypto.randomUUID()});
  assert.equal(store.learning.report(t,s.id).assignments[0].result.score,null);
  store.essays.review(t,sub.id,{score:10,comment:'Đã kiểm tra đầy đủ.'});store.essays.manage(t,a.id,{withdrawn:true});
  assert.equal(store.learning.report(t,s.id).assignments[0].result.score,10);
@@ -99,7 +102,7 @@ test('teacher input and image limits are validated before storing; revocation du
  const f=fixture();try{const {store,s,t,a,q}=f;store.essays.start(s,a.id);
  await assert.rejects(store.essays.submit(s,a.id,{questionId:q.id,working:'',photos:[{base64:Buffer.from('<svg/>').toString('base64')}],requestId:crypto.randomUUID()}),e=>e.status===400);
  assert.throws(()=>store.essays.publish(t,{classId:f.c.id,title:'Bad math',due:'2026-12-31',customQuestions:[{...question,prompt:'\\(\\unknowncommand\\)'}]}),e=>e.status===400);
- const sub=await store.essays.submit(s,a.id,{questionId:q.id,working:'2x=4; x=4',photos:[],requestId:crypto.randomUUID()});
+ const sub=await store.essays.submit(s,a.id,{questionId:q.id,working:'2x=4; x=4',photos:[{base64:essayPhoto}],requestId:crypto.randomUUID()});
  const admin=store.createUser({username:'admin',name:'Admin',role:'admin',password:'Admin-test-12345!'});
  await assert.rejects(store.essays.grade(s,sub.id,async input=>{store.link(admin,{userId:t.id,studentIds:[]});return mockGrade(input);}),e=>e.status===404);
  }finally{f.close();}

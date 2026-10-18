@@ -1,3 +1,4 @@
+import {mountAttachments} from './tutor-attachments.js';
 import {richMath} from './math.js';
 import {mountRepairLeaderboard} from './repair-leaderboard.js';
 import {mountDatatmBlock} from './datatm-view.js';
@@ -24,8 +25,12 @@ export async function mountKnowledge(root,{request,role,studentId,examId,compact
       host.querySelectorAll('.knowledge-mistake').forEach((card,index)=>{
         const m=mistakes[index],last=m.repairs.at(-1);
         if(m.datatm){const related=document.createElement('div');card.append(related);mountDatatmBlock(related,{data:m.datatm,key:m.key,studentId:k.student.id,role,request});}
+        if(['library','practice-photo'].includes(m.kind)){
+          for(const r of m.repairs){const gallery=document.createElement('div');gallery.className='essay-images';gallery.innerHTML=(r.images||[]).map(src=>`<a href="${esc(src)}" target="_blank" rel="noopener"><img src="${esc(src)}" alt="&#7842;nh b&#224;i s&#7917;a" loading="lazy"></a>`).join('');card.append(gallery);}
+          if(role==='student'){const form=document.createElement('form');form.dataset.photoRepair=m.key;form.innerHTML='<button class="btn" type="submit">N&#7897;p &#7843;nh b&#224;i s&#7917;a</button><p role="status"></p>';card.append(form);const status=form.querySelector('[role=status]'),attachments=mountAttachments(form,{changed(){},status,requireTextWithoutPhotos:false});form.onsubmit=async e=>{e.preventDefault();if(attachments.loading)return;if(!attachments.images.length){status.textContent='Ch\u1ecdn \u1ea3nh b\u00e0i s\u1eeda.';return;}const button=form.querySelector('[type=submit]');button.disabled=true;attachments.setBusy(true);try{await request('/api/knowledge/repair','POST',{key:m.key,photos:attachments.images});await load(k.student.id);}catch(error){status.textContent=error.message;button.disabled=false;attachments.setBusy(false);}};}
+        }
         if(last?.review){const note=document.createElement('p');note.textContent='Giáo viên: '+last.review.comment;card.append(note);}
-        if(role!=='teacher'||!['exam','practice'].includes(m.kind)||!last?.correct)return;
+        if(role!=='teacher'||!['exam','practice','library','practice-photo'].includes(m.kind)||!last||(!last.correct&&!['library','practice-photo'].includes(m.kind)))return;
         const form=document.createElement('form');form.dataset.repairReview=last.id;
         form.innerHTML=`<h3>Duyệt bản sửa gần nhất</h3><div>${richMath(last.working||'Chưa ghi cách sửa.')}</div><label class="field">Kết luận<select name="approved"><option value="true">Xác nhận cách sửa đúng</option><option value="false" ${last.review?.approved===false?'selected':''}>Cần sửa thêm</option></select></label><label class="field">Nhận xét của giáo viên<textarea name="comment" required minlength="5" maxlength="3000">${esc(last.review?.comment||'')}</textarea></label><button class="btn">Lưu duyệt cách sửa</button><p role="status"></p>`;
         card.append(form);form.onsubmit=async e=>{e.preventDefault();const button=form.querySelector('button');button.disabled=true;try{await request('/api/knowledge/repair/review','POST',{studentId:k.student.id,key:m.key,repairId:last.id,approved:form.elements.approved.value==='true',comment:form.elements.comment.value});await load(k.student.id);}catch(error){form.querySelector('[role=status]').textContent=error.message;button.disabled=false;}};

@@ -41,6 +41,36 @@ test('photo submissions complete assigned practice without double counting and t
  store.practicePhotos.review(teacher,p.id,{score:8,comment:'Đã chốt điểm bài làm.'});
  r=store.learning.report(parent,student.id);assert.equal(r.assignments.length,1);assert.equal(r.assignments[0].result.score,8);assert.equal(store.learning.parentDashboard(parent).average,8);
 });
+test('modern repairs reach rankings only after teacher approval, stay deduplicated, and preserve original grades',async t=>{
+ const {store,student,teacher,parent,other,cls,qs,due}=fixture(t);
+ const base64=(await sharp({create:{width:30,height:30,channels:3,background:'white'}}).png().toBuffer()).toString('base64'),photos=[{base64}];
+ const set=store.library.publish(teacher,{requestId:randomUUID(),classId:cls.id,title:'Sửa bài DATATM',mode:'practice',due,questions:[{id:qs[0].id,type:'mcq',points:5},{id:qs[1].id,type:'essay',points:5}]});
+ store.library.start(student,set.id);store.library.answer(student,set.id,{questionId:qs[0].id,choiceIndex:(qs[0].correctIndex+1)%4,version:0});
+ const upload=await store.library.upload(student,set.id,{questionId:qs[1].id,requestId:randomUUID(),photos});store.library.submit(student,set.id);
+ await store.library.grade(student,upload.id,async()=>({readable:true,score:5,summary:'Cần sửa',criteria:[]}));
+ store.library.review(teacher,set.id,{studentId:student.id,score:2.5,comment:'Điểm ban đầu.'});
+ const p=await store.practicePhotos.submit(student,{requestId:randomUUID(),exerciseId:'distribute-1',working:'',photos});store.practicePhotos.review(teacher,p.id,{score:5,comment:'Cần sửa cách làm.'});
+ const mistakes=store.knowledge.report(student).mistakes.filter(m=>['library','practice-photo'].includes(m.kind));assert.equal(mistakes.length,3);
+ assert.equal(store.knowledge.leaderboard(parent,cls.id).top.length,0);
+ for(const m of mistakes){
+  const repair=await store.knowledge.repair(student,{key:m.key,photos});
+  assert.equal(store.knowledge.leaderboard(parent,cls.id).top.length,mistakes.indexOf(m)?1:0);
+  assert.ok(store.knowledge.repairImage(parent,repair.id,0).length);
+  assert.throws(()=>store.knowledge.reviewRepair(parent,{studentId:student.id,key:m.key,repairId:repair.id,approved:true,comment:'Không được duyệt.'}),e=>e.status===403);
+  if(m.kind==='library')assert.throws(()=>store.knowledge.reviewRepair(other,{studentId:student.id,key:m.key,repairId:repair.id,approved:true,comment:'Giáo viên khác.'}),e=>e.status===404);
+  store.knowledge.reviewRepair(teacher,{studentId:student.id,key:m.key,repairId:repair.id,approved:true,comment:'Đã kiểm tra ảnh, cách sửa đúng.'});
+ }
+ assert.equal(store.knowledge.leaderboard(parent,cls.id).top[0].corrected,3);
+ const m=mistakes[0],again=await store.knowledge.repair(student,{key:m.key,photos});
+ assert.equal(store.knowledge.leaderboard(parent,cls.id).top[0].corrected,2);
+ store.knowledge.reviewRepair(teacher,{studentId:student.id,key:m.key,repairId:again.id,approved:true,comment:'Xác nhận bản sửa mới.'});
+ assert.equal(store.knowledge.leaderboard(parent,cls.id).top[0].corrected,3);
+ store.knowledge.reviewRepair(teacher,{studentId:student.id,key:m.key,repairId:again.id,approved:false,comment:'Thu hồi xác nhận cách sửa.'});
+ assert.equal(store.knowledge.leaderboard(parent,cls.id).top[0].corrected,2);
+ assert.equal(store.library.detail(teacher,set.id).students[0].attempt.review.score,2.5);
+ assert.equal(store.practicePhotos.list(parent,{exerciseId:'distribute-1'})[0].finalScore,5);
+});
+
 test('new exam projections hide choices, solutions, AI and final grades before release for students and parents',()=>{
  const now=Date.parse('2026-10-18T10:00:00+07:00'),db={users:[{id:'t',role:'teacher',studentIds:['s']}],classes:[{id:'c',teacherId:'t',studentIds:['s']}],states:{s:{}},librarySets:[{id:'set',teacherId:'t',classId:'c',createdAt:now-30000,title:'Exam',mode:'exam',due:'2026-10-19',questions:[{id:'q',type:'mcq',topic:'Toán',prompt:'Secret',answer:'secret',choices:['secret','b','c','d'],correctIndex:0,points:10}]}],libraryAttempts:[{id:'a',setId:'set',studentId:'s',startedAt:now-20000,submittedAt:now-10000,answers:{q:0},review:{score:10,time:now-5000}}]};
  const hidden=modernAssessments(db,'s',{now});assert.deepEqual(hidden.records,[]);assert.equal(hidden.assignments[0].result.score,null);assert.equal(hidden.pending[0].status,'Đã nộp · Chờ mở kết quả');

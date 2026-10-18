@@ -61,8 +61,8 @@ export function createEssayService({db,persist,writeImage,readImage,now=Date.now
   async function submit(user,id,input){
     if(user.role!=='student')fail(403,'Chỉ học sinh được nộp bài.');let a=assignment(user,id);if(a.withdrawn)fail(409,'Giáo viên đã ngừng giao đề này.');let q=a.questions.find(q=>q.id===input.questionId);
     if(!q||!db.essayStarts.some(s=>realRow(s)&&s.assignmentId===id&&s.studentId===user.id))fail(400,'Hãy bắt đầu bài trước khi nộp.');
-    const working=validateMath(input.working||'',10000),photos=input.photos||[];
-    if(!Array.isArray(photos)||photos.length>3||(!working&&!photos.length))fail(400,'Nhập cách làm hoặc tải từ 1 đến 3 ảnh.');
+    const working='',photos=input.photos||[];
+    if(!Array.isArray(photos)||photos.length<1||photos.length>3)fail(400,'Làm bài trên giấy rồi nộp từ 1 đến 3 ảnh bài làm.');
     if(typeof input.requestId!=='string'||!/^[a-f0-9-]{36}$/.test(input.requestId))fail(400,'Mã lần nộp không hợp lệ.');
     const previous=db.essaySubmissions.find(s=>s.studentId===user.id&&s.requestId===input.requestId);if(previous){if(previous.assignmentId!==id||previous.questionId!==q.id)fail(409,'Mã lần nộp đã thuộc câu khác.');return safeSubmission(previous);}
     const normalized=[];
