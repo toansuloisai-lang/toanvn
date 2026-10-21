@@ -1,0 +1,53 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createStore} from '../auth-store.mjs';
+import {mkdtempSync,rmSync,readFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+import sharp from 'sharp';
+import {randomUUID} from 'node:crypto';
+import {createVirtualTeacher} from '../virtual-teacher.mjs';
+import {createLibraryService} from '../library-service.mjs';
+function fixture(t){const dir=mkdtempSync(path.join(tmpdir(),'virtual-teacher-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));const file=path.join(dir,'accounts.json'),store=createStore(file),admin=store.createUser({username:'admin',password:'test-password-123456',role:'admin',name:'Admin'});return {store,admin,file};}
+test('admin admits students and parents into system classes with random distinct credentials and private weekly work',t=>{
+ const {store,admin,file}=fixture(t);
+ const admit=name=>store.virtualTeacher.admit(admin,{studentName:name,parentName:'Phụ huynh',parentEmail:'parent@gmail.com',grade:8});
+ const a=admit('Học sinh A'),b=admit('Học sinh B');assert.equal(a.credentials.length,2);assert.notEqual(a.credentials[0].password,b.credentials[0].password);assert.notEqual(a.credentials[0].username,b.credentials[0].username);
+ assert.equal(b.credentials[1].existing,true);assert.equal(store.users().filter(u=>u.role==='parent').length,1);
+ assert.throws(()=>admit('Học sinh A'),e=>e.status===409);assert.equal(store.users().filter(u=>u.role==='student').length,2);
+ const student=store.login(a.credentials[0].username,a.credentials[0].password,'test').user,other=store.login(b.credentials[0].username,b.credentials[0].password,'test').user;
+ const report=store.virtualTeacher.schedule();assert.equal(report.generated,2);assert.equal(store.virtualTeacher.schedule().generated,0);
+ const sets=store.library.list(student);assert.equal(sets.length,1);assert.equal(sets[0].mcq,10);assert.equal(sets[0].essay,2);assert.ok(sets[0].virtualTeacher);
+ assert.throws(()=>store.library.detail(other,sets[0].id),e=>e.status===404);
+ const opened=store.library.start(student,sets[0].id);assert.equal(opened.questions.length,12);assert.ok(opened.questions.every(q=>q.solution===undefined));
+ const parent=store.login(a.credentials[1].username,a.credentials[1].password,'test').user;
+ assert.equal(store.learning.report(parent,student.id).assignments.length,1);
+ assert.throws(()=>store.virtualTeacher.enroll(student,{studentId:other.id,grade:8}),e=>e.status===403);
+ const teacher=store.users().find(u=>u.virtualTeacher);assert.ok(teacher);assert.throws(()=>store.login(teacher.username,'test-password-123456','test'),e=>e.status===401);
+ const db=JSON.parse(readFileSync(file));assert.equal(db.classes.length,1);assert.equal(db.classes[0].managedBy,'system');assert.equal(db.users.filter(u=>u.virtualTeacher).length,1);
+ const reopened=createStore(file);assert.equal(reopened.virtualTeacher.schedule().generated,0);assert.equal(reopened.library.list(student).length,1);
+ store.virtualTeacher.configure(admin,{classId:db.classes[0].id,enabled:false});assert.equal(store.virtualTeacher.dashboard(parent).classes[0].enabled,false);
+});
+test('join requests require parent Gmail, cannot be approved twice, and preserve existing student identity and history',t=>{
+ const {store,admin}=fixture(t),student=store.createUser({username:'existing',password:'test-password-123456',name:'Học sinh',role:'student'});
+ assert.throws(()=>store.virtualTeacher.request(student,{studentName:'A B',parentName:'C D',parentEmail:'invalid',grade:8}),e=>e.status===400);
+ const input={studentName:'Học sinh',parentName:'Phụ huynh',parentEmail:'parent@gmail.com',grade:8},r=store.virtualTeacher.request(student,input);
+ assert.equal(store.virtualTeacher.request(student,input).id,r.id);
+ assert.throws(()=>store.virtualTeacher.register(student,{requestId:r.id,action:'approve'}),e=>e.status===403);
+ const approved=store.virtualTeacher.register(admin,{requestId:r.id,action:'approve'});assert.equal(approved.credentials.length,1);assert.equal(store.virtualTeacher.dashboard(student).classes[0].grade,8);
+ assert.throws(()=>store.virtualTeacher.register(admin,{requestId:r.id,action:'approve'}),e=>e.status===409);
+ assert.equal(store.users().filter(u=>u.role==='student').length,1);
+});
+test('system grades submitted photos without official scores, and weekly scheduler resumes after restart without duplicating work',async t=>{
+ const {store,admin,file}=fixture(t),a=store.virtualTeacher.admit(admin,{studentName:'Học sinh A',parentName:'Phụ huynh',parentEmail:'parent@gmail.com',grade:8});
+ const student=store.login(a.credentials[0].username,a.credentials[0].password,'test').user;
+ store.virtualTeacher.schedule();const set=store.library.list(student)[0];const detail=store.library.start(student,set.id),q=detail.questions.find(q=>q.type==='essay');
+ const base64=(await sharp({create:{width:20,height:20,channels:3,background:'white'}}).png().toBuffer()).toString('base64');
+ await store.library.upload(student,set.id,{questionId:q.id,requestId:randomUUID(),photos:[{base64}]});store.library.submit(student,set.id);
+ let calls=0;assert.equal(await store.virtualTeacher.gradeNext(async()=>{calls++;return {readable:true,score:8,summary:'AI tham khảo',criteria:[]};}),true);
+ assert.equal(await store.virtualTeacher.gradeNext(async()=>{calls++;}),false);assert.equal(calls,1);
+ const parent=store.login(a.credentials[1].username,a.credentials[1].password,'test').user,report=store.learning.report(parent,student.id);assert.equal(report.assignments[0].result.score,null);assert.ok(report.assignments[0].result.provisionalScore>0);assert.equal(store.learning.parentDashboard(parent).average,null);
+ const db=JSON.parse(readFileSync(file)),later=Date.now()+8*86400000,library=createLibraryService({db,persist(){},now:()=>later}),scheduler=createVirtualTeacher({db,persist(){},library,learning:{knowledge:{report:()=>({gaps:[{name:q.topic}]})}},now:()=>later});
+ assert.equal(scheduler.schedule().generated,1);assert.equal(scheduler.schedule().generated,0);assert.equal(db.librarySets.length,2);assert.ok(db.librarySets[1].questions.some(v=>v.topic===q.topic));
+ db.classes[0].enabled=false;const stillLater=createVirtualTeacher({db,persist(){},library,learning:{},now:()=>later+8*86400000});assert.equal(stillLater.schedule().generated,0);
+});

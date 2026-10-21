@@ -1,3 +1,4 @@
+import {createGuestSessions} from './guest-sessions.mjs';
 import {sendStatic} from './static-response.mjs';
 import {clientAddress} from './request-ip.mjs';
 import {configureGemini,geminiFetch} from './gemini-client.mjs';
@@ -28,6 +29,7 @@ const geminiKeys=(process.env.GEMINI_API_KEYS||process.env.GEMINI_API_KEY||'').s
 const key=geminiKeys[0];
 if(key)configureGemini(geminiKeys);
 export const accounts = createApplicationStore();
+const productionAccounts=accounts,guestSessions=createGuestSessions();
 const parentMail=accounts.learning.enableParentMail(createGmailMailer());
 const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 const mathInstruction = String.raw`Định dạng bắt buộc: mọi biểu thức toán dùng LaTeX, bao bởi \( ... \) khi nằm trong câu hoặc \[ ... \] khi riêng dòng. Dùng \frac{a}{b} cho phân số, x^{2} cho số mũ, \sqrt{x} cho căn và \begin{cases}...\end{cases} cho hệ phương trình. Không dùng HTML, không đặt công thức trong code fence. Phần văn bản còn lại viết bình thường. `;
@@ -54,7 +56,7 @@ export const server = http.createServer(async (req, res) => {
   res.setHeader('Referrer-Policy', 'same-origin');
   res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'");
   try {
-    accounts.checkHealth();
+    productionAccounts.checkHealth();
     const url = new URL(req.url, 'http://localhost');
     if(url.pathname==='/api/version'&&req.method==='GET'){
       const names=(await readdir(root)).filter(name=>/\.(js|css|html)$/.test(name)).sort();
@@ -67,16 +69,29 @@ export const server = http.createServer(async (req, res) => {
       if(!req.headers['content-type']?.startsWith('application/json'))return json(res,415,{error:'Yêu cầu phải dùng JSON.'});
     }
     const token=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('math_session='))?.slice(13);
+    const guestStore=guestSessions.get(token),accounts=guestStore||productionAccounts;
     const user=accounts.authenticate(token);
+    if(guestStore&&req.method==='POST'&&(/\/grade$/.test(url.pathname)||['/api/tutor/chat','/api/explain','/api/learning/diagnose','/api/learning/insight'].includes(url.pathname)))guestSessions.allowAI(token);
     if(user&&req.headers['x-account-id']&&req.headers['x-account-id']!==user.id&&!url.pathname.startsWith('/api/auth/'))return json(res,409,{error:'Tài khoản đã thay đổi. Vui lòng đăng nhập lại.',sessionChanged:true});
+    const planAfterEnrollment=result=>{try{return {...result,schedule:accounts.virtualTeacher.schedule()};}catch{return {...result,schedulePending:true};}};
     const cookie=(value,maxAge)=>`math_session=${value}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${maxAge}${process.env.COOKIE_SECURE==='true'?'; Secure':''}`;
+    if(url.pathname==='/api/auth/guest'&&req.method==='POST'){if(user)return json(res,409,{error:'Đăng xuất tài khoản hiện tại trước khi học ẩn danh.'});const input=await body(req),result=guestSessions.start(clientAddress(req),Number(input.grade));res.setHeader('Set-Cookie',cookie(result.token,7200));return json(res,201,{user:result.user});}
     if(url.pathname==='/api/auth/login'&&req.method==='POST'){
-      const input=await body(req),result=accounts.login(input.username,input.password,clientAddress(req),input.role);
-      accounts.logout(token);res.setHeader('Set-Cookie',cookie(result.token,28800));return json(res,200,{user:result.user});
+      const input=await body(req),result=productionAccounts.login(input.username,input.password,clientAddress(req),input.role);
+      accounts.logout(token);guestSessions.remove(token);res.setHeader('Set-Cookie',cookie(result.token,28800));return json(res,200,{user:result.user});
     }
-    if(url.pathname==='/api/auth/logout'&&req.method==='POST'){accounts.logout(token);res.setHeader('Set-Cookie',cookie('',0));return json(res,200,{ok:true});}
+    if(url.pathname==='/api/auth/logout'&&req.method==='POST'){accounts.logout(token);guestSessions.remove(token);res.setHeader('Set-Cookie',cookie('',0));return json(res,200,{ok:true});}
     if(url.pathname.startsWith('/api/')&&url.pathname!=='/api/status'&&!user)return json(res,401,{error:'Vui lòng đăng nhập để tiếp tục.'});
     if(url.pathname==='/api/auth/session'&&req.method==='GET')return json(res,200,{user:{id:user.id,name:user.name,username:user.username,role:user.role}});
+    if(url.pathname==='/api/self-study'&&req.method==='GET')return json(res,200,(guestStore?productionAccounts:accounts).virtualTeacher.dashboard(user));
+    if(url.pathname==='/api/self-study/bank'&&req.method==='GET')return json(res,200,accounts.virtualTeacher.practiceBank(user));
+    if(url.pathname==='/api/self-study/practice'&&req.method==='POST')return json(res,201,accounts.virtualTeacher.practiceQuestion(user,await body(req)));
+    if(url.pathname==='/api/self-study/request'&&req.method==='POST')return json(res,201,(guestStore?productionAccounts:accounts).virtualTeacher.request(user,await body(req)));
+    if(url.pathname==='/api/admin/self-study/enroll'&&req.method==='POST'){const result=accounts.virtualTeacher.enroll(user,await body(req));return json(res,200,planAfterEnrollment(result));}
+    if(url.pathname==='/api/admin/self-study/admit'&&req.method==='POST'){const result=accounts.virtualTeacher.admit(user,await body(req));return json(res,200,planAfterEnrollment(result));}
+    if(url.pathname==='/api/admin/self-study/review'&&req.method==='POST'){const result=accounts.virtualTeacher.register(user,await body(req));return json(res,200,planAfterEnrollment(result));}
+    if(url.pathname==='/api/admin/self-study/configure'&&req.method==='POST')return json(res,200,accounts.virtualTeacher.configure(user,await body(req)));
+    if(url.pathname==='/api/admin/self-study/run'&&req.method==='POST'){if(user.role!=='admin')return json(res,403,{error:'Chỉ quản trị được chạy giao bài.'});return json(res,200,accounts.virtualTeacher.schedule());}
     if(url.pathname==='/api/library/catalog'&&req.method==='GET')return json(res,200,accounts.library.catalog(user));
     if(url.pathname==='/api/library/sets'&&req.method==='GET')return json(res,200,{sets:accounts.library.list(user)});
     if(url.pathname==='/api/library/sets'&&req.method==='POST')return json(res,201,accounts.library.publish(user,await body(req)));
@@ -84,7 +99,7 @@ export const server = http.createServer(async (req, res) => {
     if(librarySetRoute){const [,id,action]=librarySetRoute;if(!action&&req.method==='GET')return json(res,200,accounts.library.detail(user,id));if(req.method==='POST'&&['start','submit'].includes(action))return json(res,200,accounts.library[action](user,id));if(req.method==='POST'&&['answer','upload','review'].includes(action))return json(res,200,await accounts.library[action](user,id,await body(req)));return json(res,405,{error:'Phương thức không hợp lệ.'});}
     const librarySubmissionRoute=url.pathname.match(/^\/api\/library\/submissions\/([a-f0-9-]{36})\/(grade|images\/([0-2]))$/);
     if(librarySubmissionRoute){const [,id,action,index]=librarySubmissionRoute;if(action==='grade'&&req.method==='POST'){const limitId='library-grade:'+user.id,time=Date.now(),limit=limits.get(limitId)||{start:time,count:0};if(time-limit.start>60000){limit.start=time;limit.count=0;}limits.set(limitId,limit);if(++limit.count>8)return json(res,429,{error:'Chờ một phút trước khi chấm tiếp.'});return json(res,200,await accounts.library.grade(user,id,input=>gradeEssay({...input,key,model})));}if(index!==undefined&&req.method==='GET'){const bytes=accounts.library.image(user,id,Number(index));res.writeHead(200,{'Content-Type':'image/jpeg','Cache-Control':'private, no-store','Content-Length':bytes.length});return res.end(bytes);}return json(res,405,{error:'Phương thức không hợp lệ.'});}
-    if(url.pathname==='/api/workspace'&&req.method==='GET')return json(res,200,{...accounts.workspace(user,url.searchParams.get('studentId')),lessonPublications:accounts.lessonPublications(),uploadedLessons:accounts.uploadedLessons(user),teacherContents:accounts.teacherContents(user)});
+    if(url.pathname==='/api/workspace'&&req.method==='GET')return json(res,200,{...accounts.workspace(user,url.searchParams.get('studentId')),...(guestStore?{user:{...accounts.workspace(user).user,guest:true}}:{}),lessonPublications:accounts.lessonPublications(user),uploadedLessons:accounts.uploadedLessons(user),teacherContents:accounts.teacherContents(user)});
     if(url.pathname==='/api/exams'&&req.method==='GET')return json(res,200,{exams:accounts.exams.list(user)});
     if(url.pathname==='/api/exams'&&req.method==='POST')return json(res,201,accounts.exams.publish(user,await body(req)));
     if(url.pathname==='/api/exams/options'&&req.method==='GET')return json(res,200,{classes:accounts.learning.classes(user)});
@@ -217,6 +232,8 @@ export const server = http.createServer(async (req, res) => {
       if(user.role!=='teacher')return json(res,403,{error:'Chỉ giáo viên được tải bài lên.'});
       return json(res,201,accounts.uploadLesson(user,await body(req)));
     }
+    const documentReview=url.pathname.match(/^\/api\/teacher\/lessons\/([a-f0-9-]{36})\/publish$/);
+    if(documentReview&&req.method==='POST')return json(res,200,accounts.reviewUploadedLesson(user,documentReview[1]));
     const attachment=url.pathname.match(/^\/api\/lessons\/([a-f0-9-]{36})\/file$/);
     if(attachment&&req.method==='GET'){
       const {lesson,content}=accounts.uploadedFile(user,attachment[1]);
@@ -252,7 +269,7 @@ export const server = http.createServer(async (req, res) => {
     if(url.pathname==='/api/admin/links'&&req.method==='PUT')return json(res,200,accounts.link(user,await body(req)));
     if(url.pathname==='/api/admin/parent-email'&&req.method==='PUT')return json(res,200,accounts.learning.updateParentEmail(user,await body(req)));
     if(url.pathname==='/api/admin/password'&&req.method==='PUT')return json(res,200,accounts.learning.resetPassword(user,await body(req)));
-    if (url.pathname === '/api/status') return json(res, 200, { ai: !!key, model: key ? model : null });
+    if (url.pathname === '/api/status') return json(res, 200, { ai: !!key, model: key ? model : null, features:{sourceDocumentReview:true} });
     if (url.pathname === '/api/explain' && req.method === 'POST') {
       if(user.role!=='student')return json(res,403,{error:'Chỉ học sinh được gửi bài giải thích.'});
       if (req.headers.origin && req.headers.origin !== `http://${req.headers.host}` && req.headers.origin !== `https://${req.headers.host}`) return json(res, 403, { error: 'Nguồn yêu cầu không hợp lệ.' });
@@ -291,6 +308,9 @@ export const server = http.createServer(async (req, res) => {
 });
 const examTimer=setInterval(()=>{try{accounts.exams.sweep();}catch{console.error('Chưa lưu được bài thi hết giờ; sẽ thử lại.');}},1000);
 examTimer.unref();server.on('close',()=>clearInterval(examTimer));
+let virtualBusy=false;
+const virtualTimer=setInterval(async()=>{if(virtualBusy)return;virtualBusy=true;try{accounts.virtualTeacher.schedule();if(key)await accounts.virtualTeacher.gradeNext(input=>gradeEssay({...input,key,model}));}catch{console.error('Chưa xử lý được lớp tự học; hệ thống sẽ thử lại.');}finally{virtualBusy=false;}},60000);
+virtualTimer.unref();server.on('close',()=>clearInterval(virtualTimer));
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   server.listen(Number(process.env.PORT) || 3000, process.env.HOST || '127.0.0.1', () => console.log(`Math Lab: http://localhost:${process.env.PORT || 3000}`));
   let stopping=false;

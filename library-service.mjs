@@ -12,10 +12,10 @@ export function createLibraryService({db,persist,writeFile,readFile,now=Date.now
  function linked(user,set){
   if(user.role==='teacher')return set.teacherId===user.id;
   const cls=db.classes.find(c=>c.id===set.classId&&c.teacherId===set.teacherId),teacher=db.users.find(u=>u.id===set.teacherId&&u.role==='teacher');
-  return user.role==='student'&&cls?.studentIds.includes(user.id)&&teacher?.studentIds.includes(user.id)&&Number(db.states[user.id]?.profile?.grade)===set.grade;
+  return user.role==='student'&&(!set.studentIds||set.studentIds.includes(user.id))&&cls?.studentIds.includes(user.id)&&teacher?.studentIds.includes(user.id)&&Number(db.states[user.id]?.profile?.grade)===set.grade;
  }
  function find(user,id){const set=db.librarySets.find(s=>s.id===id);if(!set||!linked(user,set))fail(404,'Không tìm thấy bộ câu hỏi của bạn.');return set;}
- const summary=s=>({id:s.id,title:s.title,classId:s.classId,className:db.classes.find(c=>c.id===s.classId)?.name||'',grade:s.grade,mode:s.mode,due:s.due,durationMinutes:s.durationMinutes,questionCount:s.questions.length,mcq:s.questions.filter(q=>q.type==='mcq').length,essay:s.questions.filter(q=>q.type==='essay').length,createdAt:s.createdAt,withdrawn:!!s.withdrawn});
+ const summary=s=>({id:s.id,title:s.title,classId:s.classId,className:db.classes.find(c=>c.id===s.classId)?.name||'',grade:s.grade,mode:s.mode,due:s.due,durationMinutes:s.durationMinutes,questionCount:s.questions.length,mcq:s.questions.filter(q=>q.type==='mcq').length,essay:s.questions.filter(q=>q.type==='essay').length,createdAt:s.createdAt,virtualTeacher:!!s.virtualTeacher,withdrawn:!!s.withdrawn});
  const released=(set,attempt)=>set.mode==='practice'?!!attempt?.submittedAt:now()>=dueTime(set.due);
  function finishExpired(){const expired=db.libraryAttempts.filter(a=>!a.submittedAt&&a.deadline<=now());if(expired.length)tx(()=>{for(const a of expired){a.submittedAt=a.deadline;a.reason='timeout';}});}
  function provisional(set,a){
@@ -42,7 +42,7 @@ export function createLibraryService({db,persist,writeFile,readFile,now=Date.now
   if(Math.abs(questions.reduce((sum,q)=>sum+q.points,0)-10)>1e-6)fail(400,'Tổng điểm toàn bài phải bằng 10.');
   const digest=createHash('sha256').update(JSON.stringify([input.classId,input.title,input.mode,input.due,input.durationMinutes,questions])).digest('hex');
   const old=db.librarySets.find(s=>s.teacherId===user.id&&s.requestId===input.requestId);if(old){if(old.digest!==digest)fail(409,'Nội dung đã đổi; tạo lượt giao mới.');return summary(old);}
-  return tx(()=>{const set={id:randomUUID(),requestId:input.requestId,digest,teacherId:user.id,classId:cls.id,grade:cls.grade,title:input.title.trim(),mode:input.mode,due:input.due,durationMinutes:input.mode==='exam'?input.durationMinutes:null,questions,createdAt:now()};db.librarySets.push(set);return summary(set);});
+  return tx(()=>{const set={id:randomUUID(),requestId:input.requestId,digest,teacherId:user.id,classId:cls.id,grade:cls.grade,title:input.title.trim(),mode:input.mode,due:input.due,durationMinutes:input.mode==='exam'?input.durationMinutes:null,questions,createdAt:now(),...(user.virtualTeacher?{virtualTeacher:true,selfPractice:!!input.selfPractice,studentIds:input.systemStudentIds||[...cls.studentIds]}:{})};db.librarySets.push(set);return summary(set);});
  }
  function list(user){finishExpired();return db.librarySets.filter(s=>linked(user,s)).map(s=>({...summary(s),attempt:safeAttempt(s,db.libraryAttempts.find(a=>a.setId===s.id&&a.studentId===user.id),user.role==='teacher')}));}
  function start(user,id){

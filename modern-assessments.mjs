@@ -5,7 +5,7 @@ export function modernAssessments(db,studentId,{teacherId,until=Infinity,now=Dat
  const assignments=[],records=[],pending=[];const horizon=Math.min(until,now);
  const linked=id=>db.users?.some(u=>u.id===id&&u.role==='teacher'&&u.studentIds?.includes(studentId));
  for(const set of db.librarySets||[]){
-  if(set.createdAt>horizon||teacherId&&set.teacherId!==teacherId||!linked(set.teacherId)||!db.classes?.some(c=>c.id===set.classId&&c.teacherId===set.teacherId&&c.studentIds.includes(studentId)))continue;
+  if(set.studentIds&&!set.studentIds.includes(studentId)||set.createdAt>horizon||teacherId&&set.teacherId!==teacherId||!linked(set.teacherId)||!db.classes?.some(c=>c.id===set.classId&&c.teacherId===set.teacherId&&c.studentIds.includes(studentId)))continue;
   const a=(db.libraryAttempts||[]).find(a=>a.setId===set.id&&a.studentId===studentId&&!a.testRun&&a.startedAt<=horizon);
   const submittedAt=a&&(a.submittedAt<=horizon?a.submittedAt:null)||(a?.deadline<=horizon?a.deadline:null);
   if(set.withdrawn&&!a)continue;
@@ -15,7 +15,7 @@ export function modernAssessments(db,studentId,{teacherId,until=Infinity,now=Dat
   const photos=(db.librarySubmissions||[]).filter(s=>s.attemptId===a?.id&&s.time<=horizon);
   const answered=set.questions.filter(q=>q.type==='mcq'?Number.isInteger(a?.answers?.[q.id]):photos.some(s=>s.questionId===q.id)).length;
   const result={total:set.questions.length,answered:submittedAt?set.questions.length:answered,correct:0,score:reveal?review?.score??null:null,complete:!!submittedAt,provisional:!review};
-  assignments.push({id:set.id,kind:'library',title:set.title,teacherId:set.teacherId,created:set.createdAt,due:set.due,href,exerciseIds:[],result});
+  assignments.push({id:set.id,kind:'library',virtualTeacher:!!set.virtualTeacher,title:set.title,teacherId:set.teacherId,created:set.createdAt,due:set.due,href,exerciseIds:[],result});
   if(!submittedAt){pending.push({kind:'library',id:set.id,title:set.title,status:a?'Đang làm':'Chưa làm',due:set.due,overdue:now>=dueTime(set.due),href});continue;}
   if(!reveal){pending.push({kind:'library',id:set.id,title:set.title,status:'Đã nộp · Chờ mở kết quả',due:set.due,href});continue;}
   let provisional=0,allGraded=true;
@@ -26,7 +26,7 @@ export function modernAssessments(db,studentId,{teacherId,until=Infinity,now=Dat
    if(!mcq&&s){if(ai?.readable)provisional+=q.points*ai.score/10;else allGraded=false;}
    records.push({id:a.id+':'+q.id,submissionId:s?.id,kind:'library',type:q.type,title:set.title,topic:q.topic,prompt:q.prompt,answer:mcq?q.choices[a.answers[q.id]]||'Chưa trả lời':'Bài làm trong ảnh',correctAnswer:q.answer,solution:q.solution,correct,time:submittedAt,startedAt:a.startedAt,elapsedMs:submittedAt-a.startedAt,score:review?.score??null,questionScore:mcq?(correct?10:0):null,ai:mcq?null:ai,review,provisional:!review,href,images:s?s.photos.map((_,i)=>`/api/library/submissions/${s.id}/images/${i}`):[],setId:set.id,attemptId:a.id});
   }
-  if(!review)pending.push({kind:'library-review',id:set.id,title:set.title,status:'Đã nộp · Chờ giáo viên chốt điểm',due:set.due,href});
+  if(!review)pending.push({kind:'library-review',id:set.id,title:set.title,status:set.virtualTeacher?(allGraded?'\u0110\u00e3 n\u1ed9p \u00b7 K\u1ebft qu\u1ea3 AI tham kh\u1ea3o':'\u0110\u00e3 n\u1ed9p \u00b7 Ch\u1edd AI nh\u1eadn x\u00e9t'):'\u0110\u00e3 n\u1ed9p \u00b7 Ch\u1edd gi\u00e1o vi\u00ean ch\u1ed1t \u0111i\u1ec3m',due:set.due,href});
   result.provisionalScore=allGraded?Math.round(provisional*100)/100:null;
  }
  for(const p of db.states?.[studentId]?.practicePhotos||[]){

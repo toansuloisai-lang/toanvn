@@ -1,0 +1,3190 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "supplement-source-b2ce43b24979e935ce-20",
+      "grade": 7,
+      "topic": "Tỉ lệ thức",
+      "tags": [
+        "Tỉ lệ thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Hai số a và b tỉ lệ với 4 và 7. Nếu hiệu của chúng là 18, tìm giá trị của a và b.",
+      "answer": "a = 24; b = 42",
+      "unit": "",
+      "solution": "Đặt a = 4k, b = 7k. Vì b − a = 18 nên 3k = 18, k = 6. Suy ra a = 24, b = 42.",
+      "choices": [
+        "a = 24; b = 42",
+        "a = 18; b = 36",
+        "a = 12; b = 21",
+        "a = 42; b = 24"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Đặt a = 4k, b = 7k. Vì b − a = 18 nên 3k = 18, k = 6. Suy ra a = 24, b = 42."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: a = 24; b = 42"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_20_ti_le_thuc.docx",
+        "sha256": "b2ce43b24979e935ce9e93c56c675bf69ddc698cfe57b909bf9a8dc169f24bbf",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 19,
+        "ordinal": 20,
+        "originalAnswer": "Trả lời: a = 24, b = 42."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5ae80c98787a6fac91-4",
+      "grade": 7,
+      "topic": "Biểu thức đại số",
+      "tags": [
+        "Biểu thức đại số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Biểu thức 3x – 5 có bao nhiêu hạng tử?",
+      "answer": "2",
+      "unit": "",
+      "solution": "Biểu thức 3x − 5 gồm hai hạng tử là 3x và −5.",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Biểu thức 3x − 5 gồm hai hạng tử là 3x và −5."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 2"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_24_bieu_thuc_dai_so.docx",
+        "sha256": "5ae80c98787a6fac91648e6fb663e42e833d8e5adf68d014a9693f22ea58fab6",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 3,
+        "ordinal": 4,
+        "originalAnswer": "Trả lời: Hai hạng tử."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5ae80c98787a6fac91-6",
+      "grade": 7,
+      "topic": "Biểu thức đại số",
+      "tags": [
+        "Biểu thức đại số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một ô tô có vận tốc 50 km/h. Viết biểu thức đại số biểu thị quãng đường của ô tô sau t (h).",
+      "answer": "50t",
+      "unit": "",
+      "solution": "Quãng đường bằng vận tốc nhân thời gian: s = 50 × t = 50t (km).",
+      "choices": [
+        "50 + t",
+        "50 − t",
+        "50t",
+        "t/50"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Quãng đường bằng vận tốc nhân thời gian: s = 50 × t = 50t (km)."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 50t"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_24_bieu_thuc_dai_so.docx",
+        "sha256": "5ae80c98787a6fac91648e6fb663e42e833d8e5adf68d014a9693f22ea58fab6",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 5,
+        "ordinal": 6,
+        "originalAnswer": "Trả lời: 50t"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5ae80c98787a6fac91-9",
+      "grade": 7,
+      "topic": "Giá trị biểu thức",
+      "tags": [
+        "Giá trị biểu thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho m = -1 và n = 2. Tính giá tị của biểu thức P = 7m + 2n - 6",
+      "answer": "-9",
+      "unit": "",
+      "solution": "Thay m = −1, n = 2: P = 7 × (−1) + 2 × 2 − 6 = −7 + 4 − 6 = −9.",
+      "choices": [
+        "5",
+        "-17",
+        "9",
+        "-9"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Thay m = −1, n = 2: P = 7 × (−1) + 2 × 2 − 6 = −7 + 4 − 6 = −9."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: -9"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_24_bieu_thuc_dai_so.docx",
+        "sha256": "5ae80c98787a6fac91648e6fb663e42e833d8e5adf68d014a9693f22ea58fab6",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 8,
+        "ordinal": 9,
+        "originalAnswer": "Trả lời:  P = -9"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5ae80c98787a6fac91-12",
+      "grade": 7,
+      "topic": "Biểu thức đại số",
+      "tags": [
+        "Biểu thức đại số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Viết biểu thức đại số biểu thị tích của hai số tự nhiên liên tiếp mà số nhỏ nhất là m.",
+      "answer": "m(m + 1)",
+      "unit": "",
+      "solution": "Hai số tự nhiên liên tiếp có số nhỏ hơn là m thì số còn lại là m + 1. Tích là m(m + 1).",
+      "choices": [
+        "m(m + 1)",
+        "m(m − 1)",
+        "2m",
+        "m + 1"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Hai số tự nhiên liên tiếp có số nhỏ hơn là m thì số còn lại là m + 1. Tích là m(m + 1)."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: m(m + 1)"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_24_bieu_thuc_dai_so.docx",
+        "sha256": "5ae80c98787a6fac91648e6fb663e42e833d8e5adf68d014a9693f22ea58fab6",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 11,
+        "ordinal": 12,
+        "originalAnswer": "Trả lời: m(m + 1)"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5ae80c98787a6fac91-13",
+      "grade": 7,
+      "topic": "Biểu thức đại số",
+      "tags": [
+        "Biểu thức đại số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Viết biểu thức đại số biểu thị quãng đường AB, biết xe máy đi từ A với vận tớc 40 km/h và xe máy khác đi từ B đến A với vận tốc 35km/h . Biết rằng hai xe cùng khởi hành một lúc và sau t giờ thì gặp nhau.",
+      "answer": "75t",
+      "unit": "",
+      "solution": "Hai xe đi ngược chiều nên tổng quãng đường đến lúc gặp là 40t + 35t = 75t (km).",
+      "choices": [
+        "5t",
+        "75t",
+        "40t",
+        "35t"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Hai xe đi ngược chiều nên tổng quãng đường đến lúc gặp là 40t + 35t = 75t (km)."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 75t"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_24_bieu_thuc_dai_so.docx",
+        "sha256": "5ae80c98787a6fac91648e6fb663e42e833d8e5adf68d014a9693f22ea58fab6",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 12,
+        "ordinal": 13,
+        "originalAnswer": "Trả lời: 75t (km)"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5ae80c98787a6fac91-14",
+      "grade": 7,
+      "topic": "Giá trị biểu thức",
+      "tags": [
+        "Giá trị biểu thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tìm x, biết biểu thức P = 2x + 1 nhận giá trị 2015.",
+      "answer": "1007",
+      "unit": "",
+      "solution": "Từ 2x + 1 = 2015 suy ra 2x = 2014, nên x = 1007.",
+      "choices": [
+        "1008",
+        "2014",
+        "1007",
+        "2016"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Từ 2x + 1 = 2015 suy ra 2x = 2014, nên x = 1007."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1007"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_24_bieu_thuc_dai_so.docx",
+        "sha256": "5ae80c98787a6fac91648e6fb663e42e833d8e5adf68d014a9693f22ea58fab6",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 13,
+        "ordinal": 14,
+        "originalAnswer": "Trả lời: x = 1007"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5ae80c98787a6fac91-16",
+      "grade": 7,
+      "topic": "Giá trị biểu thức",
+      "tags": [
+        "Giá trị biểu thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho biểu thức P = |x – 2| + 3. Tìm giá trị nhỏ nhất của biểu thức P.",
+      "answer": "3",
+      "unit": "",
+      "solution": "Vì |x − 2| ≥ 0 nên P ≥ 3. Dấu bằng đạt khi x = 2, vì vậy giá trị nhỏ nhất của P là 3.",
+      "choices": [
+        "2",
+        "0",
+        "5",
+        "3"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Vì |x − 2| ≥ 0 nên P ≥ 3. Dấu bằng đạt khi x = 2, vì vậy giá trị nhỏ nhất của P là 3."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 3"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_24_bieu_thuc_dai_so.docx",
+        "sha256": "5ae80c98787a6fac91648e6fb663e42e833d8e5adf68d014a9693f22ea58fab6",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 15,
+        "ordinal": 16,
+        "originalAnswer": "Trả lời: P = 3"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5ae80c98787a6fac91-21",
+      "grade": 7,
+      "topic": "Biểu thức đại số",
+      "tags": [
+        "Biểu thức đại số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một hình chữ nhật có chu vi là 2(x + y). Nếu chiều rộng là x, hãy viết biểu thức đại số biểu diễn chiều dài.",
+      "answer": "y",
+      "unit": "",
+      "solution": "Nửa chu vi là x + y. Trừ chiều rộng x được chiều dài y.",
+      "choices": [
+        "y",
+        "x",
+        "x + y",
+        "2y"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Nửa chu vi là x + y. Trừ chiều rộng x được chiều dài y."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: y"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_24_bieu_thuc_dai_so.docx",
+        "sha256": "5ae80c98787a6fac91648e6fb663e42e833d8e5adf68d014a9693f22ea58fab6",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 20,
+        "ordinal": 21,
+        "originalAnswer": "Trả lời: y"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-0255242dc403d4e74d-6",
+      "grade": 7,
+      "topic": "Đa thức một biến",
+      "tags": [
+        "Đa thức một biến"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Đa thức S(x) = 5 có bậc là bao nhiêu?",
+      "answer": "0",
+      "unit": "",
+      "solution": "Đa thức hằng khác 0 có bậc 0; ở đây S(x) = 5 khác 0.",
+      "choices": [
+        "1",
+        "0",
+        "5",
+        "Không xác định"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Đa thức hằng khác 0 có bậc 0; ở đây S(x) = 5 khác 0."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 0"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_25_da_thuc_mot_bien.docx",
+        "sha256": "0255242dc403d4e74d79de8810798b070d490c8ee32e2c98a57f3149153cd37b",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 5,
+        "ordinal": 6,
+        "originalAnswer": "Trả lời: 0"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-0255242dc403d4e74d-11",
+      "grade": 7,
+      "topic": "Đa thức một biến",
+      "tags": [
+        "Đa thức một biến"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một người dự định xây hàng rào quanh một mảnh vườn hình chữ nhật có chiều dài x mét và chiều rộng x -4 mét. Viết biểu thức đại số cho chu vi của mảnh vườn..",
+      "answer": "4x - 8",
+      "unit": "",
+      "solution": "Chu vi là 2[x + (x − 4)] = 4x − 8 (m); kích thước có nghĩa khi x > 4.",
+      "choices": [
+        "2x - 4",
+        "4x + 8",
+        "4x - 8",
+        "2x + 4"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Chu vi là 2[x + (x − 4)] = 4x − 8 (m); kích thước có nghĩa khi x > 4."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 4x - 8"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_25_da_thuc_mot_bien.docx",
+        "sha256": "0255242dc403d4e74d79de8810798b070d490c8ee32e2c98a57f3149153cd37b",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 10,
+        "ordinal": 11,
+        "originalAnswer": "Trả lời: 4x - 8"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-0255242dc403d4e74d-16",
+      "grade": 7,
+      "topic": "Đa thức một biến",
+      "tags": [
+        "Đa thức một biến"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tìm đa thức một biến bậc nhất của x: f(x) = ax + b, biết f(0) = 5 và f(-1) = 2",
+      "answer": "3x + 5",
+      "unit": "",
+      "solution": "f(0) = b = 5. Từ f(−1) = −a + 5 = 2 suy ra a = 3. Vậy f(x) = 3x + 5.",
+      "choices": [
+        "-3x + 5",
+        "3x - 5",
+        "2x + 5",
+        "3x + 5"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "f(0) = b = 5. Từ f(−1) = −a + 5 = 2 suy ra a = 3. Vậy f(x) = 3x + 5."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 3x + 5"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_25_da_thuc_mot_bien.docx",
+        "sha256": "0255242dc403d4e74d79de8810798b070d490c8ee32e2c98a57f3149153cd37b",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 15,
+        "ordinal": 16,
+        "originalAnswer": "Trả lời: f(x) = 3x + 5"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-0255242dc403d4e74d-17",
+      "grade": 7,
+      "topic": "Đa thức một biến",
+      "tags": [
+        "Đa thức một biến"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho đa thức f(x) = 2x + 3. Nếu a > b thì f(a) > f(b) không?",
+      "answer": "Có",
+      "unit": "",
+      "solution": "f(a) − f(b) = 2(a − b). Do a > b nên 2(a − b) > 0, suy ra f(a) > f(b).",
+      "choices": [
+        "Có",
+        "Không",
+        "Chỉ khi a và b dương",
+        "Chỉ khi a và b nguyên"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "f(a) − f(b) = 2(a − b). Do a > b nên 2(a − b) > 0, suy ra f(a) > f(b)."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Có"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_25_da_thuc_mot_bien.docx",
+        "sha256": "0255242dc403d4e74d79de8810798b070d490c8ee32e2c98a57f3149153cd37b",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 16,
+        "ordinal": 17,
+        "originalAnswer": "Trả lời: Có"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-282db0a0de7a1979e4-8",
+      "grade": 7,
+      "topic": "Cộng đa thức một biến",
+      "tags": [
+        "Cộng đa thức một biến"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một đa thức có bậc là 5. Nếu cộng thêm đa thức bậc 3 thì đa thức mới có bậc cao nhất là bao nhiêu?",
+      "answer": "5",
+      "unit": "",
+      "solution": "Đa thức bậc 3 không chứa hạng tử bậc 5 nên không thể triệt tiêu hạng tử bậc cao nhất của đa thức bậc 5. Tổng có bậc 5.",
+      "choices": [
+        "3",
+        "5",
+        "8",
+        "2"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Đa thức bậc 3 không chứa hạng tử bậc 5 nên không thể triệt tiêu hạng tử bậc cao nhất của đa thức bậc 5. Tổng có bậc 5."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 5"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_26_phep_cong_va_phep_tu_da_thuc_mot_bien.docx",
+        "sha256": "282db0a0de7a1979e4a0d04531025321f93521d95d39f3d0b357d1804a5b92f5",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 7,
+        "ordinal": 8,
+        "originalAnswer": "Trả lời: 5."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-3",
+      "grade": 7,
+      "topic": "Biến cố",
+      "tags": [
+        "Biến cố"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Khi gieo một con xúc xắc thì số chấm xuất hiện trên con xúc xắc bé hơn 7 là biến cố gì?",
+      "answer": "Biến cố chắc chắn",
+      "unit": "",
+      "solution": "Các mặt của xúc xắc mang số chấm từ 1 đến 6, tất cả đều nhỏ hơn 7.",
+      "choices": [
+        "Biến cố không thể",
+        "Biến cố ngẫu nhiên",
+        "Biến cố chắc chắn",
+        "Không đủ dữ kiện"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Các mặt của xúc xắc mang số chấm từ 1 đến 6, tất cả đều nhỏ hơn 7."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Biến cố chắc chắn"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 2,
+        "ordinal": 3,
+        "originalAnswer": "Trả lời:  Biến cố chắc chắn"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-4",
+      "grade": 7,
+      "topic": "Biến cố",
+      "tags": [
+        "Biến cố"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Khi gieo một con xúc xắc thì số chấm xuất hiện trên con xúc xắc lớn hơn 7 là biến cố gì?",
+      "answer": "Biến cố không thể",
+      "unit": "",
+      "solution": "Số chấm của một mặt xúc xắc không vượt quá 6, nên không thể xuất hiện số chấm lớn hơn 7.",
+      "choices": [
+        "Biến cố chắc chắn",
+        "Biến cố ngẫu nhiên",
+        "Không đủ dữ kiện",
+        "Biến cố không thể"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Số chấm của một mặt xúc xắc không vượt quá 6, nên không thể xuất hiện số chấm lớn hơn 7."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Biến cố không thể"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 3,
+        "ordinal": 4,
+        "originalAnswer": "Trả lời:  Biến cố không thể"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-16",
+      "grade": 7,
+      "topic": "Biến cố",
+      "tags": [
+        "Biến cố"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một chiếc hộp đựng 3 quả bóng xanh, 4 quả bóng vàng và 5 quả bóng đỏ. Lấy ngẫu nhiên 2 quả bóng từ trong hộp. Cho biến cố X: “Các quả bóng được lấy ra có đủ 3 màu”. Khi đó X là?",
+      "answer": "Biến cố không thể",
+      "unit": "",
+      "solution": "Chỉ lấy hai quả bóng thì nhiều nhất có hai màu, không thể có đủ ba màu.",
+      "choices": [
+        "Biến cố không thể",
+        "Biến cố chắc chắn",
+        "Biến cố ngẫu nhiên",
+        "Không đủ dữ kiện"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Chỉ lấy hai quả bóng thì nhiều nhất có hai màu, không thể có đủ ba màu."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Biến cố không thể"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 15,
+        "ordinal": 16,
+        "originalAnswer": "Trả lời:  Biến cố không thể"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu gốc, kiểm tra độc lập đáp án và viết lời giải; lựa chọn trắc nghiệm do ứng dụng bổ sung."
+      },
+      "adaptation": "Giữ câu dẫn từ tài liệu, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-c1f511af3ffb887fe9-3",
+      "grade": 6,
+      "topic": "Phân số",
+      "tags": [
+        "Phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Viết phép chia sau dưới dạng phân số: (−17) : 8;",
+      "answer": "-17/8",
+      "unit": "",
+      "solution": "Phép chia a : b với b khác 0 được viết thành phân số a/b. Do đó (−17) : 8 = −17/8.",
+      "choices": [
+        "17/8",
+        "-17/8",
+        "-8/17",
+        "8/17"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Phép chia a : b với b khác 0 được viết thành phân số a/b. Do đó (−17) : 8 = −17/8."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: -17/8"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_23_mo_rong_phan_so_phan_so_bang_nhau.docx",
+        "sha256": "c1f511af3ffb887fe9f56bd5053323b3e5cc847ca2d30d17cc069f7f0ed8d673",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 2,
+        "ordinal": 3,
+        "originalAnswer": "Trả lời: -17/8"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-c1f511af3ffb887fe9-11",
+      "grade": 6,
+      "topic": "Phân số",
+      "tags": [
+        "Phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Phân số có tử bằng−3, mẫu bằng 7 được viết là:",
+      "answer": "-3/7",
+      "unit": "",
+      "solution": "Tử số viết phía trên là −3, mẫu số viết phía dưới là 7 nên phân số là −3/7.",
+      "choices": [
+        "3/7",
+        "7/3",
+        "-3/7",
+        "-7/3"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Tử số viết phía trên là −3, mẫu số viết phía dưới là 7 nên phân số là −3/7."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: -3/7"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_23_mo_rong_phan_so_phan_so_bang_nhau.docx",
+        "sha256": "c1f511af3ffb887fe9f56bd5053323b3e5cc847ca2d30d17cc069f7f0ed8d673",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 10,
+        "ordinal": 11,
+        "originalAnswer": "Trả lời: -3/7"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-c1f511af3ffb887fe9-12",
+      "grade": 6,
+      "topic": "Phân số",
+      "tags": [
+        "Phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tậpA = {1;−2; 3; 4}. Có bao nhiêu phân số có tử số và mẫu số thuộc A mà có tử số khác mẫu số và tử số trái dấu với mẫu số?",
+      "answer": "6",
+      "unit": "",
+      "solution": "A có một số âm là −2 và ba số dương là 1, 3, 4. Chọn tử âm, mẫu dương được 3 phân số; chọn tử dương, mẫu âm được 3 phân số. Tổng cộng 6.",
+      "choices": [
+        "3",
+        "9",
+        "12",
+        "6"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "A có một số âm là −2 và ba số dương là 1, 3, 4. Chọn tử âm, mẫu dương được 3 phân số; chọn tử dương, mẫu âm được 3 phân số. Tổng cộng 6."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 6"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_23_mo_rong_phan_so_phan_so_bang_nhau.docx",
+        "sha256": "c1f511af3ffb887fe9f56bd5053323b3e5cc847ca2d30d17cc069f7f0ed8d673",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 11,
+        "ordinal": 12,
+        "originalAnswer": "Trả lời: 6"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-c1f511af3ffb887fe9-18",
+      "grade": 6,
+      "topic": "Phân số bằng nhau",
+      "tags": [
+        "Phân số bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một sân bóng có diện tích 1.200 m². Nếu một nhóm học sinh sử dụng 2/3 sân để chơi bóng, hãy tìm một phân số bằng với 2/3 nhưng có mẫu số là 600.",
+      "answer": "400/600",
+      "unit": "",
+      "solution": "Nhân cả tử và mẫu của 2/3 với 200 được 400/600.",
+      "choices": [
+        "400/600",
+        "200/600",
+        "300/600",
+        "500/600"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Nhân cả tử và mẫu của 2/3 với 200 được 400/600."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 400/600"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_23_mo_rong_phan_so_phan_so_bang_nhau.docx",
+        "sha256": "c1f511af3ffb887fe9f56bd5053323b3e5cc847ca2d30d17cc069f7f0ed8d673",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 17,
+        "ordinal": 18,
+        "originalAnswer": "Trả lời: 400/600."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-c1f511af3ffb887fe9-19",
+      "grade": 6,
+      "topic": "Phân số bằng nhau",
+      "tags": [
+        "Phân số bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Mai có một bình nước chanh chứa 5/10 lít nước. Hãy tìm một phân số bằng với 5/10 nhưng có mẫu số là 100.",
+      "answer": "50/100",
+      "unit": "",
+      "solution": "Nhân cả tử và mẫu của 5/10 với 10 được 50/100.",
+      "choices": [
+        "5/100",
+        "50/100",
+        "10/100",
+        "25/100"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Nhân cả tử và mẫu của 5/10 với 10 được 50/100."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 50/100"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_23_mo_rong_phan_so_phan_so_bang_nhau.docx",
+        "sha256": "c1f511af3ffb887fe9f56bd5053323b3e5cc847ca2d30d17cc069f7f0ed8d673",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 18,
+        "ordinal": 19,
+        "originalAnswer": "Trả lời:  50/100."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-c1f511af3ffb887fe9-20",
+      "grade": 6,
+      "topic": "Phân số bằng nhau",
+      "tags": [
+        "Phân số bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một chiếc bánh sinh nhật được cắt thành 6 phần bằng nhau. Lan ăn 2 phần. Nếu chia mỗi phần nhỏ hơn thành 2 miếng, số phần bánh Lan đã ăn sẽ được biểu diễn bằng phân số nào?",
+      "answer": "4/12",
+      "unit": "",
+      "solution": "Ban đầu Lan ăn 2/6 chiếc bánh. Chia mỗi phần thành hai miếng làm tử và mẫu cùng gấp đôi, được 4/12.",
+      "choices": [
+        "2/12",
+        "4/6",
+        "4/12",
+        "3/4"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Ban đầu Lan ăn 2/6 chiếc bánh. Chia mỗi phần thành hai miếng làm tử và mẫu cùng gấp đôi, được 4/12."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 4/12"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_23_mo_rong_phan_so_phan_so_bang_nhau.docx",
+        "sha256": "c1f511af3ffb887fe9f56bd5053323b3e5cc847ca2d30d17cc069f7f0ed8d673",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 19,
+        "ordinal": 20,
+        "originalAnswer": "Trả lời: 4/12"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-075023a052fd855b02-8",
+      "grade": 6,
+      "topic": "So sánh phân số",
+      "tags": [
+        "So sánh phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Bạn Việt là một người rất thích đi xe đạp vào cuối tuần. Ngày thứ Bảy, bạn đi được 31 km trong 2 giờ. Ngày Chủ nhật, bạn đi được 46 km trong 3 giờ. Hỏi ngày nào bạn Việt đạp xe nhanh hơn?",
+      "answer": "Thứ Bảy",
+      "unit": "",
+      "solution": "Vận tốc thứ Bảy là 31/2 km/h; Chủ nhật là 46/3 km/h. Vì 31 × 3 = 93 > 92 = 46 × 2 nên thứ Bảy nhanh hơn.",
+      "choices": [
+        "Chủ nhật",
+        "Hai ngày bằng nhau",
+        "Không so sánh được",
+        "Thứ Bảy"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Vận tốc thứ Bảy là 31/2 km/h; Chủ nhật là 46/3 km/h. Vì 31 × 3 = 93 > 92 = 46 × 2 nên thứ Bảy nhanh hơn."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Thứ Bảy"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_24_so_sanh_phan_so_hon_so_duong.docx",
+        "sha256": "075023a052fd855b02d989d45e7ab6df1a7e5b2e84726195fe6bdec10d73bfad",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 7,
+        "ordinal": 8,
+        "originalAnswer": "Trả lời: thứ Bảy"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-075023a052fd855b02-11",
+      "grade": 6,
+      "topic": "So sánh phân số",
+      "tags": [
+        "So sánh phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tổ 1 gồm 8 bạn có tổng chiều cao là 115 dm. Tổ 2 gồm 10 bạn có tổng chiều cao là 138 dm. Hỏi chiều cao trung bình của các bạn ở tổ nào lớn hơn?",
+      "answer": "Tổ 1",
+      "unit": "",
+      "solution": "Trung bình tổ 1 là 115/8 = 14,375 dm, tổ 2 là 138/10 = 13,8 dm. Vì 14,375 > 13,8 nên tổ 1 lớn hơn.",
+      "choices": [
+        "Tổ 1",
+        "Tổ 2",
+        "Hai tổ bằng nhau",
+        "Không đủ dữ kiện"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Trung bình tổ 1 là 115/8 = 14,375 dm, tổ 2 là 138/10 = 13,8 dm. Vì 14,375 > 13,8 nên tổ 1 lớn hơn."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Tổ 1"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_24_so_sanh_phan_so_hon_so_duong.docx",
+        "sha256": "075023a052fd855b02d989d45e7ab6df1a7e5b2e84726195fe6bdec10d73bfad",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 10,
+        "ordinal": 11,
+        "originalAnswer": "Trả lời: tổ 1"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-075023a052fd855b02-14",
+      "grade": 6,
+      "topic": "So sánh phân số",
+      "tags": [
+        "So sánh phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một lớp học có nhiều học sinh yêu thích thể thao. Trong ngày hội thể thao của trường, lớp đã có 1/2 số học sinh đăng kí thi đấu bóng đá, 2/5 số học sinh đăng kí thi đấu bóng chuyền, 11/20 số học sinh đăng kí thi đấu kéo co và 3/10 số học sinh đăng kí thi đấu cầu lông. Hãy cho biết môn thi đấu nào được học sinh đăng kí nhiều nhất (một học sinh có thể thi đấu nhiều môn).",
+      "answer": "Kéo co",
+      "unit": "",
+      "solution": "Quy đồng về mẫu 20: bóng đá 10/20, bóng chuyền 8/20, kéo co 11/20, cầu lông 6/20. Lớn nhất là 11/20 nên kéo co được đăng kí nhiều nhất.",
+      "choices": [
+        "Bóng đá",
+        "Kéo co",
+        "Bóng chuyền",
+        "Cầu lông"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Quy đồng về mẫu 20: bóng đá 10/20, bóng chuyền 8/20, kéo co 11/20, cầu lông 6/20. Lớn nhất là 11/20 nên kéo co được đăng kí nhiều nhất."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Kéo co"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_24_so_sanh_phan_so_hon_so_duong.docx",
+        "sha256": "075023a052fd855b02d989d45e7ab6df1a7e5b2e84726195fe6bdec10d73bfad",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 13,
+        "ordinal": 14,
+        "originalAnswer": "Trả lời: kéo co"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-579ead99a807283a16-4",
+      "grade": 6,
+      "topic": "Nhân phân số",
+      "tags": [
+        "Nhân phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Hiện nay, khoảng 2/5 diện tích đất của Việt Nam được che phủ bởi rừng. Có khoảng 7/10 diện tích rừng tự nhiên, còn lại là rừng trồng. Diện tích rừng tự nhiên bằng mấy phần diện tích đất của Việt Nam?",
+      "answer": "7/25",
+      "unit": "",
+      "solution": "Theo dữ kiện đề bài, diện tích rừng tự nhiên chiếm (2/5) × (7/10) = 14/50 = 7/25 diện tích đất.",
+      "choices": [
+        "9/10",
+        "7/10",
+        "7/25",
+        "14/25"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Theo dữ kiện đề bài, diện tích rừng tự nhiên chiếm (2/5) × (7/10) = 14/50 = 7/25 diện tích đất."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 7/25"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_26_phep_nhan_va_phep_chia_phan_so.docx",
+        "sha256": "579ead99a807283a165470bf7698590b75d484f5a5ba821fb218c7805bfbb0ee",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 3,
+        "ordinal": 4,
+        "originalAnswer": "Trả lời: 7/25"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-579ead99a807283a16-13",
+      "grade": 6,
+      "topic": "Chia phân số",
+      "tags": [
+        "Chia phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một chiếc máy tự động kiểm tra linh kiện điện tử cứ 16/25 giây thì kiểm tra được 1 linh kiện. Trong 1 giờ máy tự động kiểm tra được bao nhiêu linh kiện điện tử?",
+      "answer": "5625",
+      "unit": "",
+      "solution": "Một giờ có 3600 giây. Số linh kiện kiểm tra được là 3600 : (16/25) = 3600 × 25/16 = 5625.",
+      "choices": [
+        "2304",
+        "2250",
+        "5760",
+        "5625"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Một giờ có 3600 giây. Số linh kiện kiểm tra được là 3600 : (16/25) = 3600 × 25/16 = 5625."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 5625"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_26_phep_nhan_va_phep_chia_phan_so.docx",
+        "sha256": "579ead99a807283a165470bf7698590b75d484f5a5ba821fb218c7805bfbb0ee",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 12,
+        "ordinal": 13,
+        "originalAnswer": "Trả lời:  5 625 linh kiện điện tử"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-579ead99a807283a16-17",
+      "grade": 6,
+      "topic": "Bài toán phân số",
+      "tags": [
+        "Bài toán phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một ca nô xuôi dòng trên khúc sông AB hết 6 giờ và ngược dòng trên khúc sông BA hết 8 giờ. Hãy tính chiều dài khúc sông đó, biết vận tốc dòng nước là 50 m/min.",
+      "answer": "144",
+      "unit": "",
+      "solution": "Vận tốc dòng nước 50 m/phút = 3 km/h. Gọi quãng đường là s km, ta có s/6 − s/8 = 2 × 3, suy ra s/24 = 6, nên s = 144 km.",
+      "choices": [
+        "144",
+        "72",
+        "48",
+        "288"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Vận tốc dòng nước 50 m/phút = 3 km/h. Gọi quãng đường là s km, ta có s/6 − s/8 = 2 × 3, suy ra s/24 = 6, nên s = 144 km."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 144"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_26_phep_nhan_va_phep_chia_phan_so.docx",
+        "sha256": "579ead99a807283a165470bf7698590b75d484f5a5ba821fb218c7805bfbb0ee",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 16,
+        "ordinal": 17,
+        "originalAnswer": "Trả lời: 144 (km)"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-579ead99a807283a16-20",
+      "grade": 6,
+      "topic": "Bài toán phân số",
+      "tags": [
+        "Bài toán phân số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Hai bạn Ngọc và Hà có tổng số tiền là 76000 đồng. Biết 3/5 số tiền của Ngọc bằng 2/3 số tiền của Hà. Mỗi bạn có bao nhiêu tiền?",
+      "answer": "Ngọc 40 000 đồng; Hà 36 000 đồng",
+      "unit": "",
+      "solution": "Gọi số tiền của Ngọc là N, của Hà là H. Từ 3N/5 = 2H/3 suy ra 9N = 10H, nên N:H = 10:9. Một phần là 76000/19 = 4000 đồng, suy ra N = 40000 đồng và H = 36000 đồng.",
+      "choices": [
+        "Ngọc 36 000 đồng; Hà 40 000 đồng",
+        "Ngọc 40 000 đồng; Hà 36 000 đồng",
+        "Mỗi bạn 38 000 đồng",
+        "Ngọc 30 000 đồng; Hà 46 000 đồng"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Gọi số tiền của Ngọc là N, của Hà là H. Từ 3N/5 = 2H/3 suy ra 9N = 10H, nên N:H = 10:9. Một phần là 76000/19 = 4000 đồng, suy ra N = 40000 đồng và H = 36000 đồng."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Ngọc 40 000 đồng; Hà 36 000 đồng"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_26_phep_nhan_va_phep_chia_phan_so.docx",
+        "sha256": "579ead99a807283a165470bf7698590b75d484f5a5ba821fb218c7805bfbb0ee",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 19,
+        "ordinal": 20,
+        "originalAnswer": "Trả lời: Ngọc và Hà lần lượt là 40 000 đồng và 36 000 đồng"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-d26bb281c5ef2d111d-2",
+      "grade": 6,
+      "topic": "Số thập phân",
+      "tags": [
+        "Số thập phân"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Viết phân số sau dưới dạng số thập phân 25/1000",
+      "answer": "0.025",
+      "unit": "",
+      "solution": "25/1000 là hai mươi lăm phần nghìn, viết dưới dạng số thập phân là 0,025.",
+      "choices": [
+        "0.25",
+        "2.5",
+        "0.025",
+        "0.0025"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "25/1000 là hai mươi lăm phần nghìn, viết dưới dạng số thập phân là 0,025."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 0.025"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_28_so_thap_phan.docx",
+        "sha256": "d26bb281c5ef2d111d2634e911e89f3574b81daa3a60c18be2edd8be16b3b43d",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 1,
+        "ordinal": 2,
+        "originalAnswer": "Trả lời: 0,025"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-d26bb281c5ef2d111d-3",
+      "grade": 6,
+      "topic": "Số thập phân",
+      "tags": [
+        "Số thập phân"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tìm số đối của 0,256",
+      "answer": "-0.256",
+      "unit": "",
+      "solution": "Số đối của a là −a vì a + (−a) = 0. Do đó số đối của 0,256 là −0,256.",
+      "choices": [
+        "0.256",
+        "2.56",
+        "-2.56",
+        "-0.256"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Số đối của a là −a vì a + (−a) = 0. Do đó số đối của 0,256 là −0,256."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: -0.256"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/26abefdd363eeeeb/Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức cả năm/tln_toan_6_kntt_bai_28_so_thap_phan.docx",
+        "sha256": "d26bb281c5ef2d111d2634e911e89f3574b81daa3a60c18be2edd8be16b3b43d",
+        "archive": "datatm\\6 Trắc nghiệm dạng câu trả lời ngắn Toán 6 kết nối tri thức.zip",
+        "question": 2,
+        "ordinal": 3,
+        "originalAnswer": "Trả lời: -0.256"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-fea855ab85228a095a-4",
+      "grade": 8,
+      "topic": "Cộng đa thức",
+      "tags": [
+        "Cộng đa thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Phép cộng đa thức có các tính chất gì giống với phép cộng các số?",
+      "answer": "Giao hoán và kết hợp",
+      "unit": "",
+      "solution": "Phép cộng đa thức có tính giao hoán A + B = B + A và kết hợp (A + B) + C = A + (B + C).",
+      "choices": [
+        "Giao hoán và kết hợp",
+        "Chỉ giao hoán",
+        "Chỉ kết hợp",
+        "Không có tính chất nào"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Phép cộng đa thức có tính giao hoán A + B = B + A và kết hợp (A + B) + C = A + (B + C)."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Giao hoán và kết hợp"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/2c65d894207670ce/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/demo_toan_8_kntt.docx",
+        "sha256": "fea855ab85228a095ab5029f2e5524ba744d66a461c37a4474362b8755595fd8",
+        "archive": "datatm\\8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức.zip",
+        "question": 3,
+        "ordinal": 4,
+        "originalAnswer": "Trả lời: Có tính chất giao hoán và kết hợp."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-fea855ab85228a095a-5",
+      "grade": 8,
+      "topic": "Cộng, trừ đa thức",
+      "tags": [
+        "Cộng, trừ đa thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Nếu A - B = C thì A có thể biểu diễn dưới dạng nào?",
+      "answer": "A = B + C",
+      "unit": "",
+      "solution": "Từ A − B = C, cộng B vào hai vế được A = C + B = B + C.",
+      "choices": [
+        "A = B − C",
+        "A = B + C",
+        "A = C − B",
+        "A = −B − C"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Từ A − B = C, cộng B vào hai vế được A = C + B = B + C."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: A = B + C"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/2c65d894207670ce/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/demo_toan_8_kntt.docx",
+        "sha256": "fea855ab85228a095ab5029f2e5524ba744d66a461c37a4474362b8755595fd8",
+        "archive": "datatm\\8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức.zip",
+        "question": 4,
+        "ordinal": 5,
+        "originalAnswer": "Trả lời: A=B+C"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-fea855ab85228a095a-6",
+      "grade": 8,
+      "topic": "Cộng, trừ đa thức",
+      "tags": [
+        "Cộng, trừ đa thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Nếu A = B + C thì biểu thức A - B có giá trị gì?",
+      "answer": "C",
+      "unit": "",
+      "solution": "Từ A = B + C suy ra A − B = (B + C) − B = C.",
+      "choices": [
+        "B",
+        "A",
+        "C",
+        "-C"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Từ A = B + C suy ra A − B = (B + C) − B = C."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: C"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/2c65d894207670ce/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/demo_toan_8_kntt.docx",
+        "sha256": "fea855ab85228a095ab5029f2e5524ba744d66a461c37a4474362b8755595fd8",
+        "archive": "datatm\\8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức.zip",
+        "question": 5,
+        "ordinal": 6,
+        "originalAnswer": "Trả lời: C"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-fea855ab85228a095a-15",
+      "grade": 8,
+      "topic": "Cộng đa thức",
+      "tags": [
+        "Cộng đa thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Phép cộng đa thức có thể sử dụng tính chất giao hoán không?",
+      "answer": "Có",
+      "unit": "",
+      "solution": "Với mọi đa thức A và B, A + B = B + A nên được phép dùng tính giao hoán.",
+      "choices": [
+        "Không",
+        "Chỉ với đa thức một biến",
+        "Chỉ với đa thức bậc nhất",
+        "Có"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Với mọi đa thức A và B, A + B = B + A nên được phép dùng tính giao hoán."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Có"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/2c65d894207670ce/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/demo_toan_8_kntt.docx",
+        "sha256": "fea855ab85228a095ab5029f2e5524ba744d66a461c37a4474362b8755595fd8",
+        "archive": "datatm\\8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức.zip",
+        "question": 14,
+        "ordinal": 15,
+        "originalAnswer": "Trả lời: Có"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-fea855ab85228a095a-21",
+      "grade": 8,
+      "topic": "Trừ đa thức",
+      "tags": [
+        "Trừ đa thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Điều gì xảy ra nếu ta trừ một đa thức với chính nó?",
+      "answer": "0",
+      "unit": "",
+      "solution": "Mỗi hạng tử của đa thức cộng với hạng tử đối tương ứng đều bằng 0, vì vậy A − A = 0.",
+      "choices": [
+        "0",
+        "1",
+        "A",
+        "2A"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Mỗi hạng tử của đa thức cộng với hạng tử đối tương ứng đều bằng 0, vì vậy A − A = 0."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 0"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/2c65d894207670ce/Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức cả năm -/demo_toan_8_kntt.docx",
+        "sha256": "fea855ab85228a095ab5029f2e5524ba744d66a461c37a4474362b8755595fd8",
+        "archive": "datatm\\8 Trắc nghiệm dạng câu trả lời ngắn Toán 8 kết nối tri thức.zip",
+        "question": 20,
+        "ordinal": 21,
+        "originalAnswer": "Trả lời: Bằng 0."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính hoặc lập luận độc lập từ dữ kiện; giữ đáp án nguồn trong thông tin xuất xứ."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn trắc nghiệm và lời giải đã kiểm tra."
+    },
+    {
+      "id": "supplement-source-6e887794e19ba11cfa-6",
+      "grade": 7,
+      "topic": "Tỉ lệ thức và đại lượng tỉ lệ",
+      "tags": [
+        "Tỉ lệ thức và đại lượng tỉ lệ"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Ba số tỉ lệ nghịch với 2, 3, 4 và có tổng là 27. Tìm số nhỏ nhất.",
+      "answer": "81/13",
+      "unit": "",
+      "solution": "Đặt ba số là k/2, k/3, k/4. Tổng là 13k/12 = 27 nên k = 324/13 > 0. Số nhỏ nhất là k/4 = 81/13. Đáp án 6 của nguồn sai vì 6 + 8 + 12 = 26, không phải 27.",
+      "choices": [
+        "6",
+        "81/13",
+        "9",
+        "12"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Đặt ba số là k/2, k/3, k/4. Tổng là 13k/12 = 27 nên k = 324/13 > 0. Số nhỏ nhất là k/4 = 81/13. Đáp án 6 của nguồn sai vì 6 + 8 + 12 = 26, không phải 27."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 81/13"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_23_dai_luong_ti_le_nghich.docx",
+        "sha256": "6e887794e19ba11cfaa0186d07694917191aa2ca9187eb1433e9674d9fe1a82e",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 5,
+        "ordinal": 6,
+        "originalAnswer": "Trả lời: 6."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-282db0a0de7a1979e4-2",
+      "grade": 7,
+      "topic": "Trừ đa thức",
+      "tags": [
+        "Trừ đa thức"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Khi thực hiện phép trừ hai đa thức một biến, ta cần làm gì với các hạng tử của đa thức trừ?",
+      "answer": "Đổi dấu rồi cộng",
+      "unit": "",
+      "solution": "Trừ một đa thức là cộng với đa thức đối của nó. Vì vậy đổi dấu từng hạng tử của đa thức trừ rồi cộng với đa thức bị trừ.",
+      "choices": [
+        "Giữ nguyên dấu rồi cộng",
+        "Chỉ đổi dấu hạng tử đầu",
+        "Đổi dấu rồi cộng",
+        "Đổi dấu đa thức bị trừ"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Trừ một đa thức là cộng với đa thức đối của nó. Vì vậy đổi dấu từng hạng tử của đa thức trừ rồi cộng với đa thức bị trừ."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Đổi dấu rồi cộng"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_26_phep_cong_va_phep_tu_da_thuc_mot_bien.docx",
+        "sha256": "282db0a0de7a1979e4a0d04531025321f93521d95d39f3d0b357d1804a5b92f5",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 1,
+        "ordinal": 2,
+        "originalAnswer": "Trả lời: Đổi dấu các hạng tử của đa thức trừ rồi cộng với đa thức bị trừ."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-2",
+      "grade": 7,
+      "topic": "Biến cố",
+      "tags": [
+        "Biến cố"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Biến cố không thể là ...",
+      "answer": "Biến cố không bao giờ xảy ra",
+      "unit": "",
+      "solution": "Theo định nghĩa, biến cố không thể không xảy ra trong bất kỳ kết quả nào của phép thử đang xét.",
+      "choices": [
+        "Biến cố luôn xảy ra",
+        "Biến cố có thể xảy ra hoặc không",
+        "Biến cố có xác suất bằng 1",
+        "Biến cố không bao giờ xảy ra"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Theo định nghĩa, biến cố không thể không xảy ra trong bất kỳ kết quả nào của phép thử đang xét."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Biến cố không bao giờ xảy ra"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 1,
+        "ordinal": 2,
+        "originalAnswer": "Trả lời:  biến cố không bao giờ xảy ra"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-6",
+      "grade": 7,
+      "topic": "Biến cố",
+      "tags": [
+        "Biến cố"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Biến cố chắc chắn là gì?",
+      "answer": "Biến cố luôn xảy ra",
+      "unit": "",
+      "solution": "Biến cố chắc chắn xảy ra với mọi kết quả có thể của phép thử đang xét.",
+      "choices": [
+        "Biến cố luôn xảy ra",
+        "Biến cố không bao giờ xảy ra",
+        "Biến cố có thể xảy ra hoặc không",
+        "Biến cố chỉ xảy ra một lần"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Biến cố chắc chắn xảy ra với mọi kết quả có thể của phép thử đang xét."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Biến cố luôn xảy ra"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 5,
+        "ordinal": 6,
+        "originalAnswer": "Trả lời:  biến cố luôn xảy ra"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-15",
+      "grade": 7,
+      "topic": "Biến cố",
+      "tags": [
+        "Biến cố"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Rút một chiếc thẻ trong một hộp đựng 10 chiếc thẻ (được đánh số từ 1 đến 10). Tập hợp các kết quả làm cho biến cố A: “Chiếc thẻ được rút ra ghi số chia cho 2 dư 1” xảy ra là?",
+      "answer": "{1; 3; 5; 7; 9}",
+      "unit": "",
+      "solution": "Các số chia 2 dư 1 là số lẻ. Trong các số từ 1 đến 10, đó là 1, 3, 5, 7, 9.",
+      "choices": [
+        "{2; 4; 6; 8; 10}",
+        "{1; 3; 5; 7; 9}",
+        "{1; 2; 3; 4; 5}",
+        "{3; 6; 9}"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Các số chia 2 dư 1 là số lẻ. Trong các số từ 1 đến 10, đó là 1, 3, 5, 7, 9."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: {1; 3; 5; 7; 9}"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 14,
+        "ordinal": 15,
+        "originalAnswer": "Trả lời:  {1; 3; 5; 7; 9}"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-2",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một hộp có 20 tấm thẻ được đánh số từ 1 đến 20. Các tấm thẻ có kích thước như nhau. Lấy ngẫu nhiên một tấm thẻ từ hộp. Gọi X là biến cố: “Rút được tấm thẻ ghi số không lớn hơn 20”. Xác suất của biến cố X là?",
+      "answer": "1",
+      "unit": "",
+      "solution": "Tất cả 20 thẻ đều ghi số không lớn hơn 20. Xác suất là 20/20 = 1.",
+      "choices": [
+        "0",
+        "1/20",
+        "1",
+        "1/2"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Tất cả 20 thẻ đều ghi số không lớn hơn 20. Xác suất là 20/20 = 1."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 1,
+        "ordinal": 2,
+        "originalAnswer": "Trả lời:  1"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-4",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một hộp có 10 lá thăm có kích thước giống nhau và được đánh số từ 1 đến 10. Lấy ngẫu nhiên 1 lá thăm từ hộp. Tính xác suất của biến cố “Lấy được là thăm ghi số 9”.",
+      "answer": "1/10",
+      "unit": "",
+      "solution": "Có 10 lá thăm đồng khả năng, chỉ một lá ghi số 9. Xác suất là 1/10.",
+      "choices": [
+        "9/10",
+        "1/9",
+        "1",
+        "1/10"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Có 10 lá thăm đồng khả năng, chỉ một lá ghi số 9. Xác suất là 1/10."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1/10"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 3,
+        "ordinal": 4,
+        "originalAnswer": "Trả lời:  1/10"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-5",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Đội tuyển thi học sinh giỏi môn Toán lớp 7 của một trường THCS gồm có 3 học sinh lớp 7A, 6 học sinh lớp 7B và 4 học sinh lớp 7C. Chọn ngẫu nhiên một học sinh trong đội tuyển để tham dự kì thi học sinh giỏi cấp Thành phố. Hỏi xác suất để học sinh được chọn thuộc lớp nào có khả năng cao nhất?",
+      "answer": "Lớp 7B",
+      "unit": "",
+      "solution": "Tổng có 13 học sinh. Xác suất chọn học sinh 7A, 7B, 7C lần lượt là 3/13, 6/13, 4/13. Lớp 7B có xác suất cao nhất.",
+      "choices": [
+        "Lớp 7B",
+        "Lớp 7A",
+        "Lớp 7C",
+        "Ba lớp như nhau"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Tổng có 13 học sinh. Xác suất chọn học sinh 7A, 7B, 7C lần lượt là 3/13, 6/13, 4/13. Lớp 7B có xác suất cao nhất."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Lớp 7B"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 4,
+        "ordinal": 5,
+        "originalAnswer": "Trả lời:  Lớp 7B"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-6",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gieo một con xúc xắc được chế tạo cân đối. Tính xác suất của biến cố sau: A: “Số chấm xuất hiện trên mặt con xúc xắc là 6”",
+      "answer": "1/6",
+      "unit": "",
+      "solution": "Xúc xắc cân đối có 6 mặt đồng khả năng; chỉ một mặt có 6 chấm. Xác suất là 1/6.",
+      "choices": [
+        "1/3",
+        "1/6",
+        "1/2",
+        "1"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Xúc xắc cân đối có 6 mặt đồng khả năng; chỉ một mặt có 6 chấm. Xác suất là 1/6."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1/6"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 5,
+        "ordinal": 6,
+        "originalAnswer": "Trả lời:  1/6"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-8",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một chiếc hộp chứa 5 quả cầu màu đỏ và 9 quả cầu màu vàng. Các quả cầu có kích thước và trọng lượng như nhau. Lấy ngẫu nhiên hai quả cầu từ trong hộp. Xác suất của biến cố A: “Lấy được hai quả cầu màu trắng” là?",
+      "answer": "0",
+      "unit": "",
+      "solution": "Hộp không có quả cầu trắng nên không thể lấy được hai quả cầu trắng. Xác suất bằng 0.",
+      "choices": [
+        "1",
+        "1/14",
+        "0",
+        "2/14"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Hộp không có quả cầu trắng nên không thể lấy được hai quả cầu trắng. Xác suất bằng 0."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 0"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 7,
+        "ordinal": 8,
+        "originalAnswer": "Trả lời:  P(A) = 0."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-9",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gieo một con xúc xắc 6 mặt cân đối. Gọi M là biến cố: “Gieo được mặt có số chấm là ước của 4”. Xác suất của biến cố M là?",
+      "answer": "1/2",
+      "unit": "",
+      "solution": "Các ước dương của 4 trên xúc xắc là 1, 2, 4. Có 3 kết quả thuận lợi trên 6 kết quả đồng khả năng: 3/6 = 1/2.",
+      "choices": [
+        "1/3",
+        "2/3",
+        "1/6",
+        "1/2"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Các ước dương của 4 trên xúc xắc là 1, 2, 4. Có 3 kết quả thuận lợi trên 6 kết quả đồng khả năng: 3/6 = 1/2."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1/2"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 8,
+        "ordinal": 9,
+        "originalAnswer": "Trả lời:  P(M)=1/2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-10",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gieo đồng thời hai con xúc xắc. Tìm xác suất của các biến cố sau: “Tổng số chấm xuất hiện trên hai con xúc xắc bằng 1”?",
+      "answer": "0",
+      "unit": "",
+      "solution": "Mỗi con xúc xắc có ít nhất 1 chấm nên tổng ít nhất là 2. Tổng bằng 1 là không thể, xác suất bằng 0.",
+      "choices": [
+        "0",
+        "1",
+        "1/6",
+        "1/36"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Mỗi con xúc xắc có ít nhất 1 chấm nên tổng ít nhất là 2. Tổng bằng 1 là không thể, xác suất bằng 0."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 0"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 7,
+        "ordinal": 10,
+        "originalAnswer": "Trả lời:  0"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-11",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "An và Bình mỗi người gieo một con xúc xắc. Tìm xác suất của các biến cố sau: “Tổng số chấm xuất hiện trên hai con xúc xắc lớn hơn 1”.",
+      "answer": "1",
+      "unit": "",
+      "solution": "Tổng số chấm của hai xúc xắc luôn ít nhất là 2, nên luôn lớn hơn 1. Xác suất bằng 1.",
+      "choices": [
+        "0",
+        "1",
+        "1/2",
+        "35/36"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Tổng số chấm của hai xúc xắc luôn ít nhất là 2, nên luôn lớn hơn 1. Xác suất bằng 1."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 8,
+        "ordinal": 11,
+        "originalAnswer": "Trả lời:  1"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-13",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gieo một con xúc xắc 6 mặt cân đối. Tính xác suất của biến cố “Gieo được mặt có số chấm nhiều hơn 6”.",
+      "answer": "0",
+      "unit": "",
+      "solution": "Xúc xắc 6 mặt có tối đa 6 chấm. Không có mặt nào nhiều hơn 6 chấm nên xác suất bằng 0.",
+      "choices": [
+        "1",
+        "1/6",
+        "0",
+        "5/6"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Xúc xắc 6 mặt có tối đa 6 chấm. Không có mặt nào nhiều hơn 6 chấm nên xác suất bằng 0."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 0"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 10,
+        "ordinal": 13,
+        "originalAnswer": "Trả lời:  0"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-18",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gieo một đồng xu cân đối và đồng chất. Xác suất của biến cố K: “Mặt xuất hiện là mặt sấp” là?",
+      "answer": "1/2",
+      "unit": "",
+      "solution": "Đồng xu cân đối, đồng chất có hai mặt đồng khả năng. Mặt sấp là một trong hai kết quả nên xác suất là 1/2.",
+      "choices": [
+        "0",
+        "1",
+        "1/4",
+        "1/2"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Đồng xu cân đối, đồng chất có hai mặt đồng khả năng. Mặt sấp là một trong hai kết quả nên xác suất là 1/2."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1/2"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 15,
+        "ordinal": 18,
+        "originalAnswer": "Trả lời: ½"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-19",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gieo một đồng xu cân đối và đồng chất. Xác suất của biến cố P: “Mặt xuất hiện là mặt ngửa” là?",
+      "answer": "1/2",
+      "unit": "",
+      "solution": "Hai mặt của đồng xu cân đối, đồng chất đồng khả năng. Xác suất xuất hiện mặt ngửa là 1/2.",
+      "choices": [
+        "1/2",
+        "0",
+        "1",
+        "1/4"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Hai mặt của đồng xu cân đối, đồng chất đồng khả năng. Xác suất xuất hiện mặt ngửa là 1/2."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1/2"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 16,
+        "ordinal": 19,
+        "originalAnswer": "Trả lời: ½"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-21",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một chiếc bình thủy tinh đựng 1 ngôi sao giấy màu tím, 1 ngôi sao giấy màu xanh, 1 ngôi sao giấy màu vàng, 1 ngôi sao giấy màu đỏ. Các ngôi sao có kích thước và khối lượng như nhau. Lấy ngẫu nhiên 1 ngôi sao từ trong bình. Cho biến cố Y: “Lấy được 1 ngôi sao màu tím hoặc màu đỏ”. Xác suất của biến cố Y là?",
+      "answer": "1/2",
+      "unit": "",
+      "solution": "Có 4 ngôi sao đồng khả năng, 2 ngôi sao màu tím hoặc đỏ. Xác suất là 2/4 = 1/2.",
+      "choices": [
+        "1/4",
+        "1/2",
+        "3/4",
+        "1"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Có 4 ngôi sao đồng khả năng, 2 ngôi sao màu tím hoặc đỏ. Xác suất là 2/4 = 1/2."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 1/2"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 18,
+        "ordinal": 21,
+        "originalAnswer": "Trả lời: ½"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-22",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Biến cố không thể có xác suất bằng bao nhiêu?",
+      "answer": "0",
+      "unit": "",
+      "solution": "Theo định nghĩa, biến cố không thể có xác suất bằng 0.",
+      "choices": [
+        "1",
+        "1/2",
+        "0",
+        "-1"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Theo định nghĩa, biến cố không thể có xác suất bằng 0."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 0"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 19,
+        "ordinal": 22,
+        "originalAnswer": "Trả lời: 0"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-23",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gieo một con xúc xắc 6 mặt cân đối. Tính xác suất của biến cố “Gieo được mặt có số chấm bằng 7”.",
+      "answer": "0",
+      "unit": "",
+      "solution": "Xúc xắc 6 mặt không có mặt 7 chấm nên biến cố không thể xảy ra, xác suất bằng 0.",
+      "choices": [
+        "1",
+        "1/6",
+        "1/7",
+        "0"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Xúc xắc 6 mặt không có mặt 7 chấm nên biến cố không thể xảy ra, xác suất bằng 0."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: 0"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 20,
+        "ordinal": 23,
+        "originalAnswer": "Trả lời: 0"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-2",
+      "grade": 7,
+      "topic": "Quan hệ cạnh và góc trong tam giác",
+      "tags": [
+        "Quan hệ cạnh và góc trong tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác MNP có MN < MP < NP. So sánh các góc tam giác MNP.",
+      "answer": "Góc P < góc N < góc M",
+      "unit": "",
+      "solution": "Cạnh MN đối diện góc P, MP đối diện góc N, NP đối diện góc M. Trong tam giác, cạnh lớn hơn đối diện góc lớn hơn.",
+      "choices": [
+        "Góc P < góc N < góc M",
+        "Góc M < góc N < góc P",
+        "Góc N < góc P < góc M",
+        "Góc P = góc N = góc M"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Cạnh MN đối diện góc P, MP đối diện góc N, NP đối diện góc M. Trong tam giác, cạnh lớn hơn đối diện góc lớn hơn."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Góc P < góc N < góc M"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 1,
+        "ordinal": 2,
+        "originalAnswer": "Trả lời: Góc P < góc N < Góc M"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-3",
+      "grade": 7,
+      "topic": "Quan hệ cạnh và góc trong tam giác",
+      "tags": [
+        "Quan hệ cạnh và góc trong tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Ba cạnh của tam giác có độ dài là 9cm; 15cm; 12cm. Góc nhỏ nhất là góc nào?",
+      "answer": "Góc đối diện cạnh 9 cm",
+      "unit": "",
+      "solution": "Trong tam giác, góc nhỏ nhất đối diện cạnh ngắn nhất. Cạnh ngắn nhất là 9 cm.",
+      "choices": [
+        "Góc đối diện cạnh 12 cm",
+        "Góc đối diện cạnh 9 cm",
+        "Góc đối diện cạnh 15 cm",
+        "Ba góc bằng nhau"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Trong tam giác, góc nhỏ nhất đối diện cạnh ngắn nhất. Cạnh ngắn nhất là 9 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Góc đối diện cạnh 9 cm"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 2,
+        "ordinal": 3,
+        "originalAnswer": "Trả lời: Góc đối diện với cạnh có độ dài 9cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-5",
+      "grade": 7,
+      "topic": "Quan hệ cạnh và góc trong tam giác",
+      "tags": [
+        "Quan hệ cạnh và góc trong tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC, biết Aˆ:Bˆ:Cˆ=3:5:7. So sánh các cạnh của tam giác.",
+      "answer": "BC < AC < AB",
+      "unit": "",
+      "solution": "Các góc A, B, C tỉ lệ 3 : 5 : 7 nên A < B < C. Các cạnh đối diện tương ứng thỏa BC < AC < AB.",
+      "choices": [
+        "AB < AC < BC",
+        "AC < BC < AB",
+        "BC < AC < AB",
+        "BC = AC = AB"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Các góc A, B, C tỉ lệ 3 : 5 : 7 nên A < B < C. Các cạnh đối diện tương ứng thỏa BC < AC < AB."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: BC < AC < AB"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 4,
+        "ordinal": 5,
+        "originalAnswer": "Trả lời: BC < AC < AB"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-6",
+      "grade": 7,
+      "topic": "Quan hệ cạnh và góc trong tam giác",
+      "tags": [
+        "Quan hệ cạnh và góc trong tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Biết tam giác ABC có AB<AC<BC. So sánh các góc tam giác ABC",
+      "answer": "Góc C < góc B < góc A",
+      "unit": "",
+      "solution": "Các cạnh AB, AC, BC đối diện lần lượt các góc C, B, A. Do AB < AC < BC nên góc C < góc B < góc A.",
+      "choices": [
+        "Góc A < góc B < góc C",
+        "Góc B < góc C < góc A",
+        "Ba góc bằng nhau",
+        "Góc C < góc B < góc A"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Các cạnh AB, AC, BC đối diện lần lượt các góc C, B, A. Do AB < AC < BC nên góc C < góc B < góc A."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Góc C < góc B < góc A"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 5,
+        "ordinal": 6,
+        "originalAnswer": "Trả lời: Góc C<B<A"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-14",
+      "grade": 7,
+      "topic": "Quan hệ cạnh và góc trong tam giác",
+      "tags": [
+        "Quan hệ cạnh và góc trong tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC có Bˆ=95∘,Aˆ=40∘. So sánh các cạnh tam giác ABC",
+      "answer": "BC < AB < AC",
+      "unit": "",
+      "solution": "Góc C = 180° - 95° - 40° = 45°. Vậy A < C < B, suy ra BC < AB < AC.",
+      "choices": [
+        "BC < AB < AC",
+        "AB < BC < AC",
+        "AC < AB < BC",
+        "BC < AC < AB"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Góc C = 180° - 95° - 40° = 45°. Vậy A < C < B, suy ra BC < AB < AC."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: BC < AB < AC"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 13,
+        "ordinal": 14,
+        "originalAnswer": "Trả lời: BC < AB < AC"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-16",
+      "grade": 7,
+      "topic": "Quan hệ cạnh và góc trong tam giác",
+      "tags": [
+        "Quan hệ cạnh và góc trong tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC có Bˆ=70∘,Aˆ=50∘. So sánh các cạnh tam giác.",
+      "answer": "BC < AB < AC",
+      "unit": "",
+      "solution": "Góc C = 180° - 70° - 50° = 60°. Do A < C < B nên BC < AB < AC.",
+      "choices": [
+        "AB < BC < AC",
+        "BC < AB < AC",
+        "AC < AB < BC",
+        "BC < AC < AB"
+      ],
+      "correctIndex": 1,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Góc C = 180° - 70° - 50° = 60°. Do A < C < B nên BC < AB < AC."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: BC < AB < AC"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 15,
+        "ordinal": 16,
+        "originalAnswer": "Trả lời: BC < AB < AC"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-21",
+      "grade": 7,
+      "topic": "Biến cố",
+      "tags": [
+        "Biến cố"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Chọn một số lẻ trong tập hợp {1; 3; 5; 7; 9} là biến cố gì?",
+      "answer": "Biến cố chắc chắn",
+      "unit": "",
+      "solution": "Mọi phần tử của tập {1; 3; 5; 7; 9} đều là số lẻ, nên chọn được số lẻ luôn xảy ra. Đáp án nguồn ngẫu nhiên là sai.",
+      "choices": [
+        "Biến cố không thể",
+        "Biến cố ngẫu nhiên",
+        "Biến cố chắc chắn",
+        "Không đủ dữ kiện"
+      ],
+      "correctIndex": 2,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Mọi phần tử của tập {1; 3; 5; 7; 9} đều là số lẻ, nên chọn được số lẻ luôn xảy ra. Đáp án nguồn ngẫu nhiên là sai."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Biến cố chắc chắn"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 20,
+        "ordinal": 21,
+        "originalAnswer": "Trả lời:  Biến cố ngẫu nhiên"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-4",
+      "grade": 7,
+      "topic": "Quan hệ cạnh và góc trong tam giác",
+      "tags": [
+        "Quan hệ cạnh và góc trong tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC có Aˆ=80∘,Bˆ−Cˆ=20∘. So sánh các góc tam giác ABC.",
+      "answer": "Góc C < góc B < góc A",
+      "unit": "",
+      "solution": "Có B + C = 100° và B - C = 20°, suy ra B = 60°, C = 40°. Vì A = 80° nên C < B < A. Đáp án nguồn so sánh cạnh không trả lời đúng yêu cầu so sánh góc.",
+      "choices": [
+        "Góc A < góc B < góc C",
+        "Góc B < góc C < góc A",
+        "Góc C < góc A < góc B",
+        "Góc C < góc B < góc A"
+      ],
+      "correctIndex": 3,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Có B + C = 100° và B - C = 20°, suy ra B = 60°, C = 40°. Vì A = 80° nên C < B < A. Đáp án nguồn so sánh cạnh không trả lời đúng yêu cầu so sánh góc."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: Góc C < góc B < góc A"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 3,
+        "ordinal": 4,
+        "originalAnswer": "Trả lời: AB<AC<BC"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-8",
+      "grade": 7,
+      "topic": "Quan hệ cạnh và góc trong tam giác",
+      "tags": [
+        "Quan hệ cạnh và góc trong tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC có Cˆ>Bˆ. Vẽ phân giác AD. So sánh BD và CD",
+      "answer": "BD > CD",
+      "unit": "",
+      "solution": "Do góc C > góc B nên AB > AC. Theo định lý phân giác, BD/CD = AB/AC > 1, suy ra BD > CD. Đáp án nguồn BC > CD không trả lời yêu cầu.",
+      "choices": [
+        "BD > CD",
+        "BD < CD",
+        "BD = CD",
+        "Không thể so sánh"
+      ],
+      "correctIndex": 0,
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Do góc C > góc B nên AB > AC. Theo định lý phân giác, BD/CD = AB/AC > 1, suy ra BD > CD. Đáp án nguồn BC > CD không trả lời yêu cầu."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Kết luận đúng: BD > CD"
+        }
+      ],
+      "source": {
+        "file": "datatm/bo-sung/355d9a7e53179249/Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức cả năm -/tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "archive": "datatm\\7 Trắc nghiệm dạng câu trả lời ngắn Toán 7 kết nối tri thức.zip",
+        "question": 7,
+        "ordinal": 8,
+        "originalAnswer": "Trả lời: BC>CD"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
+      },
+      "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    }
+  ]
+}

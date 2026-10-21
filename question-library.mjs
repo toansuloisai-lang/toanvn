@@ -1,11 +1,17 @@
 import {readFileSync} from 'node:fs';
 import {validateMath} from './math-validation.mjs';
 const library=JSON.parse(readFileSync(new URL('./data/question-library.json',import.meta.url),'utf8'));
-export const questionLibrary=library.questions;
+const supplement=JSON.parse(readFileSync(new URL('./data/datatm-supplement-reviewed.json',import.meta.url),'utf8'));
+const promptKey=q=>q.grade+':'+q.prompt.normalize('NFKC').toLowerCase().replace(/[\s\p{P}]+/gu,'');
+const known=new Set(library.questions.map(promptKey));
+const additions=supplement.questions.filter(q=>{const k=promptKey(q);if(q.review?.status!=='verified'||known.has(k))return false;known.add(k);return true;});
+export const questionLibrary=[...library.questions,...additions];
+const screened=JSON.parse(readFileSync(new URL('./data/datatm-screened-pending.json',import.meta.url),'utf8'));
+export const pendingQuestionLibrary=screened.questions.filter(q=>q.review?.status==='pending'&&!known.has(promptKey(q)));
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
 export function libraryCatalog(user){
  if(user.role!=='teacher')fail(403,'Chỉ giáo viên được xem đáp án trong kho câu hỏi.');
- return {questions:structuredClone(questionLibrary),uniqueQuestions:library.uniqueQuestions,target:library.target};
+ return {questions:structuredClone(questionLibrary),pendingQuestions:structuredClone(pendingQuestionLibrary),pendingCount:pendingQuestionLibrary.length,uniqueQuestions:questionLibrary.length,target:library.target};
 }
 export function selectLibraryQuestions(input,grade,bank=questionLibrary){
  if(!Array.isArray(input)||!input.length||input.length>30||input.some(q=>!q||typeof q!=='object'||typeof q.id!=='string')||new Set(input.map(q=>q.id)).size!==input.length)fail(400,'Chọn từ 1 đến 30 câu khác nhau.');

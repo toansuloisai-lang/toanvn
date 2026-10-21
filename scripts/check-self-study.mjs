@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {chromium} from '@playwright/test';
+import {createTestApp} from './browser-fixture.mjs';
+const app=await createTestApp({grade:8}),{accounts}=await import('../server.mjs');
+accounts.createUser({username:'admin',role:'admin',name:'Admin',password:'Isolated-test-password-123!'});
+const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL||'msedge',headless:true});
+try{
+ const context=await browser.newContext(),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(app.base);await page.locator('#guest-start').waitFor();await page.locator('#guest-grade').selectOption('8');await page.locator('#guest-start').click();
+ await page.locator('[data-self-study]').waitFor();await page.getByText('Đang học ẩn danh:',{exact:false}).waitFor();
+ const workspace=await(await page.request.get(app.base+'/api/workspace')).json();assert.equal(workspace.user.guest,true);assert.equal(workspace.state.profile.grade,'8');assert.equal(accounts.users().filter(u=>u.role==='student').length,1);
+ const bank=page.getByText('Tự chọn câu hỏi từ kho hệ thống',{exact:true});await bank.click();await page.locator('[data-bank-open]').first().waitFor();
+ await page.locator('[data-bank-type]').selectOption('essay');await page.locator('[data-bank-open]').first().click();await page.locator('[data-set-start]').click();
+ await page.locator('[data-set-upload]').waitFor();assert.equal(await page.locator('[data-set-upload] textarea').count(),0);
+ assert.equal((await page.request.get(app.base+'/api/admin/self-study/run')).status(),404);
+ assert.equal((await page.request.post(app.base+'/api/admin/self-study/run',{data:{}})).status(),403);
+ await page.goto(app.base+'/#home');await page.locator('[data-self-request]').locator('..').evaluate(el=>el.open=true);
+ const request=page.locator('[data-self-request]');await request.locator('[name=studentName]').fill('Học sinh tự do');await request.locator('[name=grade]').selectOption('8');await request.locator('[name=parentName]').fill('Phụ huynh tự do');await request.locator('[name=parentEmail]').fill('parent@gmail.com');await request.locator('button').click();await page.getByText('Đã gửi yêu cầu.',{exact:false}).waitFor();
+ const adminContext=await browser.newContext(),adminPage=await adminContext.newPage();await app.login(adminPage,'admin');await adminPage.goto(app.base);
+ await adminPage.locator('[data-self-review][data-action=approve]').click();await adminPage.locator('[data-self-credentials] code').first().waitFor();
+ const credentials=await adminPage.locator('[data-self-credentials] code').allTextContents();assert.equal(credentials.length,4);
+ const student=accounts.users().find(u=>u.username===credentials[0]);assert.ok(student);assert.equal(accounts.virtualTeacher.dashboard(student).classes[0].grade,8);
+ assert.equal(accounts.library.list(student)[0].questionCount,12);
+ const parent=accounts.login(credentials[2],credentials[3],'browser').user;assert.ok(parent.studentIds.includes(student.id));
+ const studentContext=await browser.newContext(),studentPage=await studentContext.newPage();const login=await studentContext.request.post(app.base+'/api/auth/login',{data:{username:credentials[0],password:credentials[1]}});assert.equal(login.status(),200);
+ await studentPage.goto(app.base);await studentPage.locator('[data-self-study]').getByText('Lớp tự học · Giáo viên ảo',{exact:true}).waitFor();
+ await studentPage.setViewportSize({width:390,height:844});assert.ok(await studentPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ assert.deepEqual(errors,[]);await studentPage.screenshot({path:'artifacts/self-study-mobile.png',fullPage:true});
+ console.log('PASS: anonymous entry, system bank, photo-only essay, private guest data, join request, admin approval, credentials, automatic class work, parent links and mobile.');
+}finally{await browser.close();await app.close();}

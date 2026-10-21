@@ -1,3 +1,4 @@
+import {mountSelfStudy} from './self-study.js';
 import {mountQuestionLibrary,mountLibraryList,mountLibrarySet} from './question-library-view.js';
 import {mountAssessmentSummary} from './assessment-summary.js';
 let disposeLibrary=()=>{};
@@ -229,6 +230,7 @@ function renderPage() {
   if(page==='notebook'){const related=$('#notebook-knowledge');saveQueue.then(()=>{if(related?.isConnected){if(saveFailed)related.textContent='Chưa lưu được bản sửa. Kết nối lại rồi thử tiếp.';else mountKnowledge(related,{request:api,role:auth.user.role,compact:true});}});}
   if(page==='knowledge'){if(auth.user.role==='teacher'){$('#main').innerHTML=learningPageHTML();mountLearning($('#main'),{request:api,auth,studentId:id,view:'errors'});}else mountKnowledge($('#main'),{request:api,role:auth.user.role,studentId:id});}
   if(page==='essays')mountEssays($('#main'),{request:api,role:auth.user.role,id,classId:mode});
+  if(['home','admin'].includes(page)&&['admin','student','parent'].includes(auth.user.role))mountSelfStudy($('#main'),{auth,request:api});
   if(auth.user.role==='admin'&&['home','admin'].includes(page))mountAccountMaintenance($('#main'),{auth,request:api});
   if(page==='teacher-notifications')mountParentMail($('#main'),{request:api});
   if(auth.user.role==='parent'&&['home','parent'].includes(page)){let query='';if(page==='home')try{query=decodeURIComponent(id||'');}catch{}mountParentDashboard($('#main'),{request:api,auth,view:page==='parent'?id||'progress':'',query,onChild:async id=>{state=await workspace(id);}});}
