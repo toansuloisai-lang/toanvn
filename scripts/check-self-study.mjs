@@ -6,7 +6,7 @@ accounts.createUser({username:'admin',role:'admin',name:'Admin',password:'Isolat
 const browser=await chromium.launch({channel:process.env.BROWSER_CHANNEL||'msedge',headless:true});
 try{
  const context=await browser.newContext(),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(app.base);await page.locator('#guest-start').waitFor();await page.locator('#guest-grade').selectOption('8');await page.locator('#guest-start').click();
+ await page.goto(app.base);await page.locator('#guest-start').waitFor();await page.locator('#guest-start').click();await page.locator('[data-guest-grade="8"]').click();
  await page.locator('[data-self-study]').waitFor();await page.getByText('Đang học ẩn danh:',{exact:false}).waitFor();
  const workspace=await(await page.request.get(app.base+'/api/workspace')).json();assert.equal(workspace.user.guest,true);assert.equal(workspace.state.profile.grade,'8');assert.equal(accounts.users().filter(u=>u.role==='student').length,1);
  const bank=page.getByText('Tự chọn câu hỏi từ kho hệ thống',{exact:true});await bank.click();await page.locator('[data-bank-open]').first().waitFor();
