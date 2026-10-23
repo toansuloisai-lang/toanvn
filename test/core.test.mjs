@@ -38,5 +38,5 @@ test('serves PWA, rejects private files and invalid API requests',async()=>{
   assert.ok([403,404].includes(traversal.status),'Private source must not be served on either platform.');
   const bad=await fetch(base+'/api/explain',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({exerciseId:'fake',explanation:'test'})});assert.equal(bad.status,401);
   const cross=await fetch(base+'/api/explain',{method:'POST',headers:{Origin:'https://evil.example'},body:'{}'});assert.equal(cross.status,403);
-  const status=await (await fetch(base+'/api/status')).json();assert.equal(typeof status.ai,'boolean');assert.equal('key' in status,false);
+  const status=await (await fetch(base+'/api/status')).json();assert.equal(typeof status.ai,'boolean');assert.equal('key' in status,false);assert.ok(['json','supabase','postgres'].includes(status.storage));
 });

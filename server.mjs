@@ -269,7 +269,7 @@ export const server = http.createServer(async (req, res) => {
     if(url.pathname==='/api/admin/links'&&req.method==='PUT')return json(res,200,accounts.link(user,await body(req)));
     if(url.pathname==='/api/admin/parent-email'&&req.method==='PUT')return json(res,200,accounts.learning.updateParentEmail(user,await body(req)));
     if(url.pathname==='/api/admin/password'&&req.method==='PUT')return json(res,200,accounts.learning.resetPassword(user,await body(req)));
-    if (url.pathname === '/api/status') return json(res, 200, { ai: !!key, model: key ? model : null, features:{sourceDocumentReview:true} });
+    if (url.pathname === '/api/status') return json(res, 200, { ai: !!key, model: key ? model : null, storage:process.env.MATH_STORAGE||'json', features:{sourceDocumentReview:true} });
     if (url.pathname === '/api/explain' && req.method === 'POST') {
       if(user.role!=='student')return json(res,403,{error:'Chỉ học sinh được gửi bài giải thích.'});
       if (req.headers.origin && req.headers.origin !== `http://${req.headers.host}` && req.headers.origin !== `https://${req.headers.host}`) return json(res, 403, { error: 'Nguồn yêu cầu không hợp lệ.' });
