@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 import urllib.parse
 import urllib.request
 
@@ -80,6 +81,25 @@ def atomic_text(path, value):
     os.replace(temporary, path)
 
 
+def recover_unhealthy(root, now=None):
+    """Restart only a persistently unhealthy container, at most three times/hour."""
+    result = run(['docker', 'inspect', 'toanvn', '--format', '{{json .State}}'], capture_output=True)
+    state = json.loads(result.stdout)
+    if state.get('Status') != 'running' or state.get('Health', {}).get('Status') != 'unhealthy':
+        return
+    now = time.time() if now is None else now
+    history_file = root / 'health-restarts.json'
+    history = json.loads(history_file.read_text()) if history_file.exists() else []
+    recent = [timestamp for timestamp in history if now - timestamp < 3600]
+    if len(recent) >= 3 or (recent and now - recent[-1] < 300):
+        log('App remains unhealthy; automatic restart limit reached. Operator attention required.')
+        return
+    # Record before the attempt so failures also count towards the limit.
+    atomic_text(history_file, json.dumps([*recent, now]) + '\n')
+    log('App is unhealthy; restarting the single existing container to reload persisted database state.')
+    run(['docker', 'restart', '--time', '60', 'toanvn'], timeout=90)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=Path('/opt/toanvn'))
@@ -92,6 +112,9 @@ def main():
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             log('Another deployment is running.'); return
+        if not args.check:
+            # Run even when main has not changed or GitHub is unavailable.
+            recover_unhealthy(root)
         repo = root / 'repository'
         # No tokens or SSH credentials are needed for this public repository.
         if not repo.exists():

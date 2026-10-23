@@ -35,7 +35,7 @@ export async function saveSnapshot(client,revision,payload,files=[]){
   await client.query('BEGIN');
   try{
     const result=await client.query('UPDATE math_lab_private.state SET payload=$1::jsonb, revision=revision+1, updated_at=now() WHERE id=true AND revision=$2::bigint RETURNING revision::text',[JSON.stringify(payload),revision]);
-    if(result.rowCount!==1)throw Error('Another server changed the database. Restart this instance; run only one active server.');
+    if(result.rowCount!==1)throw Object.assign(Error('Another server changed the database. Restart this instance; run only one active server.'),{code:'REVISION_CONFLICT'});
     for(const [key,content] of files)await client.query('INSERT INTO math_lab_private.files(file_key,content) VALUES ($1,$2)',[key,Buffer.from(content)]);
     await client.query('COMMIT');
     return result.rows[0].revision;

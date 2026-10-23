@@ -1,12 +1,53 @@
 import tempfile
+import json
 from pathlib import Path
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 
 import deploy
 
 
 class DeploymentTests(unittest.TestCase):
+    def test_healthy_starting_and_stopped_containers_are_not_restarted(self):
+        with tempfile.TemporaryDirectory() as directory:
+            for status, health in [('running', 'healthy'), ('running', 'starting'), ('exited', 'unhealthy')]:
+                with self.subTest(status=status, health=health):
+                    state = {'Status': status, 'Health': {'Status': health}}
+                    with patch.object(deploy, 'run', return_value=SimpleNamespace(stdout=json.dumps(state))) as command:
+                        deploy.recover_unhealthy(Path(directory), now=10000)
+                    self.assertEqual(command.call_count, 1)
+                    self.assertFalse((Path(directory) / 'health-restarts.json').exists())
+
+    def test_unhealthy_container_restarts_with_cooldown_and_hourly_limit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            state = {'Status': 'running', 'Health': {'Status': 'unhealthy'}}
+            with patch.object(deploy, 'run', return_value=SimpleNamespace(stdout=json.dumps(state))) as command:
+                deploy.recover_unhealthy(root, now=10000)
+                self.assertEqual(command.call_args.args[0], ['docker', 'restart', '--time', '60', 'toanvn'])
+                self.assertEqual(command.call_count, 2)
+                deploy.recover_unhealthy(root, now=10060)
+                self.assertEqual(command.call_count, 3)  # Inspect only during cooldown.
+                deploy.recover_unhealthy(root, now=10300)
+                deploy.recover_unhealthy(root, now=10600)
+                self.assertEqual(command.call_count, 7)
+                deploy.recover_unhealthy(root, now=10900)
+                self.assertEqual(command.call_count, 8)  # Three attempts/hour already used.
+                deploy.recover_unhealthy(root, now=13601)
+                self.assertEqual(command.call_count, 10)  # Old attempts expire.
+
+    def test_failed_restart_also_consumes_attempt_and_cannot_loop(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            state = SimpleNamespace(stdout=json.dumps({'Status': 'running', 'Health': {'Status': 'unhealthy'}}))
+            with patch.object(deploy, 'run', side_effect=[state, RuntimeError('restart failed')]):
+                with self.assertRaises(RuntimeError):
+                    deploy.recover_unhealthy(root, now=10000)
+            with patch.object(deploy, 'run', return_value=state) as command:
+                deploy.recover_unhealthy(root, now=10001)
+                self.assertEqual(command.call_count, 1)
+
     def test_only_exact_successful_main_push_can_deploy(self):
         sha = 'a' * 40
         valid = {'head_sha': sha, 'head_branch': 'main', 'event': 'push',

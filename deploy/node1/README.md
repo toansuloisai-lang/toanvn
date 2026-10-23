@@ -61,6 +61,16 @@ repository. Missing, pending, failed or inaccessible CI results leave production
 unchanged. No GitHub token, SSH private key or production secrets are stored in
 GitHub Actions. The public repository and CI run metadata must remain readable.
 
+Before checking Git, the controller also recovers a running container marked
+`unhealthy` by Docker (Docker's restart policy alone does not do this). It restarts
+the same single container, loading the current database snapshot; it does not
+retry a failed write or reconnect using stale in-memory state. Recovery is capped
+at three attempts per rolling hour with at least five minutes between attempts.
+Healthy, starting and intentionally stopped containers are left alone. Attempts
+are recorded in `/opt/toanvn/health-restarts.json`. After the limit is reached,
+operator intervention is required. Database failures now log an operation and
+bounded error code without connection strings, query text or private data.
+
 The controller lives at `/usr/local/lib/toanvn/deploy.py`. It archives tracked
 source into `/opt/toanvn/releases/<sha>`, builds an image tagged with the full SHA,
 then replaces the single app container. The old writer is stopped before the new
