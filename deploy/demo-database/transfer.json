@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "revision": "181",
+  "stateUpdatedAt": "2026-10-21T13:41:30.122Z",
+  "createdAt": "2026-10-23T13:14:32.738Z",
+  "assetsSha256": "c5bfc27248a01520bd58e15d065bacf0b92b61875158536053ca794c532026e7",
+  "summary": {
+    "users": 65,
+    "roles": {
+      "admin": 1,
+      "teacher": 2,
+      "student": 31,
+      "parent": 31
+    },
+    "attempts": 200,
+    "collections": [
+      "activities",
+      "classes",
+      "datatmAttempts",
+      "diagnoses",
+      "essayAssignments",
+      "essayBank",
+      "essayStarts",
+      "essaySubmissions",
+      "examAttempts",
+      "exams",
+      "knowledgeRepairs",
+      "learningInsights",
+      "lessonPublications",
+      "libraryAttempts",
+      "librarySets",
+      "librarySubmissions",
+      "parentMail",
+      "parentReports",
+      "states",
+      "teacherContents",
+      "tutorThreads",
+      "uploadedLessons",
+      "usage",
+      "users"
+    ],
+    "attachments": 150,
+    "attachmentBytes": 122155691
+  },
+  "bankAssets": 3
+}

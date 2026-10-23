@@ -2,7 +2,10 @@
 
 Host: SSH shell alias `node1` (`root@45.119.215.154`). Application directory: `/opt/toanvn`.
 
-The single `toanvn` container uses Node 24 and the existing Supabase database.
+The single `toanvn` app container uses Node 24 and a local PostgreSQL 17
+container, connected by a shared Unix socket. CI/CD imports the committed demo
+snapshot into an empty database once and preserves live data on later deploys.
+See [MIGRATE-DATABASE.md](MIGRATE-DATABASE.md) for storage, backups and checks.
 `/opt/toanvn/.env` was copied from the repository's local `.env (1)` file and is
 root-owned with mode 600. Keep it outside Git and Docker images. Compose overrides
 the listen address, port, secure-cookie setting and trusted proxy IP.
@@ -43,9 +46,11 @@ curl -fsS http://127.0.0.1:3060/api/status
 docker exec nginx-manager curl -fsS http://toanvn:3000/api/status
 ```
 
-Keep one writer instance: do not start the local app against the same Supabase
-database. Do not import or synchronize an old JSON snapshot over live data.
-Supabase backups must cover `math_lab_private.state` and `math_lab_private.files`.
+Keep one writer instance. Do not import or synchronize an old JSON snapshot over
+live data. Backups must cover the entire `mathlab` database, including all three
+tables in `math_lab_private`. Never remove the PostgreSQL data volume during
+normal deployments. Supabase is retained as the pre-migration source; new VPS
+activity is saved only to the VPS database.
 If Nginx Manager's container IP changes, update `TRUSTED_PROXY_IPS` in Compose
 (initially `172.20.0.14`) and recreate the app container.
 

@@ -41,3 +41,12 @@ test('Supabase TLS stays verified even when URI contains SSL overrides',()=>{
   assert.throws(()=>connectionOptions({SUPABASE_DB_URL:'https://example.supabase.co'}),/PostgreSQL/);
   assert.throws(()=>connectionOptions({}),/SUPABASE_DB_URL/);
 });
+
+test('VPS PostgreSQL uses an explicit local Unix socket instead of the Supabase URI',()=>{
+  const options=connectionOptions({MATH_STORAGE:'postgres',DATABASE_SOCKET_DIR:'/var/run/postgresql',SUPABASE_DB_URL:'postgresql://unused:unused@example.com/postgres'});
+  assert.equal(options.host,'/var/run/postgresql');
+  assert.equal(options.ssl,false);
+  assert.equal(options.database,'mathlab');
+  assert.equal(options.connectionString,undefined);
+  for(const host of [undefined,'localhost','db.example.com'])assert.throws(()=>connectionOptions({MATH_STORAGE:'postgres',DATABASE_SOCKET_DIR:host}),/absolute Unix socket/);
+});

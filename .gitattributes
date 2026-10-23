@@ -1,0 +1,2 @@
+# Export manifests hash exact bytes; preserve the demo snapshot across platforms.
+deploy/demo-database/** -text

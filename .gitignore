@@ -25,3 +25,7 @@ __pycache__/
 
 # Local handover documents containing account credentials
 /baocao/
+
+# User-authorized demo database snapshot for automatic VPS initialization.
+!/deploy/demo-database/snapshot/uploads/*.docx
+!/deploy/demo-database/snapshot/uploads/*.doc

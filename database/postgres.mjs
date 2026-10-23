@@ -3,6 +3,13 @@ import {readFile} from 'node:fs/promises';
 import {isDeepStrictEqual} from 'node:util';
 
 export function connectionOptions(env=process.env){
+  if(env.MATH_STORAGE==='postgres'){
+    // A Unix socket shared only by the app and local database containers.
+    // No TCP listener or database password is needed for this transport.
+    const host=env.DATABASE_SOCKET_DIR;
+    if(!host||!host.startsWith('/')||host.includes('\0'))throw Error('Set DATABASE_SOCKET_DIR to an absolute Unix socket directory.');
+    return {host,port:5432,database:env.DATABASE_NAME||'mathlab',user:env.DATABASE_USER||'mathlab',ssl:false,connectionTimeoutMillis:10000,query_timeout:15000,statement_timeout:12000,application_name:'math-thinking-lab'};
+  }
   if(!env.SUPABASE_DB_URL)throw Error('Set SUPABASE_DB_URL to the Supabase PostgreSQL connection string.');
   let url;
   try{url=new URL(env.SUPABASE_DB_URL);}catch{throw Error('SUPABASE_DB_URL is not a valid PostgreSQL URL.');}

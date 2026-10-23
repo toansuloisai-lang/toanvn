@@ -9,6 +9,8 @@ import {createStore} from '../auth-store.mjs';
 import {readSource,prepareBundle,readBundle} from '../database/migration.mjs';
 import {connectDatabase,importSnapshot,verifySnapshot,loadSnapshot,saveSnapshot,replaceSnapshot} from '../database/postgres.mjs';
 import {createPostgresStorage} from '../database/storage.mjs';
+import {exportDatabase,importDatabase,readTransfer,verifyTransfer} from '../database/transfer.mjs';
+import {seedDemoDatabase} from '../database/demo-seed.mjs';
 import {pdfFixture,docxFixture} from './document-fixtures.mjs';
 
 const dir=await mkdtemp(path.join(os.tmpdir(),'math-pg-test-'));
@@ -91,7 +93,38 @@ try{
   await importSnapshot(client,source.db,source.files);
   await verifySnapshot(client,source.db,source.files);
   console.log('PASS: PostgreSQL import, exact round trip, protected schema, passwords, attachments, activity time, approved PDF restart, conflict detection and transaction rollback.');
-  if(process.argv[2]){
+  await client.query('CREATE TABLE math_lab_private.question_bank_assets(name text PRIMARY KEY,payload jsonb NOT NULL,sha256 text NOT NULL,updated_at timestamptz NOT NULL DEFAULT now())');
+  await client.query("INSERT INTO math_lab_private.question_bank_assets(name,payload,sha256) VALUES('test.json',$1::jsonb,'original-hash')",[JSON.stringify({questions:[{text:'Tiếng Việt',answer:42}]})]);
+  const transferFolder=path.join(dir,'transfer');
+  await exportDatabase(client,transferFolder);
+  const transferred=await readTransfer(transferFolder);
+  await verifyTransfer(client,transferred);
+  await assert.rejects(importDatabase(client,transferFolder),/contains data/);
+  await client.query('DROP SCHEMA math_lab_private CASCADE');
+  await importDatabase(client,transferFolder);
+  await verifyTransfer(client,transferred);
+  for(const role of ['anon','authenticated']){
+    await client.query(`SET ROLE ${role}`);
+    await assert.rejects(client.query('SELECT payload FROM math_lab_private.question_bank_assets'),{code:'42501'});
+    await client.query('RESET ROLE');
+  }
+  console.log('PASS: full database transfer preserves snapshot, revision, timestamps, attachments and bank assets; rejects occupied destinations and protects API roles.');
+  await client.query('UPDATE math_lab_private.state SET revision=revision+1');
+  const liveRevision=(await loadSnapshot(client)).revision;
+  assert.equal(await seedDemoDatabase(client,transferFolder),false);
+  assert.equal((await loadSnapshot(client)).revision,liveRevision);
+  await client.query('DROP SCHEMA math_lab_private CASCADE');
+  assert.equal(await seedDemoDatabase(client,transferFolder),true);
+  await verifyTransfer(client,transferred);
+  console.log('PASS: first startup seeds once; subsequent startup retains newer database revision.');
+  if(process.argv[2]==='--demo-transfer'){
+    const demo=path.resolve('deploy/demo-database');
+    await client.query('DROP SCHEMA math_lab_private CASCADE');
+    assert.equal(await seedDemoDatabase(client,demo),true);
+    await verifyTransfer(client,await readTransfer(demo));
+    assert.equal(await seedDemoDatabase(client,demo),false);
+    console.log('PASS: committed full demo database imported, verified and retained on subsequent startup.');
+  }else if(process.argv[2]){
     const actual=await readSource(path.resolve(process.argv[2]));
     await client.query('DROP SCHEMA math_lab_private CASCADE');
     await importSnapshot(client,actual.db,actual.files);

@@ -26,7 +26,7 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm test
-      - run: npm run test:supabase
+      - run: npm run test:supabase -- --demo-transfer
       - name: Check deployment controller
         run: |
           python3 -m py_compile deploy/node1/deploy.py
@@ -37,3 +37,23 @@ jobs:
         run: |
           docker compose -f deploy/node1/compose.yaml config --quiet
           docker build -f deploy/node1/Dockerfile -t toanvn:ci .
+      - name: Verify VPS database initialization and restart
+        env:
+          TOANVN_ENV_FILE: ${{ github.workspace }}/.env.example
+          TOANVN_IMAGE: toanvn:ci
+        run: |
+          set -euo pipefail
+          compose=(docker compose -f deploy/node1/compose.yaml)
+          trap '"${compose[@]}" logs --tail=80; "${compose[@]}" down --volumes' EXIT
+          docker network create nginx-manager_default
+          "${compose[@]}" up -d --no-build --wait --wait-timeout 240
+          curl --fail http://127.0.0.1:3060/api/status
+          docker exec toanvn-db psql -U mathlab -d mathlab -v ON_ERROR_STOP=1 -c "UPDATE math_lab_private.state SET payload=jsonb_set(payload,'{ciRestartMarker}','true'), revision=revision+1"
+          "${compose[@]}" restart app
+          for attempt in $(seq 1 60); do
+            if [ "$(docker inspect --format '{{.State.Health.Status}}' toanvn)" = healthy ]; then break; fi
+            sleep 2
+          done
+          test "$(docker inspect --format '{{.State.Health.Status}}' toanvn)" = healthy
+          test "$(docker exec toanvn-db psql -U mathlab -d mathlab -Atc "SELECT payload->>'ciRestartMarker' FROM math_lab_private.state")" = true
+          curl --fail http://127.0.0.1:3060/api/status
