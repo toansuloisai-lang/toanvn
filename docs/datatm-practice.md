@@ -5,8 +5,8 @@ Một câu hỗ trợ cả hai dạng có hai bài luyện tập, dùng chung m�
 Trắc nghiệm chấm trên máy chủ và lưu lịch sử; tự luận dùng quy trình nộp ảnh,
 chấm AI và giáo viên xác nhận hiện có.
 
-Hiện có 588 câu nguồn: 502 câu đã duyệt trước đây và 86 câu mới duyệt.
-Có 413 bài trắc nghiệm và 582 bài tự luận. Không cộng hai số này thành số câu nguồn.
+Hiện có 646 câu nguồn: 502 câu đã duyệt trước đây và 144 câu mới duyệt.
+Có 413 bài trắc nghiệm và 640 bài tự luận. Không cộng hai số này thành số câu nguồn.
 
 Sau khi bổ sung câu đã duyệt, chạy:
 
@@ -24,7 +24,7 @@ Rà soát hàng chờ:
 - `node scripts/audit-pending-practice.mjs`: sàng lọc toàn bộ 1.935 câu, chỉ
   tự xác nhận biểu thức/phương trình nguyên vẹn tính được bằng phân số chính xác.
 - `node scripts/review-pending-practice.mjs`: quyết định kiểm tra độc lập từng câu
-  trong 110 câu đầu; 85 câu đạt và 25 câu cần sửa nguồn.
+  trong 180 câu đầu; 143 câu đạt và 37 câu cần sửa nguồn.
 - Báo cáo chi tiết ở `baocao/datatm-practice-review.json` và
   `baocao/datatm-practice-manual-review.json` (thư mục cục bộ, không đưa lên Git).
 

@@ -6473,6 +6473,2210 @@
         "status": "verified",
         "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
       }
+    },
+    {
+      "id": "supplement-source-c8f62b61d243913850-10",
+      "grade": 7,
+      "topic": "Đường trung tuyến",
+      "tags": [
+        "Đường trung tuyến"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC có hai đường trung tuyến BD; CE sao cho BD = CE. Khi đó tam giác ABC là tam giác nào?",
+      "answer": "Tam giác cân tại A",
+      "unit": "",
+      "solution": "Gọi G là trọng tâm. BG = 2BD/3 và CG = 2CE/3 nên BG = CG. Hoặc dùng công thức trung tuyến: 4(BD² − CE²) = 3(AB² − AC²) = 0, suy ra AB = AC.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Gọi G là trọng tâm. BG = 2BD/3 và CG = 2CE/3 nên BG = CG. Hoặc dùng công thức trung tuyến: 4(BD² − CE²) = 3(AB² − AC²) = 0, suy ra AB = AC."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Tam giác cân tại A"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_34_su_dong_quy_cua_ba_duong_trung_tuyen_ba_duong_phan_giac_trong_mot_tam_giac.docx",
+        "question": 9,
+        "sha256": "c8f62b61d243913850fb486117f7c44e8207f9c3d3b5a71932396621391de4e9",
+        "originalAnswer": "Trả lời: Cân tại A"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-c8f62b61d243913850-2",
+      "grade": 7,
+      "topic": "Đường trung tuyến",
+      "tags": [
+        "Đường trung tuyến"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Giao của ba đường trung tuyến trong tam giác gọi là gì?",
+      "answer": "Trọng tâm",
+      "unit": "",
+      "solution": "Ba đường trung tuyến của tam giác đồng quy tại trọng tâm, chia mỗi trung tuyến theo tỉ lệ 2:1 kể từ đỉnh.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Ba đường trung tuyến của tam giác đồng quy tại trọng tâm, chia mỗi trung tuyến theo tỉ lệ 2:1 kể từ đỉnh."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Trọng tâm"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_34_su_dong_quy_cua_ba_duong_trung_tuyen_ba_duong_phan_giac_trong_mot_tam_giac.docx",
+        "question": 1,
+        "sha256": "c8f62b61d243913850fb486117f7c44e8207f9c3d3b5a71932396621391de4e9",
+        "originalAnswer": "Trả lời: Trọng tâm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-4211edf5e950955c4f-12",
+      "grade": 7,
+      "topic": "Xác suất",
+      "tags": [
+        "Xác suất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Biến cố có khả năng xảy ra cao hơn sẽ có xác suất?",
+      "answer": "Lớn hơn",
+      "unit": "",
+      "solution": "Xác suất đo mức độ có khả năng xảy ra của biến cố: khả năng cao hơn ứng với xác suất lớn hơn.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Xác suất đo mức độ có khả năng xảy ra của biến cố: khả năng cao hơn ứng với xác suất lớn hơn."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Lớn hơn"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_30_lam_quen_voi_xac_xuat_cua_bien_co.docx",
+        "question": 9,
+        "sha256": "4211edf5e950955c4f7a0eb385c9390985f3c8fc789b5841b9aeeb2b3a8960ba",
+        "originalAnswer": "Trả lời:  Lớn hơn"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-593ef2e198552c8c75-13",
+      "grade": 7,
+      "topic": "Làm tròn số",
+      "tags": [
+        "Làm tròn số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Làm tròn số 435678,21 với độ chính xác là 50?",
+      "answer": "435700",
+      "unit": "",
+      "solution": "Làm tròn đến hàng trăm bảo đảm sai số không quá 50. Vì chữ số hàng chục là 7, làm tròn 435678,21 lên 435700.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Làm tròn đến hàng trăm bảo đảm sai số không quá 50. Vì chữ số hàng chục là 7, làm tròn 435678,21 lên 435700."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "435700"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_5_lam_quen_voi_so_thap_phan_vo_han_tuan_hoan.docx",
+        "question": 13,
+        "sha256": "593ef2e198552c8c7514ad2f411030533fb38e7294d292b20bd656762fa27af8",
+        "originalAnswer": "Trả lời:  435700;"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-593ef2e198552c8c75-9",
+      "grade": 7,
+      "topic": "Số thập phân tuần hoàn",
+      "tags": [
+        "Số thập phân tuần hoàn"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Hãy viết gọn số thập phân vô hạn tuần hoàn 3,2121212…?",
+      "answer": "3,(21)",
+      "unit": "",
+      "solution": "Sau dấu phẩy, nhóm 21 lặp lại vô hạn nên viết 3,(21).",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Sau dấu phẩy, nhóm 21 lặp lại vô hạn nên viết 3,(21)."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "3,(21)"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_5_lam_quen_voi_so_thap_phan_vo_han_tuan_hoan.docx",
+        "question": 9,
+        "sha256": "593ef2e198552c8c7514ad2f411030533fb38e7294d292b20bd656762fa27af8",
+        "originalAnswer": "Trả lời:  3,(21);"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-15",
+      "grade": 7,
+      "topic": "Hai tam giác vuông bằng nhau",
+      "tags": [
+        "Hai tam giác vuông bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC vuông tại B và tam giác MNP vuông tại N, có AB = MN. Cần thêm điều kiện gì để ΔABC=ΔMNP theo trường hợp hai cạnh góc vuông?",
+      "answer": "BC = NP",
+      "unit": "",
+      "solution": "Đã có AB = MN, thêm BC = NP thì hai cạnh góc vuông tương ứng bằng nhau. Hai góc xen giữa B và N đều vuông.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Đã có AB = MN, thêm BC = NP thì hai cạnh góc vuông tương ứng bằng nhau. Hai góc xen giữa B và N đều vuông."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "BC = NP"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 14,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: BC = NP."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-11",
+      "grade": 7,
+      "topic": "Số vô tỉ",
+      "tags": [
+        "Số vô tỉ"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Số π (pi) là số hữu tỉ hay vô tỉ?",
+      "answer": "Số vô tỉ",
+      "unit": "",
+      "solution": "π là số vô tỉ: không biểu diễn được bằng tỉ số hai số nguyên.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "π là số vô tỉ: không biểu diễn được bằng tỉ số hai số nguyên."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Số vô tỉ"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 10,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: Số vô tỉ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-8",
+      "grade": 7,
+      "topic": "Số vô tỉ",
+      "tags": [
+        "Số vô tỉ"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Số thập phân vô hạn không tuần hoàn thuộc loại số nào?",
+      "answer": "Số vô tỉ",
+      "unit": "",
+      "solution": "Theo định nghĩa, số thập phân vô hạn không tuần hoàn biểu diễn số vô tỉ.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Theo định nghĩa, số thập phân vô hạn không tuần hoàn biểu diễn số vô tỉ."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Số vô tỉ"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 7,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: Số vô tỉ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7495ab4695a22a6cdc-2",
+      "grade": 7,
+      "topic": "Đoạn thẳng bằng nhau",
+      "tags": [
+        "Đoạn thẳng bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC có AB = AC . Trên cạnh AB và AC lấy các điểm D, E sao cho AD = AE. Gọi K là giao điểm của BE và CD. BD bằng cạnh nào?",
+      "answer": "CE",
+      "unit": "",
+      "solution": "Vì D thuộc AB và E thuộc AC, BD = AB − AD và CE = AC − AE. Từ AB = AC và AD = AE suy ra BD = CE.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Vì D thuộc AB và E thuộc AC, BD = AB − AD và CE = AC − AE. Từ AB = AC và AD = AE suy ra BD = CE."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "CE"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_14_truong_hop_bang_nhau_thu_hai_va_thu_ba_cua_tam_giac.docx",
+        "question": 1,
+        "sha256": "7495ab4695a22a6cdceb7c6fb65c3be103ef5eaff51b0467155be88450a16a8b",
+        "originalAnswer": "Trả lời: BD = CE"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-c1333b6c8e4405d840-17",
+      "grade": 7,
+      "topic": "Tam giác",
+      "tags": [
+        "Tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Có thể có tam giác nào có một góc bằng 0° không?",
+      "answer": "Không",
+      "unit": "",
+      "solution": "Mỗi góc trong tam giác không suy biến phải lớn hơn 0°; góc 0° làm ba đỉnh thẳng hàng.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Mỗi góc trong tam giác không suy biến phải lớn hơn 0°; góc 0° làm ba đỉnh thẳng hàng."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Không"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_12_tong_cac_goc_trong_mot_tam_giac.docx",
+        "question": 16,
+        "sha256": "c1333b6c8e4405d8404c59b28c3ba3580895ef0d35f260256af4d6d4322c5e8a",
+        "originalAnswer": "Trả lời:  Không."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-c1333b6c8e4405d840-7",
+      "grade": 7,
+      "topic": "Tổng các góc tam giác",
+      "tags": [
+        "Tổng các góc tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Có thể có một tam giác có tổng ba góc lớn hơn 180° không?",
+      "answer": "Không, trong hình học phẳng",
+      "unit": "",
+      "solution": "Tổng ba góc của mọi tam giác trong mặt phẳng bằng 180°, không thể lớn hơn 180°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Tổng ba góc của mọi tam giác trong mặt phẳng bằng 180°, không thể lớn hơn 180°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Không, trong hình học phẳng"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_12_tong_cac_goc_trong_mot_tam_giac.docx",
+        "question": 6,
+        "sha256": "c1333b6c8e4405d8404c59b28c3ba3580895ef0d35f260256af4d6d4322c5e8a",
+        "originalAnswer": "Trả lời:  Không."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-c1333b6c8e4405d840-8",
+      "grade": 7,
+      "topic": "Tổng các góc tam giác",
+      "tags": [
+        "Tổng các góc tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Có thể có một tam giác có tổng ba góc nhỏ hơn 180° không?",
+      "answer": "Không, trong hình học phẳng",
+      "unit": "",
+      "solution": "Định lí tổng ba góc của tam giác cho tổng bằng 180°, không thể nhỏ hơn 180°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Định lí tổng ba góc của tam giác cho tổng bằng 180°, không thể nhỏ hơn 180°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Không, trong hình học phẳng"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_12_tong_cac_goc_trong_mot_tam_giac.docx",
+        "question": 7,
+        "sha256": "c1333b6c8e4405d8404c59b28c3ba3580895ef0d35f260256af4d6d4322c5e8a",
+        "originalAnswer": "Trả lời:  Không."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-cf19d396b7aec0cfd2-18",
+      "grade": 7,
+      "topic": "Quan hệ giữa góc và cạnh",
+      "tags": [
+        "Quan hệ giữa góc và cạnh"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Trong một tam giác góc đối diện với cạnh lớn hơn thì...?",
+      "answer": "Lớn hơn góc đối diện cạnh nhỏ hơn",
+      "unit": "",
+      "solution": "Trong một tam giác, thứ tự độ dài cạnh trùng với thứ tự số đo các góc đối diện.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Trong một tam giác, thứ tự độ dài cạnh trùng với thứ tự số đo các góc đối diện."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Lớn hơn góc đối diện cạnh nhỏ hơn"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_31_quan_he_giua_goc_va_canh_doi_dien_trong_mot_tam_giac.docx",
+        "question": 17,
+        "sha256": "cf19d396b7aec0cfd2abeea50a93892f8bd8b8bcc3cefb271dc746bce9bb96d3",
+        "originalAnswer": "Trả lời: Lớn hơn"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-2",
+      "grade": 7,
+      "topic": "Hai tam giác vuông bằng nhau",
+      "tags": [
+        "Hai tam giác vuông bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC vuông tại C và tam giác MNO vuông tại O, có BC = NO. Cần thêm điều kiện gì để ΔABC=ΔMNO theo trường hợp cạnh huyền – cạnh góc vuông?",
+      "answer": "AB = MN",
+      "unit": "",
+      "solution": "AB và MN là hai cạnh huyền. Thêm AB = MN vào BC = NO cho trường hợp cạnh huyền – cạnh góc vuông.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "AB và MN là hai cạnh huyền. Thêm AB = MN vào BC = NO cho trường hợp cạnh huyền – cạnh góc vuông."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "AB = MN"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 1,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: AB = MN"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-3",
+      "grade": 7,
+      "topic": "Hai tam giác vuông bằng nhau",
+      "tags": [
+        "Hai tam giác vuông bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC và tam giác MNP có Aˆ=Mˆ=90°,Cˆ=Pˆ. Cần điều kiện gì để hai tam giác ABC và tam giác MNP bằng nhau theo trường hợp góc vuông - góc nhọn kề?",
+      "answer": "AC = MP",
+      "unit": "",
+      "solution": "AC và MP là cạnh góc vuông kề các góc C và P đã bằng nhau. Cùng với hai góc vuông, điều kiện này đủ cho hai tam giác bằng nhau.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "AC và MP là cạnh góc vuông kề các góc C và P đã bằng nhau. Cùng với hai góc vuông, điều kiện này đủ cho hai tam giác bằng nhau."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "AC = MP"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 2,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: AC = MP"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-8",
+      "grade": 7,
+      "topic": "Hai tam giác vuông bằng nhau",
+      "tags": [
+        "Hai tam giác vuông bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC vuông tại C và tam giác DEF vuông tại F, có Bˆ=Eˆ. Cần thêm điều kiện gì để ΔABC=ΔDEF theo trường hợp cạnh huyền - góc nhọn?",
+      "answer": "AB = DE",
+      "unit": "",
+      "solution": "AB và DE là cạnh huyền. Hai tam giác vuông có cạnh huyền bằng nhau và góc nhọn B = E thì bằng nhau.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "AB và DE là cạnh huyền. Hai tam giác vuông có cạnh huyền bằng nhau và góc nhọn B = E thì bằng nhau."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "AB = DE"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 7,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: AB = DE"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-12",
+      "grade": 7,
+      "topic": "Căn bậc hai",
+      "tags": [
+        "Căn bậc hai"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Căn bậc hai của số nguyên dương luôn là số gì?",
+      "answer": "Số thực",
+      "unit": "",
+      "solution": "Số nguyên dương a có hai căn bậc hai thực là √a và −√a. Căn bậc hai số học √a là số thực dương.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Số nguyên dương a có hai căn bậc hai thực là √a và −√a. Căn bậc hai số học √a là số thực dương."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Số thực"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 11,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: Số thực"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-2",
+      "grade": 7,
+      "topic": "Hình vuông",
+      "tags": [
+        "Hình vuông"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một hình vuông có chu vi là 12√2 cm. Độ dài cạnh của hình vuông là bao nhiêu?",
+      "answer": "3√2 cm",
+      "unit": "",
+      "solution": "Cạnh hình vuông bằng chu vi chia 4: 12√2 : 4 = 3√2 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Cạnh hình vuông bằng chu vi chia 4: 12√2 : 4 = 3√2 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "3√2 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 1,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: 3√2 cm."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-21",
+      "grade": 7,
+      "topic": "Căn bậc hai",
+      "tags": [
+        "Căn bậc hai"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một bể nước hình vuông có diện tích đáy là 72 m². Độ dài cạnh của đáy bể gần đúng đến 2 chữ số thập phân là bao nhiêu?",
+      "answer": "8,49 m",
+      "unit": "",
+      "solution": "Cạnh đáy bằng √72 = 6√2 ≈ 8,485281 m. Làm tròn hai chữ số thập phân được 8,49 m.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Cạnh đáy bằng √72 = 6√2 ≈ 8,485281 m. Làm tròn hai chữ số thập phân được 8,49 m."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "8,49 m"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 20,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: 8,49 m."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-593ef2e198552c8c75-11",
+      "grade": 7,
+      "topic": "Làm tròn số",
+      "tags": [
+        "Làm tròn số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Làm tròn số thập phân 0,354536… đến chữ số thập phân thứ ba?",
+      "answer": "0,355",
+      "unit": "",
+      "solution": "Giữ ba chữ số thập phân 354; chữ số thứ tư là 5 nên tăng chữ số thứ ba từ 4 lên 5.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Giữ ba chữ số thập phân 354; chữ số thứ tư là 5 nên tăng chữ số thứ ba từ 4 lên 5."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "0,355"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_5_lam_quen_voi_so_thap_phan_vo_han_tuan_hoan.docx",
+        "question": 11,
+        "sha256": "593ef2e198552c8c7514ad2f411030533fb38e7294d292b20bd656762fa27af8",
+        "originalAnswer": "Trả lời:  0,355"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7da721722ed55d0342-2",
+      "grade": 7,
+      "topic": "Thể tích lăng trụ",
+      "tags": [
+        "Thể tích lăng trụ"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Công thức tính thể tích lăng trụ đứng tam giác là? (trong đó V là thể tích, S là diện tích đáy và h là chiều cao của hình lăng trụ đứng tam giác)",
+      "answer": "V = S × h",
+      "unit": "",
+      "solution": "Thể tích lăng trụ đứng bằng diện tích đáy nhân chiều cao.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Thể tích lăng trụ đứng bằng diện tích đáy nhân chiều cao."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "V = S × h"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_37_hinh_lang_tru_dung_tam_giac_va_hinh_lang_tru_dung_tu_giac.docx",
+        "question": 1,
+        "sha256": "7da721722ed55d0342cf0287bf5a968e39aae65a80e180f959bff47a35224a7f",
+        "originalAnswer": "Trả lời: V = Sh"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7da721722ed55d0342-3",
+      "grade": 7,
+      "topic": "Thể tích lăng trụ",
+      "tags": [
+        "Thể tích lăng trụ"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Thể tích của hình lăng trụ đứng tứ giác được tính như nào? Biết S là diện tích đáy và h là chiều cao của hình lăng trụ đứng tứ giác.",
+      "answer": "V = S × h",
+      "unit": "",
+      "solution": "Với mọi lăng trụ đứng, thể tích bằng diện tích mặt đáy S nhân chiều cao h.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Với mọi lăng trụ đứng, thể tích bằng diện tích mặt đáy S nhân chiều cao h."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "V = S × h"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_37_hinh_lang_tru_dung_tam_giac_va_hinh_lang_tru_dung_tu_giac.docx",
+        "question": 2,
+        "sha256": "7da721722ed55d0342cf0287bf5a968e39aae65a80e180f959bff47a35224a7f",
+        "originalAnswer": "Trả lời: V = Sh"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7da721722ed55d0342-4",
+      "grade": 7,
+      "topic": "Lăng trụ đứng",
+      "tags": [
+        "Lăng trụ đứng"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Số cạnh của hình lăng trụ đứng tam giác là?",
+      "answer": "9 cạnh",
+      "unit": "",
+      "solution": "Hai đáy tam giác có tổng 6 cạnh, nối các đỉnh tương ứng thêm 3 cạnh bên: 6 + 3 = 9.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai đáy tam giác có tổng 6 cạnh, nối các đỉnh tương ứng thêm 3 cạnh bên: 6 + 3 = 9."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "9 cạnh"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_37_hinh_lang_tru_dung_tam_giac_va_hinh_lang_tru_dung_tu_giac.docx",
+        "question": 3,
+        "sha256": "7da721722ed55d0342cf0287bf5a968e39aae65a80e180f959bff47a35224a7f",
+        "originalAnswer": "Trả lời: 9 cạnh"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-c0e96c500f65f1a3c7-13",
+      "grade": 7,
+      "topic": "Căn bậc hai",
+      "tags": [
+        "Căn bậc hai"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một hình vuông có diện tích bằng số thực √50. Độ dài cạnh của hình vuông là bao nhiêu (làm tròn đến hai chữ số thập phân)?",
+      "answer": "2,66",
+      "unit": "",
+      "solution": "Cạnh bằng căn bậc hai của diện tích: √(√50) = 50^(1/4) ≈ 2,659148, làm tròn được 2,66. Nguồn nhầm căn của 50 với căn của diện tích √50.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Cạnh bằng căn bậc hai của diện tích: √(√50) = 50^(1/4) ≈ 2,659148, làm tròn được 2,66. Nguồn nhầm căn của 50 với căn của diện tích √50."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "2,66"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_7_tap_hop_cac_so_thuc.docx",
+        "question": 12,
+        "sha256": "c0e96c500f65f1a3c768ea67899942b5dfd613ff6c220e938479a9478f724a4a",
+        "originalAnswer": "Trả lời:  7,07."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-e56bf1b6b598d2953b-9",
+      "grade": 7,
+      "topic": "Số thập phân",
+      "tags": [
+        "Số thập phân"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Bạn Dũng mua quà tặng mẹ nhân dịp 8/3, bạn ấy muốn tự tay gói cho mẹ món quà đặc biệt này. Bạn Dũng đã đi ra cửa hàng tạp hóa và bảo với cô bán hàng cho mình giấy gói quà thật đẹp. Cô bán hàng nói với cậu rằng giấy gói quà nhà cô có chiều rộng là 30,4 cm và hỏi cậu muốn mua bao nhiêu cô sẽ cắt ra cho vì giấy nhà cô bán theo cuộn lớn ai mua bao nhiêu cô sẽ bán bấy nhiêu. Hỏi dũng sẽ mua giấy gói quà với chiều dài là bao nhiêu? Biết Dũng cần 972,8 cm2 giấy gói quà để gói tặng mẹ.",
+      "answer": "32 cm",
+      "unit": "",
+      "solution": "Diện tích giấy bằng chiều dài nhân chiều rộng nên chiều dài là 972,8 : 30,4 = 32 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Diện tích giấy bằng chiều dài nhân chiều rộng nên chiều dài là 972,8 : 30,4 = 32 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "32 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_2_cong_tru_nhan_chia_so_huu_ti.docx",
+        "question": 7,
+        "sha256": "e56bf1b6b598d2953b7d48808359d41b593b29afbffed7bec5f60308a8e883ac",
+        "originalAnswer": "Trả lời:  32 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-19",
+      "grade": 7,
+      "topic": "Căn bậc hai",
+      "tags": [
+        "Căn bậc hai"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một mảnh đất hình vuông có diện tích 200 m². Độ dài cạnh gần đúng của mảnh đất là bao nhiêu (làm tròn đến một chữ số thập phân)?",
+      "answer": "14,1 m",
+      "unit": "",
+      "solution": "Cạnh hình vuông bằng √200 = 10√2 ≈ 14,1421 m, làm tròn một chữ số thập phân là 14,1 m.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Cạnh hình vuông bằng √200 = 10√2 ≈ 14,1421 m, làm tròn một chữ số thập phân là 14,1 m."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "14,1 m"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 18,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời:  14,1m"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-9",
+      "grade": 7,
+      "topic": "Số hữu tỉ",
+      "tags": [
+        "Số hữu tỉ"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Số 16 có phải là số vô tỉ không?",
+      "answer": "Không",
+      "unit": "",
+      "solution": "16 = 16/1 là số hữu tỉ, nên không phải số vô tỉ.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "16 = 16/1 là số hữu tỉ, nên không phải số vô tỉ."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Không"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 8,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời:  Không"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7495ab4695a22a6cdc-16",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "ΔABC=ΔEFG biết AC bằng 12cm. Tính EG?",
+      "answer": "12 cm",
+      "unit": "",
+      "solution": "Theo thứ tự tương ứng ABC = EFG, cạnh AC tương ứng EG nên EG = AC = 12 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Theo thứ tự tương ứng ABC = EFG, cạnh AC tương ứng EG nên EG = AC = 12 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "12 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_14_truong_hop_bang_nhau_thu_hai_va_thu_ba_cua_tam_giac.docx",
+        "question": 15,
+        "sha256": "7495ab4695a22a6cdceb7c6fb65c3be103ef5eaff51b0467155be88450a16a8b",
+        "originalAnswer": "Trả lời: 12 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7da721722ed55d0342-5",
+      "grade": 7,
+      "topic": "Thể tích lăng trụ",
+      "tags": [
+        "Thể tích lăng trụ"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho hình lăng trụ đứng ABC.A'B'C' có đáy là tam giác vuông tại A có chiều cao bằng 4 cm. Biết hai cạnh góc vuông của tam giác đáy bằng nhau và bằng một nửa cạnh bên của lăng trụ đó. Thể tích của lăng trụ bằng?",
+      "answer": "8 cm³",
+      "unit": "",
+      "solution": "Chiều cao lăng trụ là cạnh bên 4 cm. Hai cạnh góc vuông đáy bằng 4/2 = 2 cm. Diện tích đáy là 2 × 2 / 2 = 2 cm², thể tích 2 × 4 = 8 cm³.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Chiều cao lăng trụ là cạnh bên 4 cm. Hai cạnh góc vuông đáy bằng 4/2 = 2 cm. Diện tích đáy là 2 × 2 / 2 = 2 cm², thể tích 2 × 4 = 8 cm³."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "8 cm³"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_37_hinh_lang_tru_dung_tam_giac_va_hinh_lang_tru_dung_tu_giac.docx",
+        "question": 4,
+        "sha256": "7da721722ed55d0342cf0287bf5a968e39aae65a80e180f959bff47a35224a7f",
+        "originalAnswer": "Trả lời: 8 cm3"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7da721722ed55d0342-9",
+      "grade": 7,
+      "topic": "Lăng trụ đứng",
+      "tags": [
+        "Lăng trụ đứng"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Hình lăng trụ đứng tam giác có bao nhiêu mặt?",
+      "answer": "5 mặt",
+      "unit": "",
+      "solution": "Lăng trụ tam giác có 2 mặt đáy và 3 mặt bên, tổng cộng 5 mặt.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Lăng trụ tam giác có 2 mặt đáy và 3 mặt bên, tổng cộng 5 mặt."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "5 mặt"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_37_hinh_lang_tru_dung_tam_giac_va_hinh_lang_tru_dung_tu_giac.docx",
+        "question": 8,
+        "sha256": "7da721722ed55d0342cf0287bf5a968e39aae65a80e180f959bff47a35224a7f",
+        "originalAnswer": "Trả lời: 5 mặt"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-12",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho  ΔABC=ΔMNP, góc A bằng 40 độ thì góc M bằng?",
+      "answer": "40°",
+      "unit": "",
+      "solution": "Hai góc A và M tương ứng trong hai tam giác bằng nhau nên góc M = góc A = 40°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai góc A và M tương ứng trong hai tam giác bằng nhau nên góc M = góc A = 40°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "40°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 11,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời: 40 độ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-13",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho ΔABC=ΔEFG. Biết AC=10cm thì EG bằng?",
+      "answer": "10 cm",
+      "unit": "",
+      "solution": "Cạnh EG tương ứng AC, nên EG = AC = 10 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Cạnh EG tương ứng AC, nên EG = AC = 10 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "10 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 12,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời: 10 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-17",
+      "grade": 7,
+      "topic": "Tổng các góc tam giác",
+      "tags": [
+        "Tổng các góc tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho ΔABC=ΔEFG biết Aˆ=40° và Bˆ=80°. Số đo Gˆ bằng?",
+      "answer": "60°",
+      "unit": "",
+      "solution": "Góc C = 180° − 40° − 80° = 60°. Góc G tương ứng góc C nên bằng 60°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Góc C = 180° − 40° − 80° = 60°. Góc G tương ứng góc C nên bằng 60°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "60°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 16,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời: 60 độ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-5",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho ΔPQR=ΔDEF. Biết Pˆ=33°. Khi đó góc D bằng?",
+      "answer": "33°",
+      "unit": "",
+      "solution": "P và D là hai đỉnh tương ứng, nên góc D = góc P = 33°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "P và D là hai đỉnh tương ứng, nên góc D = góc P = 33°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "33°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 4,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời: 33 độ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-7",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho hai tam giác ABC=EFG. Góc B bằng góc nào?",
+      "answer": "Góc F",
+      "unit": "",
+      "solution": "Thứ tự ABC = EFG cho B tương ứng F, nên góc B bằng góc F.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Thứ tự ABC = EFG cho B tương ứng F, nên góc B bằng góc F."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Góc F"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 6,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời: Góc F"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-9",
+      "grade": 7,
+      "topic": "Tổng các góc tam giác",
+      "tags": [
+        "Tổng các góc tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho ΔABC=ΔMNP biết Aˆ=40° và Bˆ=70°. Số đo Pˆ bằng?",
+      "answer": "70°",
+      "unit": "",
+      "solution": "Góc C = 180° − 40° − 70° = 70°. P tương ứng C nên góc P = 70°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Góc C = 180° − 40° − 70° = 70°. P tương ứng C nên góc P = 70°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "70°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 8,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời: 70 độ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-10",
+      "grade": 7,
+      "topic": "Hai tam giác vuông bằng nhau",
+      "tags": [
+        "Hai tam giác vuông bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC và tam giác NPM có BC = PM, Bˆ=Pˆ=90°. Cần điều kiện gì để tam giác ABC bằng tam giác NPM theo trường hợp cạnh huyền - cạnh góc vuông?",
+      "answer": "AC = NM",
+      "unit": "",
+      "solution": "AC và NM là cạnh huyền, BC và PM là cặp cạnh góc vuông đã bằng nhau. Thêm AC = NM là đủ.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "AC và NM là cạnh huyền, BC và PM là cặp cạnh góc vuông đã bằng nhau. Thêm AC = NM là đủ."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "AC = NM"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 9,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: CA=MN"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-13",
+      "grade": 7,
+      "topic": "Diện tích tam giác vuông",
+      "tags": [
+        "Diện tích tam giác vuông"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC vuông tại B và tam giác PMN vuông tại M có AC = PN, Aˆ=Pˆ. Biết AB = 4 cm; AC = 5 cm. Chu vi tam giác PMN là 12 cm. Diện tích tam giác PMN là?",
+      "answer": "6 cm²",
+      "unit": "",
+      "solution": "Hai tam giác vuông bằng nhau theo cạnh huyền và góc nhọn. PM = AB = 4 cm, PN = AC = 5 cm. Chu vi 12 cm cho MN = 12 − 4 − 5 = 3 cm. Diện tích là 4 × 3 / 2 = 6 cm².",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai tam giác vuông bằng nhau theo cạnh huyền và góc nhọn. PM = AB = 4 cm, PN = AC = 5 cm. Chu vi 12 cm cho MN = 12 − 4 − 5 = 3 cm. Diện tích là 4 × 3 / 2 = 6 cm²."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "6 cm²"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 12,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: 6 cm2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-16",
+      "grade": 7,
+      "topic": "Tổng các góc tam giác",
+      "tags": [
+        "Tổng các góc tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho ΔABC=ΔEFG có góc A vuông và góc B bằng 20 độ. Tính số đo góc G?",
+      "answer": "70°",
+      "unit": "",
+      "solution": "Góc C = 180° − 90° − 20° = 70°. G tương ứng C nên góc G = 70°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Góc C = 180° − 90° − 20° = 70°. G tương ứng C nên góc G = 70°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "70°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 15,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: 70 độ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-6",
+      "grade": 7,
+      "topic": "Hai tam giác vuông bằng nhau",
+      "tags": [
+        "Hai tam giác vuông bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC vuông tại A và tam giác DEF vuông tại D, có AB = DE. Cần thêm điều kiện gì để ΔABC=ΔDEF theo trường hợp cạnh góc vuông - góc nhọn kề?",
+      "answer": "Góc B = góc E",
+      "unit": "",
+      "solution": "AB và DE là hai cạnh góc vuông tương ứng đã bằng nhau; B và E là các góc nhọn kề các cạnh đó.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "AB và DE là hai cạnh góc vuông tương ứng đã bằng nhau; B và E là các góc nhọn kề các cạnh đó."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Góc B = góc E"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 5,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: Bˆ=Eˆ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-9",
+      "grade": 7,
+      "topic": "Hai tam giác vuông bằng nhau",
+      "tags": [
+        "Hai tam giác vuông bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC vuông tại A và tam giác PMN vuông tại P có AB = PM, AC = PN. Biết Bˆ=60°. Số đo góc N là?",
+      "answer": "30°",
+      "unit": "",
+      "solution": "Hai tam giác bằng nhau theo hai cạnh góc vuông. Góc C = 90° − 60° = 30°, nên góc N tương ứng bằng 30°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai tam giác bằng nhau theo hai cạnh góc vuông. Góc C = 90° − 60° = 30°, nên góc N tương ứng bằng 30°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "30°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 8,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: 30 độ"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-15",
+      "grade": 7,
+      "topic": "Làm tròn số",
+      "tags": [
+        "Làm tròn số"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Giá trị gần đúng của √5 đến chữ số thập phân thứ hai là bao nhiêu?",
+      "answer": "2,24",
+      "unit": "",
+      "solution": "√5 ≈ 2,2360679. Chữ số thứ ba sau dấu phẩy là 6 nên làm tròn hai chữ số được 2,24.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "√5 ≈ 2,2360679. Chữ số thứ ba sau dấu phẩy là 6 nên làm tròn hai chữ số được 2,24."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "2,24"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 14,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời:  2,24"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-4",
+      "grade": 7,
+      "topic": "Chu vi hình chữ nhật",
+      "tags": [
+        "Chu vi hình chữ nhật"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một con đường hình chữ nhật có chiều dài là √98 m và chiều rộng là √8 m. Chu vi của con đường là bao nhiêu mét?",
+      "answer": "18√2 m",
+      "unit": "",
+      "solution": "√98 = 7√2 và √8 = 2√2. Chu vi là 2(7√2 + 2√2) = 18√2 m, xấp xỉ 25,46 m. Đáp án nguồn 20 m sai.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "√98 = 7√2 và √8 = 2√2. Chu vi là 2(7√2 + 2√2) = 18√2 m, xấp xỉ 25,46 m. Đáp án nguồn 20 m sai."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "18√2 m"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 3,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: 20 m."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-6",
+      "grade": 7,
+      "topic": "Căn bậc hai",
+      "tags": [
+        "Căn bậc hai"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Số -9 có căn bậc hai thực không?",
+      "answer": "Không",
+      "unit": "",
+      "solution": "Bình phương của mọi số thực đều không âm, nên không số thực nào có bình phương bằng −9.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Bình phương của mọi số thực đều không âm, nên không số thực nào có bình phương bằng −9."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Không"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 5,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: Không"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-7",
+      "grade": 7,
+      "topic": "Hình lập phương",
+      "tags": [
+        "Hình lập phương"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một hình lập phương có thể tích 343 cm³. Độ dài cạnh của hình lập phương là bao nhiêu?",
+      "answer": "7 cm",
+      "unit": "",
+      "solution": "Thể tích lập phương bằng cạnh mũ ba. Vì 7³ = 343 nên cạnh bằng 7 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Thể tích lập phương bằng cạnh mũ ba. Vì 7³ = 343 nên cạnh bằng 7 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "7 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 6,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: 7 cm."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-1dd0b7a88b2001cb38-10",
+      "grade": 7,
+      "topic": "Tam giác cân",
+      "tags": [
+        "Tam giác cân"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC cân tại C biết  AB = 2cm; BC = 7cm và cạnh AC là một số tự nhiên lẻ. Chu vi ABC là?",
+      "answer": "16 cm",
+      "unit": "",
+      "solution": "Tam giác cân tại C nên AC = BC = 7 cm. Chu vi bằng 2 + 7 + 7 = 16 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Tam giác cân tại C nên AC = BC = 7 cm. Chu vi bằng 2 + 7 + 7 = 16 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "16 cm"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_33_quan_he_giua_ba_canh_cua_mot_tam_giac.docx",
+        "question": 9,
+        "sha256": "1dd0b7a88b2001cb38d85707729080d3ec03b6084451eed0493ecde6364c9d19",
+        "originalAnswer": "Trả lời: 16cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-4397d0a514a68ef94b-2",
+      "grade": 7,
+      "topic": "Hai góc kề bù",
+      "tags": [
+        "Hai góc kề bù"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Hai góc kề bù có tổng số đo bằng bao nhiêu độ?",
+      "answer": "180°",
+      "unit": "",
+      "solution": "Theo định nghĩa, hai góc kề bù có hai cạnh ngoài là hai tia đối nhau và tổng số đo bằng 180°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Theo định nghĩa, hai góc kề bù có hai cạnh ngoài là hai tia đối nhau và tổng số đo bằng 180°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "180°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_8_goc_o_vi_tri_dac_biet._tia_phan_giac_cua_mot_goc.docx",
+        "question": 1,
+        "sha256": "4397d0a514a68ef94b02991e7f0c3fb78d36aa2f5b9c8a9c2fff1f680bfd1a0d",
+        "originalAnswer": "Trả lời: 180°"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-4397d0a514a68ef94b-9",
+      "grade": 7,
+      "topic": "Tia phân giác",
+      "tags": [
+        "Tia phân giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Nếu góc xOy = 80°, tia Oz là tia phân giác, thì số đo góc xOz là bao nhiêu?",
+      "answer": "40°",
+      "unit": "",
+      "solution": "Oz là phân giác góc xOy nên góc xOz = 80° / 2 = 40°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Oz là phân giác góc xOy nên góc xOz = 80° / 2 = 40°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "40°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_8_goc_o_vi_tri_dac_biet._tia_phan_giac_cua_mot_goc.docx",
+        "question": 8,
+        "sha256": "4397d0a514a68ef94b02991e7f0c3fb78d36aa2f5b9c8a9c2fff1f680bfd1a0d",
+        "originalAnswer": "Trả lời: 40°."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-5516aa6f56171432c2-16",
+      "grade": 7,
+      "topic": "Biểu đồ hình quạt tròn",
+      "tags": [
+        "Biểu đồ hình quạt tròn"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho hình tròn biểu diễn dữ liệu đã được chia sẵn thành 10 hình quạt bằng nhau. 3 hình quạt ứng với bao nhiêu phần trăm?",
+      "answer": "30%",
+      "unit": "",
+      "solution": "Ba trong mười phần bằng nhau ứng với 3/10 × 100% = 30%.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Ba trong mười phần bằng nhau ứng với 3/10 × 100% = 30%."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "30%"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_18_bieu_do_hinh_quat_tron.docx",
+        "question": 15,
+        "sha256": "5516aa6f56171432c285d621c9f28110465447d0b9e9f05463fc98b81d10f888",
+        "originalAnswer": "Trả lời:  30%"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-a06e5596f8fa282060-5",
+      "grade": 7,
+      "topic": "Hai đường thẳng song song",
+      "tags": [
+        "Hai đường thẳng song song"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Ta có a, b phân biệt; nếu a // c và b // c thì?",
+      "answer": "a song song với b",
+      "unit": "",
+      "solution": "Hai đường thẳng phân biệt cùng song song với đường thẳng thứ ba thì song song với nhau.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai đường thẳng phân biệt cùng song song với đường thẳng thứ ba thì song song với nhau."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "a song song với b"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_10_tien_de_euclid_tinh_chat_cua_hai_duong_thang_song_song.docx",
+        "question": 4,
+        "sha256": "a06e5596f8fa282060c637ca14ad3718a14e7c70a767274d9b739b09fbbc6ee4",
+        "originalAnswer": "Trả lời: a//b"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ef3d2dbefc4ece07a8-4",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC và tam giác DEF có AB=DE,Bˆ=Eˆ,Aˆ=Dˆ=90°. Biết AC = 9 cm. Tính độ dài DF?",
+      "answer": "9 cm",
+      "unit": "",
+      "solution": "Hai tam giác có AB = DE và hai cặp góc kề cạnh ấy bằng nhau, nên bằng nhau theo góc – cạnh – góc. AC tương ứng DF nên DF = 9 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai tam giác có AB = DE và hai cặp góc kề cạnh ấy bằng nhau, nên bằng nhau theo góc – cạnh – góc. AC tương ứng DF nên DF = 9 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "9 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_15_cac_truong_hop_bang_nhau_cua_tam_giac_vuong.docx",
+        "question": 3,
+        "sha256": "ef3d2dbefc4ece07a86d32cb93ec44736a53dbdf37b8e03285e2fb16d35a2a88",
+        "originalAnswer": "Trả lời: 9 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-18",
+      "grade": 7,
+      "topic": "Hình vuông",
+      "tags": [
+        "Hình vuông"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Một hình vuông có diện tích 25 cm². Độ dài cạnh của nó là bao nhiêu?",
+      "answer": "5 cm",
+      "unit": "",
+      "solution": "Cạnh dương của hình vuông bằng √25 = 5 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Cạnh dương của hình vuông bằng √25 = 5 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "5 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 17,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời: 5 cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7495ab4695a22a6cdc-12",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC và tam giác DEF có AB = DE, Bˆ=Eˆ,Aˆ=Dˆ. Biết AC = 6 cm. Độ dài DF là?",
+      "answer": "6 cm",
+      "unit": "",
+      "solution": "Hai góc kề cạnh AB tương ứng hai góc kề DE và AB = DE, suy ra hai tam giác bằng nhau. DF = AC = 6 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai góc kề cạnh AB tương ứng hai góc kề DE và AB = DE, suy ra hai tam giác bằng nhau. DF = AC = 6 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "6 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_14_truong_hop_bang_nhau_thu_hai_va_thu_ba_cua_tam_giac.docx",
+        "question": 11,
+        "sha256": "7495ab4695a22a6cdceb7c6fb65c3be103ef5eaff51b0467155be88450a16a8b",
+        "originalAnswer": "Trả lời: 6cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7495ab4695a22a6cdc-4",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho hai đoạn thẳng BD và EC vuông góc với nhau tại A sao cho AB = AE, AD = AC, AB < AC. Góc ABC bằng góc nào?",
+      "answer": "Góc AED",
+      "unit": "",
+      "solution": "AB = AE, AC = AD và góc BAC = góc EAD = 90°. Tam giác ABC bằng EAD theo cạnh – góc – cạnh, nên góc ABC = góc AED.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "AB = AE, AC = AD và góc BAC = góc EAD = 90°. Tam giác ABC bằng EAD theo cạnh – góc – cạnh, nên góc ABC = góc AED."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Góc AED"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_14_truong_hop_bang_nhau_thu_hai_va_thu_ba_cua_tam_giac.docx",
+        "question": 3,
+        "sha256": "7495ab4695a22a6cdceb7c6fb65c3be103ef5eaff51b0467155be88450a16a8b",
+        "originalAnswer": "Trả lời: AED"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-10",
+      "grade": 7,
+      "topic": "Chu vi tam giác",
+      "tags": [
+        "Chu vi tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho ΔABC=ΔMNP có AB = 2 cm; AC = 3 cm; PN = 4 cm. Chu vi ΔMNP là?",
+      "answer": "9 cm",
+      "unit": "",
+      "solution": "Các cạnh MN = AB = 2 cm, MP = AC = 3 cm, NP = 4 cm. Chu vi là 2 + 3 + 4 = 9 cm.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Các cạnh MN = AB = 2 cm, MP = AC = 3 cm, NP = 4 cm. Chu vi là 2 + 3 + 4 = 9 cm."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "9 cm"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 9,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời: 9cm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f2044ae70d4d4e105c-5",
+      "grade": 7,
+      "topic": "Căn bậc hai",
+      "tags": [
+        "Căn bậc hai"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Số 0 có căn bậc hai không?",
+      "answer": "Có, căn bậc hai duy nhất là 0",
+      "unit": "",
+      "solution": "0² = 0, và nếu x² = 0 thì x = 0.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "0² = 0, và nếu x² = 0 thì x = 0."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Có, căn bậc hai duy nhất là 0"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_6_so_vo_ti._can_bac_hai_so_hoc.docx",
+        "question": 4,
+        "sha256": "f2044ae70d4d4e105c819915195e405aaac341901099de5fffacdf5a1c80a195",
+        "originalAnswer": "Trả lời:  Có"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-24d518bee46005afed-17",
+      "grade": 7,
+      "topic": "Phân loại dữ liệu",
+      "tags": [
+        "Phân loại dữ liệu"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Kiểu dữ liệu không là số được chia làm mấy loại?",
+      "answer": "2 loại: có thể sắp thứ tự và không thể sắp thứ tự",
+      "unit": "",
+      "solution": "Dữ liệu định tính được chia thành loại có thứ tự (như mức đánh giá) và loại không có thứ tự (như màu sắc).",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Dữ liệu định tính được chia thành loại có thứ tự (như mức đánh giá) và loại không có thứ tự (như màu sắc)."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "2 loại: có thể sắp thứ tự và không thể sắp thứ tự"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_17_thu_thap_va_phan_loai_du_lieu.docx",
+        "question": 16,
+        "sha256": "24d518bee46005afed50cb50f452d2ab395dac95e20575b54ec9c7063b11dd95",
+        "originalAnswer": "Trả lời:  2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-593ef2e198552c8c75-10",
+      "grade": 7,
+      "topic": "Số thập phân tuần hoàn",
+      "tags": [
+        "Số thập phân tuần hoàn"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tìm chữ số thập phân thứ sáu của số thập phân 4,4(62)?",
+      "answer": "6",
+      "unit": "",
+      "solution": "4,4(62) = 4,4626262…; sáu chữ số đầu sau dấu phẩy là 4, 6, 2, 6, 2, 6 nên chữ số thứ sáu là 6.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "4,4(62) = 4,4626262…; sáu chữ số đầu sau dấu phẩy là 4, 6, 2, 6, 2, 6 nên chữ số thứ sáu là 6."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "6"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_5_lam_quen_voi_so_thap_phan_vo_han_tuan_hoan.docx",
+        "question": 10,
+        "sha256": "593ef2e198552c8c7514ad2f411030533fb38e7294d292b20bd656762fa27af8",
+        "originalAnswer": "Trả lời:  6"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
     }
   ]
 }

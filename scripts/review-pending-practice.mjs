@@ -1,4 +1,5 @@
 import {readFile,writeFile} from 'node:fs/promises';
+import {verified as round2,corrections as round2Corrections} from './pending-practice-review-round2.mjs';
 const read=async p=>JSON.parse(await readFile(p,'utf8'));
 const pending=await read('data/datatm-screened-pending.json'),supplement=await read('data/datatm-supplement-reviewed.json');
 // Each answer below was reasoned independently, including corrections to source keys.
@@ -118,6 +119,7 @@ const rejected=[
  ['source-24d518bee46005afed-3','Chưa nêu mẫu được chọn ngẫu nhiên và đại diện; không đủ cơ sở suy rộng cho toàn trường.'],
  ['source-24d518bee46005afed-2','Chưa rõ ghi độ cận/viễn bằng số hay chỉ ghi tình trạng; cần làm rõ biến dữ liệu trước khi chấm.'],
 ];
+specs.push(...round2);rejected.push(...round2Corrections);
 const decisions=[];
 for(const [id,topic,answer,solution] of specs){
  const q=pending.questions.find(q=>q.id===id);if(!q)throw Error(id);
