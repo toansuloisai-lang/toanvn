@@ -7,7 +7,8 @@ const known=new Set(library.questions.map(promptKey));
 const additions=supplement.questions.filter(q=>{const k=promptKey(q);if(q.review?.status!=='verified'||known.has(k))return false;known.add(k);return true;});
 export const questionLibrary=[...library.questions,...additions];
 const screened=JSON.parse(readFileSync(new URL('./data/datatm-screened-pending.json',import.meta.url),'utf8'));
-export const pendingQuestionLibrary=screened.questions.filter(q=>q.review?.status==='pending'&&!known.has(promptKey(q)));
+const reviewedSourceIds=new Set(supplement.questions.filter(q=>q.review?.status==='verified').map(q=>q.id.replace(/^supplement-/,'')));
+export const pendingQuestionLibrary=screened.questions.filter(q=>q.review?.status==='pending'&&!reviewedSourceIds.has(q.id)&&!known.has(promptKey(q)));
 const fail=(status,message)=>{throw Object.assign(Error(message),{status});};
 export function libraryCatalog(user){
  if(user.role!=='teacher')fail(403,'Chỉ giáo viên được xem đáp án trong kho câu hỏi.');

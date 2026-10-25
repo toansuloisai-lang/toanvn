@@ -3185,6 +3185,976 @@
         "method": "Đọc câu nguồn và tính độc lập; kiểm tra bốn lựa chọn."
       },
       "adaptation": "Giữ câu dẫn, bổ sung lựa chọn và lời giải đã kiểm tra; đáp án nguồn được lưu riêng để đối chiếu."
+    },
+    {
+      "id": "supplement-source-c0e96c500f65f1a3c7-8",
+      "grade": 7,
+      "topic": "Phương trình bậc nhất",
+      "tags": [
+        "Phương trình bậc nhất"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tìm x biết 3,2x – 1,2x + 2,7 = -4,9",
+      "answer": "-19/5",
+      "unit": "",
+      "solution": "Thu gọn phương trình được \\(2x=-\\frac{38}{5}\\). Suy ra \\(x=-\\frac{19}{5}\\).",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "method",
+          "points": 7,
+          "description": "Thu gọn phương trình được \\(2x=-\\frac{38}{5}\\). Suy ra \\(x=-\\frac{19}{5}\\)."
+        },
+        {
+          "id": "answer",
+          "points": 3,
+          "description": "Kết quả: -19/5"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_7_tap_hop_cac_so_thuc.docx",
+        "question": 7,
+        "sha256": "c0e96c500f65f1a3c768ea67899942b5dfd613ff6c220e938479a9478f724a4a",
+        "originalAnswer": "Trả lời: x = -3,8"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Tính độc lập bằng phân số BigInt từ toàn bộ biểu thức nguyên vẹn",
+        "audit": {
+          "expression": "3,2x – 1,2x + 2,7 = -4,9",
+          "result": "-19/5"
+        }
+      }
+    },
+    {
+      "id": "supplement-source-c71acdf390af57f5b3-51",
+      "grade": 7,
+      "topic": "Số thập phân",
+      "tags": [
+        "Số thập phân"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Chị Trang có kế hoạch tổ chức bữa tiệc. Chị ấy dự định mua 4 cái bánh pizza, mỗi cái giá 10,25 USD, chị Trang có phiếu giảm giá 1,5 USD cho mỗi cái bánh pizza, hãy tính tổng số tiền chị Trang dùng để mua bánh?",
+      "answer": "35 USD",
+      "unit": "",
+      "solution": "Mỗi bánh sau giảm giá: 10,25 − 1,5 = 8,75 USD. Bốn bánh hết 4 × 8,75 = 35 USD.",
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "choices": [
+        "15 USD",
+        "35 USD",
+        "25 USD",
+        "41 USD"
+      ],
+      "correctIndex": 1,
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Mỗi bánh sau giảm giá: 10,25 − 1,5 = 8,75 USD. Bốn bánh hết 4 × 8,75 = 35 USD."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "35 USD"
+        }
+      ],
+      "source": {
+        "file": "bai_4_thu_tu_phep_tinh_ket_noi.docx",
+        "question": 5,
+        "sha256": "c71acdf390af57f5b3c2645a70e0a540b69e76e8d27eb2586cd17aed8118eff6",
+        "originalAnswer": "ĐÁP ÁN\n\n1. NHẬN BIẾT\n1. A\n2. A\n3. C\n4.B  \n5. A\n6. C \n7. B \n8. A \n9. C \n10. D\n11. A\n12. D \n13. B\n14. A\n15. C\n2. THÔNG HIỂU\n1. D\n2. C \n3. B\n4. A\n5. C\n6. D\n7. A\n8. B\n9. D\n10. B \n11. A \n12. C\n13. B\n14. C\n15. A\n3. VẬN DỤNG\n1. A\n2. D\n3. B\n4. C\n5. D\n6. B\n7. C\n8. C\n9. A\n10. A\n11. D\n12. D\n13. B\n14. B\n15. C\n4. VẬN DỤNG CAO\n1. A\n2. C\n3. A\n4. C\n5. B"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-5516aa6f56171432c2-3",
+      "grade": 7,
+      "topic": "Biểu đồ hình quạt tròn",
+      "tags": [
+        "Biểu đồ hình quạt tròn"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Thành phần chính của biểu đồ hình quạt tròn là gì?",
+      "answer": "Hình tròn được chia thành các hình quạt",
+      "unit": "",
+      "solution": "Toàn bộ hình tròn biểu diễn tổng thể; mỗi hình quạt biểu diễn một bộ phận, có góc ở tâm tỉ lệ với tỉ lệ của bộ phận đó.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Toàn bộ hình tròn biểu diễn tổng thể; mỗi hình quạt biểu diễn một bộ phận, có góc ở tâm tỉ lệ với tỉ lệ của bộ phận đó."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Hình tròn được chia thành các hình quạt"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_18_bieu_do_hinh_quat_tron.docx",
+        "question": 2,
+        "sha256": "5516aa6f56171432c285d621c9f28110465447d0b9e9f05463fc98b81d10f888",
+        "originalAnswer": "Trả lời:  Phần chính là hình tròn biểu diễn dữ liệu được chia thành nhiều hình quạt ( được tô màu khác nhau)."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f110b5b8994332e31e-2",
+      "grade": 7,
+      "topic": "Hai đường thẳng song song",
+      "tags": [
+        "Hai đường thẳng song song"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Hai đường thẳng song song có đặc điểm gì?",
+      "answer": "Hai đường thẳng phân biệt trong cùng mặt phẳng không có điểm chung",
+      "unit": "",
+      "solution": "Trong hình học phẳng, hai đường thẳng song song là hai đường thẳng phân biệt không có điểm chung.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Trong hình học phẳng, hai đường thẳng song song là hai đường thẳng phân biệt không có điểm chung."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Hai đường thẳng phân biệt trong cùng mặt phẳng không có điểm chung"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_9_hai_duong_thang_song_song_va_dau_hieu_nhan_biet.docx",
+        "question": 1,
+        "sha256": "f110b5b8994332e31e129354913ad8193de93a3bbf6b33fbaec27b39c343cef9",
+        "originalAnswer": "Trả lời: Hai đường thẳng song song là hai đường thẳng không bao giờ cắt nhau, bất kể kéo dài như thế nào."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-19",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Hai tam giác bằng nhau là gì?",
+      "answer": "Các cạnh tương ứng bằng nhau và các góc tương ứng bằng nhau",
+      "unit": "",
+      "solution": "Theo định nghĩa, hai tam giác bằng nhau có ba cạnh tương ứng bằng nhau và ba góc tương ứng bằng nhau.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Theo định nghĩa, hai tam giác bằng nhau có ba cạnh tương ứng bằng nhau và ba góc tương ứng bằng nhau."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Các cạnh tương ứng bằng nhau và các góc tương ứng bằng nhau"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 18,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời:  Hai tam giác bằng nhau khi chúng có ba cạnh tương ứng bằng nhau và ba góc tương ứng bằng nhau."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f110b5b8994332e31e-14",
+      "grade": 7,
+      "topic": "Hai đường thẳng song song",
+      "tags": [
+        "Hai đường thẳng song song"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho hai đường thẳng a và b có phương trình lần lượt là y=2x+3 và y=2x−5. Hai đường thẳng này có song song không?",
+      "answer": "Có",
+      "unit": "",
+      "solution": "Hai đường thẳng có cùng hệ số góc 2 và tung độ gốc khác nhau (3 và −5), nên là hai đường thẳng phân biệt song song.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai đường thẳng có cùng hệ số góc 2 và tung độ gốc khác nhau (3 và −5), nên là hai đường thẳng phân biệt song song."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Có"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_9_hai_duong_thang_song_song_va_dau_hieu_nhan_biet.docx",
+        "question": 13,
+        "sha256": "f110b5b8994332e31e129354913ad8193de93a3bbf6b33fbaec27b39c343cef9",
+        "originalAnswer": "Trả lời: Hai đường thẳng này song song vì chúng có cùng hệ số góc m=2, nên không bao giờ cắt nhau."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-4397d0a514a68ef94b-6",
+      "grade": 7,
+      "topic": "Tia phân giác",
+      "tags": [
+        "Tia phân giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cách xác định tia phân giác của một góc?",
+      "answer": "Tia nằm trong góc và chia góc thành hai góc bằng nhau",
+      "unit": "",
+      "solution": "Tia phân giác có gốc là đỉnh góc, nằm giữa hai cạnh và tạo với hai cạnh hai góc có số đo bằng nhau.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Tia phân giác có gốc là đỉnh góc, nằm giữa hai cạnh và tạo với hai cạnh hai góc có số đo bằng nhau."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Tia nằm trong góc và chia góc thành hai góc bằng nhau"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_8_goc_o_vi_tri_dac_biet._tia_phan_giac_cua_mot_goc.docx",
+        "question": 5,
+        "sha256": "4397d0a514a68ef94b02991e7f0c3fb78d36aa2f5b9c8a9c2fff1f680bfd1a0d",
+        "originalAnswer": "Trả lời: Tia phân giác nằm giữa hai cạnh của một góc và tạo với hai cạnh đó hai góc bằng nhau."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-d93c7124c5ba3f6de1-9",
+      "grade": 7,
+      "topic": "Đường trung trực của tam giác",
+      "tags": [
+        "Đường trung trực của tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tâm đường tròn ngoại tiếp tam giác cân nằm ở đâu?",
+      "answer": "Trên đường trung trực của cạnh đáy",
+      "unit": "",
+      "solution": "Tâm đường tròn ngoại tiếp cách đều hai đầu mút cạnh đáy, do đó thuộc đường trung trực của cạnh đáy; đây cũng là trục đối xứng của tam giác cân.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Tâm đường tròn ngoại tiếp cách đều hai đầu mút cạnh đáy, do đó thuộc đường trung trực của cạnh đáy; đây cũng là trục đối xứng của tam giác cân."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Trên đường trung trực của cạnh đáy"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_16_tam_giac_can_duong_trung_truc_cua_doan_thang.docx",
+        "question": 8,
+        "sha256": "d93c7124c5ba3f6de1179b00c6cd6d49267e60f692f9a44d78d073541d50fbc2",
+        "originalAnswer": "Trả lời:  Tâm đường tròn ngoại tiếp tam giác cân nằm trên đường trung trực của cạnh đáy."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-15c24724e98bb08b3b-2",
+      "grade": 7,
+      "topic": "Biểu đồ đoạn thẳng",
+      "tags": [
+        "Biểu đồ đoạn thẳng"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Biểu đồ đoạn thẳng dùng để làm gì?",
+      "answer": "Biểu diễn sự thay đổi của một đại lượng theo thời gian",
+      "unit": "",
+      "solution": "Các điểm ghi giá trị theo từng thời điểm được nối bằng đoạn thẳng để thể hiện xu hướng thay đổi.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Các điểm ghi giá trị theo từng thời điểm được nối bằng đoạn thẳng để thể hiện xu hướng thay đổi."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Biểu diễn sự thay đổi của một đại lượng theo thời gian"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_19_bieu_do_doan_thang.docx",
+        "question": 1,
+        "sha256": "15c24724e98bb08b3b86e23ea074b80f10c6ae5b7b74ca57ca02e0dd1c9d2784",
+        "originalAnswer": "Trả lời: Thường được dùng để biểu diễn sự thay đổi cuẩ một đại lượng theo thời gian"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-ecf1ccec85724cd344-20",
+      "grade": 7,
+      "topic": "Thứ tự thực hiện phép tính",
+      "tags": [
+        "Thứ tự thực hiện phép tính"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Khi biểu thức chỉ có phép tính cộng và trừ (hoặc nhân và chia) ta thực hiện",
+      "answer": "theo thứ tự từ trái sang phải.",
+      "unit": "",
+      "solution": "Các phép cộng, trừ có cùng mức ưu tiên; các phép nhân, chia cũng có cùng mức ưu tiên. Với biểu thức chỉ chứa một trong hai nhóm này, tính lần lượt từ trái sang phải.",
+      "formats": [
+        "mcq",
+        "essay"
+      ],
+      "choices": [
+        "cộng trước rồi đến trừ.",
+        "nhân trước rồi đén chia .",
+        "theo thứ tự từ trái sang phải.",
+        "theo thứ tự từ phải sang trái."
+      ],
+      "correctIndex": 2,
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Các phép cộng, trừ có cùng mức ưu tiên; các phép nhân, chia cũng có cùng mức ưu tiên. Với biểu thức chỉ chứa một trong hai nhóm này, tính lần lượt từ trái sang phải."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "theo thứ tự từ trái sang phải."
+        }
+      ],
+      "source": {
+        "file": "7 Toán 6. Bài 7..docx",
+        "question": 20,
+        "sha256": "ecf1ccec85724cd34436fabab4880fd5ba8ff5ec4780df4adfa816600b569fb3",
+        "originalAnswer": "Lời giải\nChọn C\nKhi biểu thức chỉ có phép tính cộng và trừ (hoặc nhân và chia ta thực hiện theo thứ tự từ trái sang phải."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-daecf9c05d6dc21b60-20",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Trường hợp bằng nhau thứ nhất của tam giác là gì?",
+      "answer": "Cạnh – cạnh – cạnh",
+      "unit": "",
+      "solution": "Nếu ba cạnh của tam giác này bằng ba cạnh tương ứng của tam giác kia thì hai tam giác bằng nhau theo trường hợp cạnh – cạnh – cạnh.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Nếu ba cạnh của tam giác này bằng ba cạnh tương ứng của tam giác kia thì hai tam giác bằng nhau theo trường hợp cạnh – cạnh – cạnh."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Cạnh – cạnh – cạnh"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_13_hai_tam_giac_bang_nhau_truong_hop_bang_nhau_thu_nhat_cua_tam_giac.docx",
+        "question": 19,
+        "sha256": "daecf9c05d6dc21b60d25bdff465012b68e9b3e3854de916cc97ee0ecaab476d",
+        "originalAnswer": "Trả lời:  Trường hợp cạnh - cạnh - cạnh (cạnh – cạnh – cạnh, viết tắt là C-C-C)."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-4397d0a514a68ef94b-5",
+      "grade": 7,
+      "topic": "Hai góc đối đỉnh",
+      "tags": [
+        "Hai góc đối đỉnh"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Định nghĩa của hai góc đối đỉnh?",
+      "answer": "Mỗi cạnh của góc này là tia đối của một cạnh của góc kia",
+      "unit": "",
+      "solution": "Hai góc đối đỉnh được tạo khi hai đường thẳng cắt nhau, mỗi cạnh của góc này đối với một cạnh của góc kia.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Hai góc đối đỉnh được tạo khi hai đường thẳng cắt nhau, mỗi cạnh của góc này đối với một cạnh của góc kia."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Mỗi cạnh của góc này là tia đối của một cạnh của góc kia"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_8_goc_o_vi_tri_dac_biet._tia_phan_giac_cua_mot_goc.docx",
+        "question": 4,
+        "sha256": "4397d0a514a68ef94b02991e7f0c3fb78d36aa2f5b9c8a9c2fff1f680bfd1a0d",
+        "originalAnswer": "Trả lời: Hai góc mà mỗi cạnh của góc này là tia đối của một cạnh của góc kia."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f110b5b8994332e31e-4",
+      "grade": 7,
+      "topic": "Hai đường thẳng song song",
+      "tags": [
+        "Hai đường thẳng song song"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Trong trường hợp nào hai đường thẳng phân biệt vuông góc với một đường thẳng thứ ba thì chúng song song với nhau?",
+      "answer": "Khi ba đường thẳng cùng nằm trong một mặt phẳng",
+      "unit": "",
+      "solution": "Trong cùng mặt phẳng, hai đường thẳng phân biệt cùng vuông góc với đường thẳng thứ ba thì song song với nhau.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Trong cùng mặt phẳng, hai đường thẳng phân biệt cùng vuông góc với đường thẳng thứ ba thì song song với nhau."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Khi ba đường thẳng cùng nằm trong một mặt phẳng"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_9_hai_duong_thang_song_song_va_dau_hieu_nhan_biet.docx",
+        "question": 3,
+        "sha256": "f110b5b8994332e31e129354913ad8193de93a3bbf6b33fbaec27b39c343cef9",
+        "originalAnswer": "Trả lời: Khi cả hai đường thẳng cùng vuông góc với một đường thẳng thứ ba."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-c2b495871d3a2ece3c-11",
+      "grade": 7,
+      "topic": "Đường trung trực của tam giác",
+      "tags": [
+        "Đường trung trực của tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gọi O là giao điểm của ba đường trung trực trong  ΔABC. Khi đó O là?",
+      "answer": "Tâm đường tròn ngoại tiếp tam giác ABC",
+      "unit": "",
+      "solution": "O thuộc ba đường trung trực nên OA = OB = OC. Đường tròn tâm O bán kính OA đi qua cả ba đỉnh.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "O thuộc ba đường trung trực nên OA = OB = OC. Đường tròn tâm O bán kính OA đi qua cả ba đỉnh."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Tâm đường tròn ngoại tiếp tam giác ABC"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_35_su_dong_quy_cua_ba_duong_trung_truc_ba_duong_cao_trong_mot_tam_giac.docx",
+        "question": 10,
+        "sha256": "c2b495871d3a2ece3c5e74cde4a73c69849eb372f3e7ee2c71cfcbdcd4777f7e",
+        "originalAnswer": "Trả lời: Điểm cách đều ba đỉnh của ΔABC và Tâm đường tròn ngoại tiếp ΔABC"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f110b5b8994332e31e-8",
+      "grade": 7,
+      "topic": "Hai đường thẳng song song",
+      "tags": [
+        "Hai đường thẳng song song"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Nếu hai đường thẳng song song, thì các cặp góc so le trong có đặc điểm gì?",
+      "answer": "Bằng nhau",
+      "unit": "",
+      "solution": "Khi một đường thẳng cắt hai đường thẳng song song, mỗi cặp góc so le trong có số đo bằng nhau.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Khi một đường thẳng cắt hai đường thẳng song song, mỗi cặp góc so le trong có số đo bằng nhau."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Bằng nhau"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_9_hai_duong_thang_song_song_va_dau_hieu_nhan_biet.docx",
+        "question": 7,
+        "sha256": "f110b5b8994332e31e129354913ad8193de93a3bbf6b33fbaec27b39c343cef9",
+        "originalAnswer": "Trả lời: Các cặp góc so le trong bằng nhau khi hai đường thẳng song song."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7495ab4695a22a6cdc-15",
+      "grade": 7,
+      "topic": "Hai tam giác bằng nhau",
+      "tags": [
+        "Hai tam giác bằng nhau"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Cho tam giác ABC và tam giác A'B'C' có AB = A'B', AC = A'C', ∠B = ∠B'. Hai tam giác có bằng nhau không?",
+      "answer": "Không thể kết luận",
+      "unit": "",
+      "solution": "Góc B không xen giữa AB và AC. Điều kiện hai cạnh và một góc không xen giữa nói chung không đủ để suy ra hai tam giác bằng nhau.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Góc B không xen giữa AB và AC. Điều kiện hai cạnh và một góc không xen giữa nói chung không đủ để suy ra hai tam giác bằng nhau."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Không thể kết luận"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_14_truong_hop_bang_nhau_thu_hai_va_thu_ba_cua_tam_giac.docx",
+        "question": 14,
+        "sha256": "7495ab4695a22a6cdceb7c6fb65c3be103ef5eaff51b0467155be88450a16a8b",
+        "originalAnswer": "Trả lời: Không thể kết luận, vì góc bằng nhau không nằm giữa hai cạnh."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-4397d0a514a68ef94b-7",
+      "grade": 7,
+      "topic": "Tia phân giác",
+      "tags": [
+        "Tia phân giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tia phân giác chia một góc thành hai góc như thế nào?",
+      "answer": "Hai góc có số đo bằng nhau",
+      "unit": "",
+      "solution": "Theo định nghĩa, tia phân giác chia góc thành hai góc bằng nhau, mỗi góc bằng một nửa góc ban đầu.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Theo định nghĩa, tia phân giác chia góc thành hai góc bằng nhau, mỗi góc bằng một nửa góc ban đầu."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Hai góc có số đo bằng nhau"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_8_goc_o_vi_tri_dac_biet._tia_phan_giac_cua_mot_goc.docx",
+        "question": 6,
+        "sha256": "4397d0a514a68ef94b02991e7f0c3fb78d36aa2f5b9c8a9c2fff1f680bfd1a0d",
+        "originalAnswer": "Trả lời: Tia phân giác chia góc thành hai góc có số đo bằng nhau."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-20",
+      "grade": 7,
+      "topic": "Biến cố ngẫu nhiên",
+      "tags": [
+        "Biến cố ngẫu nhiên"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Lấy ví dụ Biến cố không thể biết trước được chắc chắn có xảy ra hay không xảy ra?",
+      "answer": "Gieo một con xúc xắc cân đối, xuất hiện mặt 3 chấm",
+      "unit": "",
+      "solution": "Có thể xuất hiện mặt 3 chấm nhưng cũng có thể xuất hiện mặt khác. Xác suất là 1/6, lớn hơn 0 và nhỏ hơn 1, nên đây là biến cố ngẫu nhiên.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Có thể xuất hiện mặt 3 chấm nhưng cũng có thể xuất hiện mặt khác. Xác suất là 1/6, lớn hơn 0 và nhỏ hơn 1, nên đây là biến cố ngẫu nhiên."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Gieo một con xúc xắc cân đối, xuất hiện mặt 3 chấm"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "question": 19,
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "originalAnswer": "Trả lời:  Khi gieo một con xúc xắc thì sẽ xuất hiện mặt 3 chấm"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-f110b5b8994332e31e-10",
+      "grade": 7,
+      "topic": "Hai đường thẳng song song",
+      "tags": [
+        "Hai đường thẳng song song"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Khi một đường thẳng c cắt hai đường thẳng song song, các góc trong cùng phía sẽ có tính chất gì?",
+      "answer": "Tổng số đo bằng 180°",
+      "unit": "",
+      "solution": "Một góc trong cùng phía bù với góc so le trong của góc còn lại. Hai góc so le trong bằng nhau nên tổng cặp góc trong cùng phía bằng 180°.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Một góc trong cùng phía bù với góc so le trong của góc còn lại. Hai góc so le trong bằng nhau nên tổng cặp góc trong cùng phía bằng 180°."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Tổng số đo bằng 180°"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_9_hai_duong_thang_song_song_va_dau_hieu_nhan_biet.docx",
+        "question": 9,
+        "sha256": "f110b5b8994332e31e129354913ad8193de93a3bbf6b33fbaec27b39c343cef9",
+        "originalAnswer": "Trả lời: Các góc trong cùng phía sẽ có tổng số đo bằng 180°."
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-8",
+      "grade": 7,
+      "topic": "Biến cố chắc chắn",
+      "tags": [
+        "Biến cố chắc chắn"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Gieo hai con xúc xắc và thấy cả hai con xúc xắc đều xuất hiện mặt có số chấm là số chẵn. Viết biến cố là biến cố chắc chắn?",
+      "answer": "Tổng số chấm trên hai con xúc xắc là số chẵn",
+      "unit": "",
+      "solution": "Theo điều kiện, cả hai số chấm đều chẵn. Tổng hai số chẵn luôn chẵn nên biến cố tổng chẵn là chắc chắn trong tình huống đã cho.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Theo điều kiện, cả hai số chấm đều chẵn. Tổng hai số chẵn luôn chẵn nên biến cố tổng chẵn là chắc chắn trong tình huống đã cho."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Tổng số chấm trên hai con xúc xắc là số chẵn"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "question": 7,
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "originalAnswer": "Trả lời:  “Tổng số chấm trên cả hai con xúc xắc là số chẵn”"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-10",
+      "grade": 7,
+      "topic": "Biến cố chắc chắn",
+      "tags": [
+        "Biến cố chắc chắn"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Tung ngẫu nhiên hai đồng xu cân đối. Viết biến cố không là biến cố ngẫu nhiên?",
+      "answer": "Số đồng xu xuất hiện mặt sấp không vượt quá 2",
+      "unit": "",
+      "solution": "Tung hai đồng xu chỉ có thể có 0, 1 hoặc 2 mặt sấp, nên đây là biến cố chắc chắn, không phải biến cố ngẫu nhiên.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Tung hai đồng xu chỉ có thể có 0, 1 hoặc 2 mặt sấp, nên đây là biến cố chắc chắn, không phải biến cố ngẫu nhiên."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Số đồng xu xuất hiện mặt sấp không vượt quá 2"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "question": 9,
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "originalAnswer": "Trả lời:  “Số đồng xu xuất hiện mặt sấp không vượt quá 2\""
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-7da721722ed55d0342-7",
+      "grade": 7,
+      "topic": "Lăng trụ đứng",
+      "tags": [
+        "Lăng trụ đứng"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Lăng trụ đứng tứ giác có bao nhiêu mặt,  đỉnh, cạnh?",
+      "answer": "6 mặt, 8 đỉnh, 12 cạnh",
+      "unit": "",
+      "solution": "Lăng trụ đáy tứ giác có 2 mặt đáy và 4 mặt bên, 2 × 4 = 8 đỉnh, 2 × 4 + 4 = 12 cạnh.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Lăng trụ đáy tứ giác có 2 mặt đáy và 4 mặt bên, 2 × 4 = 8 đỉnh, 2 × 4 + 4 = 12 cạnh."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "6 mặt, 8 đỉnh, 12 cạnh"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_37_hinh_lang_tru_dung_tam_giac_va_hinh_lang_tru_dung_tu_giac.docx",
+        "question": 6,
+        "sha256": "7da721722ed55d0342cf0287bf5a968e39aae65a80e180f959bff47a35224a7f",
+        "originalAnswer": "Trả lời: Lăng trụ đứng tứ giác có 6 mặt, 8 đỉnh, 12 cạnh"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-1dd0b7a88b2001cb38-9",
+      "grade": 7,
+      "topic": "Bất đẳng thức tam giác",
+      "tags": [
+        "Bất đẳng thức tam giác"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Có tam giác nào tồn tại với ba số đo 2cm,5cm,7cm không?",
+      "answer": "Không",
+      "unit": "",
+      "solution": "Một tam giác phải có tổng độ dài hai cạnh lớn hơn cạnh còn lại. Ở đây 2 + 5 = 7, không lớn hơn 7, nên không tồn tại tam giác.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Một tam giác phải có tổng độ dài hai cạnh lớn hơn cạnh còn lại. Ở đây 2 + 5 = 7, không lớn hơn 7, nên không tồn tại tam giác."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Không"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_33_quan_he_giua_ba_canh_cua_mot_tam_giac.docx",
+        "question": 8,
+        "sha256": "1dd0b7a88b2001cb38d85707729080d3ec03b6084451eed0493ecde6364c9d19",
+        "originalAnswer": "Trả lời: Không vì vi phạm bất đẳng thức trong tam giác"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-5516aa6f56171432c2-2",
+      "grade": 7,
+      "topic": "Biểu đồ hình quạt tròn",
+      "tags": [
+        "Biểu đồ hình quạt tròn"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Biểu đồ hình quạt tròn dùng để làm gì?",
+      "answer": "Biểu diễn tỉ lệ các bộ phận trong một tổng thể",
+      "unit": "",
+      "solution": "Toàn bộ hình tròn ứng với 100%; các hình quạt biểu diễn phần đóng góp của từng bộ phận vào tổng thể.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Toàn bộ hình tròn ứng với 100%; các hình quạt biểu diễn phần đóng góp của từng bộ phận vào tổng thể."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Biểu diễn tỉ lệ các bộ phận trong một tổng thể"
+        }
+      ],
+      "source": {
+        "file": "toan_7_ket_noi_bai_18_bieu_do_hinh_quat_tron.docx",
+        "question": 1,
+        "sha256": "5516aa6f56171432c285d621c9f28110465447d0b9e9f05463fc98b81d10f888",
+        "originalAnswer": "Trả lời:  Để so sánh các phần trong toàn bộ dữ liệu"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
+    },
+    {
+      "id": "supplement-source-5538816df4e737f5ad-14",
+      "grade": 7,
+      "topic": "Biến cố chắc chắn",
+      "tags": [
+        "Biến cố chắc chắn"
+      ],
+      "level": "Cơ bản",
+      "prompt": "Trong một chiếc hộp có bốn tấm thẻ được ghi số 3, 7, 8, 10. Rút ngẫu nhiên 1 tấm thẻ từ trong hộp. Biến cố chắn chắn là?",
+      "answer": "Rút được thẻ ghi số lớn hơn 2",
+      "unit": "",
+      "solution": "Cả bốn số 3, 7, 8, 10 đều lớn hơn 2. Do đó mọi kết quả có thể đều làm biến cố xảy ra.",
+      "formats": [
+        "essay"
+      ],
+      "rubric": [
+        {
+          "id": "reason",
+          "points": 7,
+          "description": "Cả bốn số 3, 7, 8, 10 đều lớn hơn 2. Do đó mọi kết quả có thể đều làm biến cố xảy ra."
+        },
+        {
+          "id": "result",
+          "points": 3,
+          "description": "Rút được thẻ ghi số lớn hơn 2"
+        }
+      ],
+      "source": {
+        "file": "tln_toan_7_tap_2_kntt_bai_29_lam_quen_voi_bien_co.docx",
+        "question": 13,
+        "sha256": "5538816df4e737f5ad7bfa4a42203b61033bb9d292b5fe4d46373054f4e8064e",
+        "originalAnswer": "Trả lời:  Rút ngẫu nhiên được thẻ là số lớn hơn 2"
+      },
+      "review": {
+        "status": "verified",
+        "method": "Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện"
+      }
     }
   ]
 }

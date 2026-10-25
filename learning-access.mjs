@@ -1,4 +1,6 @@
-import {exercises} from './public/data.js';
+import {exercises as starterExercises} from './public/data.js';
+import {libraryPracticeExercises} from './public/library-practice-bank.js';
+const exercises=[...starterExercises,...libraryPracticeExercises];
 import {asExercise} from './teacher-content.mjs';
 
 export function historicalContentIds(db,id){

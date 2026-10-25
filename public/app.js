@@ -27,7 +27,9 @@ import {learningStats} from './learning-stats.js';
 import {demoLessons} from './demo-lessons.js';
 import {teacherLibraryHTML,studentLessonsHTML} from './lesson-library.js';
 import {auth,roleNames,canVisit,api,workspace,loginView,selectionHTML,adminHTML} from './auth-client.js';
-import { exercises as baseExercises, skills as baseSkills, checkAnswer } from './data.js';
+import { exercises as starterExercises, skills as starterSkills, checkAnswer } from './data.js';
+import {libraryPracticeExercises,libraryPracticeSkills} from './library-practice-bank.js';
+const baseExercises=[...starterExercises,...libraryPracticeExercises],baseSkills=[...starterSkills,...libraryPracticeSkills];
 import { referenceHome, navigation, icon } from './ui.js';
 import { math, formula, solutionHTML, richMath, promptHTML, attachMathPreviews } from './math.js';
 import { formulaLibraryHTML, formulaLibrary, formulasForGrade } from './formula-library.js';
@@ -195,7 +197,7 @@ function renderPage() {
   const nextGrade=normalizeGrade(state.profile?.grade);if(nextGrade!==grade){grade=nextGrade;filter='all';}
   exercises=allExercises.filter(e=>!e.archived&&e.grades.includes(grade));skills=allSkills.filter(s=>s.grades.includes(grade)&&exercises.some(e=>e.skill===s.id));activeFormulas=auth.user.role==='teacher'?formulaLibrary:formulasForGrade(grade);
   const published=demoLessons.filter(l=>l.grade===grade&&auth.lessonPublications.some(p=>p.id===l.id));
-  if(published.length){const ids=new Set(published.flatMap(l=>l.exerciseIds));exercises=exercises.filter(e=>e.type==='mcq'||ids.has(e.id)||custom.some(c=>c.id===e.id));skills=skills.filter(s=>exercises.some(e=>e.skill===s.id));}
+  if(published.length){const ids=new Set(published.flatMap(l=>l.exerciseIds));exercises=exercises.filter(e=>e.libraryPractice||e.type==='mcq'||ids.has(e.id)||custom.some(c=>c.id===e.id));skills=skills.filter(s=>exercises.some(e=>e.skill===s.id));}
   nav(page==='learn'?'practice':page);
   document.body.classList.toggle('is-dashboard',page==='home'&&auth.user.role==='student');
   const profile=auth.user.role==='student'?(state.profile||{name:auth.user.name,grade:'7'}):{name:auth.user.name};

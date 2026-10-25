@@ -9,8 +9,9 @@ import {questionLibrary,pendingQuestionLibrary,libraryCatalog,selectLibraryQuest
 
 test('screened questions are shared by grade, teacher-only and cannot be assigned before review',()=>{
  const catalog=libraryCatalog({role:'teacher'});
- assert.equal(catalog.pendingQuestions.length,1935);
- assert.equal(new Set(catalog.pendingQuestions.map(q=>q.id)).size,1935);
+ assert.equal(catalog.pendingQuestions.length,pendingQuestionLibrary.length);
+ assert.ok(catalog.pendingQuestions.length<1935);
+ assert.equal(new Set(catalog.pendingQuestions.map(q=>q.id)).size,catalog.pendingQuestions.length);
  assert.throws(()=>libraryCatalog({role:'student'}),e=>e.status===403);
  for(const grade of [6,7,8,9])assert.ok(catalog.pendingQuestions.some(q=>q.grade===grade));
  for(const q of pendingQuestionLibrary){
@@ -45,8 +46,9 @@ test('pending source documents remain teacher-only across restart and direct dow
 test('reviewed supplemental questions support MCQ and photo essay selections',()=>{
  const added=questionLibrary.filter(q=>q.id.startsWith('supplement-'));assert.ok(added.length>=17);
  for(const q of added){
-  assert.equal(q.review.status,'verified');assert.equal(q.choices[q.correctIndex],q.answer);
+  assert.equal(q.review.status,'verified');if(q.formats.includes('mcq'))assert.equal(q.choices[q.correctIndex],q.answer);
   assert.ok(q.solution&&q.source.sha256&&q.source.originalAnswer);
-  for(const type of ['mcq','essay'])assert.equal(selectLibraryQuestions([{id:q.id,type,points:10}],q.grade)[0].type,type);
+  for(const type of q.formats)assert.equal(selectLibraryQuestions([{id:q.id,type,points:10}],q.grade)[0].type,type);
+  if(!q.formats.includes('mcq'))assert.throws(()=>selectLibraryQuestions([{id:q.id,type:'mcq',points:10}],q.grade),e=>e.status===400);
  }
 });

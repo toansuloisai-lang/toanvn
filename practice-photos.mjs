@@ -30,7 +30,7 @@ export function createPracticePhotos({db,persist,student,writeFile,readFile}){
  async function submit(user,input){
   if(user.role!=='student')fail(403,'Chỉ học sinh được nộp bài luyện tập.');
   if(!input||typeof input.requestId!=='string'||!/^[a-f0-9-]{36}$/.test(input.requestId)||typeof input.working!=='string'||input.working.length>4000||!Array.isArray(input.photos)||!input.photos.length||input.photos.length>3)fail(400,'Chọn từ 1 đến 3 ảnh; cách làm tối đa 4.000 ký tự.');
-  const ex=studentCatalog(db,user.id).find(e=>e.id===input.exerciseId);if(!ex)fail(404,'Không tìm thấy bài luyện tập dành cho em.');
+  const ex=studentCatalog(db,user.id).find(e=>e.id===input.exerciseId&&e.grades.includes(Number(db.states[user.id]?.profile?.grade||7)));if(!ex)fail(404,'Không tìm thấy bài luyện tập dành cho em.');
   const digest=createHash('sha256').update(JSON.stringify([input.exerciseId,input.working,input.photos])).digest('hex');
   const previous=rows(user.id).find(r=>r.requestId===input.requestId);
   if(previous){if(previous.digest!==digest)fail(409,'Bài đã thay đổi. Hãy nộp thành lượt mới.');return publicRow(previous);}
