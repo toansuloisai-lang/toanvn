@@ -28,7 +28,7 @@ import {demoLessons} from './demo-lessons.js';
 import {teacherLibraryHTML,studentLessonsHTML} from './lesson-library.js';
 import {auth,roleNames,canVisit,api,workspace,loginView,selectionHTML,adminHTML} from './auth-client.js';
 import { exercises as starterExercises, skills as starterSkills, checkAnswer } from './data.js';
-import {libraryPracticeExercises,libraryPracticeSkills} from './library-practice-bank.js?v=1d402dfe0623';
+import {libraryPracticeExercises,libraryPracticeSkills} from './library-practice-bank.js?v=62489aee4a33';
 const baseExercises=[...starterExercises,...libraryPracticeExercises],baseSkills=[...starterSkills,...libraryPracticeSkills];
 import { referenceHome, navigation, icon } from './ui.js';
 import { math, formula, solutionHTML, richMath, promptHTML, attachMathPreviews } from './math.js';

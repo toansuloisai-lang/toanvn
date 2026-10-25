@@ -14,6 +14,19 @@ test('all verified library formats reach practice, pending questions stay exclud
  }
  assert.ok(!rows.some(e=>pendingQuestionLibrary.some(q=>q.id===e.sourceQuestionId)));
 });
+test('edited sources preserve original stems, corrected answers and format restrictions',()=>{
+ const equation=questionLibrary.find(q=>q.id==='supplement-source-aa3f15b65872dca10b-8');
+ assert.equal(equation.answer,'y = 3x + 1');
+ assert.ok(equation.source.originalPrompt.includes('y = 13x'));
+ assert.deepEqual(equation.formats,['essay']);
+ const statement=questionLibrary.find(q=>q.id==='supplement-source-20182a65df4caa2921-5');
+ assert.deepEqual(statement.formats,['essay']);
+ assert.match(statement.answer,/C,D sai/);
+ const choice=questionLibrary.find(q=>q.id==='supplement-source-aa3f15b65872dca10b-9');
+ assert.equal(choice.choices.length,4);assert.equal(choice.correctIndex,1);
+ assert.equal(choice.answer,choice.choices[1]);
+ assert.ok(!choice.prompt.includes('B.'));
+});
 test('library practice grades on server, persists history and rejects other grades',()=>{
  const user={id:'student',role:'student'},db={users:[user],teacherContents:[],states:{student:{profile:{grade:7}}}};
  let saves=0;

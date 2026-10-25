@@ -1,5 +1,8 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {verified as round2,corrections as round2Corrections} from './pending-practice-review-round2.mjs';
+import {verified as round3,corrections as round3Corrections} from './pending-practice-review-round3.mjs';
+import {verified as round4,corrections as round4Corrections} from './pending-practice-review-round4.mjs';
+import {verified as round5,corrections as round5Corrections} from './pending-practice-review-round5.mjs';
 const read=async p=>JSON.parse(await readFile(p,'utf8'));
 const pending=await read('data/datatm-screened-pending.json'),supplement=await read('data/datatm-supplement-reviewed.json');
 // Each answer below was reasoned independently, including corrections to source keys.
@@ -119,19 +122,24 @@ const rejected=[
  ['source-24d518bee46005afed-3','Chưa nêu mẫu được chọn ngẫu nhiên và đại diện; không đủ cơ sở suy rộng cho toàn trường.'],
  ['source-24d518bee46005afed-2','Chưa rõ ghi độ cận/viễn bằng số hay chỉ ghi tình trạng; cần làm rõ biến dữ liệu trước khi chấm.'],
 ];
-specs.push(...round2);rejected.push(...round2Corrections);
+specs.push(...round2,...round3,...round4,...round5);rejected.push(...round2Corrections,...round3Corrections,...round4Corrections,...round5Corrections);
+const decisionIds=[...specs,...rejected].map(row=>row[0]);
+if(new Set(decisionIds).size!==decisionIds.length)throw Error('Duplicate review decisions');
 const decisions=[];
-for(const [id,topic,answer,solution] of specs){
+for(const [id,topic,sourceAnswer,solution,revisedPrompt,forceFormat] of specs){
  const q=pending.questions.find(q=>q.id===id);if(!q)throw Error(id);
  const fullId='supplement-'+id;
  if(!supplement.questions.some(q=>q.id===fullId)){
-  let prompt=q.prompt.replace(/^<TH>\s*/,'');
+  let prompt=(revisedPrompt||q.prompt).normalize('NFC').replace(/O10-2024-GV137/g,'').replace(/^<(?:TH|NB|VD|VDC)>\s*/,'').replace(/Hướng dẫn giải\s*$/iu,'').trim();
+  // Only split inline labels after detecting the complete A/B/C/D sequence.
+  if(forceFormat!=='essay'&&/\n\s*A\./.test(prompt)&&['B.','C.','D.'].every(label=>prompt.includes(label)))prompt=prompt.replace(/([^\n])([BCD])\.\s*/g,'$1\n$2. ');
   const matches=[...prompt.matchAll(/(?:^|\n)\s*([ABCD])\.\s*([^]*?)(?=\n\s*[ABCD]\.\s*|$)/g)];
-  const choices=matches.length===4?matches.map(m=>m[2].trim()):null;
-  const correctIndex=choices?.findIndex(c=>c===answer)??-1;
+  const choices=matches.length===4&&forceFormat!=='essay'?matches.map(m=>m[2].trim()):null;
+  const correctIndex=choices?(/^[ABCD]$/.test(sourceAnswer)?'ABCD'.indexOf(sourceAnswer):choices.findIndex(c=>c===sourceAnswer)):-1;
+  const answer=choices&&correctIndex>=0?choices[correctIndex]:sourceAnswer;
   if(choices&&correctIndex<0)throw Error('Answer missing '+id);
   if(choices)prompt=prompt.slice(0,matches[0].index).trim();
-  supplement.questions.push({id:fullId,grade:q.grade,topic,tags:[topic],level:'Cơ bản',prompt,answer,unit:'',solution,formats:choices?['mcq','essay']:['essay'],...(choices?{choices,correctIndex}:{}),rubric:[{id:'reason',points:7,description:solution},{id:'result',points:3,description:answer}],source:{...q.source,originalAnswer:q.sourceSolution},review:{status:'verified',method:'Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện'}});
+  supplement.questions.push({id:fullId,grade:q.grade,topic,tags:[topic],level:'Cơ bản',prompt,answer,unit:'',solution,formats:choices?['mcq','essay']:['essay'],...(choices?{choices,correctIndex}:{}),rubric:[{id:'reason',points:7,description:solution},{id:'result',points:3,description:answer}],source:{...q.source,originalAnswer:q.sourceSolution,...(revisedPrompt?{originalPrompt:q.prompt,adaptation:'Biên tập lại câu dẫn để sửa kí hiệu hoặc nêu rõ điều kiện; giữ bản gốc để đối chiếu.'}:{})},review:{status:'verified',method:'Đọc đề, lập luận độc lập và đối chiếu lời giải nguồn; sửa hoặc loại câu thiếu điều kiện'}});
  }
  decisions.push({id,status:'verified'});
 }
