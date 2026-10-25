@@ -3,7 +3,7 @@ services:
     name: math-thinking-lab
     runtime: node
     plan: free
-    buildCommand: npm ci --omit=dev
+    buildCommand: npm ci --omit=dev && npm run build:deploy
     startCommand: npm run start:render
     healthCheckPath: /api/status
     envVars:

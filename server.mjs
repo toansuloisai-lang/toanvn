@@ -1,5 +1,5 @@
 import {createGuestSessions} from './guest-sessions.mjs';
-import {sendStatic} from './static-response.mjs';
+import {createStaticFileSender} from './static-response.mjs';
 import {clientAddress} from './request-ip.mjs';
 import {configureGemini,geminiFetch} from './gemini-client.mjs';
 import {learningAI} from './learning-ai.mjs';
@@ -18,6 +18,7 @@ import { exercises } from './public/data.js';
 import { createApplicationStore } from './database/app-store.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('./public/', import.meta.url)));
+const sendStaticFile=createStaticFileSender();
 try {
   const env = await readFile(new URL('./.env', import.meta.url), 'utf8');
   for (const line of env.split(/\r?\n/)) {
@@ -36,6 +37,19 @@ const mathInstruction = String.raw`Định dạng bắt buộc: mọi biểu th�
 const limits = new Map();
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json', '.png': 'image/png', '.webp':'image/webp', '.woff2':'font/woff2', '.woff':'font/woff', '.ttf':'font/ttf' };
 const json = (res, status, body) => { res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(body)); };
+let deployedVersion;
+async function assetVersion(){
+ const compute=async()=>{
+  const names=(await readdir(root)).filter(name=>/\.(js|css|html)$/.test(name)).sort();
+  const hash=createHash('sha256');
+  // Read sequentially to avoid holding every public script in memory at once.
+  for(const name of names)hash.update(await readFile(path.join(root,name)));
+  return hash.digest('hex').slice(0,16);
+ };
+ if(process.env.NODE_ENV!=='production')return compute();
+ if(!deployedVersion)deployedVersion=compute().catch(error=>{deployedVersion=undefined;throw error;});
+ return deployedVersion;
+}
 async function body(req) {
   if(/^\/api\/library\/sets\/[a-f0-9-]{36}\/upload$/.test(req.url)){let payload='';for await(const chunk of req){payload+=chunk;if(Buffer.byteLength(payload)>17500000)throw Object.assign(Error('Ảnh bài làm vượt quá dung lượng cho phép.'),{status:413});}return JSON.parse(payload);}
   if(req.url==='/api/library/sets'){let payload='';for await(const chunk of req){payload+=chunk;if(Buffer.byteLength(payload)>1000000)throw Object.assign(Error('Nội dung đề quá lớn.'),{status:413});}return JSON.parse(payload);}
@@ -59,10 +73,7 @@ export const server = http.createServer(async (req, res) => {
     productionAccounts.checkHealth();
     const url = new URL(req.url, 'http://localhost');
     if(url.pathname==='/api/version'&&req.method==='GET'){
-      const names=(await readdir(root)).filter(name=>/\.(js|css|html)$/.test(name)).sort();
-      const contents=await Promise.all(names.map(name=>readFile(path.join(root,name))));
-      const hash=createHash('sha256');for(const content of contents)hash.update(content);
-      return json(res,200,{version:hash.digest('hex').slice(0,16)});
+      return json(res,200,{version:await assetVersion()});
     }
     if(url.pathname.startsWith('/api/')&&!['GET','HEAD'].includes(req.method)){
       if(req.headers['sec-fetch-site']==='cross-site'||(req.headers.origin&&!['http://'+req.headers.host,'https://'+req.headers.host].includes(req.headers.origin)))return json(res,403,{error:'Nguồn yêu cầu không hợp lệ.'});
@@ -302,8 +313,7 @@ export const server = http.createServer(async (req, res) => {
     const relative = decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname);
     const filename = path.resolve(root, '.' + relative);
     if (!filename.startsWith(root + path.sep) && filename !== path.join(root, 'index.html')) return json(res, 403, { error: 'Không được truy cập.' });
-    const content = await readFile(filename);
-    await sendStatic(req,res,content,mime[path.extname(filename)] || 'application/octet-stream');
+    await sendStaticFile(req,res,filename,mime[path.extname(filename)] || 'application/octet-stream');
   } catch (e) { json(res, e.status || (e.code === 'ENOENT' ? 404 : 400), { error: e.status ? e.message : e.code === 'ENOENT' ? 'Không tìm thấy tài nguyên.' : 'Yêu cầu không hợp lệ.' }); }
 });
 const examTimer=setInterval(()=>{try{accounts.exams.sweep();}catch{console.error('Chưa lưu được bài thi hết giờ; sẽ thử lại.');}},1000);

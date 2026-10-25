@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:deploy": "node scripts/build-library-practice.mjs && node scripts/prepare-deploy.mjs",
     "start": "node server.mjs",
     "start:render": "node scripts/start-render.mjs",
     "dev": "node --watch server.mjs",

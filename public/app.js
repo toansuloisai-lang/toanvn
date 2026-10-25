@@ -28,7 +28,8 @@ import {demoLessons} from './demo-lessons.js';
 import {teacherLibraryHTML,studentLessonsHTML} from './lesson-library.js';
 import {auth,roleNames,canVisit,api,workspace,loginView,selectionHTML,adminHTML} from './auth-client.js';
 import { exercises as starterExercises, skills as starterSkills, checkAnswer } from './data.js';
-import {libraryPracticeExercises,libraryPracticeSkills} from './library-practice-bank.js?v=62489aee4a33';
+import {libraryPracticeExercises,libraryPracticeSkills,libraryPracticeListedIds} from './library-practice-bank.js?v=728e82144f4b';
+const libraryPracticeListedSet=new Set(libraryPracticeListedIds);
 const baseExercises=[...starterExercises,...libraryPracticeExercises],baseSkills=[...starterSkills,...libraryPracticeSkills];
 import { referenceHome, navigation, icon } from './ui.js';
 import { math, formula, solutionHTML, richMath, promptHTML, attachMathPreviews } from './math.js';
@@ -78,7 +79,7 @@ function home() {
   if(auth.user.role!=='student') return rolePage();
   return referenceHome({state:{...state,attempts:state.attempts.filter(a=>exercises.some(e=>e.id===a.exerciseId))},skills,stat,due,escape:esc,skillName,grade,exercises});
 }
-function practice(selected) { if(selected && skills.some(s=>s.id===selected)) filter=selected; const list=exercises.filter(e=>filter==='all'||e.skill===filter).sort((a,b)=>Number(b.type==='mcq')-Number(a.type==='mcq')); return intro('THỬ · SAI · HIỂU · SỬA','Phòng luyện tập',`${exercises.length} bài khởi đầu · Toán lớp ${grade}. Gồm trắc nghiệm chọn đáp án và tự luận nộp ảnh. Giáo viên chốt điểm chính thức.`) + `<div class="filters">${[{id:'all',name:'Tất cả chủ đề'},...skills].map(s=>`<button class="filter ${filter===s.id?'active':''}" data-filter="${s.id}">${s.name}</button>`).join('')}</div><div class="exercise-grid">${list.map(e=>`<article class="exercise-card"><span class="badge ${e.level==='Vận dụng'?'amber':''}">${e.level}</span><p><span class="badge">${e.type==='mcq'?'Trắc nghiệm':'Tự luận'}</span> · ${e.id.startsWith('mcq-')?'Kho câu hỏi bổ sung':e.teacherAuthored?'Giáo viên soạn':'Bài luyện tập'}</p><h3>${practicePrompt(e)}</h3><p>${skillName(e.skill)}</p><a class="btn secondary" href="#learn/${e.id}">${e.type==='mcq'?'Chọn đáp án →':'Làm bài và nộp ảnh →'}</a></article>`).join('')}</div>`; }
+function practice(selected) { if(selected && skills.some(s=>s.id===selected)) filter=selected; const pool=exercises.filter(e=>!e.libraryPractice||libraryPracticeListedSet.has(e.id)); const list=pool.filter(e=>filter==='all'||e.skill===filter).sort((a,b)=>Number(b.type==='mcq')-Number(a.type==='mcq')); return intro('THỬ · SAI · HIỂU · SỬA','Phòng luyện tập',`${exercises.length} bài khởi đầu · Toán lớp ${grade}. Gồm trắc nghiệm chọn đáp án và tự luận nộp ảnh. Giáo viên chốt điểm chính thức.`) + `<div class="filters">${[{id:'all',name:'Tất cả chủ đề'},...skills].map(s=>`<button class="filter ${filter===s.id?'active':''}" data-filter="${s.id}">${s.name}</button>`).join('')}</div><div class="exercise-grid">${list.map(e=>`<article class="exercise-card"><span class="badge ${e.level==='Vận dụng'?'amber':''}">${e.level}</span><p><span class="badge">${e.type==='mcq'?'Trắc nghiệm':'Tự luận'}</span> · ${e.id.startsWith('mcq-')?'Kho câu hỏi bổ sung':e.teacherAuthored?'Giáo viên soạn':'Bài luyện tập'}</p><h3>${practicePrompt(e)}</h3><p>${skillName(e.skill)}</p><a class="btn secondary" href="#learn/${e.id}">${e.type==='mcq'?'Chọn đáp án →':'Làm bài và nộp ảnh →'}</a></article>`).join('')}</div>`; }
 function practicePrompt(ex) {
   return promptHTML({...ex,prompt:ex.prompt.replace(/Chỉ nhập[^.!?]*(?:[.!?]|$)/gi,'').trim()});
 }

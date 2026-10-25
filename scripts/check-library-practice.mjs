@@ -1,13 +1,15 @@
 import assert from 'node:assert/strict';
 import {chromium} from '@playwright/test';
 import {createTestApp} from './browser-fixture.mjs';
-import {libraryPracticeExercises} from '../public/library-practice-bank.js';
-const app=await createTestApp({grade:8}),browser=await chromium.launch({channel:'msedge',headless:true});
+import {libraryPracticeExercises,libraryPracticeListedIds} from '../public/library-practice-bank.js';
+const grade=Number(process.argv[2]||8);
+assert.ok([8,9].includes(grade));
+const app=await createTestApp({grade}),browser=await chromium.launch({channel:'msedge',headless:true});
 try{
  const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  await app.login(page);await page.goto(app.base+'/#practice');
- const expected=libraryPracticeExercises.filter(e=>e.grades.includes(8));
+ const expected=libraryPracticeExercises.filter(e=>e.grades.includes(grade)&&libraryPracticeListedIds.includes(e.id));
  await page.locator('a[href="#learn/'+expected[0].id+'"]').waitFor();
  assert.equal(await page.locator('a[href^="#learn/practice-"]').count(),expected.length);
  const mcq=expected.find(e=>e.type==='mcq'),essay=expected.find(e=>e.type==='essay');
@@ -22,5 +24,5 @@ try{
  assert.equal(await page.locator('[data-practice-choice-form]').count(),0);
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  assert.deepEqual(errors,[]);
- console.log(JSON.stringify({sameGradeFormats:expected.length,submit:true,historyAfterReload:true,essayUpload:true,mobile:true,errors}));
+ console.log(JSON.stringify({grade,sameGradeFormats:expected.length,submit:true,historyAfterReload:true,essayUpload:true,mobile:true,errors}));
 }finally{await browser.close();await app.close();}

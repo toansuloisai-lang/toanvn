@@ -3,6 +3,7 @@ import {verified as round2,corrections as round2Corrections} from './pending-pra
 import {verified as round3,corrections as round3Corrections} from './pending-practice-review-round3.mjs';
 import {verified as round4,corrections as round4Corrections} from './pending-practice-review-round4.mjs';
 import {verified as round5,corrections as round5Corrections} from './pending-practice-review-round5.mjs';
+import {verified as balanced,corrections as balancedCorrections} from './pending-practice-review-balanced.mjs';
 const read=async p=>JSON.parse(await readFile(p,'utf8'));
 const pending=await read('data/datatm-screened-pending.json'),supplement=await read('data/datatm-supplement-reviewed.json');
 // Each answer below was reasoned independently, including corrections to source keys.
@@ -122,7 +123,7 @@ const rejected=[
  ['source-24d518bee46005afed-3','Chưa nêu mẫu được chọn ngẫu nhiên và đại diện; không đủ cơ sở suy rộng cho toàn trường.'],
  ['source-24d518bee46005afed-2','Chưa rõ ghi độ cận/viễn bằng số hay chỉ ghi tình trạng; cần làm rõ biến dữ liệu trước khi chấm.'],
 ];
-specs.push(...round2,...round3,...round4,...round5);rejected.push(...round2Corrections,...round3Corrections,...round4Corrections,...round5Corrections);
+specs.push(...round2,...round3,...round4,...round5,...balanced);rejected.push(...round2Corrections,...round3Corrections,...round4Corrections,...round5Corrections,...balancedCorrections);
 const decisionIds=[...specs,...rejected].map(row=>row[0]);
 if(new Set(decisionIds).size!==decisionIds.length)throw Error('Duplicate review decisions');
 const decisions=[];
@@ -134,7 +135,8 @@ for(const [id,topic,sourceAnswer,solution,revisedPrompt,forceFormat] of specs){
   // Only split inline labels after detecting the complete A/B/C/D sequence.
   if(forceFormat!=='essay'&&/\n\s*A\./.test(prompt)&&['B.','C.','D.'].every(label=>prompt.includes(label)))prompt=prompt.replace(/([^\n])([BCD])\.\s*/g,'$1\n$2. ');
   const matches=[...prompt.matchAll(/(?:^|\n)\s*([ABCD])\.\s*([^]*?)(?=\n\s*[ABCD]\.\s*|$)/g)];
-  const choices=matches.length===4&&forceFormat!=='essay'?matches.map(m=>m[2].trim()):null;
+  const labels=matches.map(m=>m[1]);
+  const choices=matches.length===4&&new Set(labels).size===4&&forceFormat!=='essay'?[...matches].sort((a,b)=>a[1].localeCompare(b[1])).map(m=>m[2].trim()):null;
   const correctIndex=choices?(/^[ABCD]$/.test(sourceAnswer)?'ABCD'.indexOf(sourceAnswer):choices.findIndex(c=>c===sourceAnswer)):-1;
   const answer=choices&&correctIndex>=0?choices[correctIndex]:sourceAnswer;
   if(choices&&correctIndex<0)throw Error('Answer missing '+id);

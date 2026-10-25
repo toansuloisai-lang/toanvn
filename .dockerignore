@@ -14,3 +14,8 @@ deploy-seed
 .DS_Store
 __pycache__
 /baocao
+/DATATM
+/datatm
+/docs
+/test
+/.github
