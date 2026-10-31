@@ -1,7 +1,9 @@
 name: toanvn
 services:
   database:
-    image: postgres:17-bookworm
+    image: ${TOANVN_POSTGRES_IMAGE:-local/toanvn-postgres-security:20261031}
+    build:
+      context: ./postgres-security
     container_name: toanvn-db
     restart: unless-stopped
     # Database has no network interface and no published port. Only the app
