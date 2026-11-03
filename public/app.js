@@ -1,4 +1,5 @@
 import {mountSelfStudy} from './self-study.js';
+import {nextPracticeExercise} from './practice-navigation.js';
 import {mountQuestionLibrary,mountLibraryList,mountLibrarySet} from './question-library-view.js';
 import {mountAssessmentSummary} from './assessment-summary.js';
 let disposeLibrary=()=>{};
@@ -46,7 +47,7 @@ const blank = () => ({attempts:[],reviews:{},assignments:[],notes:{}});
 let allExercises=[...baseExercises],allSkills=[...baseSkills];
 let grade=7, exercises=allExercises.filter(e=>e.grades.includes(7)), skills=allSkills.filter(s=>s.grades.includes(7)), activeFormulas=formulasForGrade(7);
 let state=blank(), saveQueue=Promise.resolve(), authReady=false, saveFailed=false, readTicket=0;
-let ai = false, session = null, filter = 'all', busy = false;
+let ai = false, session = null, filter = 'all', practiceType = 'mcq', busy = false;
 const usageTracker=trackUsage({getUser:()=>authReady?auth.user:null,request:api});
 function save() {
   if(auth.user?.role!=='student')return;
@@ -79,14 +80,16 @@ function home() {
   if(auth.user.role!=='student') return rolePage();
   return referenceHome({state:{...state,attempts:state.attempts.filter(a=>exercises.some(e=>e.id===a.exerciseId))},skills,stat,due,escape:esc,skillName,grade,exercises});
 }
-function practice(selected) { if(selected && skills.some(s=>s.id===selected)) filter=selected; const pool=exercises.filter(e=>!e.libraryPractice||libraryPracticeListedSet.has(e.id)); const list=pool.filter(e=>filter==='all'||e.skill===filter).sort((a,b)=>Number(b.type==='mcq')-Number(a.type==='mcq')); return intro('THỬ · SAI · HIỂU · SỬA','Phòng luyện tập',`${exercises.length} bài khởi đầu · Toán lớp ${grade}. Gồm trắc nghiệm chọn đáp án và tự luận nộp ảnh. Giáo viên chốt điểm chính thức.`) + `<div class="filters">${[{id:'all',name:'Tất cả chủ đề'},...skills].map(s=>`<button class="filter ${filter===s.id?'active':''}" data-filter="${s.id}">${s.name}</button>`).join('')}</div><div class="exercise-grid">${list.map(e=>`<article class="exercise-card"><span class="badge ${e.level==='Vận dụng'?'amber':''}">${e.level}</span><p><span class="badge">${e.type==='mcq'?'Trắc nghiệm':'Tự luận'}</span> · ${e.id.startsWith('mcq-')?'Kho câu hỏi bổ sung':e.teacherAuthored?'Giáo viên soạn':'Bài luyện tập'}</p><h3>${practicePrompt(e)}</h3><p>${skillName(e.skill)}</p><a class="btn secondary" href="#learn/${e.id}">${e.type==='mcq'?'Chọn đáp án →':'Làm bài và nộp ảnh →'}</a></article>`).join('')}</div>`; }
+function practice(selected) { if(selected && skills.some(s=>s.id===selected)) filter=selected; const pool=exercises.filter(e=>!e.libraryPractice||libraryPracticeListedSet.has(e.id)); const list=pool.filter(e=>(e.type==='mcq'?'mcq':'essay')===practiceType).filter(e=>filter==='all'||e.skill===filter); return intro('THỬ · SAI · HIỂU · SỬA','Phòng luyện tập',`${exercises.length} bài khởi đầu · Toán lớp ${grade}. Gồm trắc nghiệm chọn đáp án và tự luận nộp ảnh. Giáo viên chốt điểm chính thức.`) + `<div class="filters" aria-label="Dạng bài luyện tập">${[['mcq','Trắc nghiệm'],['essay','Tự luận']].map(([type,label])=>`<button class="filter ${practiceType===type?'active':''}" data-practice-type="${type}" aria-pressed="${practiceType===type}">${label} (${pool.filter(e=>(e.type==='mcq'?'mcq':'essay')===type).length})</button>`).join('')}</div><div class="filters">${[{id:'all',name:'Tất cả chủ đề'},...skills].map(s=>`<button class="filter ${filter===s.id?'active':''}" data-filter="${s.id}">${s.name}</button>`).join('')}</div><div class="exercise-grid">${list.map(e=>`<article class="exercise-card"><span class="badge ${e.level==='Vận dụng'?'amber':''}">${e.level}</span><p><span class="badge">${e.type==='mcq'?'Trắc nghiệm':'Tự luận'}</span> · ${e.id.startsWith('mcq-')?'Kho câu hỏi bổ sung':e.teacherAuthored?'Giáo viên soạn':'Bài luyện tập'}</p><h3>${practicePrompt(e)}</h3><p>${skillName(e.skill)}</p><a class="btn secondary" href="#learn/${e.id}">${e.type==='mcq'?'Chọn đáp án →':'Làm bài và nộp ảnh →'}</a></article>`).join('')}</div>`; }
 function practicePrompt(ex) {
   return promptHTML({...ex,prompt:ex.prompt.replace(/Chỉ nhập[^.!?]*(?:[.!?]|$)/gi,'').trim()});
 }
 function learn(id, mode) {
   const ex=allExercises.find(e=>e.id===id);if(!ex)return empty('Không tìm thấy bài tập.');
   session=null;
-  return `<div class="lab-layout"><a class="btn text" href="#practice">← Phòng luyện tập</a>${intro(skillName(ex.skill),ex.type==='mcq'?'Bài luyện tập trắc nghiệm':'Bài luyện tập tự luận',ex.type==='mcq'?'Chọn một trong bốn đáp án. Kết quả đối chiếu đáp án chuẩn, giáo viên chốt điểm chính thức.':'Làm bài trên giấy rồi tải ảnh. AI chấm điểm tạm thời; giáo viên xem bài và chốt điểm chính thức.')}<section class="card"><span class="badge">${ex.level}</span><div class="problem">${practicePrompt(ex)}</div>${ex.type==='mcq'?practiceChoicesHTML(ex):practicePhotosHTML()}</section></div>`;
+  practiceType=ex.type==='mcq'?'mcq':'essay';
+  const next=nextPracticeExercise(exercises.filter(e=>!e.libraryPractice||libraryPracticeListedSet.has(e.id)),id);
+  return `<div class="lab-layout"><a class="btn text" href="#practice">← Phòng luyện tập</a>${intro(skillName(ex.skill),ex.type==='mcq'?'Bài luyện tập trắc nghiệm':'Bài luyện tập tự luận',ex.type==='mcq'?'Chọn một trong bốn đáp án. Kết quả đối chiếu đáp án chuẩn, giáo viên chốt điểm chính thức.':'Làm bài trên giấy rồi tải ảnh. AI chấm điểm tạm thời; giáo viên xem bài và chốt điểm chính thức.')}<section class="card"><span class="badge">${ex.level}</span><div class="problem">${practicePrompt(ex)}</div>${ex.type==='mcq'?practiceChoicesHTML(ex):practicePhotosHTML()}<div data-practice-navigation hidden>${next?`<a class="btn" href="#learn/${next.id}">Câu tiếp theo →</a>`:'<p>Đã hết câu thuộc dạng bài này trong lớp hiện tại.</p>'} <a class="btn secondary" href="#practice">Chọn bài khác</a></div></section></div>`;
 }
 function persistAttemptDraft(){
   if(!session?.recordId)return;
@@ -248,6 +251,7 @@ function renderPage() {
 function activityRecorder(){if(auth.user?.role!=='student')return undefined;const owner=auth.user.id;return input=>{if(auth.user?.id!==owner)throw Error('Tài khoản đã thay đổi.');return api('/api/student/activities','POST',input);};}
 function bind() {
   bindAccounts();
+  document.querySelectorAll('[data-practice-type]').forEach(button=>button.onclick=()=>{practiceType=button.dataset.practiceType;render();});
   if($('#profile-form')&&state.classGrade){const hint=$('.profile-form .hint');if(hint)hint.textContent='Khối học được quản lý theo lớp. Liên hệ giáo viên khi cần chuyển lớp.';}
   $('#profile-form')?.addEventListener('submit',async e=>{e.preventDefault();const name=$('#profile-name').value.trim();if(!name)return;const previous=state.profile,button=e.currentTarget.querySelector('button');button.disabled=true;state.profile={name,grade:$('#profile-grade').value};const saved=await save();if(!auth.user)return;if(!saved){state.profile=previous;render();return;}state=await workspace(auth.studentId);filter='all';session=null;render();toast('Đã chuyển nội dung học sang lớp '+normalizeGrade(state.profile.grade)+'.');});
   document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;location.hash='#practice';render();});

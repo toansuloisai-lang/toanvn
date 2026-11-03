@@ -1,3 +1,4 @@
+import {showPracticeNavigation} from './practice-navigation.js';
 import {mountAttachments} from './tutor-attachments.js';
 import {richMath} from './math.js';
 import {formatMathText} from './math-format.js';
@@ -15,12 +16,12 @@ export function mountPracticePhotos(root,{request,exerciseId}){
   event.preventDefault();if(busy||photos.loading)return;if(!photos.images.length){status.textContent='Hãy chọn ít nhất một ảnh bài làm.';return;}
   busy=true;photos.setBusy(true);button.disabled=true;const ticket=revision;
   try{
-   if(!savedId){status.textContent='Đang lưu bài và ảnh…';requestId||=crypto.randomUUID();const saved=await request('/api/practice/photos/submit','POST',{exerciseId,requestId,working:'',photos:photos.images},60000);savedId=saved.id;delete form.dataset.uploadDirty;}
+   if(!savedId){status.textContent='Đang lưu bài và ảnh…';requestId||=crypto.randomUUID();const saved=await request('/api/practice/photos/submit','POST',{exerciseId,requestId,working:'',photos:photos.images},60000);savedId=saved.id;delete form.dataset.uploadDirty;showPracticeNavigation(root);}
    status.textContent='Bài và ảnh đã lưu. Đang chấm bài…';
    const result=await request('/api/practice/photos/'+savedId+'/grade','POST',{},90000);
    if(!form.isConnected)return;
    await mountPracticePhotoHistory(history,{request,exerciseId,first:result});
-   if(ticket===revision){photos.clear();requestId=null;savedId=null;delete form.dataset.uploadDirty;status.textContent='Đã chấm bài. Xem nhận xét bên dưới; điểm AI tạm thời, đang chờ giáo viên chốt.';}
+   if(ticket===revision){photos.clear();requestId=null;savedId=null;delete form.dataset.uploadDirty;showPracticeNavigation(root);status.textContent='Đã chấm bài. Xem nhận xét bên dưới; điểm AI tạm thời, đang chờ giáo viên chốt.';}
   }catch(error){if(form.isConnected){status.textContent=savedId?'Bài và ảnh đã lưu. Chưa chấm được: '+error.message+' Bấm Chấm bài để thử lại.':error.message;if(savedId)await mountPracticePhotoHistory(history,{request,exerciseId});}}
   finally{busy=false;if(form.isConnected){photos.setBusy(false);button.disabled=false;}}
  };

@@ -1,3 +1,4 @@
+import {showPracticeNavigation} from './practice-navigation.js';
 import {richMath} from './math.js';
 import {mountPracticePhotoHistory} from './practice-photos.js';
 export function practiceChoicesHTML(ex){
@@ -10,7 +11,7 @@ export function mountPracticeChoices(root,{request,exerciseId}){
  form.onchange=()=>{requestId=crypto.randomUUID();form.dataset.uploadDirty='true';};
  mountPracticePhotoHistory(history,{request,exerciseId});
  form.onsubmit=async event=>{event.preventDefault();if(busy)return;busy=true;const controls=[...form.querySelectorAll('input,button')],choiceIndex=Number(new FormData(form).get('choice'));controls.forEach(el=>el.disabled=true);status.textContent='Đang lưu đáp án…';
-  try{const result=await request('/api/practice/choices/submit','POST',{exerciseId,choiceIndex,requestId});if(!form.isConnected)return;delete form.dataset.uploadDirty;status.textContent=result.correct?'Đúng đáp án. Xem giải thích bên dưới.':'Chưa đúng. Xem đáp án và giải thích bên dưới.';await mountPracticePhotoHistory(history,{request,exerciseId,first:result});}
+  try{const result=await request('/api/practice/choices/submit','POST',{exerciseId,choiceIndex,requestId});if(!form.isConnected)return;delete form.dataset.uploadDirty;showPracticeNavigation(root);status.textContent=result.correct?'Đúng đáp án. Xem giải thích bên dưới.':'Chưa đúng. Xem đáp án và giải thích bên dưới.';await mountPracticePhotoHistory(history,{request,exerciseId,first:result});}
   catch(error){status.textContent=error.message;}finally{busy=false;controls.forEach(el=>el.disabled=false);}
  };
 }
